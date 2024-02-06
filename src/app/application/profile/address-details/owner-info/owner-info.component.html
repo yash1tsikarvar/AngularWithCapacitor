@@ -1,0 +1,120 @@
+<div class="box-group form-box" [ngClass]="viewType">
+  <form [formGroup]="childForm">
+      <div class="yes-no-question">
+        <label><span class="txt tev-text">Do you know  the owners information?</span></label>
+        <tev-yes-no-input formControlName="knowOwnerInformation"
+                          #ownerInfo
+                          style="color: #4D445A"
+                          ></tev-yes-no-input>
+        <div class="invalid-feedback">{{getError('knowOwnerInformation')}}</div>
+      </div>
+  </form>
+
+  <form [formGroup]="ownerInfoForm">
+
+    <div class="fields-owners"
+         *ngIf="ownerInfo.value === 'yes'">
+
+         <hr>
+
+
+      <h4 class="title-form">
+        Owners Information
+      </h4>
+      <p class="owner-info-text">
+        Owners will have 48 hours to respond to our email. Failure to do so will result in the delay of the
+        application (If Applicable)
+      </p>
+      <div class="row">
+
+
+
+        <div class="col-sm-12 col-md-12 col-lg-6">
+
+
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">* Owners Full Name</span>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     type="text"
+                     id="profileOwnerName"
+                     class="form-control"
+                     placeholder="Full Name"
+                     formControlName="fullName"
+                     maxlength="50"
+                     tevAsciiOnly
+                     class="owner-info-input"
+
+              >
+              <mat-error>{{getErrorSubForm('fullName')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">* Owners Email</span>
+            <mat-form-field appearance="outline">
+                  <input matInput
+                     type="email"
+                     id="profileOwnerEmail"
+                     class="form-control"
+                     placeholder="Email"
+                     formControlName="email"
+                     maxlength="50"
+                     tevAsciiOnly
+                     class="owner-info-input"
+
+              >
+              <mat-error>{{getErrorSubForm('email')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-6 col-lg-2">
+          <div class="select-group">
+            <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+            <mat-form-field appearance="outline">
+              <mat-select
+              [formControlName]="'dialCode'"
+              class="owner-info-select"
+              >
+                <mat-option *ngFor="let code of dialCodes" [value]="code | dialCodeValue">{{code | dialCodeName}}
+                </mat-option>
+              </mat-select>
+              <mat-error>{{getErrorSubForm('dialCode')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">* Mobile Number</span>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="profileOwnerCellphone"
+                     class="form-control"
+                     placeholder="Phone"
+                     formControlName="phone"
+                     maxlength="47"
+                     [textMask]="{mask: phonemask}"
+                     class="owner-info-input"
+
+              >
+              <mat-error>{{getErrorSubForm('phone')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+
+
+      </div><!-- /.row -->
+    </div><!-- ./fields-owners -->
+
+  </form>
+</div>

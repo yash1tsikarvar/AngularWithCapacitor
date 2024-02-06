@@ -1,0 +1,202 @@
+<div class="box-group">
+
+  <form class="row" [formGroup]="childForm">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h4 class="box-group__title">
+        Billing Address
+      </h4>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentBillingAddress"
+                 class="form-control"
+                 placeholder="Name (as it appears on your card)"
+                 formControlName="name"
+          >
+          <mat-error>{{getError('name')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <ng-template [ngIf]="applicationTotal > 0">
+
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="custom-checkbox">
+          <mat-checkbox class="mat-checkbox--rounded"
+                        type="checkbox"
+                        id="paymentNotUs"
+                        formControlName="addressNotInUsa"
+          >Billing address is not in the United
+            States
+          </mat-checkbox>
+          <div class="invalid-feedback">{{getError('addressNotInUsa')}}</div>
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+        <div class="form-label-group">
+
+          <mat-form-field>
+            <input matInput
+                   type="text"
+                   id="paymentStreet"
+                   class="form-control"
+                   placeholder="Street"
+                   formControlName="address1"
+                   tevAsciiOnly
+            >
+            <mat-error>{{getError('address1')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+        <div class="form-label-group">
+
+          <mat-form-field>
+            <input matInput
+                   type="text"
+                   id="paymentCity"
+                   class="form-control"
+                   placeholder="City"
+                   formControlName="city"
+                   tevAsciiOnly
+            >
+            <mat-error>{{getError('city')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-2" [hidden]="addressNotInUsa">
+        <div class="select-group">
+
+          <mat-form-field>
+
+            <mat-select [formControlName]="'state'" placeholder="State">
+              <mat-option *ngFor="let state of states;" [value]="state.abbreviation">{{state.name}}</mat-option>
+            </mat-select>
+            <mat-error>{{getError('state')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-4" [hidden]="addressNotInUsa">
+        <div class="form-label-group">
+
+          <mat-form-field>
+            <input matInput
+                   type="text"
+                   id="paymentZipCode"
+                   class="form-control"
+                   placeholder="Zip Code"
+                   formControlName="zip"
+                   tevAsciiOnly
+            >
+            <mat-error>{{getError('zip')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <!-- @todo DONT ASK FOR / -->
+
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h4 class="box-group__title">
+          Card Information
+        </h4>
+      </div><!-- ./col -->
+
+      <div *ngIf="!showSquare" class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+
+          <mat-form-field>
+            <input matInput
+                   type="text"
+                   id="paymentCreditCard"
+                   class="form-control"
+                   placeholder="Credit Card Number"
+                   formControlName="creditCard"
+                   [maxlength]="21"
+                   tevNumbersOnly
+            >
+            <mat-error>{{getError('creditCard')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div *ngIf="!showSquare" class="col-7 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+
+          <mat-form-field>
+            <input matInput
+                   type="text"
+                   id="paymentExpiration"
+                   class="form-control"
+                   placeholder="Expiration (MM/YY)"
+                   [maxlength]="5"
+                   formControlName="creditCardExp"
+                   tevMonthYear (onMonthYearChanged)=onMonthYearChanged($event)
+            >
+            <mat-error>{{getError('creditCardExp')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div *ngIf="!showSquare" class="col-5 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+
+          <mat-form-field>
+            <input matInput
+                   type="text"
+                   id="paymentCVV"
+                   class="form-control"
+                   placeholder="CVV"
+                   [maxlength]="4"
+                   formControlName="creditCardCvv"
+                   tevNumbersOnly
+            >
+            <mat-error>{{getError('creditCardCvv')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div *ngIf="!showSquare" class="col-sm-12 col-md-6 col-lg-6">
+        <div class="payment-options">
+          <ul>
+            <li>
+              <img src="./assets/icon-visa.svg" alt="visa">
+            </li>
+            <li>
+              <img src="./assets/icon-mastercard.svg" alt="mastercard">
+            </li>
+            <li>
+              <img src="./assets/icon-discover.svg" alt="discover">
+            </li>
+          </ul>
+        </div><!-- ./payment-options -->
+      </div><!-- ./col -->
+
+    </ng-template>
+
+
+  </form><!-- ./row -->
+  <div [hidden]="!showSquare">
+    <mat-progress-spinner *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
+    <div id="card-container"></div>
+  </div>
+
+
+</div><!-- ./box-group -->
+

@@ -1,0 +1,244 @@
+<div class="row">
+
+  <div class="col-12">
+    <div>
+      <a [routerLink]="['../']" class="back-link">
+        <span class="tev-icon tev-icon--back"></span>
+        BACK</a>
+    </div>
+
+    <form class="floating-labels form-bg-light" [formGroup]="childForm" (submit)="submit()">
+
+      <div class="box-container">
+        <h1 class="tev-heading tev-heading--h1 tev-heading--border-x3">Billing Address</h1>
+
+        <div class="row">
+
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentBillingAddress"
+                       class="form-control"
+                       placeholder="Name (as it appears on your card)"
+                       formControlName="name"
+                >
+                <mat-error>{{getError('name')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="custom-checkbox">
+              <mat-checkbox class="mat-checkbox--rounded"
+                            type="checkbox"
+                            id="paymentNotUs"
+                            formControlName="addressNotInUsa"
+              >Billing address is not in the United
+                States
+              </mat-checkbox>
+              <div class="invalid-feedback">{{getError('addressNotInUsa')}}</div>
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentStreet"
+                       class="form-control"
+                       placeholder="Street"
+                       formControlName="address1"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('address1')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentCity"
+                       class="form-control"
+                       placeholder="City"
+                       formControlName="city"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('city')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-6 col-lg-2" [hidden]="addressNotInUsa">
+            <div class="select-group">
+
+              <mat-form-field>
+
+                <mat-select [formControlName]="'state'" placeholder="State">
+                  <mat-option *ngFor="let state of states;" [value]="state.abbreviation">{{state.name}}</mat-option>
+                </mat-select>
+                <mat-error>{{getError('state')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-6 col-lg-4" [hidden]="addressNotInUsa">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentZipCode"
+                       class="form-control"
+                       placeholder="Zip Code"
+                       formControlName="zip"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('zip')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-12">
+            <h1 class="tev-heading tev-heading--h1 tev-heading--border-x3">Card Information</h1>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentCreditCard"
+                       class="form-control"
+                       placeholder="Credit Card Number"
+                       formControlName="creditCard"
+                       [maxlength]="16"
+                       tevNumbersOnly
+                >
+                <mat-error>{{getError('creditCard')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-7 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentExpiration"
+                       class="form-control"
+                       placeholder="Expiration (MM/YY)"
+                       formControlName="creditCardExp"
+
+                >
+                <mat-error>{{getError('creditCardExp')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-5 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="paymentCVV"
+                       class="form-control"
+                       placeholder="CVV"
+                       formControlName="creditCardCvv"
+                       tevNumbersOnly
+                >
+                <mat-error>{{getError('creditCardCvv')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="payment-options">
+              <ul>
+                <li>
+                  <img src="./assets/icon-visa.svg" alt="visa">
+                </li>
+                <li>
+                  <img src="./assets/icon-mastercard.svg" alt="mastercard">
+                </li>
+                <li>
+                  <img src="./assets/icon-discover.svg" alt="discover">
+                </li>
+              </ul>
+            </div><!-- ./payment-options -->
+          </div><!-- ./col -->
+
+        </div>
+
+      </div>
+
+      <div class="custom-checkbox my-4">
+        <mat-checkbox class="mat-checkbox--rounded"
+                      type="checkbox"
+                      id="agreeTerms"
+                      formControlName="agreeTerms"
+        >I agree and authorize this charges
+        </mat-checkbox>
+        <div class="invalid-feedback">{{getError('agreeTerms')}}</div>
+      </div>
+
+      <div class="box-container">
+        <h1 class="tev-heading tev-heading--h1 tev-heading--border-x3">Payment Confirmation</h1>
+
+        <div class="payment-table">
+
+          <div class="payment-table__row payment-table__row--head">
+            <div class="payment-table__col payment-table__col--item">
+              <h3 class="txt-all-caps txt-md column-title">SERVICE FEE</h3>
+            </div>
+            <div class="payment-table__col payment-table__col--price">
+              <h3 class="txt-all-caps txt-md column-title">Amount</h3>
+            </div>
+          </div>
+
+          <div class="payment-table__row">
+            <ul class="payment-table__col payment-table__col--item">
+              <li class="txt-xs">Quick Pass Fee</li>
+            </ul>
+            <ul class="payment-table__col payment-table__col--price">
+              <li class="txt-xs">{{expedite_fee | moneyFormat}}</li>
+            </ul>
+          </div>
+
+          <div class="payment-table__row payment-table__row--total">
+            <div class="payment-table__col payment-table__col--item pt-3">
+              <h3 class="txt-md">Total Fees</h3>
+            </div>
+            <div class="payment-table__col payment-table__col--price">
+              <h3 class="txt-md">{{expedite_fee | moneyFormat}}</h3>
+            </div>
+          </div>
+        </div><!-- ./payment-table -->
+
+        <div class="text-right">
+          <button class="tev-btn tev-btn--common tev-btn--primary" type="submit">Pay and Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

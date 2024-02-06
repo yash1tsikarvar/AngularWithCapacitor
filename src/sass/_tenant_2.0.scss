@@ -1,0 +1,1281 @@
+@import "../sass/variables";
+@import "../sass/theme";
+@import "../sass/media_queries";
+@import "../sass/mixins";
+
+// -------------------------------  FONTS
+// ----- font families
+
+// ----- font colors
+.txt-form-title {
+  color: $form-gray;
+}
+
+.txt-blue {
+  color: $blue;
+}
+
+// ----- font sizes & styles
+.txt-xlg {
+  font-size: 1.2rem;
+  font-weight: 600;
+  @include breakpoint(md) {
+    font-size: 1.4rem;
+  }
+}
+
+.txt-xxxs {
+  font-size: 0.6rem;
+  @include breakpoint(md) {
+    font-size: 0.8rem;
+  }
+}
+
+.txt-normal  {
+  font-weight: normal !important;
+}
+
+.register_float{
+  position: absolute;
+  z-index: 99;
+  margin-top: 13.2em;
+}
+
+.main_left {
+  top: 0px;
+  width: 55%;
+  height: 100%;
+  padding: 50px 0px 50px 80px;
+  opacity: 1;
+  background-color: $purple;
+}
+.main_right {
+  top: 0px;
+  width: 100%;  background: transparent url('/assets/intro/shutterstock_669633328.png') no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 1;
+}
+
+.footer_txt{
+  color: #A3AAB1 !important;
+  padding-left: 7em;
+  @include breakpoint(sm_max) {
+    padding-left: 3em;
+  }
+}
+
+.status {
+  &--S,
+  &--W,
+  &--progress {
+    border-color: #FF9827 !important;
+    color: #FF9827 !important;
+  }
+  &--C {
+    border-color: #8BC53F !important;
+    color: #8BC53F !important;
+  }
+  &--P,
+  &--X,
+  &--R,
+  &--pending {
+    border-color: #EF463F !important;
+    color: #EF463F !important;
+  }
+  &--abandoned {
+    border-color: #EF463F !important;
+    color: #EF463F !important;
+  }
+}
+
+
+/*   ----------------------------------------------------
+
+01. INTRO - (intro.html)
+
+-------------------------------------------------------  */
+.intro_main {
+  background-color: $purple;
+  @include breakpoint(lg) {
+    height: 100vh;
+  }
+  @include breakpoint(sm_max) {
+    top:0% !important;
+  }
+  h1 {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    @include breakpoint(lg) {
+      float: right;
+    }
+    @include breakpoint(sm_max) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      img {
+        width: 250px !important;
+        float: left;
+      }
+    }
+    img {
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    svg {
+      width: 100%;
+    }
+  }
+  h2 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    @include breakpoint(sm_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 1.65rem;
+      margin-top: 30px;
+    }
+  }
+  .has_nev{
+    @include breakpoint(sm_max) {
+      width: 80%;
+      margin-top: -50px;
+    }
+  }
+  .intro-content {
+    margin-top: 30px;
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+    article {
+      @include breakpoint(lg) {
+        overflow: hidden;
+      }
+    }
+  }
+  .begin {
+    h1 {
+      float: none;
+    }
+  }
+}
+.col-xl-1{
+  @include breakpoint(sm_max) {
+    display: none !important;
+  }
+}
+.col-xl-11{
+  @include breakpoint(sm_max) {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+}
+.intro_float{
+  position: absolute;
+  z-index: 99;
+  margin-top: 18em;
+}
+.about-info {
+  margin-left: 1em;
+  cursor: pointer;
+  .font-size-13px {
+      font-size: 13px;
+  }
+}
+.intro_l{
+  margin-left: 0.5em;
+   @include breakpoint(md_max) {
+    margin-left: 0 !important;
+  }
+}
+.div_tmp_1{
+  height: 55px;
+  @include breakpoint(sm_max) {
+    display: none;
+  }
+}
+.mat-dialog {
+  &-container {
+    text-align: left !important;
+  }
+}
+.modal_btn_1{
+  margin-top: 2em;
+  padding: 1.25rem 1.25rem;
+  background: #009cdc;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  width: 50%;
+  border-style: none;
+  border: 1px solid transparent;
+  text-align: center;
+  @include breakpoint(sm_max) {
+    width: 100%;
+    margin-top: 0;
+    font-size: 14px;
+    line-height: initial;
+  }
+
+
+}
+
+.intro_footer{
+  position: absolute;
+  z-index: 98;
+  bottom: 2.5em;
+}
+.intro_dlg_icon{
+  margin-bottom: 3em !important;
+  width: 37px;
+  height: 37px;
+  @include breakpoint(sm_max) {
+    margin-bottom: 1em !important;
+  }
+}
+
+.hidden-mobile{
+  @include breakpoint(sm_max) {
+    display: none;
+  }
+}
+
+// .show-mobile{
+//   display: flex;
+// }
+
+
+
+/*   ----------------------------------------------------
+
+02. BEGIN - (begin.html)
+
+-------------------------------------------------------  */
+.begin_main {
+    &.main-content {
+      padding: 0;
+    }
+.content-box{
+  @include breakpoint(md_max) {
+    height: auto !important;
+  }
+}
+    .col-12 {
+      &:first-child {
+        .content-box {
+          display: inline-block;
+          margin-right: 5px;
+          background-color: $white;
+          border-radius: 10px;
+          @include breakpoint(md_max) {
+            margin-right: 0;
+            margin-bottom: 5px;
+          }
+        }
+        .icon-begin {
+          width: 40px;
+          background: transparent url("/assets/intro/Group 1035.svg") no-repeat center;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+      }
+      &:last-child {
+        .content-box {
+          display: inline-block;
+          margin-right: 5px;
+          background-color: $white;
+          border-radius: 10px;
+        }
+        .icon-holder {
+          width: 40px;
+          background-image: url("/assets/icon-sign-in.svg");
+        }
+      }
+    }
+    .col-12 {
+      &:first-child {
+        .icon-begin {
+          width: 40px;
+          background: transparent url("/assets/intro/Group 1035.svg") no-repeat center;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+      }
+      &:last-child {
+        .icon-holder {
+          width: 40px;
+          background-image: url("/assets/icon-sign-in.svg");
+        }
+      }
+    }
+    .content-box {
+      //height: 50vh;
+      padding: 40px;
+      overflow: hidden;
+      @include breakpoint(lg) {
+        height: 100%;
+        width: 95%;
+        padding: 40px 40px;
+      }
+      article {
+        height: 100%;
+      }
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        //padding: 40px;
+        overflow: hidden;
+        text-decoration: underline $lg-blue;
+      }
+      .txt-title {
+        display: block;
+      }
+      .txt-lg {
+        @include breakpoint(lg_max) {
+          font-size: 1rem;
+        }
+      }
+      h1 {
+        width: 70%;
+      }
+    }
+}
+
+
+/*   ----------------------------------------------------
+
+3. LOGIN INFORMATION & FORGOT LOGIN INFORMATION - (login-information.html / forgot-login-information.html)
+
+-------------------------------------------------------  */
+.intro_modal_title{
+  margin-top:15px;
+  text-align: left !important;
+  color: #373041 !important;
+  @include breakpoint(sm_max) {
+    font-size: 1em !important;
+  }
+}
+.modal_txt_1{
+  @include breakpoint(sm_max) {
+    font-size: .7em !important;
+    margin: 0 !important;
+  }
+}
+
+.intro_modal_txt{
+  text-align: left !important;
+  color: #373041 !important;
+}
+
+/*   ----------------------------------------------------
+
+4. LOGIN INFORMATION & FORGOT LOGIN INFORMATION - (login-information.html / forgot-login-information.html)
+
+-------------------------------------------------------  */
+re-captcha.is-invalid > div {
+  border: 1px solid #dc3545 !important;
+  border-radius: 0.2rem;
+}
+
+.grecaptcha-badge {
+	visibility: hidden !important;
+}
+
+.login_main {
+  background-color: $purple;
+  @include breakpoint(lg) {
+    height: 100vh;
+  }
+  @include breakpoint(sm_max) {
+    top:0% !important;
+  }
+  h1 {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    @include breakpoint(lg) {
+      float: right;
+    }
+    @include breakpoint(sm_max) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      img {
+        width: 250px !important;
+        float: left;
+      }
+    }
+    img {
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    svg {
+      width: 100%;
+    }
+  }
+  h2 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    @include breakpoint(sm_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 1.65rem;
+      margin-top: 30px;
+    }
+  }
+  .has_nev{
+    @include breakpoint(sm_max) {
+      width: 80%;
+      margin-top: -50px;
+    }
+  }
+  .login-content {
+    margin-top: 30px;
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+    article {
+      @include breakpoint(lg) {
+        overflow: hidden;
+      }
+    }
+  }
+  .login-footer{
+    padding-top: 5em !important;
+    color:$lg-gray;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    @include breakpoint(lg_max) {
+      padding-top: 4em !important;
+    }
+    @include breakpoint(sm_max) {
+      font-size: 0.6rem;
+      padding-top: 3.5em !important;
+    }
+  }
+}
+.login-information-main {
+  .icon-holder {
+    width: 30px;
+    background-image: url("/assets/icon-user.svg");
+  }
+  .main-icon-holder {
+    @include main_icon_holder;
+    display: none;
+    @include breakpoint(sm) {
+      display: flex;
+    }
+  }
+  .txt-underlined {
+    margin-top: 10px;
+    display: inline-block;
+  }
+  form {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+
+  .forgot-text {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    p {
+      margin-bottom: 0;
+    }
+  }
+  &.forgot-login-information {
+    .icon-holder {
+      width: 30px;
+      background-image: url("/assets/icon-settings.svg");
+    }
+    .link-back {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .forgot-text {
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+  }
+}
+.intro-button {
+  margin-top: 4.5em;
+  padding: 1.25rem 1.25rem;
+  background: $lg-blue;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  width: 100%;
+  border-style: none;
+  border: 1px solid transparent;
+  text-align: left;
+  @include breakpoint(sm_max) {
+    margin-top: 5px !important;
+    padding: 1.25rem 0.8rem !important;
+    font-size: 17px;
+    margin-bottom: 1em !important;
+    text-align: center !important;
+  }
+}
+
+.intro-button span.icon{
+  float: right;
+  width: 22px;
+  height: 22px;
+  background-image: url("/assets/intro/icon_more.svg");
+  @include breakpoint(sm_max) {
+    display: none;
+  }
+}
+
+
+.intro_boxes_container{
+  z-index: 99;
+  position: absolute;
+}
+.intro_title_1{
+  display: inline-block !important;
+}
+.intro_text_1{
+  padding-right: 100px;
+}
+.intro_cont_1{
+  padding: 20px 5px;
+}
+.intro_input_text_1{
+  color: black;
+  padding: 0.25em 0 0.25em 0 !important;
+}
+.intro_link_1{
+  margin-top: 30px;
+}
+.intro_link_text_1{
+  color: $lg-blue;
+  font-size:0.75em !important;
+  cursor: pointer;
+}
+
+.col_dn{
+  @include breakpoint(sm_max) {
+    display: none !important;
+  }
+}
+.col-xl-11{
+  @include breakpoint(sm_max) {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+}
+
+
+/*   ----------------------------------------------------
+
+05. Register - (register.html)
+
+-------------------------------------------------------  */
+.register-button {
+  margin-top: 0.3em;
+  padding: 1.25rem;
+  background: $lg-blue;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  width: 100%;
+  border-style: none;
+  border: 1px solid transparent;
+  text-align: center;
+  @include breakpoint(sm_max) {
+    margin-top: 5px !important;
+    padding: 1.25rem 0.8rem !important;
+    font-size: 17px;
+    margin-bottom: 1em !important;
+    text-align: center !important;
+    width: 100%;
+  }
+}
+.mt_2em{
+  margin-top: 2em;
+}
+.ml_2em{
+  margin-left: 6em;
+}
+.register_main {
+  background-color: $purple;
+  @include breakpoint(lg) {
+    height: 100vh;
+    //padding: 70px 100px;
+    //overflow-y: scroll;
+    //background-image: url("/assets/intro-img-lg.jpg");
+  }
+  @include breakpoint(sm_max) {
+    top:0% !important;
+  }
+  h1 {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    @include breakpoint(lg) {
+      float: right;
+    }
+    @include breakpoint(sm_max) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 37px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    svg {
+      width: 100%;
+    }
+  }
+  h2 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    @include breakpoint(sm_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 2rem;
+    }
+
+  }
+  .register-content {
+    margin-top: 30px;
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+    article {
+      @include breakpoint(lg) {
+        overflow: hidden;
+      }
+    }
+  }
+  .begin {
+    h1 {
+      float: none;
+    }
+  }
+  .register-terms {
+    // bottom: 0% !important;
+    // position:absolute;
+    // margin-bottom: 3em;
+    img{
+    width: 89px;
+    height: 68px;
+    }
+
+    span{
+      margin: 0 !important;
+    }
+    h3{
+      color: white !important;
+      padding: 1em 2em;
+    }
+    h2{
+      padding: 2em 0em;
+    }
+    button{
+      //margin-top: 0.5em;
+      padding: 1.25rem 1.25rem;
+      background: $lg-blue;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 10px;
+      width: 100%;
+      border-style: none;
+      border: 1px solid transparent;
+      text-align: center;
+    }
+  }
+  .register_main {
+    // &.main-content {
+    //   padding: 0;
+    // }
+    // .col-12 {
+    //   background-color: #5300c7;
+    //     .content-box {
+    //       display: inline-block;
+    //       margin-right: 5px;
+    //       background-color: $white;
+    //       border-radius: 10px;
+    //       @include breakpoint(md_max) {
+    //         margin-right: 0;
+    //         margin-bottom: 5px;
+    //       }
+    //     }
+    // }
+    .content-box {
+      display: inline-block;
+      margin-right: 5px;
+      background-color: $white;
+      border-radius: 10px;
+      height: 50vh;
+      padding: 40px;
+      overflow: hidden;
+      @include breakpoint(lg) {
+        height: 100%;
+        width: 95%;
+        padding: 40px 40px;
+      }
+      article {
+        height: 100%;
+      }
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        //padding: 40px;
+        overflow: hidden;
+        text-decoration: underline $lg-blue;
+      }
+      .txt-title {
+        display: block;
+      }
+      .txt-lg {
+        @include breakpoint(lg_max) {
+          font-size: 1rem;
+        }
+      }
+      h1 {
+        width: 70%;
+      }
+    }
+}
+}
+.register-img {
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: transparent url('/assets/intro/shutterstock_488616529.png') no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 1;
+}
+.ml_90{
+  margin-left: 90px;
+  @include breakpoint(sm_max) {
+    margin-left: 0 !important;
+  }
+}
+/*   ----------------------------------------------------*/
+
+/*   ----------------------------------------------------
+
+06. SMS Verification - (sms-verification.html)
+
+-------------------------------------------------------  */
+.sms-verification {
+  background: transparent url("/assets/intro/shutterstock_268450493.png") no-repeat right top;  opacity: 1;
+  background-size: auto 100%;
+  //background-color: $purple;
+  background-color: #4D445A;
+  min-height: 100vh;
+
+  @include breakpoint(lg) {
+    height: 100vh;
+  }
+  @include breakpoint(sm_max) {
+    top:0% !important;
+  }
+  h1 {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    @include breakpoint(lg_max) {
+      //float: right;
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+    @include breakpoint(sm_max) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 37px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    svg {
+      width: 100%;
+    }
+  }
+  h2 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    font-size: 2.5rem;
+    @include breakpoint(sm_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 2rem;
+    }
+  }
+
+  h3 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 1rem;
+    margin-top: 2em;
+    @include breakpoint(xxs_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+  }
+
+  h4  {
+    font-size: 1rem;
+    color: $lg-blue!important;
+    float: left;
+    padding-left: 0;
+    text-align: left;
+    font-weight: lighter;
+    margin-top: 5em;
+    @include breakpoint(xxs_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+  }
+  .sms-content {
+    margin-top: 2rem;
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+    article {
+      @include breakpoint(lg) {
+        overflow: hidden;
+      }
+    }
+  }
+
+  .sms-code-content {
+    margin-top: 4em;
+    @include breakpoint(sm_max) {
+      margin-top: 3em;
+    }
+    .title {
+      float: left;
+      color: $white;
+      padding-left: 0;
+      text-align: left;
+      font-weight: 100;
+      font-size: 1.5rem;
+      @include breakpoint(sm_max) {
+        float: none;
+        width: 65%;
+        text-align: left;
+      }
+    }
+    .otpInput
+    {
+      margin-top: 1.5em;
+      margin-bottom: 2em;
+    }
+    .span-icon {
+      vertical-align: middle;
+    }
+    .txt {
+      font-size: 1rem;
+      color: $lg-blue!important;
+    }
+    .icon {
+      color: $lg-blue!important;
+      font-size: 17px ;
+      margin-left: 1em;
+    }
+    .sms-button {
+      cursor: pointer !important;
+      margin-top: 2em;
+      width: 80% !important;
+      @include breakpoint(sm_max) {
+        width: 100% !important;
+      }
+    }
+  }
+  .sms-img {
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: transparent url('/assets/intro/shutterstock_268450493.png') no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 1;
+  }
+  .sms-footer{
+    padding-top: 4rem !important;
+    color:$lg-gray;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    // @include breakpoint(lg_max) {
+    //   padding-top: 4em !important;
+    // }
+    // @include breakpoint(sm_max) {
+    //   font-size: 0.6rem;
+    //   padding-top: 3.5em !important;
+    // }
+  }
+
+  .sms-footer2{
+    padding-top: 14em !important;
+    color:$lg-gray;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    @include breakpoint(lg_max) {
+      padding-top: 7em !important;
+    }
+    @include breakpoint(sm_max) {
+      font-size: 0.6rem;
+      padding-top: 4.5em !important;
+    }
+  }
+}
+
+.sms_dlg_icon{
+  margin-bottom: 10px !important;
+}
+
+.sms-button-dlg {
+    padding: 0.8rem 1.0rem;
+    background: $lg-blue !important;
+    color: white !important;
+    font-size: 15px !important;
+    text-transform: uppercase !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    border-style: none !important;
+    border: 1px solid transparent !important;
+    text-align: center !important;
+}
+
+.sms-txt-dlg {
+  font-weight: 800;
+}
+
+
+/*   ----------------------------------------------------*/
+
+.login {
+  margin-bottom: 1em;
+  &.main-content {
+    padding: 0;
+  }
+  .col-12 {
+    &:first-child {
+      .content-box {
+        display: inline-block;
+        margin-right: 5px;
+        background-color: $white;
+        border-radius: 10px;
+        @include breakpoint(md_max) {
+          margin-right: 0;
+          margin-bottom: 5px;
+        }
+        @include breakpoint(sm_max) {
+          padding: 30px !important;
+        }
+      }
+      .icon-begin {
+        width: 40px;
+        background: transparent url("/assets/intro/icon_more.svg") no-repeat center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    }
+  }
+  .col-12 {
+    &:first-child {
+      .icon-begin {
+        width: 40px;
+        background: transparent url("/assets/intro/icon_more.svg") no-repeat center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    }
+  }
+  .content-box {
+    height: 50vh;
+    padding: 40px;
+    overflow: hidden;
+    @include breakpoint(lg) {
+      height: 100%;
+      width: 95%;
+      padding: 30px 40px;
+    }
+    article {
+      height: 100%;
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      //padding: 40px;
+      overflow: hidden;
+      text-decoration: underline $lg-blue;
+    }
+    .txt-title {
+      display: block;
+    }
+    .txt-lg {
+      @include breakpoint(lg_max) {
+        font-size: 1rem;
+      }
+    }
+    h1 {
+      width: 70%;
+    }
+  }
+}
+
+
+/*   ----------------------------------------------------
+
+07. Re-send code - (sms-email.html)
+
+-------------------------------------------------------  */
+.resend-code {
+  background-color: $purple;
+  // @include breakpoint(lg) {
+  //   height: 100vh;
+  // }
+  // @include breakpoint(sm_max) {
+  //   top:0% !important;
+  // }
+  h1 {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    @include breakpoint(lg_max) {
+      float: right;
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+    @include breakpoint(sm_max) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 37px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    svg {
+      width: 100%;
+    }
+  }
+  h2 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    font-size: 2.5rem;
+    @include breakpoint(sm_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 2rem;
+    }
+  }
+
+  h3 {
+    float: left;
+    color: $white;
+    padding-left: 0;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 1rem;
+    margin-top: 2em;
+    @include breakpoint(xxs_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+  }
+
+  h4  {
+    font-size: 1rem;
+    color: $lg-blue!important;
+    float: left;
+    padding-left: 0;
+    text-align: left;
+    font-weight: lighter;
+    margin-top: 5em;
+    @include breakpoint(xxs_max) {
+      float: none;
+      width: auto;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+  }
+  .resend-content {
+    margin-top: 2rem;
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+    article {
+      @include breakpoint(lg) {
+        overflow: hidden;
+      }
+    }
+  }
+  .content-box{
+    padding: 1.3em 2em;
+    @include breakpoint(md_max) {
+      height: auto !important;
+    }
+  }
+  .resend-code-content {
+    margin-top: 4em;
+    @include breakpoint(sm_max) {
+      margin-top: 3em;
+    }
+    .title {
+      float: left;
+      color: $white;
+      padding-left: 0;
+      text-align: left;
+      font-weight: 100;
+      font-size: 1.5rem;
+      @include breakpoint(sm_max) {
+        float: none;
+        width: 65%;
+        text-align: left;
+      }
+    }
+    .otpInput
+    {
+      margin-top: 1.5em;
+      margin-bottom: 2em;
+    }
+    .span-icon {
+      vertical-align: middle;
+    }
+    .txt {
+      font-size: 1rem;
+      color: $lg-blue!important;
+    }
+    .icon {
+      color: $lg-blue!important;
+      font-size: 17px ;
+      margin-left: 1em;
+    }
+    .resend-button {
+      margin-top: 13em;
+      width: 100% !important;
+      @include breakpoint(sm_max) {
+        margin-top: 3em;
+      }
+    }
+    .content-box {
+      //display: inline-block;
+      margin-right: 5px;
+      background-color: $white;
+      border-radius: 10px;
+      @include breakpoint(md_max) {
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .resend-img {
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: transparent url('/assets/intro/shutterstock_268450493.png') no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 1;
+  }
+  .resend-footer{
+    padding-top: 5em !important;
+    color:$lg-gray;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    @include breakpoint(lg_max) {
+      padding-top: 4em !important;
+    }
+    @include breakpoint(sm_max) {
+      font-size: 0.6rem;
+      padding-top: 3.5em !important;
+    }
+  }
+}
+
+.t-tooltip {
+  position: relative;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    .t-tooltip-content { display: block; }
+  }
+  &-content {
+    position: absolute;
+    top: -4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $lg-blue;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    display: none;
+    color: #fff;
+    text-transform: capitalize;
+    min-width: 8.7rem;
+    font-size: 1rem;
+    width: max-content;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -0.5rem;
+      border-width: 0.5rem;
+      border-style: solid;
+      border-color: $lg-blue transparent transparent transparent;
+    }
+  }
+}
+
+

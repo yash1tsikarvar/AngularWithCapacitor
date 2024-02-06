@@ -1,0 +1,398 @@
+@import "../../../sass/tenant_2.0";
+@import "../../../sass/styles_mat";
+
+h2 {
+  color: #6d6f72;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.responsive{
+  display: none;
+}
+
+.download-icon{
+  width: 28px;
+  height: 28px;
+  background-image: url("/assets/download-circular-button.svg");
+}
+
+.dot{
+  background-color: #009CDC;
+  border-radius: 50%;
+  height: 89px;
+  width: 89px;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  transform: translate(0, -50%);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-active{
+    background-color: #8BC53F;
+  }
+
+  & span {
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 45px;
+  }
+}
+
+
+.profile-success-background{
+  background-color: #4D445A;
+}
+
+.profile-success__buttons {
+  grid-area: buttons;
+  display:flex;
+  justify-content: flex-end;
+  &--continue{
+    padding: 1.25rem 1.25rem;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+    width: 45%;
+    border-style: none;
+    border: 1px solid transparent;
+    text-align: center;
+    background: #009CDC;
+    left: 0;
+  }
+}
+
+.profile-success {
+  display: grid;
+  grid-template: auto auto auto auto auto/ auto 50% auto;
+  grid-template-areas:
+    '. header .'
+    '. description .'
+    '. options .'
+    '. additional-info .'
+    '. button .';
+
+  &-header {
+    grid-area: header;
+    &--img {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+  &-description {
+    text-align: bottom;
+    grid-area: description;
+    align-content: end;
+    color: white;
+    &__title {
+      background-color: #463D53;
+      border-radius: 6px;
+      padding: 2rem;
+      font-family: Open Sans;
+      font-weight: bold;
+      font-size: 40px;
+      grid-area: col;
+      line-height: normal;
+      margin-bottom: 2rem;
+      margin-top: 3rem;
+      &-header{
+        margin-bottom: 2rem;
+        display:flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      &-body{
+        font-family: Roboto, Regular;
+        font-size: 20px;
+        font-weight: normal;
+
+      }
+      &-footer{
+        font-family: Open Sans, Semibold;
+        font-size: 16px;
+        font-weight: normal;
+        color: #D7CCE6;
+      }
+      &-link{
+        font-family: Open Sans, Semibold;
+        font-size: 16px;
+        font-weight: normal;
+        color: #009CDC;
+      }
+    }
+    &__text {
+      font-family: Roboto, Medium;
+      font-size: 20px;
+      grid-area: col;
+      margin-bottom: 5rem;
+    }
+  }
+  &-options{
+    grid-area: options;
+    display: grid;
+    grid-template: 1fr/ 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    justify-items: center;
+  }
+  &-option{
+    position: relative;
+    border-radius: 6px;
+    border: 2px solid #009CDC;
+    width: 100%;
+    display: grid;
+    padding: 3rem;
+    box-sizing: none;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+    // justify-content: space-around;
+    &-active{
+      border: 3px solid #8BC53F;
+    }
+    &__img {
+      height: 60px;
+      margin-top: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    &__title {
+      font-family: Roboto, Medium;
+      font-size: 18px;
+      color: #4d445a;
+      font-weight: bold;
+      width: 66%;
+      &--text {
+        font-family: Roboto, Regular;
+        font-size: 14px;
+        color: #696969;
+      }
+    }
+    &__button{
+      background-color: #4D445A;
+      width: 60%;
+      color: white;
+      border-radius: 4px;
+      border-style: none;
+      padding: .25rem;
+      cursor: initial;
+      &-active{
+        background-color: #8BC53F;
+        width: 70%;
+      }
+    }
+  }
+  &__additional-info{
+    display:grid;
+    grid-area: additional-info;
+    background-color: #463D53;
+    border-radius: 6px;
+    padding: 2rem;
+    font-family: Roboto, Regular;
+    font-size: 18px;
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+  }
+  &__button {
+    display: grid;
+    grid-area: button;
+    width: 100%;
+    padding: 1.25rem 1.25rem;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    border-style: none;
+    border: 1px solid transparent;
+    text-align: center;
+    background: #009CDC;
+    margin-bottom: 6rem;
+  }
+
+}
+
+.applicant-form{
+  display: grid;
+  grid-template:1fr/ 20% 60% 20%;
+  grid-template-areas:
+    '. form .';
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@media screen and (max-width: 1500px) {
+  .profile-success-option__button{
+    width: 70%;
+    &-active{
+      width: 70%;
+    }
+  }
+  .profile-success-option__title{
+    width: 100%;
+  }
+  .profile-success {
+    display: grid;
+    grid-template: auto auto auto auto auto/ auto 60% auto;
+    grid-template-areas:
+      '. header .'
+      '. description .'
+      '. options .'
+      '. additional-info .'
+      '. button .';
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .profile-success {
+    display: grid;
+    grid-template: auto auto auto auto auto/ auto 70% auto;
+    grid-template-areas:
+      '. header .'
+      '. description .'
+      '. options .'
+      '. additional-info .'
+      '. button .';
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .profile-success {
+    display: grid;
+    grid-template: auto auto auto auto auto/ auto 80% auto;
+    grid-template-areas:
+      '. header .'
+      '. description .'
+      '. options .'
+      '. additional-info .'
+      '. button .';
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .profile-success {
+    display: grid;
+    grid-template: auto auto auto auto auto/ auto 90% auto;
+    grid-template-areas:
+      '. header .'
+      '. description .'
+      '. options .'
+      '. additional-info .'
+      '. button .';
+  }
+}
+
+@media screen and (max-width: 796px) {
+
+  .profile-success-option__button{
+    width: 50%;
+    &-active{
+      width: 50%;
+    }
+  }
+
+  .dot{
+    height: 60px;
+    width: 60px;
+    & span {
+      font-size: 30px;
+    }
+  }
+
+  .responsive{
+    display: inline;
+  }
+
+  .desktop{
+    display: none;
+  }
+
+  .profile-success__button{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    z-index: 21474836471;
+  }
+
+  .profile-success {
+    display: grid;
+    grid-template: auto auto auto auto / 1fr 90% 1fr;
+    grid-template-areas:
+      '. header .'
+      '. description .'
+      '. options .'
+      '. additional-info .'
+      '. button .';
+  }
+  .profile-success-header {
+    grid-area: header;
+    &--img {
+      padding-top: 30px;
+      padding-bottom: 25px;
+    }
+  }
+
+  .profile-success__additional-info{
+    font-size: 16px;
+  }
+
+  .profile-success-description {
+    text-align: justify;
+    grid-area: description;
+    align-content: end;
+
+    &__title {
+      line-height: 1.5;
+      font-family: Open Sans;
+      font-weight: bolder;
+      font-size: 28px;
+      &-header{
+        margin-bottom: 1rem;
+      }
+      &-body{
+        font-family: Roboto, Regular;
+        font-size: 16px;
+        font-weight: normal;
+
+      }
+      &-footer{
+        font-family: Open Sans, Semibold;
+        font-size: 14px;
+        font-weight: normal;
+        color: #D7CCE6;
+      }
+      &-link{
+        font-family: Open Sans, Semibold;
+        font-size: 14px;
+        font-weight: normal;
+        color: #009CDC;
+      }
+    }
+    &__text {
+      font-family: Roboto, Medium;
+      font-size: 14px;
+      margin-bottom: 2rem;
+    }
+  }
+  .profile-success-options {
+    grid-area: options;
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr;
+  }
+  .profile-success-option {
+    margin-bottom: 1.5rem;
+    padding: .5rem 1.5rem 1rem 1.5rem;
+  }
+
+}

@@ -1,0 +1,147 @@
+<div class="container upload-ssn">
+  <div class="row documents">
+    <div class="col-12">
+
+      <div>
+        <a [routerLink]="['../../upload-documents']" *ngIf="showBack()" class="back-link">
+          <span class="tev-icon tev-icon--back"></span>
+          BACK</a>
+      </div>
+
+      <div class="row" *ngIf="!uploading">
+
+
+        <div class="col-md-5 col-xs-12 instructions" *ngIf="showForm">
+          <tev-update-vehicle-registration [info]="photoTagVerification"
+                                   (dataSent)="verificationSended($event)"
+                                   [applicantFullName]="document?.name"></tev-update-vehicle-registration>
+        </div>
+
+
+        <div class="col-md-5 col-xs-12 instructions" *ngIf="showErrorMessage()">
+          <div class="gif-with-icon">
+            <img src="assets/upload-generic/error.gif" alt="image instrucctions to upload document"
+                 class="img-responsive img-circle gifimg"/>
+            <i class="tev-icon tev-icon--warning-red"></i>
+            <div class="error-text">Warning</div>
+          </div>
+
+          <div>{{error}}</div>
+          <div>{{subError}}</div>
+          <div class="small-text">Please try uploading a new version of the document and make sure the text is
+            readable.
+          </div>
+        </div>
+
+
+        <div class="col-xs-12" [class.col-md]="showFullWidth()" *ngIf="!showInstructions">
+
+          <div style="height: 100%" *ngIf="!uploadedFinish && !uploading">
+            <div *ngIf="showForm" class="title title-withoutpad">Vehicle registration for {{document?.plate}}</div>
+            <div style="height: inherit !important;" class="image-drop__zone" *ngIf="files.length<=0;else other_content" ngx-dropzone
+                 [accept]="mimetypesAccept()"
+                 [maxFileSize]="tenMB" [multiple]="false" (change)="onSelect($event)">
+              <ngx-dropzone-label>
+                <div class="text-align-center">
+                  <div class="title">{{document?.description}}</div>
+                  <i class="tev-icon tev-icon--upload-cloud-id"></i><span> Drag one file here or <u>browse</u></span>
+                </div>
+              </ngx-dropzone-label>
+            </div>
+            <ng-template #other_content>
+
+              <div *ngIf="isImage() else fileContent" class="preview-container">
+                    <img [src]="imageToShow" alt="Image Source" class="responsive">
+                    <mat-spinner *ngIf="uploading"></mat-spinner>
+              </div>
+
+
+              <ng-template #fileContent>
+                <div class="title">Vehicle registration for {{document?.plate}}</div>
+                <ngx-dropzone-preview class="ngx-dropzone-preview" ngProjectAs="ngx-dropzone-preview"
+                                      *ngFor="let f of files" [file]="f" [removable]="(!showForm)"
+                                      (removed)="onRemove(f)">
+                </ngx-dropzone-preview>
+              </ng-template>
+
+
+            </ng-template>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" *ngIf="showInstructions">
+        <div class="col-md-6 offset-md-3">
+          <div class="pb-counter">
+            <mat-progress-bar mode="determinate" [value]="animationProcess"></mat-progress-bar>
+          </div>
+          <div class="slide-container">
+            <div class="slide1 slide-item">
+              <div class="item-image" id="cover1">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Make sure all four<br/>corners are visible</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide2 slide-item">
+              <div class="item-image" id="cover2">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Must not be<br/>covered in any way</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide3 slide-item">
+              <div class="item-image" id="cover3">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Make sure the<br/>image is not blurry</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide4 slide-item">
+              <div class="item-image" id="cover4">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Supported formats<br/>JPG PNG or PDF only</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide5 slide-item">
+              <div class="item-image" id="cover5">
+                <div class="image-validate right-image"></div>
+              </div>
+              <p>
+                This is Right!<br/>
+                <span></span>
+              </p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+          </div>
+
+          <tev-countdown [init]="21" (onComplete)="hideShowInstructions()" (onChange)="updateProcess($event)" style="display: none;"></tev-countdown>
+        </div>
+
+      </div>
+
+      <div class="row" *ngIf="uploading">
+        <div class="col-md-6 offset-md-3 uploading">
+          <img src="assets/upload-generic/waiting.gif" alt="image instrucctions to upload document"
+               class="rocket-img"/>
+          <div class="counter">
+            <tev-countdown [init]="60" (onComplete)="onComplete()"></tev-countdown>
+          </div>
+          <p>Please wait while we analyze your information</p>
+          <p class="small-text">Do not close or refresh this window until the files are been finished. Leaving this page
+            will restart the process.</p>
+        </div>
+      </div>
+
+
+      <div class="row" *ngIf="uploadedFinish">
+        <tev-awesome-message (closePopup)="closeUploadFinish()" [message]="textFinal" [autoCloseTime]="105"
+                             [auto_closeable]="false"></tev-awesome-message>
+      </div>
+
+
+    </div>
+  </div>
+</div><!-- /row -->

@@ -1,0 +1,10 @@
+<div class="uploading">
+  <img src="assets/upload-generic/waiting.gif" alt="image instrucctions to upload document"
+       class="rocket-img"/>
+  <div class="counter">
+    <tev-countdown [init]="initCounter" (onComplete)="closeUploadFinish()"></tev-countdown>
+  </div>
+  <p>Please wait while we analyze your information</p>
+  <p class="small-text">Do not close or refresh this window until the files are been finished. Leaving this page
+    will restart the process.</p>
+</div>

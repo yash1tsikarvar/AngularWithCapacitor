@@ -1,0 +1,57 @@
+<div class="upload-ids">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-12 instruction-upload-id">
+        <div class="container">
+          <div class="row">
+            <h1>
+              <img src="/assets/icon-te.svg" alt="Tenant Evaluation">
+            </h1>
+          </div>
+          <div class="row">
+            <a (click)="goBack()" class="back-link">
+              <span class="tev-icon tev-icon--back"></span>
+              BACK</a>
+          </div>
+
+          <div class="instruction-id">
+            <img src="assets/upload-id/upload_mobile.svg" alt="upload from mobile image">
+            <h5>Scan the QR code to take a picture from your phone.</h5>
+            <p>Once re-directed please make sure to keep this window open.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 col-12">
+        <div class="container-upload">
+          <div class="row">
+            <div class="col-12 mx-auto">
+              <div class="upload-mobile">
+                <div class="row justify-content-md-center">
+                  <div class="col-10">
+                    <div class="task-name">{{taskName}}</div>
+                  </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <mat-card>
+                      <div class="title">Scan the QR code with your mobile device</div>
+                      <div class="qrCode" *ngIf="qrCode!=''; else elseBlock">
+                        <qrcode [qrdata]="baseURl" [width]="200" [errorCorrectionLevel]="'M'"
+                                elementType="url"></qrcode>
+                      </div>
+                    </mat-card>
+                    <ng-template #elseBlock>Generating your qr code</ng-template>
+                    <button type="submit" class="btn btn-blue" (click)="continue()">Continue
+                    </button>
+                </div>
+                <p id="url-text" style="display: none">{{baseURl}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

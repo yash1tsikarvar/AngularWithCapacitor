@@ -1,0 +1,147 @@
+<div class="row">
+
+  <tev-application-info class="col-12"
+                        [mainApplication]="mainApplication"></tev-application-info>
+  <div class="col-12">
+
+    <div>
+      <a [routerLink]="['../']" class="back-link">
+        <span class="tev-icon tev-icon--back"></span>
+        BACK</a>
+    </div>
+
+    <div class="box-container">
+      <article *ngIf="formType=='invite'">
+        <h1 class="tev-heading tev-heading--h1">Invite an additional applicant
+          <tev-tooltip text="If you want to invite an additional applicant, please
+          enter the co-applicant details below. They will below receiving an email
+          so they can complete their own application."></tev-tooltip>
+        </h1>
+        <p >Please add a valid email address to invite an additional applicant.</p>
+      </article>
+      <article *ngIf="formType=='resend'">
+        <h1 class="tev-heading tev-heading--h1">Resend invitation to an additional applicant
+          <tev-tooltip text="If you want to invite an additional applicant, please
+          enter the co-applicant details below. They will below receiving an email
+          so they can complete their own application."></tev-tooltip>
+        </h1>
+        <p >Please enter a valid email address and click button in order to resend an invitation for additional applicant.</p>
+      </article>
+      <article *ngIf="formType=='accepted'">
+        <h1 class="tev-heading tev-heading--h1">Additional applicant has completed application
+        </h1>
+      </article>      
+
+      <form *ngIf="formType!='accepted'" class="floating-labels form-bg-light py-5"
+            [formGroup]="inviteForm" (submit)="submit()">
+        <div class="row">
+
+          <div class="col-12 col-sm-7 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+
+                <mat-select 
+                  [formControlName]="'coApplicantType'" 
+                  placeholder="Select Applicant Type"
+                  [disabled]="formType=='accepted'"                    
+                >
+                  <mat-option [value]="option.value" *ngFor="let option of coApplicantTypes">{{option.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>{{getError('coApplicantType')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-7 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                        type="email"
+                        id="add-applicant-email"
+                        class="form-control"
+                        placeholder="Type Co-Applicant's Email"
+                        formControlName="email"
+                        tevAsciiOnly
+                        [disabled]="formType=='accepted'"
+                >
+                <mat-error>{{getError('email')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-7 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                        type="text"
+                        id="add-applicant-firstname"
+                        class="form-control"
+                        placeholder="Co-Applicant's First Name"
+                        formControlName="firstName"
+                        maxlength="50"
+                        tevAsciiOnly
+                        [disabled]="formType=='accepted'"                         
+                >
+                <mat-error>{{getError('firstName')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-7 col-md-6 col-lg-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                        type="text"
+                        id="add-applicant-lastname"
+                        class="form-control"
+                        placeholder="Co-Applicant's Last Name"
+                        formControlName="lastName"
+                        maxlength="50"
+                        tevAsciiOnly
+                        [disabled]="formType=='accepted'"                         
+                >
+                <mat-error>{{getError('lastName')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div *ngIf="formType=='invite'" class="col-12 text-right">
+            <button class="tev-btn tev-btn--common tev-btn--primary"
+                    type="submit">Submit</button>
+          </div>
+          <div *ngIf="formType=='resend'" class="col-12 text-right">
+            <button class="tev-btn tev-btn--common tev-btn--primary"
+                    type="submit">Resend</button>
+          </div>            
+        </div>
+
+      </form>
+
+      <div *ngIf="formType=='accepted'" class="application-info__applicants">
+        <div class="applicant applicant--primary">
+          <h5>Supplemental Application Details</h5>
+          <ul class="applicant__list">
+            <li>
+              <small>Application ID:</small>
+              {{mainApplication.supplementalApplicationId}}
+            </li>
+            <li>
+              <small>Application Status:</small>
+              {{mainApplication.supplementalApplicationStatus}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /row -->

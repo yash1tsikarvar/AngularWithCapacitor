@@ -1,0 +1,11 @@
+window.TE_PRODUCTION = false;
+window.TE_API_URL = 'http://localhost:8080';
+window.TE_USE_GOOGLE_API = false;
+window.TE_SQUARE_LOCATION_ID = 'LXGW16WF4ZXDT';
+window.TE_SQUARE_APPLICATION_ID = 'sandbox-sq0idb-9GkYWKbzaxaeuwEDMZgiYw';
+window.TE_SQUARE_ENDPOINT = 'https://sandbox.web.squarecdn.com/v1/square.js';
+window.TE_REVIEWS_URL = 'http://localhost:8085';
+window.TE_SHOW_ADA = false;
+window.TE_IA_PROJECT_ID = '64ff27b48e0dce0007aace9d';
+window.TE_CHATBOT_BACKEND_URL = 'chatbot-backend-rc10.tev2.co';
+window.TE_CHATBOT_WIDGET_URL  = 'chatbot-rc10.tev2.co';

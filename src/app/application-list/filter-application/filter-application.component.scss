@@ -1,0 +1,74 @@
+@import '../../../styles.scss';
+@import "../../../sass/styles_mat";
+
+.container-filter{
+    z-index: 90;
+    position: absolute;
+    background: #FFFFFF;
+    border: #DBDBDB solid 1px;
+    border-top: #0090D3 solid 5px !important;
+    margin-top: -1.6em;
+    margin-left: 0.2em;
+    width: 89.6%;
+    label{
+        font-weight: normal;
+        font-size: 12px;
+        color: #009CDC;
+    }  
+    img{
+        width: 14px !important;
+    }
+}
+
+::ng-deep .mat-checkbox-background {
+    border-radius: 5px !important;
+}
+
+::ng-deep .mat-checkbox-frame  {
+    border-radius: 5px !important;
+}
+
+::ng-deep .mat-checkbox-inner-container{
+    width: 14px !important;
+    height: 14px !important;
+}
+
+::ng-deep .mat-checkbox-label{
+    color:#000000 !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+}
+
+::ng-deep .mat-icon-button{
+    display: block;
+    font-size: none !important; 
+    width: 1.5em !important;
+    height: 1.5em !important;
+}
+
+.input_text{
+    color:#000000 !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+}
+.txt{
+    margin-top: -0.2em;
+    color:#A3A3A3 !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+}
+.tev-btn--xlarge1 {  
+    height: 40px;
+    line-height: 2;
+    min-width: 100%;
+    margin-bottom: 2em;
+}
+.btn-form {
+    min-width: 40px !important;
+    background-color: #FFFFFF;
+}
+.btn
+{
+display: flex;
+justify-content: right;
+} 

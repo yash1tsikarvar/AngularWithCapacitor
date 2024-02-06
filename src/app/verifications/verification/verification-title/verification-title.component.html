@@ -1,0 +1,33 @@
+<div class="verifications container">
+
+  <div class="logo">
+    <img src="/assets/logo-tenant-evaluation-alt.svg" alt="Logo Tenant Evaluation">
+  </div>
+  <h1 class="title">{{verificationName}}</h1>
+
+  <div *ngIf="status==='Pending'">
+    <div class="description" [innerHTML]="description"></div>
+    <div *ngIf="hasDecline" >
+      <br>
+      <p style="text-align:center">{{declineText}}</p>
+      <button class="btn btn-primary tev-btn--common decline-bt" (click)="confirmDecline()">I decline to participate
+      </button>
+    </div>
+  </div>
+  <div *ngIf="status==='Error'">
+    <p>{{error}}</p>
+  </div>
+  <div *ngIf="status==='Complete'">
+
+    <tev-message-with-icon *ngIf="error==='' ; else errVerification" [img]="'assets/icon-green-check.svg'" [altText]="'green check'"
+                           [text]="'Verification Completed'"
+                           [smallText]="' mas informacion '"></tev-message-with-icon>
+
+    <ng-template #errVerification>
+      <tev-message-with-icon [img]="'assets/icon-alert.svg'" [altText]="'alert icon'"
+                             [text]="error"
+                             [smallText]="' mas informacion '"></tev-message-with-icon>
+    </ng-template>
+  </div>
+
+</div>

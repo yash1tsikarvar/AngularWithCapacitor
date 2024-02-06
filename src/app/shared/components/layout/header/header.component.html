@@ -1,0 +1,42 @@
+<div class="header">
+
+  <div class="header-logo">
+        <img src="/assets/logo-tenant-evaluation.svg" alt="logo" />
+  </div>
+
+  <div class="header-menu">
+    <nav class="header-menu-desktop">
+      <button *ngIf="!authService.isCallCenterL1() "
+        (click)="home($event)"
+          class="tev-btn tev-btn--primary tev-btn--mdrounded tev-btn--xlpad  mat-raised-button mat-button-base"><span
+              class="mat-button-wrapper"> Home</span>
+      </button>
+      <button *ngIf="authService.isCallCenterL1() " (click)="callCenter($event)"
+          style="background: #e38a0f" class="tev-btn tev-btn--mdrounded tev-btn--xlpad  mat-raised-button mat-button-base"><span
+              class="mat-button-wrapper"> Call Center</span>
+      </button>
+      <button class="tev-btn tev-btn--mdrounded mat-raised-button mat-button-base"
+          (click)="logOut($event)"><span class="mat-button-wrapper"> Log Out </span>
+      </button>
+    </nav>
+    <div class="header-menu-mobile">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon class="icon">menu</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu" class="mobileMenu">
+          <button *ngIf="!authService.isCallCenterL1()"
+            mat-menu-item (click)="home($event)">
+              <mat-icon>home</mat-icon><span>Home</span>
+          </button>
+          <button *ngIf="authService.isCallCenterL1()"
+            mat-menu-item (click)="callCenter($event)">
+            <mat-icon>call</mat-icon><span>Call Center</span>
+          </button>
+          <button mat-menu-item (click)="logOut($event)">
+              <mat-icon>logout</mat-icon><span>Log Out</span>
+          </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

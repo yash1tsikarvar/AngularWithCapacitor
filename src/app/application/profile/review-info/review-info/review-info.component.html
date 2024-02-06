@@ -1,0 +1,43 @@
+<div
+  id="collapseFive"
+  class="collapse show"
+  aria-labelledby="headingFive"
+  data-parent="#accordion"
+>
+  <div class="card-body txt-purple">
+    <p class="txt-review">
+      Kindly review all the information that you have provided and confirm if everything is correct before continuing. If you need to make any corrections, please do so now, as later on, it won’t be possible to make any edits. Once you are ready, please click on Continue.
+    </p>
+
+    <tev-address-details
+      [viewType]="'review'"></tev-address-details>
+
+    <tev-personal-info
+      (hasChangeInRemarks)="checkIfOnChange($event)"
+      (formRemarksIsValid)="checkIfRemarksIsValid($event)"
+      (onSubmit)="checkIfOnSubmit($event)"
+      (onCancel)="checkIfOnCancel($event)"
+      [viewType]="'review'"></tev-personal-info>
+
+    <tev-current-residence *ngIf="showCurrentResidence"
+      [viewType]="'review'"></tev-current-residence>
+
+    <tev-references
+      [viewType]="'review'"></tev-references>
+
+    <tev-additional-info
+      [viewType]="'review'"></tev-additional-info>
+      <!-- *ngIf="showAdditionalInfo" -->
+    <div class="py-4">
+      <div class="foot-action">
+        <button (click)="goBack()" class="cancel-button">Back</button>
+        <button type="button" (click)="submit()" class="confirm-button">
+          Save and continue
+        </button>
+      </div>
+      <!-- ./col -->
+    </div>
+  </div>
+  <!-- ./card-body -->
+</div>
+<!-- ./collapse -->

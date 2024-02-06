@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-12">
+    <div>
+      <a [routerLink]="['/dashboard', paramsAppId]" class="back-link">
+        <span class="tev-icon tev-icon--back"></span>
+        BACK</a>
+    </div>
+
+    <div *ngIf="!finishProcess && !hasError">
+      <h1>Select your Bank Account(s)</h1>
+      <p>Select the Bank or Investment Account that you wish to provide to verify income.</p>
+      <div class="finicity-iframe-wrapper">
+        <div id="connect-container">
+          <!-- <iframe [src]="urlConnect | safe" ></iframe> -->
+        </div>
+
+      </div>
+      <!-- *ngIf="!showLoading && !finishProcess && !hasError"-->
+
+    </div>
+
+    <tev-finicity-finish-bank [applicationId]="paramsAppId" *ngIf="finishProcess"></tev-finicity-finish-bank>
+    <tev-spinner-loading *ngIf="showLoading" [message]="loadingMessage"></tev-spinner-loading>
+    <tev-finicity-error [applicationId]="paramsAppId" [error]="error"
+                         (actionButton)="actionError($event)" *ngIf="hasError"></tev-finicity-error>
+    <p *ngIf="!showLoading && !finishProcess" class="link float-right"><a href="#"
+                                    (click)="bankNotFound($event,paramsApplicantId)">I
+      can’t find my financial institution.</a></p>
+
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div>
+  <a *ngIf="canDeactivate() && files.length === 0" [routerLink]="['../../upload-documents']" class="back-link">
+    <span class="tev-icon tev-icon--back"></span>
+    BACK</a>
+</div>
+<div class="wrapper_upload">
+  <div class="row header">
+    <div class="col-md-12">
+      <button *ngIf="!canDeactivate() && files.length === 0" mat-button color="primary" (click)="closeWindow()"
+              class="right-rounded-button">SUBMIT ALL FILES AND CLOSE
+      </button>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-sm-12 title">
+          Documents to upload
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="document-title">
+      {{documentTask.description}} <span *ngIf="documentTask.name">for {{documentTask.name}}</span>
+  </div>
+  <div class="container" appDnd>
+    <input type="file" #fileInput id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)"/>
+    <img src="assets/upload.svg">
+
+    <div class="dragDropText">
+      <p>Drag one or more files here, <a class="link">or browse</a></p>
+      <p class="formats">Supported formats JPG, PNG or PDF only. Document size limit 20 MB max</p>
+    </div>
+
+  </div>
+  <div class="files-list">
+    <div class="single-file" *ngFor="let file of files; let i = index">
+      <div class="file-icon">
+        <mat-icon>cloud_upload</mat-icon>
+      </div>
+      <div class="info">
+        <h4 class="name">
+          {{ file?.name }}
+        </h4>
+        <p class="size">
+          {{ formatBytes(file?.size) }}
+        </p>
+        <app-progress [progress]="file?.progress"></app-progress>
+      </div>
+    </div>
+    <!-- Failed files -->
+    <div class="single-file failed" *ngFor="let file of filesFail; let i = index">
+      <div class="file-icon">
+        <mat-icon>cloud_off</mat-icon>
+      </div>
+      <div class="info">
+        <h4 class="name">
+          {{ file?.name }}
+        </h4>
+        <p class="size">
+          {{file?.errorMessage}}
+        </p>
+      </div>
+
+      <div class="delete" (click)="deleteFailedFile(i)">
+      </div>
+    </div>
+
+    <!-- uploaded files -->
+    <div class="single-file uploaded" *ngFor="let file of documentTask.documents; let i = index">
+      <div class="file-icon">
+        <mat-icon>cloud_done</mat-icon>
+      </div>
+      <div class="info">
+        <h4 class="name">
+          {{ file?.fileName }}
+        </h4>
+        <p class="size">
+          {{file.message}}
+        </p>
+      </div>
+      <div class="view-document"><a class="link" [href]="file.fileUrl" (click)="stopPropagation($event)"
+                                    target="_blank">View Document</a></div>
+      <div class="delete" (click)="confirmDeleteDocument($event,file.documentId)">
+        &nbsp;
+      </div>
+    </div>
+
+  </div>
+</div>

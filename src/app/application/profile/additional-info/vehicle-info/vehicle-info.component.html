@@ -1,0 +1,43 @@
+<div class="box-group form-box" [ngClass]="viewType">
+
+  <div class="row" style="margin-bottom: 1rem;">
+    <div class="col-12 col-md-6">
+      <div class="select-applicant__form--info">
+        <p>Vehicles</p>
+      </div>
+    </div>
+  </div>
+  <form class="form-group closed-question" [formGroup]="childForm">
+
+    <div class="closed-question__body">
+      <label><span class="txt tev-text">Will any vehicle be kept at the property?</span></label>
+      <tev-yes-no-input (change)="yesNoChanged($event)" [formControlName]="'anyVehicle'"></tev-yes-no-input>
+      <div class="invalid-feedback">{{getError('anyVehicle')}}</div>
+    </div>
+
+  </form>
+
+
+  <div class="vehicle-info" *ngIf="anyVehicle">
+
+    <div class="form-array" *ngFor="let opt of getNumberOfForms(); let i = index;">
+
+      <tev-vehicle-form [formIndex]="i"
+                        [info]="vehiclesFormsValues$[i]"
+                        (formChanged)="vehicleInfoChanged($event, i)"></tev-vehicle-form>
+
+      <div class="text-right" *ngIf="i > 0">
+        <button class="tev-btn tev-btn--small"
+                type="button"
+                (click)="deleteVehicleByIndex(i)">Delete</button>
+      </div>
+
+    </div>
+
+    <div class="mt-4 mb-3" [hidden]="!showAddForm()">
+      <button class="btn btn-link with-icon txt-xs txt-purple" (click)="addVehicle()">Add another Vehicle</button>
+    </div><!-- ./add-car-->
+
+  </div><!-- ./vehicle-info-->
+
+</div><!-- ./py-4 px-5 -->

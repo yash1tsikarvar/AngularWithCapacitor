@@ -1,0 +1,35 @@
+<div class="box-group box-group--connect form-box" [ngClass]="viewType">
+
+    <div class="row" style="margin-bottom: 1rem;">
+      <div class="col-12 col-md-6">
+        <div class="select-applicant__form--info">
+          <p>Primary Applicant</p>
+        </div>
+      </div>
+    </div>
+
+  <tev-residence-info
+    [info]="residenceInfo$"
+    (residenceTypeChanged)="residenceTypeChanged($event)"
+    (formChanged)="residenceInfoChanged($event)"
+    data-cy="primaryApplicantResidence"
+  ></tev-residence-info>
+</div>
+
+<tev-landlord-info
+  [hidden]="!showLandlordForm()"
+  [info]="landLordInfo$"
+  [applicantType]="'primary'"
+  (formChanged)="landLordInfoChanged($event)"
+  [viewType]="viewType"
+  data-cy="primaryApplicantLandLordInfo"
+></tev-landlord-info>
+
+<tev-family-friend-info
+  [hidden]="!showFamilyFriendForm()"
+  [info]="familyInfo$"
+  (formChanged)="familyInfoChanged($event)"
+  [applicantType]="'primary'"
+  [viewType]="viewType"
+  data-cy="primaryApplicantFamilyOrFriendInfo"
+></tev-family-friend-info>

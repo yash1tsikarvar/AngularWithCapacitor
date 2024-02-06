@@ -1,0 +1,50 @@
+<div *ngIf="setup.employmentRequired" [ngClass]="viewType">
+
+
+  <div class="row" style="margin-bottom: 1rem;">
+    <div class="col-12 col-md-6">
+      <div class="select-applicant__form--info">
+        <p>Employment Details</p>
+      </div>
+    </div>
+  </div>
+
+  <tev-applicant-employment [info]="employmentInfo$"
+                            [applicantType]="'primary'"
+                            (formChanged)="employmentChange($event)"></tev-applicant-employment>
+
+</div>
+
+
+
+<!-- <div class="row no-margin" *ngIf="setup.referenceRequired">
+  <div class="col-12 review-tit">
+      <h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">
+        Personal References
+        <a tabindex="0"
+        class="btn btn-round btn-primary btn-inline"
+        placement="top"
+        role="button"
+        data-toggle="popover"
+        triggers="click"
+        autoClose="outside"
+        ngbPopover='Personal References can not be relatives.'>?</a>
+
+      </h3>
+  </div>
+</div> -->
+
+<div class="row" *ngIf="setup.referenceRequired">
+  <div class="col-12 col-md-6">
+    <div class="select-applicant__form--info" style="margin-bottom: 1rem">
+      <p>Personal References</p>
+    </div>
+  </div>
+</div>
+
+
+<tev-personal-references *ngIf="setup.referenceRequired"
+                         [info]="referencesInfo$"
+                         [applicantType]="'primary'"
+                         (formChanged)="referencesChange($event)"
+                         [viewType]="viewType" (viewTypeChanged)="viewTypeChanged($event)"></tev-personal-references>

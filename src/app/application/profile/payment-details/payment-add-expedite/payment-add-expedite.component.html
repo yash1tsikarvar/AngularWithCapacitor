@@ -1,0 +1,121 @@
+  <form [formGroup]="childForm" class="expedite-container">
+
+    <div class="row pt-4 expedite-main">
+
+      <!-- Premium -->
+      <div class="col-sm-12 col-md-6 col-lg-6 premimum-box">
+        <div class="most-popular">Best Option</div>
+        <div class="box-group box-add-expedite box-add-expedite--premium">
+          <div class="form-group closed-question expedite-fix" *ngIf="propertyInfo?.rushProcessingPrice > 0">
+            <div class="expedite-body">
+
+              <div class="expedite-header expedite-padding">
+                <div>
+                  <img class="expedite-header-img" src="/assets/premium2.svg" alt="Quick Pass">
+                </div>
+                <div class="expedite-header-infoContainer">
+                  <div class="expedite-header-text">
+                    <div>
+                      <div class="expedite-header-text-title">Quick Pass</div>
+                      <div class="expedite-header-text-subtitle">Fastest Application Processing</div>
+                    </div>
+                  </div>
+                  <div class="expedite-header-price">${{ propertyInfo?.rushProcessingPrice }}</div>
+                  <div class="expedite-header-button">
+                    <button class="expedite-btn expedite-btn--premium" (click)="continueWithExpedite()">Add Quick Pass Now</button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="expedite-info expedite-padding">
+                <p class="txt txt-bold">It becomes our top priority!</p>
+                <p class="txt">With this exclusive service, your application won't just be another number - Ensure you get that swift completion you urgently need.</p>
+                <p class="txt mt-4">You will get:</p>
+                <ul>
+                  <li class="li-left">
+                    Priority same day application processing
+                    <i id="priority-application-tooltip" class="material-icons">info_outline</i>
+                  </li>
+                  <li class="li-left">Priority document and background processing</li>
+                  <li class="li-left">Express Verifications</li>
+                  <li class="li-left li-left--plus">Plus every benefit from the<b>&nbsp;Standard Package</b></li>
+                </ul>
+              </div>
+
+              <div class="expedite-hr-wrapper">
+                <hr class="expedite-hr" />
+              </div>
+
+              <div class="expedite-padding">
+                <ul>
+                  <li class="li-left li-left--exclusive">Exclusive Bonus</li>
+                  <li class="li-left">Dedicated phone line support</li>
+                  <li class="li-left">Copy of your report</li>
+                  <li class="li-left">Money back Guaranteed</li>
+                </ul>
+              </div>
+<!--
+              <div class="expedite-offer expedite-padding">
+                <div class="expedite-offer-text">
+                  <img src="/assets/warning-expedite.svg" alt="warning">
+                  <div class="expedite-offer-text-title">Limited-Time<br>Exclusive Offer!</div>
+                  <div class="expedite-offer-text-subtitle">This is a one-off opportunity.<br>It cannot be added after submitting your application.</div>
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- -Premium -->
+
+      <!-- Standard -->
+      <div class="col-sm-12 col-md-6 col-lg-6 standard-box">
+        <div class="box-group box-add-expedite" style="height: 100%;">
+          <div class="form-group closed-question expedite-fix" *ngIf="propertyInfo?.rushProcessingPrice > 0" style="height: 100%;">
+            <div class="expedite-body">
+
+                <div class="expedite-header expedite-header--standard expedite-padding">
+                <div>
+                  <img class="expedite-header-img" src="/assets/standard.svg" alt="Standard">
+                </div>
+                <div class="expedite-header-infoContainer">
+                  <div class="expedite-header-text">
+                    <div>
+                      <div class="expedite-header-text-title">Standard</div>
+                      <div class="expedite-header-text-subtitle">Up to 14 days application processing</div>
+                    </div>
+                  </div>
+                  <div class="expedite-header-price"></div>
+                  <div class="expedite-header-button">
+                    <button class="expedite-btn expedite-btn--standard" (click)="continueWithoutExpedite()">I Don't Want Quick Pass</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="expedite-info expedite-padding">
+                <p class="txt txt-bold">This might not be your fastest route.</p>
+                <p class="txt">By choosing Standard, you risk potential delays in your moving timeline. If time is of the essence,</p>
+                <p class="txt mt-4">Standard application service get:</p>
+                <ul>
+                  <li class="li-standard">Help center and support tickets available</li>
+                  <li class="li-standard">Standard phone support</li>
+                  <li class="li-standard">Standard document and background processing</li>
+                  <li class="li-standard">Copy of Your Report ( upon request )</li>
+                  <li class="li-standard">Standard 2 weeks Verifications</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- -Standard -->
+
+    </div>
+
+    <tev-expedite-reviews></tev-expedite-reviews>
+
+    <p class="txt-terms text-muted">This service will expedite the application process within Tenant Evaluation. Please note after the application is closed, the associations have their own approval process (time frame may vary) which will start once the report has been released. For specific information, please contact your association.</p>
+  </form>

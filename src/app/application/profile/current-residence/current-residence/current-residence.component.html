@@ -1,0 +1,112 @@
+<div
+  id="collapseThree"
+  class="collapse show"
+  aria-labelledby="headingThree"
+  data-parent="#accordion"
+>
+  <div class="card-body txt-purple">
+    <!-- <h2 *ngIf="viewType==='normal'" class="d-none d-lg-flex step-headline">
+      <span class="flex-grow-1">Current Residence</span>
+      <span class="theme-logo" [ngStyle]="{'background-image': smallLogo}"></span>
+    </h2> -->
+
+    <div *ngIf="viewType !== 'normal'" class="row">
+      <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
+        <h2 class="step-headline">Current Residence</h2>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 button-edit">
+        <button
+          *ngIf="viewType === 'review'"
+          (click)="reviewEdit()"
+          class="tev-btn btn-blue tev-btn--medium"
+          style="margin-right: 1rem"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class="row no-margin">
+      <div class="col-12 review-tit">
+        <h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">Where are you currently living?
+          <a tabindex="0"
+              class="btn btn-round btn-primary btn-inline"
+              placement="top"
+              role="button"
+              data-toggle="popover"
+              triggers="click"
+              autoClose="outside"
+              ngbPopover='Provide the address in which the applicant(s) currently reside.'>?</a>
+        </h3>
+      </div>
+    </div> -->
+
+    <div class="title-form">Where are you currently living?</div>
+
+    <tev-primary-applicant-info
+      [info]="primaryApplicantInfo$"
+      (formChanged)="primaryApplicantInfoChanged($event)"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+    ></tev-primary-applicant-info>
+
+    <div
+      class="box-group box-group--connect form-box"
+      *ngIf="showCoApplicantDetails()"
+      [ngClass]="viewType"
+    >
+      <div class="row" style="margin-bottom: 1rem">
+        <div class="col-12 col-md-6">
+          <div class="select-applicant__form--info">
+            <p>Additional Applicant Details</p>
+          </div>
+        </div>
+      </div>
+      <h5 class="tev-text">{{ coApplicantType | coApplicantTitle }}</h5>
+
+      <tev-secondary-applicant-info
+        [info]="secondaryApplicantInfo$"
+        (formChanged)="secondaryApplicantInfoChanged($event)"
+        [viewType]="viewType"
+        (viewTypeChanged)="viewTypeChanged($event)"
+      ></tev-secondary-applicant-info>
+    </div>
+
+    <div class="py-4">
+      <div class="foot-action">
+        <button
+          *ngIf="viewType === 'normal'"
+          (click)="goBack()"
+          class="cancel-button"
+        >
+          Back
+        </button>
+        <button
+          *ngIf="viewType === 'normal'"
+          type="button"
+          (click)="submit()"
+          class="confirm-button"
+        >
+          Save and continue
+        </button>
+        <button
+          *ngIf="viewType === 'review-edit'"
+          (click)="cancel()"
+          class="cancel-button"
+        >
+          Cancel
+        </button>
+        <button
+          *ngIf="viewType === 'review-edit'"
+          (click)="submit()"
+          class="confirm-button"
+        >
+          Save and continue
+        </button>
+      </div>
+      <!-- ./col -->
+    </div>
+  </div>
+  <!-- ./card-body -->
+</div>
+<!-- ./collapse -->

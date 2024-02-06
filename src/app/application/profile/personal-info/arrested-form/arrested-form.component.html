@@ -1,0 +1,110 @@
+<div [ngClass]="{'py-4': formIndex > 0, 'border-top': formIndex > 0, 'my-4': formIndex > 0}">
+    <form [formGroup]="childForm" class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-label-group">
+              <span class="txt-bold txt-form-title txt-xxxs">Case #</span>
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  class="form-control general-input"
+                  formControlName="caseArrest"
+                  autocomplete="none"
+                  maxlength="100"
+                  (input)="removeAccents($event, 'caseArrest')"
+                  >
+                  <mat-error>{{getError('caseArrest')}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Offense</span>
+          <mat-form-field appearance="outline">
+            <input
+                matInput
+                class="form-control general-input"
+                formControlName="typeOffense"
+                autocomplete="none"
+                maxlength="300"
+                required
+                (input)="removeAccents($event, 'typeOffense')"
+            >
+            <mat-error>{{getError('typeOffense')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* State</span>
+          <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+            <mat-select
+             [formControlName]="'state'"
+                        [required]="true"
+                        (selectionChange)="stateOnChange($event)"
+                        class="general-select"
+                        >
+              <mat-option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</mat-option>
+            </mat-select>
+            <mat-error>{{getError('state')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+        <div *ngIf="!showCountyDropdown && showCountyField" class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-label-group">
+              <span class="txt-bold txt-form-title txt-xxxs">* County</span>
+              <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    class="form-control general-input"
+                    formControlName="county"
+                    autocomplete="none"
+                    maxlength="50"
+                    [required]="true"
+                    (input)="removeAccents($event, 'county')"
+                    >
+                    <mat-error>{{getError('county')}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div *ngIf="showCountyDropdown && showCountyField" class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">* County</span>
+            <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+              <mat-select
+            formControlName="countyDropdown"
+                        [required]="true"
+                        class="general-select"
+                        >
+              <mat-option *ngFor="let county of counties" [value]="county">{{county}}</mat-option>
+            </mat-select>
+            <mat-error>{{getError('countyDropdown')}}</mat-error>
+          </mat-form-field>
+          </div>
+        </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">* Date of Arrest</span>
+            <mat-form-field appearance="outline">
+              <input
+                  matInput
+                formControlName="dateArrest"
+                id="calendarArrestId"
+                (focus)="picker.open()"
+                [matDatepicker]="picker"
+                readonly
+                [max]="maxDate"
+                class="form-control general-input"
+
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false" startView="multi-year"></mat-datepicker>
+              <mat-error>{{ getError('dateArrest') }}</mat-error>
+            </mat-form-field>
+            <p style="color:gray">If exact date not available, please select an estimated date</p>
+          </div>
+        </div>
+    </form>
+</div>

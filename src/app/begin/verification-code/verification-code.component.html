@@ -1,0 +1,131 @@
+<div class="sms-verification container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-9 col-xl-7">
+      <div class="row">
+        <div class="row">
+          <div class="col-12">
+            <section class="sms-content">
+              <article class="d-row d-md-flex">
+                <h1>
+                  <img src="/assets/icon-te.svg" alt="Tenant Evaluation">
+                </h1>
+              </article>
+            </section>
+          </div>
+          <div class="col-12">
+            <h2>
+              Authenticate Your Account
+            </h2>
+          </div>
+          <div *ngIf="authService.isCallCenterL1() && !selectedMethod; else showNoCallCenter">
+            <div class="home-options">
+              <div class="home-option">
+                <div>
+                  <img
+                    src="/assets/intro/icon_sent_sms.svg"
+                    alt="Start a new application"
+                    class="home-option__img"
+                  />
+                </div>
+                <h6 class="home-option__text">
+                  Send code to phone provided {{ phoneNumber | mobileMask:4 }}</h6>
+                <button
+                  class="home-option__button"
+                  type="button"
+                  (click)="resendCodeSms()"
+                >
+                  SMS <span class="icon"></span>
+                </button>
+              </div>
+
+              <div class="home-option">
+                <div>
+                  <img
+                    src="/assets/intro/icon_sent_email.svg"
+                    alt="View or Resume application(s)"
+                    class="home-option__img"
+                  />
+                </div>
+                <h6 class="home-option__text">
+                  Send code to email provided {{maskEmail()}}
+                </h6>
+                <button
+                  class="home-option__button"
+                  type="button"
+                  (click)="resendCodeEmail()"
+                >
+                  EMAIL <span class="icon"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #showNoCallCenter>
+          <div class="col-12 col-md-8 col-xl-6">
+            <h3>
+              Protecting your personal information is our priority. Please confirm your account by
+              entering the authorization code sent to the <span [hidden]="!bySMS">phone number</span>
+              <span [hidden]="bySMS">email</span> provided
+              <span [hidden]="!bySMS">{{ phoneNumber | mobileMask:4 }}</span><span
+              [hidden]="bySMS">{{email}}</span>
+            </h3>
+          </div>
+          <div class="row sms-code-content">
+            <div class="col-12">
+                            <span *ngIf="!invalidCode" class="title">
+                                Please enter the code below to continue
+                            </span>
+              <span *ngIf="invalidCode" class="title">
+                                {{errorMsg}}
+                            </span>
+            </div>
+            <div class="col-12 otpInput">
+              <ng-otp-input #ngOtpInput
+                            (onInputChange)="onOtpChange($event)"
+                            (keydown.enter)="validateVerificationCode()"
+                            [config]="config">
+              </ng-otp-input>
+            </div>
+            <div class="col-12">
+              <span class="havent-received" [hidden]="invalidCode">Haven’t received it? </span>
+              <span [hidden]="!invalidCode">Please try again. </span>
+              <a (click)="reSendCode()">
+                <span class="txt">Re-send a code </span>
+              </a>
+
+              <span class="t-tooltip">
+                              <!-- <TStatusBadge status="revision" :disabled=" step < 3" /> -->
+                              <mat-icon class="icon">error</mat-icon>
+                              <div class="t-tooltip-content">Re-send code</div>
+                            </span>
+              <!-- <span class="span-icon">
+                  <mat-icon class="icon">error</mat-icon>
+              </span> -->
+            </div>
+            <div class="col-12" *ngIf="!authService.isCallCenterL1()">
+              <a (click)="changedOption()">
+                <h4 class="txt"><span [hidden]="!dialCodeUE">Verify by <span [hidden]="bySMS">phone</span>
+                                    <span [hidden]="!bySMS">email</span></span>
+                </h4>
+              </a>
+            </div>
+            <div class="col-12 col-md-9 col-lg-6">
+              <button mat-button class="sms-button" [disabled]="!validOtp"
+                      (click)="validateVerificationCode()">VERIFY AND SIGN IN
+              </button>
+            </div>
+          </div>
+        </ng-template>
+          <div class="row">
+            <!-- <div class="col-12 sms-footer" [hidden]="!dialCodeUE"> -->
+            <div class="col-12 sms-footer">
+              <span>All rights reserved | Tenant Evaluation {{currentYear}}</span>
+            </div>
+            <!-- <div class="col-12 sms-footer2" [hidden]="dialCodeUE">
+                <span>All rights reserved | Tenant Evaluation 2021</span>
+            </div> -->
+          </div><!-- ./row -->
+      </div>
+    </div>
+  </div>
+</div>

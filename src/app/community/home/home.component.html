@@ -1,0 +1,72 @@
+<tev-header></tev-header>
+
+<div class="home-container">
+  <div class="home-options">
+    <div class="home-description">
+      <div>
+        <img class="home-description__image" src="/assets/tenant-2.0/title_welcome.svg">
+        <h1 class="home-description__title">What would you like to do today?</h1>
+      </div>
+      <div class="d-flex div-about-info home-description__question">
+          <button mat-fab color="dark" class="about-icon" (click)="openExternalUrl()">
+              <div class=""></div>
+          </button>
+          <div class="about-info">
+              <div class="txt-xs txt-bold txt-blue">
+                  Learn more about how to apply
+              </div>
+              <div class="font-size-13px txt-white" (click)="openExternalUrl()">
+                  Click here for more information
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div *ngIf="!roleRealtor" class="home-option">
+      <div>
+        <img
+          src="/assets/tenant-2.0/icon_home_start.svg"
+           alt="Start a new application"
+          class="home-option__img"
+        />
+      </div>
+      <h6 class="home-option__text">Start a new<br />application</h6>
+      <button
+        class="home-option__button"
+        type="button"
+        [disabled]="processing"
+        (click)="submit('NA')"
+      >
+        Select <span class="icon"></span>
+      </button>
+    </div>
+
+    <div class="home-option">
+      <div>
+        <img
+          src="/assets/tenant-2.0/icon_home_resume.svg"
+          alt="View or Resume application(s)"
+          class="home-option__img"
+        />
+      </div>
+      <h6 class="home-option__text">
+        View or resume <span *ngIf="!roleRealtor">my</span><br> application(s)
+      </h6>
+      <button
+        class="home-option__button"
+        type="button"
+        [disabled]="processing"
+        [class.disabled]="processing"
+        (click)="submit('RA')"
+      >
+        Select <span class="icon"></span>
+      </button>
+    </div>
+  </div>
+
+</div>
+<section class="home-footer">
+  <small class="home-footer--text"
+    >All rights reserved | Tenant Evaluation {{currentYear}}</small
+  >
+</section>

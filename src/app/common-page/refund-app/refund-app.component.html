@@ -1,0 +1,113 @@
+<div class="container-fluid profile dashboard accordion-wrapper txt-purple">
+  <div class="row mx-0 justify-content-center floating-labels form-bg-light">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-8 px-0">
+      <a href="" class="back-link">
+        <mat-icon>arrow_back</mat-icon>
+        BACK</a>
+
+      <div class="box-group">
+        <h3 class="box-group__title">
+          Cancel and refund your application
+        </h3>
+        <h4 class="mb-4">Disclosure</h4>
+        <p class="box-group__text">I authorize Tenant Evaluation LLC to credit my account. I also understand that the
+          refund will be the total amount paid minus the 10% convenience fee (credit card surcharge). ONLY the
+          Payee/Card Holder can request a refund and sign below.</p>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+
+            <div class="form-label-group">
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="card-holder-name"
+                       class="form-control"
+                       placeholder="Card Holder's Name"
+                       maxlength="80"
+                >
+              </mat-form-field>
+
+            </div>
+
+          </div><!-- ./col -->
+        </div><!-- ./row -->
+        <form class="signature">
+
+          <div class="signature__group">
+            <label class="signature__label">Card Holder's Signature</label>
+            <div class="signature-canvas">
+
+              <span class="signature__float">SIGN HERE</span>
+
+              <div class="signature-wrapper">
+                <canvas id="signature-pad" #signaturePad></canvas>
+              </div>
+
+              <div class="signature-text">
+                <canvas id="signature-text" #signatureText></canvas>
+
+              </div>
+            </div>
+            <input class="custom-control-input"
+                   type="hidden"
+            >
+          </div>
+
+          <div class="custom-checkbox">
+            <mat-checkbox class="mat-checkbox--rounded"
+                          type="checkbox"
+                          id="agree"
+            >I agree and authorize these terms and conditions
+            </mat-checkbox>
+          </div>
+        </form>
+      </div><!-- ./box-group -->
+
+      <div class="box-group">
+        <h3 class="box-group__title">
+          Refund Details
+        </h3>
+        <div class="payment-table">
+
+          <div class="payment-table__row payment-table__row--head">
+            <div class="payment-table__col payment-table__col--item">
+              <h3 class="txt-all-caps txt-md column-title">Application Fees</h3>
+            </div>
+            <div class="payment-table__col payment-table__col--price">
+              <h3 class="txt-all-caps txt-md column-title">Amount</h3>
+            </div>
+          </div>
+
+          <div class="payment-table__row">
+            <ul class="payment-table__col payment-table__col--item">
+              <li class="txt-xs" >Application Fee</li>
+              <li class="txt-xs" >10% Convenience Fee</li>
+            </ul>
+            <ul class="payment-table__col payment-table__col--price">
+              <li class="txt-xs">$100.00</li>
+              <li class="txt-xs">$-10.00</li>
+            </ul>
+          </div>
+
+          <div class="payment-table__row payment-table__row--total">
+            <div class="payment-table__col payment-table__col--item">
+              <h3 class="txt-md">Total TO BE REFUNDED</h3>
+            </div>
+            <div class="payment-table__col payment-table__col--price">
+              <h3 class="txt-md">$90.00</h3>
+            </div>
+          </div>
+        </div><!-- ./payment-table -->
+
+        <div class="py-4">
+          <div class="foot-action">
+            <button class="tev-btn tev-btn--primary tev-btn--large">Submit</button>
+          </div>
+        </div>
+      </div><!-- ./box-group -->
+
+    </div><!-- ./col -->
+  </div>
+
+</div>

@@ -1,0 +1,395 @@
+<!-- <div *ngIf="viewType !== 'normal'" > -->
+
+<!-- <h2 *ngIf="viewType === 'normal'" class="d-none d-lg-flex step-headline">
+  <span class="flex-grow-1">Personal Info</span>
+  <span class="theme-logo" [ngStyle]="{ 'background-image': smallLogo }"></span>
+</h2> -->
+
+<div *ngIf="viewType !== 'normal'" class="row review-first-row">
+  <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
+    <h2 class="step-headline">Personal Info</h2>
+  </div>
+  <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 button-edit">
+    <button
+      *ngIf="viewType === 'review'"
+      (click)="reviewEdit()"
+      class="tev-btn btn-blue tev-btn--medium"
+      style="margin-right: 1rem"
+    >
+      Edit
+    </button>
+  </div>
+</div>
+
+<!-- <div class="row no-margin" *ngIf="showCoApplicantDetails()">
+  <div class="col-12 review-tit">
+    <h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">Occupants</h3>
+  </div>
+</div> -->
+
+<div class="box-group box-group--connect form-box" [ngClass]="viewType">
+  <!-- <h4 class="box-group__title">Applicant Details</h4> -->
+
+  <div class="row" style="margin-bottom: 1rem">
+    <div class="col-12 col-md-6">
+      <div class="select-applicant__form--info">
+        <p>Add Applicant details</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-bottom: 1rem">
+    <div class="col-12 col-md-6">
+      <img
+        src="/assets/ID-Match.gif"
+        alt="Tenant Evaluation Logo"
+        class="animated-gif"
+      />
+      <!-- class="enter-type-option__img" -->
+    </div>
+  </div>
+
+  <form [formGroup]="childForm" (submit)="submit()">
+    <div class="row">
+      <!-- FIRST NAME -->
+      <div class="col-md-6 col-lg-3">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* First Name</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="profileName"
+              formControlName="firstName"
+              autocomplete="none"
+              maxlength="30"
+              required
+              (input)="removeAccents($event, 'firstName')"
+              class="general-input form-control"
+              data-test="applicantFirtName"
+            />
+            <mat-error>{{ getError('firstName') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- FIRST NAME -->
+      <!-- MIDDLE INITAL -->
+      <div class="col-md-6 col-lg-3">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">Middle Initial</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="profileMiddleInitial"
+              formControlName="middleInitial"
+              autocomplete="none"
+              maxlength="1"
+              class="general-input form-control"
+              data-test="applicantMiddleInitial"
+            />
+            <mat-error>{{ getError('middleInitial') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- MIDDLE INITAL -->
+      <!-- LAST NAME -->
+      <div class="col-md-6 col-lg-3">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Last Name</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="profileLastname"
+              formControlName="lastName"
+              autocomplete="none"
+              maxlength="30"
+              required
+              (input)="removeAccents($event, 'lastName')"
+              class="general-input form-control"
+              data-test="applicantLastName"
+            />
+            <mat-error>{{ getError('lastName') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- LAST NAME -->
+      <!-- SECOND SURNAME -->
+      <div class="col-md-6 col-lg-3">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">Second Surname</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              id="profileMaternalname"
+              formControlName="maternalName"
+              autocomplete="none"
+              maxlength="30"
+              class="general-input form-control"
+              data-test="applicantMaternalName"
+            />
+            <mat-error>{{ getError('maternalName') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- SECOND SURNAME -->
+    </div>
+
+    <div class="row">
+      <!-- EMAIL -->
+      <div class="col-xs-12 col-sm-6"  *ngIf="propertyInfo.shortApplication == 'LONG'">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Email</span>
+          <mat-form-field
+            appearance="outline"
+            class="text-size-custom intro_input_text_1"
+          >
+            <input
+              matInput
+              id="profileEmail"
+              class="form-control"
+              formControlName="email"
+              autocomplete="none"
+              maxlength="50"
+              readonly
+              class="general-input form-control"
+              data-test="applicantEmail"
+            />
+            <mat-error>{{ getError('email') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- EMAIL -->
+      <!-- DOB -->
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Date Of Birth</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="dateOfBirth"
+              id="profileBirthDate"
+              (focus)="picker.open()"
+              [matDatepicker]="picker"
+              [max]="maxDate"
+              [min]="minDate"
+              class="general-input form-control"
+              data-test="applicantDateOfBirth"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+            <mat-error>{{ getError('dateOfBirth') }}</mat-error>
+            <mat-hint>mm/dd/yyyy</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- DOB -->
+    </div>
+
+    <div class="row">
+      <!-- DIAL CODE -->
+      <div class="col-xs-4 col-sm-2">
+        <div class="form-label-group">
+          <!-- select-group -->
+          <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+          <mat-form-field
+            appearance="outline"
+            class="text-size-custom intro_input_text_1"
+          >
+            <mat-select
+              [formControlName]="'dialCode'"
+              [required]="true"
+              class="general-select"
+            >
+              <mat-option
+                [value]="code | dialCodeValue"
+                *ngFor="let code of dialCodes"
+                >{{ code | dialCodeName }}</mat-option
+              >
+            </mat-select>
+            <mat-error>{{ getError('dialCode') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- DIAL CODE -->
+      <!-- PHONE NUMBER -->
+      <div class="col-xs-8 col-sm-4">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Mobile Number</span>
+          <mat-form-field
+            appearance="outline"
+            class="text-size-custom intro_input_text_1"
+          >
+            <input
+              matInput
+              id="profileCellPhone"
+              class="general-input form-control"
+              formControlName="cellPhone"
+              autocomplete="tel"
+              minlength="5"
+              maxlength="47"
+              required
+              [textMask]="{ mask: cellphonemask }"
+              data-test="applicantCellPhone"
+            />
+            <mat-error>{{ getError('cellPhone') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- PHONE NUMBER -->
+      <!-- SSN -->
+      <div class="col-xs-12 col-sm-6" *ngIf="!missingSSN && setup.ssnRequired">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs"
+            >* US / Canadian Social Security Number (SSN)</span
+          >
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              id="profileSsn"
+              class="general-input"
+              formControlName="ssn"
+              autocomplete="new-password"
+              maxlength="9"
+              data-test="applicantSsn"
+            />
+            <button
+              matSuffix
+              tabindex="-1"
+              class="btn btn-form floating show-hidden-button"
+              type="button"
+              (click)="modifyVisibility()"
+            >
+            <!-- style="transform: translateY(-0.55rem)" -->
+              {{ buttonText }}
+              <i translate="no" class="material-icons mat-icon-form eye-icon">{{
+                hide ? 'visibility_off' : 'visibility'
+              }}</i>
+            </button>
+            <mat-error>{{ getError('ssn') }}</mat-error>
+          </mat-form-field>
+          <div *ngIf="!missingSSN && setup.ssnRequired">
+            <a
+              href=""
+              class="toggle-ssn-passport"
+              (click)="toggleSSN($event)"
+              data-cy="applicantMissingSSN"
+              >I don't have Social Security</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- SSN -->
+      <!-- PASSPORT -->
+      <div class="col-xs-6 col-sm-4" *ngIf="missingSSN">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Passport</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              id="profilePassport"
+              class="general-input"
+              formControlName="passport"
+              maxlength="50"
+              tevAsciiOnly
+              data-test="applicantPassport"
+            />
+            <button
+              matSuffix
+              tabindex="-1"
+              class="btn btn-form floating show-hidden-button"
+              type="button"
+              (click)="modifyVisibility()"
+            >
+              {{ buttonText }}
+              <i translate="no" class="material-icons mat-icon-form eye-icon">{{
+                hide ? 'visibility_off' : 'visibility'
+              }}</i>
+            </button>
+            <mat-error>{{ getError('passport') }}</mat-error>
+          </mat-form-field>
+          <div *ngIf="missingSSN">
+            <a href="" class="toggle-ssn-passport" (click)="toggleSSN($event)"
+              >I have Social Security</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- PASSPORT -->
+      <!-- COUNTRY -->
+      <div class="col-xs-6 col-sm-2" *ngIf="missingSSN">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Country</span>
+          <mat-form-field appearance="outline">
+            <mat-select
+              class="general-select"
+              [formControlName]="'passportCountry'"
+              data-cy="passportCountryApplicant"
+            >
+              <mat-option *ngFor="let code of countries" [value]="code.code">{{
+                code.name
+              }}</mat-option>
+            </mat-select>
+            <mat-error>{{ getError('passportCountry') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- COUNTRY -->
+    </div>
+
+    <div class="row" *ngIf="propertyInfo.shortApplication == 'LONG'">
+      <!-- AKAS -->
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">AKA´S</span>
+          <mat-form-field appearance="outline">
+            <mat-chip-list #aka aria-label="Alias selection">
+              <mat-chip
+                *ngFor="let alias of childForm.value.aka"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="removeAlias(alias)"
+              >
+                {{ alias }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                class="applicant-aka"
+                [matChipInputFor]="aka"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addAlias($event)"
+              />
+            </mat-chip-list>
+            <mat-hint class="txt-form-title txt-xxxs"
+              >Press enter or comma, to add a new alias</mat-hint
+            >
+            <mat-error>{{ getError('aka') }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- AKAS -->
+    </div>
+
+    <div class="row" *ngIf="propertyInfo.shortApplication == 'LONG'">
+      <!-- SMS -->
+      <div class="col sms-question" *ngIf="sendTextMessages()">
+        <mat-checkbox
+          [formControlName]="'receiveTextMessages'"
+          class="mat-checkbox--rounded"
+          style="margin-right: 1rem"
+        >
+          I agree to receive text messages related to this application
+          <strong>ONLY</strong>.
+        </mat-checkbox>
+      </div>
+      <!-- SMS -->
+    </div>
+  </form>
+  <!-- ./row -->
+</div>
+<!-- ./py-4 px-5 -->
+<!-- </div> -->

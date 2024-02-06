@@ -1,0 +1,80 @@
+@import "../../../../../sass/tenant_2.0";
+@import "../../../../../sass/styles_mat";
+@import "../../../../../sass/new_step_one";
+
+.owner-info-input{
+  padding: 1.5em 0 1.5em 0 !important;
+  transform: translate(0, +0.1rem) !important;
+  color: #373041;
+  font-family: Roboto, Regular;
+  font-weight: 500 !important;
+  //background-color: #F4F4F4 !important;
+}
+
+.form-box{
+  border-radius: 15px;
+  margin: 2rem 0;
+}
+
+.owner-info-select{
+  padding: 0.5em 0 0.5em 0 !important;
+}
+
+.input-info {
+  color: #009CDC;
+  font-size: 0.8rem;
+  width: 100%;
+  transform: translateY(-1rem);
+  margin-bottom: 0px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.title-form{
+  font-size: 22px;
+  font-family: Roboto, Medium;
+  color: #009CDC;
+  font-weight: 500;
+}
+
+.owner-info-text{
+  font-family: Roboto, Regular;
+  font-size: 12px;
+  color: #707070;
+}
+
+.know-owners{
+  display:flex;
+  flex-direction: row;
+  justify-content:  space-between;
+  font-size: 18px;
+  font-family: Roboto, Medium;
+}
+.mat-radio-button{
+  margin-left: 1rem !important;
+}
+
+// ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+//   background-color: #009CDC !important;
+// }
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #009CDC!important;   /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+ border-color:#009CDC!important; /*outer ring color change*/
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@media screen and (max-width: 1080px) {
+  .know-owners{
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="main-content begin-no-co-applicants bg-gray d-flex align-items-center">
+  <div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-12">
+        <section class="content-box">
+          <article>
+            <h1 class="txt-lg txt-purple">
+              Co-Applicants
+            </h1>
+            <p class="txt-dark-gray">Are you applying alone or do you need to add a second</p>
+          </article>
+          <div class="icon-holder check"></div>
+
+        </section><!-- ./content-box -->
+      </div><!-- ./col -->
+    </div><!-- ./row -->
+  </div><!-- ./container-fluid -->
+</div><!-- ./begin-co-applicants-selection -->
+
+<div class="main-content begin-no-co-applicants-selection bg-light d-flex align-items-center">
+  <div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-12">
+        <section class="content-box">
+          <article>
+            <h1 class="txt-lg txt-purple">
+              Profile
+            </h1>
+            <p class="txt-dark-gray">Complete all your personal information</p>
+
+            <button class="btn btn-lg btn-primary txt-sm mt-0 mb-4"
+                    type="submit"
+                    [routerLink]="['/application/new', code, applicationType, 'profile', coApplicantType]">Start</button>
+
+            <p class="txt-xs txt-gray">Takes about 15 minutes</p>
+
+          </article>
+
+
+        </section><!-- ./content-box -->
+      </div><!-- ./col -->
+    </div><!-- ./row -->
+  </div><!-- ./container-fluid -->
+</div><!-- ./begin-co-applicants-selection -->

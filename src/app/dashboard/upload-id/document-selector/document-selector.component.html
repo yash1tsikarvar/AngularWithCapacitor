@@ -1,0 +1,37 @@
+<div>
+  <a [routerLink]="['../../upload-documents']" class="back-link">
+    <span class="tev-icon tev-icon--back"></span>
+    BACK</a>
+</div>
+<section class="h-100 document-selector">
+  <div class="d-flex flex-column">
+    <h1 class="text align-self-center">Choose a document</h1>
+    <h4 class="text align-self-center">It must be an official photo ID</h4>
+    <div class="identity-selector">
+      <div class="row selection-type-button" (click)="selectId()">
+        <div class="col-sm-2 col-0 d-none d-sm-block image-button">
+          <img src="assets/upload-id/identification.svg">
+        </div>
+        <div class="col-sm-9 col-10">
+          <p>US Driver’s license or ID card<span>Front and back</span></p>
+        </div>
+        <div class="col-sm-1 col-1">
+          <mat-icon>navigate_next</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="identity-selector" (click)="selectPassport()">
+      <div class="row selection-type-button">
+        <div class="col-sm-2 col-0 d-none d-sm-block image-button">
+          <img src="assets/upload-id/passport.svg" class="image-icon">
+        </div>
+        <div class="col-sm-9 col-10">
+          <p>Passport or Visa<span>Face photo page</span></p>
+        </div>
+        <div class="col-sm-1 col-1">
+          <mat-icon>navigate_next</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

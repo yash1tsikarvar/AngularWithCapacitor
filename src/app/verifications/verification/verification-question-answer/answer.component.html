@@ -1,0 +1,27 @@
+<div [formGroup]="formGroupAnswer" class="answer">
+  <p [innerHTML]="answer.questionHtmlText"></p>
+
+  <mat-radio-group class="row" [formControlName]="answer.formName" aria-label="Select an option">
+    <div *ngFor="let item of answer.answers" [class]="'col-'+(12/3) +' answer'">
+      <mat-radio-button [value]="item.value">{{item.id}}</mat-radio-button>
+    </div>
+    <mat-error *ngIf="showErrors">{{getErrorMessage(answer.formName)}}</mat-error>
+  </mat-radio-group>
+
+  <div *ngFor="let item of answer.answers">
+    <div class="row full-width">
+      <div *ngFor="let item2 of item.txtResponse" [class]="'col-'+getWidth(item.txtResponse.length)">
+        <div *ngIf="item.value==this.selectedItem">
+          <span class="txt-bold" [innerHTML]="item2.text"></span>
+          <mat-form-field [id]="item2.fieldName" appearance="legacy">
+            <input matInput [type]="item2.type"   [maxlength]="item2.maxLength"
+                   placeholder="" [formControlName]="item2.fieldName" />
+            <mat-error>{{getErrorMessage(item2.fieldName)}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

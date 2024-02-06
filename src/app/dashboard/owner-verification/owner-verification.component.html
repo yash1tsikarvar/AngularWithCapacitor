@@ -1,0 +1,101 @@
+<div class="row">
+
+  <div>
+    <a [routerLink]="['../']" class="back-link">
+      <span class="tev-icon tev-icon--back"></span>
+      BACK</a>
+  </div>
+
+  <div class="col-12">
+    <div class="box-container">
+      <form class="floating-labels form-bg-light sign-docs-form"
+            [formGroup]="ownerInfoForm" (submit)="submit()">
+        <h1 class="tev-heading tev-heading--h1 tev-heading--border-x3">Please enter owners info before proceeding
+
+          <tev-tooltip text="We need the contact information for the current owner of the property
+          you are applying to in order to obtain e-signatures required
+          by {{mainApplication | applicationBuildingName}}."></tev-tooltip>
+        </h1>
+
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="owner-name"
+                       class="form-control"
+                       placeholder="Full Name"
+                       formControlName="fullName"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('fullName')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-2">
+            <div class="form-label-group">
+
+              <mat-form-field>
+
+                <mat-select [formControlName]="'dialCode'" placeholder="Dial Code">
+                  <mat-option *ngFor="let code of dialCodes" [value]="code | dialCodeValue">{{code | dialCodeName}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>{{getError('dialCode')}}</mat-error>
+
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-12 col-sm-4">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       id="owner-phone"
+                       class="form-control"
+                       placeholder="Phone"
+                       formControlName="phone"
+                       maxlength="30"
+                       [textMask]="{mask: phonemask}"
+                >
+                <mat-error>{{getError('phone')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="email"
+                       id="add-applicant-email"
+                       class="form-control"
+                       placeholder="Email"
+                       formControlName="email"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('email')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 text-right">
+            <button class="tev-btn tev-btn--common tev-btn--success" type="submit" *ngIf="!resent">Update and Resend</button>
+            <button class="tev-btn tev-btn--common tev-btn--disabled" disabled *ngIf="resent">Submited</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div><!-- /col -->
+
+</div><!-- /row -->

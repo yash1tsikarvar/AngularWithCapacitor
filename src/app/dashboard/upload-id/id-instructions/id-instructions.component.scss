@@ -1,0 +1,283 @@
+.instructions {
+  border-radius: 10px;
+  background-color: #383342;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 19px;
+  min-height: 50%;
+  color: white;
+  padding-bottom: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+
+  i {
+    width: 50px;
+    height: 50px;
+    margin-top: -100px;
+  }
+
+  .error-text {
+    color: #F33D3D;
+  }
+
+  ngx-dropzone-label {
+    text-align: center;
+  }
+
+
+}
+
+.slide-container {
+
+  padding-top: 50px;
+  font-family: Roboto;
+  font-size: 24px;
+  color: white;
+
+  .slide-item {
+    padding-top: 20px;
+    border-radius: 10px;
+    background-color: #383342;
+    text-align: center;
+    font-family: Roboto, serif;
+    min-height: 400px;
+    height: 50%;
+    width: 80%;
+    margin-top: 40%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    opacity: 0;
+
+    h4 {
+      color: red !important;
+    }
+
+    .item-image {
+      background-size: 130px 130px;
+      height: 200px;
+      width: 200px;
+      margin: auto;
+      padding: 50px;
+      border: 15px solid white;
+      border-radius: 50%;
+      background-color: #e6e6e6;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .pb-counter {
+      width: 80%;
+    }
+
+    p {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      padding-bottom: 0px;
+    }
+
+    .image-validate {
+      height: 80%;
+      width: 50%;
+      position: absolute;
+      right: 25%;
+      top: 13%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .delete-image {
+      background-image: url("~assets/upload-generic/wrong.svg");
+    }
+
+    .right-image {
+      background-image: url("~assets/upload-generic/right-icon.svg");
+    }
+
+    .slider-generic-text {
+      margin-top: 0px;
+      padding-top: 0px;
+      white-space: pre;
+      font-size: 12px;
+    }
+
+  }
+}
+
+#cover1 {
+  background-image: url("~assets/upload-id/visible.svg");
+}
+
+#cover2 {
+  background-image: url("~assets/upload-id/cover.svg");
+}
+
+#cover3 {
+  background-image: url("~assets/upload-id/blurry.svg");
+}
+
+#cover4 {
+  background-image: url("~assets/upload-generic/size.svg");
+}
+
+#cover5 {
+  background-image: url("~assets/upload-id/double_image.svg");
+}
+
+#cover6 {
+  background-image: url("~assets/upload-id/rigth.svg");
+}
+
+.slide1 {
+  -webkit-animation: fade 30s 0s;
+}
+
+.slide2 {
+  -webkit-animation: fade 30s 4s;
+}
+
+.slide3 {
+  -webkit-animation: fade 30s 8s;
+}
+
+.slide4 {
+  -webkit-animation: fade 30s 12s;
+}
+
+.slide5 {
+  -webkit-animation: fade 30s 16s;
+}
+
+.slide6 {
+  -webkit-animation: fade 100s 20s;
+  opacity: 1;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0.0
+  }
+  2% {
+    opacity: 1.0
+  }
+  33.33% {
+    opacity: 1.0
+  }
+  37.33% {
+    opacity: 0.0
+  }
+  100% {
+    opacity: 0.0
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .upload-id {
+    .instructions {
+      i {
+        top: 48%;
+      }
+    }
+
+    .slide-container {
+      padding-top: 150px;
+    }
+
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .upload-id {
+    .instructions {
+      max-height: 30%;
+
+      i {
+        top: 45%;
+      }
+    }
+
+    .slide-item {
+
+      .item-image {
+        background-size: 130px 100px;
+        height: 180px;
+        width: 180px;
+      }
+
+      p {
+        margin-top: 20px;
+      }
+
+      .image-validate {
+        top: 8%;
+      }
+
+      .delete-image {
+        background-image: url("~assets/upload-generic/wrong.svg");
+      }
+
+      .right-image {
+        background-image: url("~assets/upload-generic/right-icon.svg");
+      }
+
+      .slider-generic-text {
+        font-size: 12px;
+      }
+
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 767.9px) {
+
+  .instructions {
+    height: auto;
+
+    i {
+      height: 30px;
+      top: 60%;
+    }
+  }
+
+  .slide-container {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 540.9px) {
+
+  .slide-container {
+    padding-top: 150px;
+  }
+
+  .instructions {
+    max-height: 30%;
+    margin: 10% 20px 10px;
+    font-size: 15px;
+
+    i {
+      height: 20px;
+      top: 40%;
+    }
+
+    .error-text {
+      padding-top: 2px;
+      font-size: 16px;
+    }
+
+    .small-text {
+      font-size: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+
+  }
+
+}
+
+

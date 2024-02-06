@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-12">
+    <small class="mb-4 d-block">
+
+      <ng-template [ngIf]="!nothingPending()">
+        Below is a list of pending items that we are reviewing and verifying, please allow sometime for our Team
+        review everything. We will contact you if further details are needed.
+      </ng-template>
+
+      <ng-template [ngIf]="nothingPending()">
+        There is nothing pending at the moment
+      </ng-template>
+
+    </small>
+
+    <article class="user-action" *ngFor="let pendingItem of mainApplication.pendingVerifications">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--user"></i>
+        <div class="user-action__text">
+          <div class="user-action__text">
+            <h2>{{pendingItem.description}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="user-action__box">
+        processing
+      </div>
+    </article>
+
+
+    <article class="user-action" *ngIf="mainApplication.workingDocumentTasks.length > 0">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--user"></i>
+        <div class="user-action__text">
+          <h2>Documents In Review</h2>
+          <small>You have some documents in review</small>
+        </div>
+      </div>
+      <a [routerLink]="['in-review-documents']"
+         class="tev-btn tev-btn--common tev-btn--primary">
+        View Now</a>
+    </article>
+
+    <article class="user-action" *ngIf="mainApplication?.ownerSigningStatus === 'WAITING_OWNER_RESPONSE'">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--user"></i>
+        <div class="user-action__text">
+          <h2>Owner E-Signature</h2>
+          <small>Owner E-Signature missing</small>
+        </div>
+      </div>
+      <div class="user-action__box">
+        processing
+      </div>
+    </article>
+
+    <article class="user-action" *ngFor="let task of mainApplication.workingReferenceTasks">
+      <!-- <a (click)="show(mainApplication)">
+        <mat-icon class="journal-icon tev-icon">library_books</mat-icon>
+      </a> -->
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--user"></i>
+        <div class="user-action__text">
+          <h2>{{task}}</h2>
+        </div>
+      </div>
+      <div class="user-action__box">
+        processing
+      </div>
+    </article>
+
+  </div>
+</div>

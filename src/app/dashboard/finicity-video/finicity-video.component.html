@@ -1,0 +1,36 @@
+<div class="main-video-content info-after-pay-container">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <div class="icon-te-info ml-5"></div>
+      </div>
+      <div *ngIf="showSkipButton" class="col-3">
+        <button mat-fab color="primary" class="float-right mr-1 mt-1" (click)="openDialog(applicantId)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <span class="info-video-title">A few other things to keep in mind before continuing</span>
+  </div>
+  <div>
+    <span class="info-video-subtitle">Tenant Evaluation</span>
+  </div>
+  <div class="videoWrapper full-width">
+    <iframe [ngClass]="{'d-none': !playVideo}" id="videoplayer3" class="full-width"
+            src="https://player.vimeo.com/video/764488029?autoplay=1" width="800" frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <div *ngIf="!playVideo" class="retry-container">
+      <button (click)="retry()">REPLAY VIDEO</button>
+      <button (click)="openDialog(applicantId)">CONTINUE</button>
+    </div>
+  </div>
+  <div *ngIf="!this.deviceDetector.isDesktop()"
+       class="container-fluid flex-content-center mt-3 col-sm-12 col-lg-10 col-md-12">
+    <button class="iphone-btn" (click)="retryIphone()">PLAY THE VIDEO</button>
+    <div class="mt-3">Make sure to play the video. You will be able to continue after the video finishes.</div>
+  </div>
+</div>
+

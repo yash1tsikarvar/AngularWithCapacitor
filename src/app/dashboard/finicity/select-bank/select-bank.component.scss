@@ -1,0 +1,30 @@
+@import "~sass/variables";
+
+.finicity-iframe-wrapper {
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .connect-container {
+    width: 100%;
+  }
+
+  h5 {
+    margin-top: 5%;
+  }
+
+
+}
+
+.link {
+  a {
+    color: $blue;
+  }
+}
+
+iframe {
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}

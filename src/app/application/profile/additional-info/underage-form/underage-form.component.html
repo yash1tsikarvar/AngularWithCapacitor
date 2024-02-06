@@ -1,0 +1,69 @@
+<div  [ngClass]="{'py-4': formIndex > 0, 'border-top': formIndex > 0, 'my-4': formIndex > 0}">
+
+  <form class="row" [formGroup]="childForm">
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* Name</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="occupantName-{{counter}}"
+                 class="form-control"
+                 formControlName="name"
+                 maxlength="80"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('name')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* Relationship</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="occupantRelationship-{{counter}}"
+                 class="form-control"
+                 formControlName="relationship"
+                 maxlength="20"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('relationship')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* Age</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="number"
+                 id="occupantAge-{{counter}}"
+                 class="form-control"
+                 formControlName="age"
+                 tevNumbersOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('age')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+  </form>
+
+</div>

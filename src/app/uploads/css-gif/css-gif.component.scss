@@ -1,0 +1,20 @@
+@import "~sass/media_queries";
+.item-image {
+  background-size: 130px 130px;
+  height: 150px;
+  width: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 5px;
+}
+.text-image{
+  font-size: 20px;
+  font-weight: bold;
+}
+@include breakpoint(xs) {
+  .item-image {
+    background-size: 80px 80px;
+    height: 100px;
+    width: 100px;
+  }
+}

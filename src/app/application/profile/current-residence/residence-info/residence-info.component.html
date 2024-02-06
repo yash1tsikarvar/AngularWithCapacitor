@@ -1,0 +1,241 @@
+<tev-type-of-residence [type]="residenceType$"
+                       (valueChanged)="onResidenceTypeChanged($event)"></tev-type-of-residence>
+
+<form [formGroup]="childForm" [hidden]="!childForm?.value['type']">
+
+
+  <div class="row">
+    <div *ngIf="showModeButton" class="col-sm-12 col-md-6 col-lg-8">
+      <button type="button" mat-button (click)="changeAddressMode()" style="background-color: lightgray; margin-bottom: 1rem">Enter address {{modeText}}</button>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">Property Address</span>
+
+        <mat-form-field class="mt-3"
+                        appearance="outline"
+                        [ngClass]="{'hidden': isEnterManually==true, 'mat-input-invalid': !isGPlaceSelected}" style="margin-top: 1rem">
+          <input matInput
+                 #locationSearch
+                 type="text"
+                 id="propertyLocationSearch-{{formCounter}}"
+                 class="general-input form-control"
+                 formControlName="locationSearch"
+                 maxlength="80"
+                 [readonly]="isCoApplicantRequest"
+                 (keyup)="onSearchKey($event)"
+          >
+          <span class="input-tag"
+                *ngIf="childForm.get('locationSearch').value&&isGPlaceSelected">{{childForm.get('locationSearch').value}}</span>
+
+          <a *ngIf="childForm.get('locationSearch').value"
+             aria-label="Clear" (click)="clearLocationSearch()"
+             class="btn btn-round btn-primary btn-inline btn-clear-input" style="transform: translateY(1rem);">x</a>
+          <mat-hint class="mat-error" *ngIf="isHouseNumberError">Please enter a valid house number</mat-hint>
+        </mat-form-field>
+
+        <div *ngIf="childForm.get('locationSearch').value&&!isGPlaceSelected&&!isEnterManually">
+          <mat-error>Please select an address from the dropdown, or enter the address manually</mat-error>
+        </div>
+      </div>
+    </div><!-- ./col -->
+  </div>
+
+  <div class="row" [ngClass]="{'hidden': isEnterManually==false}">
+
+    <div class="col-sm-12 col-md-4 col-lg-3">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* Number</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="currentResidenceNumber-{{formCounter}}"
+                 class="form-control"
+                 formControlName="number"
+                 maxlength="8"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('number')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-8 col-lg-9">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* Street Name</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="currentResidenceStreetName-{{formCounter}}"
+                 class="form-control"
+                 formControlName="streetName"
+                 maxlength="80"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('streetName')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Country</span>
+
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+
+          <mat-select
+            class="general-select"
+            [formControlName]="'country'" >
+            <mat-option *ngFor="let country of countries" [value]="country.code">{{country.name}}</mat-option>
+          </mat-select>
+          <mat-error>{{getError('country')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* City</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <input matInput
+                 type="text"
+                 id="currentResidenceCity-{{formCounter}}"
+                 class="form-control"
+                 formControlName="city"
+                 maxlength="50"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('city')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+
+    <div class="col-sm-12 col-md-6 col-lg-6"
+         [hidden]="childForm?.value.country !== 'US' && childForm?.value.country !== 'CA'">
+      <div class="form-label-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* Zip Code</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="currentResidenceZipCode-{{formCounter}}"
+                 class="form-control"
+                 formControlName="zip"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('zip')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="childForm?.value.country !== 'US'">
+      <div class="select-group">
+
+        <span class="txt-bold txt-form-title txt-xxxs">* State</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <mat-select
+            class="general-select"
+            [formControlName]="'state'">
+            <mat-option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</mat-option>
+          </mat-select>
+          <mat-error>{{getError('state')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="row">
+        <p class="txt-dark-gray col-sm-12">
+          Unit Number
+        </p>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">Unit #</span>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                     type="text"
+                     id="currentResidenceUnitNumber-{{formCounter}}"
+                     class="form-control"
+                     formControlName="apt"
+                     maxlength="10"
+                     tevAsciiOnly
+                     class="general-input form-control"
+              >
+              <mat-error>{{getError('apt')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="row">
+
+        <p class="txt-dark-gray col-sm-12">
+          Years and Months living there
+        </p>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">Years</span>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                     type="number"
+                     id="profileYears-{{formCounter}}"
+                     class="form-control"
+                     formControlName="years"
+                     tevNumbersOnly
+                     class="general-input form-control"
+              >
+              <mat-error>{{getError('years')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-label-group">
+            <span class="txt-bold txt-form-title txt-xxxs">Months</span>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                     type="number"
+                     id="profileMonths-{{formCounter}}"
+                     class="form-control"
+                     formControlName="months"
+                     tevNumbersOnly
+                     class="general-input form-control"
+              >
+              <mat-error>{{getError('months')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+      </div>
+    </div>
+  </div>
+
+</form><!-- /.row -->

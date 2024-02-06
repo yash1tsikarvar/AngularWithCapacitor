@@ -1,0 +1,89 @@
+@import "~sass/variables";
+.errors-instructions {
+  border-radius: 10px;
+  background-color: $new-purple;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 19px;
+  min-height: 100%;
+  color: white;
+  padding: 5%;
+  i {
+    width: 50px;
+    height: 50px;
+    margin-top: -100px;
+  }
+
+  .error-text {
+    color: #F33D3D;
+  }
+
+  .gifimg {
+    display: block;
+    border-radius: 50%;
+    margin: 10% auto 3%;
+    width: 60%;
+  }
+
+}
+
+
+@media screen and (max-width: 1199px) {
+
+  .errors-instructions {
+    i {
+      top: 48%;
+    }
+  }
+
+}
+
+@media screen and (max-width: 992px) {
+  .errors-instructions {
+    max-height: 30%;
+
+    i {
+      top: 45%;
+    }
+  }
+}
+
+@media screen and (max-width: 767.9px) {
+
+  errors-instructions {
+    height: auto;
+
+    i {
+      height: 30px;
+      top: 60%;
+    }
+  }
+
+}
+
+@media screen and (max-width: 540.9px) {
+  .errors-instructions {
+    max-height: 100%;
+    margin: 0% 5px 10px;
+    font-size: 15px;
+
+    i {
+      height: 30px;
+      top: 40%;
+    }
+
+    .error-text {
+      padding-top: 2px;
+      font-size: 16px;
+    }
+
+    .small-text {
+      font-size: 10px;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+  }
+}
+

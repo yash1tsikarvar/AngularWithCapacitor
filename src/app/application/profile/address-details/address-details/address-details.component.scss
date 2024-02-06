@@ -1,0 +1,353 @@
+
+@import '../../../../../styles.scss';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons&style=outline');
+@import "../../../../../sass/new_step_one";
+@import "../../../../../sass/tenant_2.0";
+@import "../../../../../sass/styles_mat";
+
+.button-back {
+  margin-top: 4rem;
+  border-color: white;
+  position: relative;
+  cursor: pointer;
+  span {
+    border: 0.2rem solid white;
+    border-radius: 8rem;
+    padding: 0.8rem 2rem 0.8rem 3rem;
+  }
+  .arrow {
+    border: solid white;
+    border-width: 0 0.2rem 0.2rem 0;
+    padding: 0.3rem;
+    position: absolute;
+    top: 50%;
+    left: 1.3rem;
+    transform: rotate(135deg) translate(-50%);
+    -webkit-transform: rotate(135deg) translate(-50%);
+  }
+}
+
+body {
+  background-color: #4D445A !important;
+}
+
+.sms-question {
+  margin-top: 1rem;
+  font-family: Open Sans, Regular;
+  font-size: 14px;
+  color: #373041;
+}
+
+.summary-forms__buttons {
+  display:flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  &--continue{
+    padding: 1.25rem 1.25rem;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+    width: 45%;
+    border-style: none;
+    border: 1px solid transparent;
+    text-align: center;
+    background: #009CDC;
+    left: 0;
+  }
+}
+
+.summary-legal {
+  margin-top: 7rem;
+  display: grid;
+
+  &--text {
+    font-family: Open Sans, Regular;
+    font-size: 12px;
+    color: #a3aab1;
+  }
+}
+
+div {
+  & h3{
+    background-color: white !important;
+  }
+}
+
+.summary {
+  // margin-left: 20%;
+  max-width: 100%;
+  display:grid;
+  &-box{
+    padding: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    display:grid;
+    grid-template-columns: 0.05fr 0.95fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      ". title"
+      "summary summary"
+    ;
+    background-color: white;
+    border-radius: 15px;
+    align-content: space-around;
+    &-title{
+      display:grid;
+      grid-area: title;
+      margin-bottom: 1rem;
+    }
+    &-info{
+      grid-area: summary;
+      display:grid;
+      grid-template-columns: 0.05fr 0.35fr 0.3fr 0.3fr;
+      grid-template-rows: auto ;
+      grid-template-areas:
+        "logo description code type"
+      ;
+      //grid-template-columns: repeat(3, 1fr);
+      &__property{
+        display:grid;
+        &-logo {
+          grid-area: logo;
+          margin-left: 1rem;
+        }
+        &-name {
+          grid-area: description;
+        }
+        &-code{
+          grid-area: code;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        &-application-type{
+          grid-area: type;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+  }
+  &-forms-details{
+    margin-top: 2rem;
+    background-color: white;
+    border-radius: 15px;
+    color: black;
+    padding: 3rem;
+  }
+  &-footer{
+    margin-top: 2rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    &__buttons{
+      display:flex;
+      width: 50%;
+      & button {
+        padding: 1.2rem 1.2rem 1.2rem 1.2rem !important;
+        width: 100%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+      & button:last-child {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+h1{
+  font-size: 40px;
+  font-weight: bold;
+  color:#373041;
+}
+h3{
+  font-size: 20px;
+  font-weight: bold;
+  color: #009CDC;
+}
+h4{
+  font-size: 20px;
+  font-weight: bold;
+  color: #4D445A;
+}
+h6{
+  font-size: 12px;
+  font-weight: normal;
+  color:#707070;
+}
+
+a{
+  font-size: 16px;
+  color:#009CDC;
+  text-decoration: underline;
+}
+
+// ------------------------------- .tev-btn
+.tev-btn {
+  padding: 0 20px 0 5px!important;
+  &:hover {
+    color: $white;
+    opacity: 0.7;
+  }
+  &--mdrounded {
+      border-radius: 60px;
+      height: 35px;
+      font-size: 14px;
+      font-weight: normal;
+      padding: 0 30px;
+  }
+  &--xlpad {
+      padding: 0 50px;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .summary {
+    margin-top: 5rem;
+    &-box{
+      aspect-ratio: 10 / 2;
+    }
+  }
+  h1{
+    font-size: 5rem;
+  }
+  h3 {
+    font-size: 3.5rem;
+  }
+  h4 {
+    font-size: 3.2rem;
+  }
+  h6 {
+    font-size: 3rem;
+  }
+  .summary-footer__buttons{
+    & button {
+      font-size: 3rem;
+    }
+  }
+  a{
+    font-size: 2.8rem;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .summary-box-info__property-logo{
+    margin-left: 0;
+  }
+  h1{
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h6 {
+    font-size: 0.8rem;
+  }
+  .summary-footer__buttons{
+    & button {
+      font-size: 1.2rem;
+    }
+  }
+  a{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .button-back {
+    margin-top: 2rem;
+  }
+  .summary-forms__buttons--continue{
+    width: 100%;
+  }
+  .summary {
+    margin-left: 10%;
+    max-width: 80%;
+    &-box{
+      margin-top: 2rem;
+      padding: 1.5rem;
+      display:flex;
+      flex-direction: column;
+      &-info{
+      display:flex;
+      flex-direction: column;
+        &__property{
+          &-logo {
+            display:flex;
+            width: 5%;
+            margin: 0 0 0.5rem 0;
+          }
+          &-name {
+            display:flex;
+            flex-direction: column;
+            margin: 0 0 1rem 0;
+          }
+          &-code{
+            display:flex;
+            margin: 0 0 1rem 0;
+            flex-direction: column;
+            align-items: initial;
+          }
+          &-application-type{
+            display:flex;
+            flex-direction: column;
+            align-items: initial;
+          }
+        }
+    }
+    }
+    &-footer{
+      margin-top: 2rem;
+      display:block;
+      &__buttons{
+        margin-top: 2rem;
+        width: 100%;
+        & button {
+          border-radius: 10px !important;
+        }
+        & button:last-child {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+
+}
+
+
+@media screen and (max-width: 375px) {
+  .tev-btn {
+    &--mdrounded {
+        font-size: 11px;
+    }
+  }
+  .icon{
+    font-size: 20px;
+    margin-top: 0.2em;
+  }
+  h1 {
+    font-size: 28px !important;
+    margin-left: 0%;
+  }
+  h4 {
+    display:inline;
+  }
+  .tev-btn--xlarge1 {
+    font-size: 16px;
+    padding: 0;
+  }
+  a {
+    margin-bottom: 3em;
+    font-size: 14px !important;
+  }
+
+}
+

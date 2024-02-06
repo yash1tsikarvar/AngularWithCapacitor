@@ -1,0 +1,221 @@
+.wrapper_upload{
+ position: relative;
+}
+
+.header{
+  padding-bottom: 0px;
+
+  .quit{
+    border-radius: 7px !important;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+
+}
+.document-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #009CDC;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: #009CDC;
+  cursor: pointer;
+}
+
+.bottom-line {
+  background-color: green ;
+  bottom: 0px;
+  height: 80px;
+  width: 100%;
+}
+
+.right-rounded-button {
+  font-size: 22px;
+  padding: 10px;
+  width: 350px;
+  border-radius: 100px;
+}
+
+.container {
+  width: 100%;
+  height: 200px;
+  padding: 2rem;
+  text-align: center;
+  border: dashed 1px #979797;
+  position: relative;
+  margin: 0 auto;
+
+
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .formats{
+    color: #96999C;
+  }
+
+  .dragDropText{
+    padding-top: 30px;
+    line-height:5px;
+  }
+}
+
+.files-list {
+  margin-top: 1.5rem;
+
+  .single-file {
+    background-color: #F8F8F8;
+    display: flex;
+    padding: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #DBDBDB;
+    border-radius: 7px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-grow: 1;
+
+    .file-icon {
+      padding-right: 1%;
+    }
+
+    .delete {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("~assets/delete.svg");
+      background-size: 24px;
+      background-color: white;
+    }
+
+    .view-document{
+      display: flex;
+      font-size: 12px;
+      text-align: center;
+      color: #009CDC;
+      padding-top: 5px;
+      text-decoration: underline;
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #353f4a;
+      margin: 0;
+    }
+
+    .size {
+      font-size: 12px;
+      font-weight: 500;
+      color: #a4a4a4;
+      margin-bottom: 0.25rem;
+    }
+
+    .info {
+      width: 100%
+    }
+  }
+
+  .uploaded{
+
+    .file-icon {
+      color: green;
+      transform: scale(2);
+      margin-left: 20px;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .info {
+      width: 78%;
+    }
+  }
+  .failed{
+    background-color: #a94442;
+
+    .file-icon {
+      padding-right: 1%;
+      color: white;
+      transform: scale(2);
+      margin-left: 20px;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: normal;
+      color: white;
+      margin: 0;
+    }
+
+    .size{
+      font-size: 12px;
+      font-weight: normal;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  .dashboard-main {
+    font-size: 16px;
+  }
+
+  .right-rounded-button {
+    font-size: 18px;
+    width: 97%;
+    left: 0%;
+    position: fixed;
+    z-index: 99999999999;
+    bottom: 10px;
+  }
+
+  .title{
+    width: 100%;
+    text-align: center;
+  }
+
+  .document-title{
+    width: 100%;
+    text-align: center;
+  }
+
+  .container {
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    img{
+      width: 20%;
+    }
+
+    .dragDropText{
+      padding-top: 10px;
+      line-height: 20px;
+    }
+  }
+
+  .files-list {
+    .name{
+      padding-left: 2px;
+    }
+  }
+
+}

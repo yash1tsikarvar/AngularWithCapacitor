@@ -1,0 +1,48 @@
+<form [formGroup]="childForm">
+  <p class="tev-text">Employment type</p>
+  <div
+    class="box-group__row box-group__row--baseline pb-0"
+    [hidden]="childForm?.value.editableEmploymentType == false"
+  >
+    <div class="select-group">
+      <span class="txt-bold txt-form-title txt-xxxs">Select one</span>
+      <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+        <mat-select
+          [formControlName]="'employmentType'"
+          class="general-select"
+          placeholder="Employment type"
+          data-cy="applicantEmploymentType"
+        >
+          <mat-option
+            *ngFor="let option of employmentTypes"
+            [value]="option.key"
+            >{{ option.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error>{{ getError('employmentType') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<tev-job-info
+  [hidden]="
+    childForm?.value.employmentType !== 'E' &&
+    childForm?.value.employmentType !== 'S'
+  "
+  [info]="jobInfo$"
+  (formChanged)="jobInfoChanged($event)"
+></tev-job-info>
+
+<tev-company-info
+  [hidden]="childForm?.value.employmentType !== 'S'"
+  [info]="companyInfo$"
+  (formChanged)="companyInfoChanged($event)"
+></tev-company-info>
+
+<tev-supervisor-info
+  [hidden]="childForm?.value.employmentType !== 'E'"
+  [info]="supervisorInfo$"
+  [applicantType]="applicantType"
+  (formChanged)="supervisorInfoChanged($event)"
+></tev-supervisor-info>

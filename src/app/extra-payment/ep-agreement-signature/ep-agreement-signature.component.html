@@ -1,0 +1,124 @@
+<h3 class="text-uppercase txt-xs font-weight-bold px-5 py-3 mb-0">
+  Payment Submission and Agreement
+</h3>
+
+<div class="box-group box-group--signature">
+
+  <p>I, <strong class="txt-applicant-name">{{billingName}}</strong>
+    <br/>
+    Confirm that I authorize the payment of the above amount according to the card issuer agreement. I also understand
+    tha the application fee is required and <u style="color:red">non-refundable</u> regardless of the outcome of the
+    application.</p>
+
+  <div class="agreement-text">
+    <p><b><u>PLEASE SCROLL DOWN AND READ THE FOLLOWING AGREEMENT IN FULL BEFORE SUBMITTING THE PAYMENT:</u></b></p>
+    <p>Tenant Evaluation understands the importance of keeping your information secure from
+      unauthorized access. All of your sensitive data is encrypted before being transmitted to/from our
+      servers. Tenant Evaluation is a Level 1 Compliant Organization. For details on Level 1 security
+      standards please <a href="https://www.pcisecuritystandards.org/" target="_blank" style="color:blue">Click
+        Here.</a></p>
+    <p><b style="color: red">* Any additional occupants 18 years old or older will have to make a separate
+      application*</b></p>
+    <p><u>FEES:</u></p>
+    <p>
+      The expected fees for your application are listed below. Actual fees may vary depending on additional information
+      obtained for your application. The fees have been established by the community to which you are applying. Should
+      you have any questions, please contact the community directly.
+      <u>PLEASE NOTE THE APPLICATION FEES ARE REQUIRED AND NON-REFUNDABLE REGARDLESS OF THE OUTCOME OF THE
+        APPLICATION.</u></p>
+
+    <p><b style="color: red">I understand that I may be offered the Quick Pass option at the time of payment.
+      The Quick Pass Service will make your application a priority within Tenant Evaluation's processing system.
+      It does not guarantee priority on the association's approval/denial time-frame.
+      This Quick Pass is Non-Refundable and it is an optional feature.</b>
+    <p>I UNDERSTAND THAT THE APPLICATION FEE ALONG WITH THE QUICK PASS FEE IS THE TOTAL AMOUNT LIST ON THIS PAGE</p>
+    <p>** ADDITIONAL DEPOSITS/FEES MAY BE COLLECTED AFTER APPROVAL**</p>
+    <p>If the community requires a Credit Report, a Hard inquiry FICO Score will be processed.</p>
+
+    <p>IF YOU AGREE WITH ALL PROPERTY NOTES AND REQUIREMENTS LISTED ON THIS SITE, ENTER YOUR FULL LEGAL NAME IN THE BOX
+      BELOW.
+      YOU MAY ALSO SIGN WITH YOUR MOUSE BY DRAWING YOUR SIGNATURE. THEN CLICK PAY. IF YOU DO NOT AGREE TO ALL THE
+      PROPERTY NOTES AND NOTICES, SIMPLY CLOSE YOUR BROWSER TO EXIT FROM THIS APPLICATION.</p>
+    <p> I FURTHER STATE THIS FORM WAS SIGNED BY ME AND WAS NOT ORIGINATED WITH FRAUDULENT INTENT BY ME OR ANY OTHER
+      PERSON, AND THAT THE SIGNATURE BELOW IS MY OWN LEGALLY BINDING DIGITAL SIGNATURE.</p>
+    <p>You are hereby authorized to release any and all information requested with regards to verification of my bank
+      account(s), credit history, residential history, criminal record history, employment verification and character
+      references to Tenant Evaluation LLC. This information is to be used for my/our credit report for my/our
+      Application for Occupancy.</p>
+
+    <p>I/We hereby waive any privileges I/We may have with respect to the said information in reference to its release
+      to the aforesaid party. Information obtained for this report is to be released to Tenant Evaluation LLC, Property
+      Manager, Board of Directors and The Landlord for their exclusive use only.</p>
+
+    <p>PLEASE INCLUDE COPY OF DRIVER’S LICENSE OR PASSPORT TO CONFIRM IDENTITY.</p>
+
+    <p>Please notify your Landlord(s), Employer(s), and Character References that we will be contacting them to obtain a
+      reference pursuant to your application.</p>
+
+    <p>I/We further state the Authorization Form were signed by me/us and was not originated with fraudulent intent by
+      me/ us or any other person, and that the signature(s) below are my/our own proper signature.</p>
+
+    <p>I/We certify under penalty of perjury that the foregoing is true and correct.</p>
+
+    <p>I/We further understand that any refundable monies paid through Tenant Evaluation in the form of deposits, extra
+      fees, etc. will be refunded by the Association directly.</p>
+
+    <p>Please allow 14 days from the date below to complete the application. Please be aware that the associations have their own approval process which will start once the report has been released and the time frame may vary per association.</p>
+
+    <p>If after 30 days from the date you created the application Tenant Evaluation has not received all the required documentation, your application will be considered abandoned and the incomplete application will be closed and sent to the community. The application can only be re-opened within 30 days of being abandoned with written request from the the applicant.</p>
+
+    <p>If you or the co-applicant have falsified, deliberately mislead or omitted to mention any information on your
+      application, you may not be approved for a purchase, lease and/or occupancy.</p>
+  </div>
+
+  <form class="signature" [formGroup]="signatureForm">
+
+
+
+    <h4 class="signature__title">Review your signature</h4>
+
+    <div class="signature__group">
+      <div class="signature-input">
+        <input type="text"
+               class="form-control"
+               placeholder="Type your name here or draw below"
+               formControlName="signatureText">
+      </div>
+
+      <div class="signature-canvas">
+
+        <div class="signature-wrapper">
+          <canvas id="signature-pad" #signaturePad></canvas>
+        </div>
+
+        <div class="signature-text">
+          <canvas id="signature-text" #signatureText></canvas>
+
+        </div>
+      </div>
+      <input class="custom-control-input"
+             type="hidden"
+             formControlName="noticeSignature"
+      >
+      <div class="invalid-feedback">{{getError('noticeSignature')}}</div>
+      <br>
+      <p>Type your or draw your name above</p>
+    </div>
+
+    <button class="tev-btn mb-5"
+            type="button" (click)="clearSignature()">Clear
+    </button>
+
+    <div class="custom-checkbox">
+      <mat-checkbox class="mat-checkbox--rounded mat-checkbox--large"
+                    type="checkbox"
+                    id="agree"
+                    formControlName="agreeAndAuthorize"
+      >I agree and authorize this charge
+      </mat-checkbox>
+      <div class="invalid-feedback">{{getError('agreeAndAuthorize')}}</div>
+    </div>
+
+  </form>
+
+</div>

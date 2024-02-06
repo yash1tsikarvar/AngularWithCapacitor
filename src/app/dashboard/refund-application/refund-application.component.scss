@@ -1,0 +1,76 @@
+$light-gray: #f7f7f7;
+$normal-gray: #dbdbdb;
+$dark-gray: #77747e;
+$signature-height: 260px;
+
+.accordion-wrapper {
+  background-color: white;
+}
+
+.agreement-text {
+  max-height: 15em;
+  overflow-y: auto;
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid #f1f1f2;
+  background-color: #F5F5F5;
+}
+
+.signature-canvas {
+  width: 100%;
+  height: $signature-height;
+  position: relative;
+  background-color: #e3e4e6;
+}
+
+#signature-pad, #signature-text {
+  width: 100%;
+  height: $signature-height;
+}
+
+.signature {
+  &__float {
+    position: absolute;
+    font-size: 2rem;
+    color: $normal-gray;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    user-select: none;
+  }
+
+  .signature-wrapper, .signature-text {
+    background-color: $light-gray;
+    color: $dark-gray;
+    border: 1px solid $normal-gray;
+    min-height: $signature-height;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .signature-text {
+    z-index: 0;
+  }
+}
+
+.payment-table {
+  &__col {
+    > li {
+      padding-top: 10px;
+    }
+  }
+
+  &__row--total {
+    padding-top: 20px;
+  }
+}
+
+.foot-action {
+  .tev-btn {
+    min-width: 240px;
+  }
+}

@@ -1,0 +1,6 @@
+export type OwnerSigningStatusType = 'NOT_REQUIRED'
+  | 'OWNER_INFO_MISSING'
+  | 'WAITING_APPLICANT_SIGNING'
+  | 'WAITING_OWNER_RESPONSE'
+  | 'COMPLETE'
+  ;

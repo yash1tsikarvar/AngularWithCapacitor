@@ -1,0 +1,143 @@
+<div
+  id="collapseFour"
+  class="collapse show"
+  aria-labelledby="headingFour"
+  data-parent="#accordion"
+>
+  <div class="card-body txt-purple">
+    <!-- <h2 *ngIf="viewType==='normal'" class="d-none d-lg-flex step-headline">
+      <span class="flex-grow-1">References</span>
+      <span class="theme-logo" [ngStyle]="{'background-image': smallLogo}"></span>
+    </h2> -->
+
+    <div *ngIf="viewType !== 'normal'" class="row">
+      <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
+        <h2 class="step-headline">References</h2>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 button-edit">
+        <button
+          *ngIf="viewType === 'review'"
+          (click)="reviewEdit()"
+          class="tev-btn btn-blue tev-btn--medium"
+          style="margin-right: 1rem"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class="row no-margin">
+      <div class="col-12 review-tit">
+        <h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">Applicant Details</h3>
+      </div>
+    </div> -->
+
+    <h4 class="title-form"  *ngIf="setup.employmentRequired || setup.referenceRequired || (propertyInfo.shortApplication == 'LONG' && propertyInfo.incomeRequired)" >Applicant Details</h4>
+
+    <div
+      class="box-group box-group--connect form-box"
+      *ngIf="setup.employmentRequired || setup.referenceRequired"
+      [ngClass]="viewType"
+    >
+      <tev-primary-applicant-info
+        [info]="primaryApplicantInfo$"
+        (formChanged)="primaryApplicantInfoChanged($event)"
+        [viewType]="viewType"
+        (viewTypeChanged)="viewTypeChanged($event)"
+      >
+      </tev-primary-applicant-info>
+    </div>
+
+    <tev-income-verification *ngIf="propertyInfo.shortApplication == 'LONG' && propertyInfo.incomeRequired"
+      [info]="primaryApplicantPoi$"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+      (formChanged)="primaryApplicantPoiInfoChanged($event)"
+    >
+    </tev-income-verification>
+
+    <div class="row no-margin" *ngIf="propertyInfo.shortApplication == 'LONG' ? hasCoApplicant() && propertyInfo.shortApplication == 'LONG' && propertyInfo.incomeRequired :
+     (setup.employmentRequired || setup.referenceRequired) && hasCoApplicant()">
+      <div class="col-12 review-tit">
+        <p class="title-form">Additional Applicant Details</p>
+      </div>
+    </div>
+
+    <div
+      class="box-group box-group--connect form-box"
+      *ngIf="
+        (setup.employmentRequired || setup.referenceRequired) &&
+        hasCoApplicant()
+      "
+      [ngClass]="viewType"
+    >
+      <h5 class="tev-text">
+        {{ coApplicantType | coApplicantTitle }}
+      </h5>
+
+      <tev-secondary-applicant-info
+        *ngIf="
+          (setup.employmentRequired || setup.referenceRequired) &&
+          hasCoApplicant()
+        "
+        [info]="secondaryApplicantInfo$"
+        (formChanged)="secondaryApplicantInfoChanged($event)"
+        [viewType]="viewType"
+        (viewTypeChanged)="viewTypeChanged($event)"
+      >
+      </tev-secondary-applicant-info>
+    </div>
+
+    <tev-income-verification
+      *ngIf="hasCoApplicant() && propertyInfo.shortApplication == 'LONG' && propertyInfo.incomeRequired"
+      [info]="secondaryApplicantPoi$"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+      (formChanged)="secondaryApplicantPoiInfoChanged($event)"
+    >
+    </tev-income-verification>
+
+    <tev-emergency-details
+      [info]="emergencyContactInfo$"
+      (formChanged)="emergencyContactInfoChanged($event)"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+    ></tev-emergency-details>
+
+    <div class="py-4">
+      <div class="foot-action">
+        <button
+          *ngIf="viewType === 'normal'"
+          (click)="goBack()"
+          class="cancel-button"
+        >
+          Back
+        </button>
+        <button
+          *ngIf="viewType === 'normal'"
+          (click)="submit()"
+          class="confirm-button"
+        >
+          Save and continue
+        </button>
+        <button
+          *ngIf="viewType === 'review-edit'"
+          (click)="cancel()"
+          class="cancel-button"
+        >
+          Cancel
+        </button>
+        <button
+          *ngIf="viewType === 'review-edit'"
+          (click)="submit()"
+          class="confirm-button"
+        >
+          Save and continue
+        </button>
+      </div>
+      <!-- ./col -->
+    </div>
+  </div>
+  <!-- ./card-body -->
+</div>
+<!-- ./collapse -->

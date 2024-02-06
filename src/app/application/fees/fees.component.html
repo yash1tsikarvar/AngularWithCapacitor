@@ -1,0 +1,164 @@
+<tev-header></tev-header>
+
+<div class="fees">
+  <div class="button-back">
+    <div
+    (click)="goBack($event)"
+    >
+      <span><i class="arrow"></i>Prev</span>
+    </div>
+  </div>
+  <div class="fees-box">
+    <div class="fees-box-title">
+      <h1>Property Application for:</h1>
+    </div>
+    <div class="fees-box-info">
+      <div class="fees-box-info__property-logo">
+        <img src="/assets/tenant-2.0/icon_placeholder.svg">
+      </div>
+      <div class="fees-box-info__property-name">
+        <h3>{{ propertyInfo | propertyName }}</h3>
+        <h6>Property Name</h6>
+      </div>
+      <div class="fees-box-info__property-code">
+        <h4>{{ propertyInfo | propertyCode }}</h4>
+        <h6>Property Code</h6>
+      </div>
+      <div class="fees-box-info__property-application-type">
+        <h4>{{ type | applicationType }}</h4>
+        <h6>Application Type</h6>
+      </div>
+    </div>
+  </div>
+  <div class="fees-readme">
+    <div class="fees-readme__title">
+      <p>Please read before applying</p>
+    </div>
+    <div class="fees-readme__subtitle">
+      <p>Application process may take up to 45 minutes</p>
+    </div>
+    <div class="fees-readme__content">
+      Hi there,
+      <br>
+      <br>
+      Before you start, please review the following information below. Please make sure you have all the documentation ready and agree to the terms and conditions.
+    </div>
+    <div class="fees-important">
+      <div class="fees-important-box">
+        <div class="fees-important__title">
+          <p>Important!</p>
+        </div>
+        <div class="fees-important__fees" *ngIf="propertyInfo.shortApplication == 'SHORT'">
+          <p><strong>Estimated application fees: </strong>This application includes services and fees that will be collected at the end of the process as follows:</p>
+          <ul style="list-style-type: none !important;">
+            <li *ngFor="let fee of feesAndDocs.individualFee">
+              <span><strong>{{fee | pricedItemDescription}} </strong></span>
+              <span><strong>{{fee | pricedItemFee}}  / Individual *   </strong></span>
+            </li>
+          </ul>
+          <p><strong>*If applicable, estimated Application Fees may differ based on the additional occupants that will be added later on the application. </strong></p>
+          <p>This application is linked to the email address you have provided. If you have questions regarding the application requirements, please contact the association directly. <strong>Tenant Evaluation does not determine your approval. If applicable, the community association screening committee will make a final decision after reviewing your application. </strong></p>
+        </div>
+
+        <div class="fees-important__fees" *ngIf="propertyInfo.shortApplication == 'LONG'">
+          <p><strong>Estimated application fees: </strong>This application includes services and fees that will be collected at the end of the process as follows:</p>
+          <ul style="list-style-type: none !important;">
+          <li *ngFor="let fee of feesAndDocs.individualFee">
+            <span><strong>{{fee | pricedItemDescription}} </strong></span>
+            <span><strong>{{fee | pricedItemFee}}  / Individual *   </strong></span>
+          </li>
+          </ul>
+          <p><strong>*Estimated Application Fees may differ based on the additional occupants that will be added later on the application. </strong></p>
+          <p>This application is linked to the email address you have provided. If you have questions regarding the application requirements, please contact the association directly. Tenant Evaluation does not determine your approval. <strong>The community association screening committee makes the final decision after reviewing your application.</strong></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="fees-box-accordion">
+      <div class="tabs">
+        <div class="tab">
+          <input type="checkbox" id="accordion1">
+          <label class="tab-label" for="accordion1">Important Property Notes</label>
+          <div class="tab-content">
+            <p style="white-space: pre-line;">{{propertyInfo.propertyNotice}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fees-box-accordion" *ngIf="feesAndDocs.documents.length > 0">
+      <div class="tabs">
+        <div class="tab">
+          <input type="checkbox" id="accordion2">
+          <label class="tab-label" for="accordion2">You’ll need to send some documents</label>
+          <div class="tab-content">
+            <ul>
+              <li *ngFor="let document of feesAndDocs.documents">
+                {{document | requiredDocumentFormatting}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fees-box-accordion" *ngIf="propertyInfo.shortApplication == 'LONG'">
+      <div class="tabs">
+        <div class="tab">
+          <input type="checkbox" id="accordion3">
+          <label class="tab-label" for="accordion3">Important information to be collected</label>
+          <div class="tab-content">
+            <p>Some or all of the following Items may be required,
+              make sure to have the information handy in order to complete the application
+              process.</p>
+            <ul>
+              <li>Social Security number for both applicants</li>
+              <li>Moving address (The address you are applying to)</li>
+              <li>Current address</li>
+              <li>Current and past landlord information</li>
+              <li>Real estate agent</li>
+              <li>Personal References Name, Email and Phone Numbers</li>
+              <li>Employer information</li>
+              <li>Pet information (If Applicable)</li>
+              <li>Vehicle information (such as Tag number, make, year and model)</li>
+              <li>Please Note: If the community requires a Credit Report, a Soft or Hard inquiry Equifax FICO Score 8 Algorithm or a TransUnion FICO 4 Algorithm will be processed.
+                Please contact us if you would like to know which Algorithm your community uses. The credit scores that are pulled on online websites (such as freecreditreports.com, CreditKarma, CreditWise etc.) use a different algorithm from what is standard. These credit reports are "consumer based" reports instead of a "business model based” report pulled by lenders, such as mortgage and auto industries. Lenders use the standard in the industry which is the FICO score, the same score that we process for the applications and lenders will not accept a report ran through a website due to the same reasons.
+
+                Websites use a scoring algorithm such as the Plus Score or Vantage score instead of the FICO. <br>We are unable to change/edit the information reported, as the record and score comes directly from the credit bureau. The applicant can contact (Equifax/Transunion) directly in regards to any questions or updates needed. </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fees-agreement">
+      <label class="container fees-agreement-label">I have read and agree with the application fees and property requirements.
+        <input type="checkbox" (change)="onChange()">
+        <span class="checkmark" [ngClass]="{highlight: highLight}"></span>
+      </label>
+      <button class="fees-button" data-test="buttonAgreeFees" [ngClass]="disableButton ? 'fees-button--disabled' : 'fees-button'" (click)="goToProfilePath()">Agree and apply now</button>
+    </div>
+
+    <div class="fees-questions">
+        <!-- <button mat-fab color="dark" style="background: url('/assets/icon-building.svg') no-repeat left center; margin-right: .5rem;" (click)="openExternalUrl()">
+        </button>
+        <div (click)="openExternalUrl()">
+            <div class="fees-questions-info">
+              <strong>Questions about property requirements?</strong>
+            </div>
+            <div class="fees-questions-click">
+                <small>Click here for more information</small>
+            </div>
+        </div> -->
+    </div>
+
+    <section class="fees-footer">
+      <small class="fees-footer--text"
+        >All rights reserved | Tenant Evaluation {{currentYear}}</small
+      >
+    </section>
+  </div>
+</div>

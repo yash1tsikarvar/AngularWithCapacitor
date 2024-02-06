@@ -1,0 +1,141 @@
+<div class="select-co-applicant-background">
+  <div class="select-co-applicant">
+    <section class="select-co-applicant-header" *ngIf="!showDataForCoApplicantRequest">
+      <div class="button-back">
+        <div [routerLink]="['/community/enter-code']">
+          <span><i class="arrow"></i>Prev</span>
+        </div>
+      </div>
+    </section>
+
+	<div class="select-co-applicant-description" *ngIf="!showDataForCoApplicantRequest && shortApplication == 'SHORT'">
+      <div class="select-co-applicant-description__title">
+        How many applicant(s) will be {{ getApplicationSubTypeAccess() }} the property ?
+      </div>
+      <p class="select-co-applicant-description__text">
+        All people over the age of 18 listed on the contract must submit an application.
+        <br class="select-co-applicant-description__text--br" />
+        <!-- You are allowed to add only 1 additional co-applicant to your application. -->
+      </p>
+    </div>
+
+    <div class="select-co-applicant-description" *ngIf="showDataForCoApplicantRequest && shortApplication == 'SHORT'">
+      <div class="select-co-applicant-description__title">
+        How many applicant(s) will be {{ getApplicationSubTypeAccess() }} the property ?
+      </div>
+      <p class="select-co-applicant-description__text">
+        All people over the age of 18 listed on the contract must submit an application.
+      </p>
+    </div>
+	
+	<div class="select-co-applicant-description" *ngIf="!showDataForCoApplicantRequest && shortApplication == 'LONG'">
+      <div class="select-co-applicant-description__title">
+        Who is {{ getApplicationSubTypeAccess() }} the property ?
+      </div>
+      <p class="select-co-applicant-description__text">
+        All people over the age of 18 listed on the contract must submit an application.
+        <br class="select-co-applicant-description__text--br" />
+        You are allowed to add only 1 additional co-applicant to your application.
+      </p>
+    </div>
+
+    <div class="select-co-applicant-description" *ngIf="showDataForCoApplicantRequest && shortApplication == 'LONG'">
+      <div class="select-co-applicant-description__title">
+        Who is {{ getApplicationSubTypeAccess() }} the property ?
+      </div>
+      <p class="select-co-applicant-description__text">
+        All people over the age of 18 listed on the contract must submit an application.
+      </p>
+    </div>
+
+    <div class="select-co-applicant-options" *ngIf="!showDataForCoApplicantRequest">
+      <div class="select-co-applicant-option" 
+      [ngClass]="{'select-co-applicant-option--highlight-0': classActive === '0'}"
+      (click)="onCheckValue('0')"
+      >
+        <div>
+          <img
+            src="/assets/icon-just-me.svg"
+            alt="Just me image"
+            class="select-co-applicant-option__img"
+          />
+        </div>
+        <div class="select-co-applicant-option__title" *ngIf="shortApplication == 'SHORT'" >One Applicant</div>
+		    <div class="select-co-applicant-option__title" *ngIf="shortApplication == 'LONG'">Just me</div>
+        <button
+          class="select-co-applicant-option__button"
+          type="button"
+          data-test="applicantButton"
+          (click)="submit('0')"
+        > SELECT
+        </button>
+      </div>
+      <div class="select-co-applicant-option"
+      [ngClass]="{'select-co-applicant-option--highlight-1': classActive === '1'}"
+      (click)="onCheckValue('1')"
+      >
+        <div>
+          <img
+            src="/assets/icon-me-and-someone.svg"
+            alt="Me and someone image"
+            class="select-co-applicant-option__img"
+          />
+        </div>
+        <div class="select-co-applicant-option__title" *ngIf="shortApplication == 'SHORT'">
+          Two Applicants
+          <p class="select-co-applicant-option__title--text">
+            The additional co-applicant could be legal spouse,
+            roommate or family member.
+          </p>
+        </div>
+		
+		<div class="select-co-applicant-option__title" *ngIf="shortApplication == 'LONG'">
+          Me and someone else
+          <p class="select-co-applicant-option__title--text">
+            The additional co-applicant could be legal spouse,
+            roommate or family member.
+          </p>
+        </div>
+
+        <button
+          class="select-co-applicant-option__button"
+          type="button"
+          data-test="coApplicantButton"
+          (click)="submit('1')"
+        > SELECT
+        </button>
+      </div>
+      <div *ngIf="type != 'O' && shortApplication === 'LONG'"  class="select-co-applicant-option"
+      [ngClass]="{'select-co-applicant-option--highlight-2': classActive === '2'}"
+      (click)="onCheckValue('2')"
+      >
+        <div>
+          <img
+            src="/assets/icon-with-existing-tenant.svg"
+            alt="With existing tenant image"
+            class="select-co-applicant-option__img"
+          />
+        </div>
+        <div class="select-co-applicant-option__title">
+          Me with an existing tenant/resident
+        </div>
+        <button
+          class="select-co-applicant-option__button"
+          type="button"
+          data-test="additionalButton"
+          (click)="submit('2')"
+          > SELECT
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="select-co-applicant-footer">
+
+    <div class="select-co-applicant__rights">
+      <p>All rights reserved | Tenant Evaluation {{currentYear}}</p>
+    </div>
+  </div>
+</div>
+
+

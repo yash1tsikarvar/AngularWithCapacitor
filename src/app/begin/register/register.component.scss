@@ -1,0 +1,213 @@
+@import "../../../sass/tenant_2.0";
+@import "../../../sass/styles_mat";
+
+.begin-register-container {
+  background: transparent url("/assets/intro/shutterstock_488616529.png") no-repeat right top;  opacity: 1;
+  background-size: auto 100%;
+  background-color: #4D445A;
+  min-height: 100vh;
+}
+.begin-register {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 0.5fr 5fr 0.5fr;
+  grid-template-areas:
+  ". header ."
+  ". body ."
+  ". footer .";
+  &--header {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    grid-area: header;
+    grid-template-areas:
+    "logo"
+    "title"
+    "text";
+    &__logo {
+      grid-area: logo;
+      margin: 3rem 0rem 2rem 0rem;
+      & img {
+        max-height: 40px;
+      }
+    }
+    &__title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      grid-area: title;
+      font-family: Open Sans, Bold;
+    }
+    &__text {
+      grid-area: text;
+      font-family: Roboto, Regular;
+      width: 25rem;
+      margin-bottom: 2rem;
+    }
+  }
+  &--body {
+    max-width: 56rem;
+    display: grid;
+    grid-area: body;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    column-gap: 3rem;
+    grid-template-areas:
+    "form";
+    &__form {
+      grid-area: form;
+    }
+  }
+  &--footer {
+    display: grid;
+    grid-area: footer;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    width: 45%;
+    font-family: "Open Sans", Regular;
+    font-weight: normal;
+    & button {
+      display:none;
+      }
+    & span {
+      text-decoration: underline;
+      }
+    & p:last-child {
+      font-family: "Roboto", Regular;
+      color: #A3AAB1;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.input-info {
+  color: #8E8798;
+  font-size: 0.8rem;
+  width: 100%;
+  transform: translateY(-5px);
+  margin-bottom: 0px;
+  &--danger{
+    color: red;
+    font-size: 1rem;
+  }
+}
+
+.register-input{
+  padding: 1.5em 0 1.5em 0 !important;
+  transform: translate(0, +0.1rem);
+  background-color: #F4F4F4;
+}
+
+.register-select{
+  padding: 0.5em 0 0.5em 0 !important;
+}
+
+.register-button{
+  transform: translateY(10px);
+}
+
+.content-box{
+  background-color: white;
+  border-radius: 15px;
+}
+
+.btn-form {
+  margin-top: -2.5rem !important;
+}
+
+.signin-link{
+  text-align: right;
+  padding: 0% !important;
+  font-size: 0.8rem;
+  font-weight: 400;
+  flex: 0 0 98%;
+  margin-top: 0.5rem;
+  & a:last-child {
+    display: inline !important;
+  }
+}
+
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@media screen and (max-width: 1080px) {
+  .begin-register-container {
+    background: none;
+    background-size: auto 100%;
+    background-color: #4D445A;
+    min-height: 100vh;
+  }
+  .begin-register--footer{
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .begin-register {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto auto;
+  }
+  .begin-register--header, .begin-register--footer{
+    max-width: auto;
+  }
+  .begin-register--header {
+    margin: 2.5rem;
+  }
+  .begin-register--body{
+    width: auto;
+    padding: 1rem;
+    & button {
+      display:none;
+    }
+  }
+  .begin-register--footer{
+    width: 100%;
+    & p:first-child {
+      margin: 0 5% 0 5%;
+      text-align: center;
+    }
+    & p:last-child {
+      width: 100%;
+      text-align: left;
+    }
+    & button {
+      display:grid;
+      position:relative;
+      margin-top: 2rem !important;
+      left: 5%;
+      right: 5%;
+      max-width: 90%;
+    }
+  }
+  .begin_main .content-box {
+    padding: 1rem;
+    //width: 75%;
+  }
+  .content-box{
+    margin: 0 1rem 0 1rem;
+    padding: 1rem;
+  }
+  .begin-register--header__title{
+    font-size: 1.7rem;
+  }
+  .begin-register--header__text{
+    width: auto;
+    font-size: 0.9rem;
+    margin-bottom: 0rem;
+  }
+  .signin-link{
+    text-align: left;
+    margin: 1rem 1rem 1rem 1rem;
+  }
+  .txt-xxxs {
+    font-size: 0.8rem;
+  }
+
+}

@@ -1,0 +1,154 @@
+<tev-header></tev-header>
+<div class="icon-house">
+  <div class="container">
+    <div class="row">
+      <div class="container">
+        <nav class="ecode-navbar mx-auto"></nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5 col-sm-12">
+          <div class="align-items-baseline flex-column">
+            <!-- <div
+              class="col-12 div-icon"
+              style="
+                background: url('/assets/logo-tenant-evaluation.svg') no-repeat
+                  left center;
+              "
+            ></div> -->
+            <br />
+            <div
+              class="col-12 div-icon"
+              style="
+                background: url('/assets/lets-begin.svg') no-repeat left center;
+              "
+            ></div>
+            <div>
+              <h1 style="font-weight: bolder">Enter the property code here </h1>
+            </div>
+            <br />
+            <div>
+              <h6 class="p__1">
+                Enter the 4-5 digit Unique Property Code applicable for this property 
+              </h6>
+            </div>
+            <br />
+            <div class="col-md-9 col-sm-12">
+              <a
+                href="https://support.tenantevaluation.com/support/solutions/articles/65000166339-where-can-i-find-the-unique-property-code-"
+                target="_blank"
+              >
+                <div class="row">
+                  <!-- <div
+                    class="col-md-2 bg-building d-none d-md-block"
+                    style="
+                      background: url('/assets/icon-building.svg') no-repeat
+                        left center;
+                    "
+                  ></div> -->
+                  <div class="col-lg-3 d-none d-md-block">
+                    <img
+                      src="/assets/icon-building.svg"
+                      alt="Tenant Evaluation Logo"
+                    />
+                  </div>
+                  <div class="col-lg-9 d-none d-md-block">
+                    <div class="row flex-column">
+                      <div class="col-12">
+                        <button type="button" class="btn btn-link">
+                          <strong>How to get this code?</strong>
+                        </button>
+                      </div>
+                      <div class="col-12">
+                        <small>Click here for more information</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5 col-sm-12 d-flex flex-column justify-content-end">
+          <form (submit)="submit()">
+            <!-- class="form-sign-in floating-labels" -->
+            <!-- [formGroup]="enterCodeForm" -->
+            <!-- (submit)="submit()" -->
+            <div class="row">
+              <div class="col">
+                <!-- class="form-label-group form-label-group--center" -->
+                <mat-form-field hideRequiredMarker appearance="standard" floatLabel="always">
+                  <input
+                    #box
+                    (input)="onKey(box.value)"
+                    matInput
+                    name="code"
+                    type="text"
+                    id="input-code"
+                    placeholder="Enter code here"
+                    minlength="4"
+                    maxlength="5"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    tevNumbersOnly
+                    required
+                    style="background-color: white"
+                    [ngClass]="{'input-touch': caretTransparent==true}"
+                  />
+                  <!-- formControlName="code" -->
+
+                  <!-- class="form-control text-center" -->
+                  <!-- <mat-error>{{ getError('code') }}</mat-error> -->
+                </mat-form-field>
+                <p class="p__2">Enter 4-5 digit code here</p>
+                <br />
+                <button class="enter-code-button">
+                  <!-- [routerLink]="[code]" -->
+                  <!-- type="submit" -->
+                  Continue
+                </button>
+                <tev-alert-badge
+                  *ngIf="info"
+                  [type]="infoType"
+                  [message]="info"
+                ></tev-alert-badge>
+                <br />
+              </div>
+              <div class="col-sm-10">
+                <a
+                  href="https://support.tenantevaluation.com/support/solutions/articles/65000166339-where-can-i-find-the-unique-property-code-"
+                  target="_blank"
+                >
+                  <div class="row flex-column d-block d-md-none">
+                    <div class="col">
+                      <button type="button" class="btn btn-link">
+                        <strong>How to get this code?</strong>
+                      </button>
+                    </div>
+                    <div class="col">
+                      <small>Click here for more information</small>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- ./row -->
+    </div>
+    <section class="enter-code-footer">
+      <small class="enter-code-footer--text"
+        >All rights reserved | Tenant Evaluation {{currentYear}}</small
+      >
+    </section>
+    <!-- ./container-fluid -->
+  </div>
+
+  <!-- ./begin-enter-code -->
+</div>

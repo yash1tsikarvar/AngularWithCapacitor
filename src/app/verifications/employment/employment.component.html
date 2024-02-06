@@ -1,0 +1,126 @@
+<div class="verifications container">
+
+  <mat-spinner class="centered" *ngIf="status===''"></mat-spinner>
+
+  <div *ngIf="status === 'Pending'">
+
+    <tev-verification-title [status]="status" [hasDecline]="true" [description]="getDescription()"
+                            [name]="employment.applicantName"
+                            [type]="type"
+                            [verificationName]="title" (decline)="declineEvent()"></tev-verification-title>
+
+
+    <div class="verification-form-container py-2">
+      <div *ngIf="employment.authForm" class="box px-4">
+        <p>If you require an authorization form signed by the tenant, please click to download document. <a
+          class="btn btn-secondary tev-btn--common" href="{{employment.authForm}}" target="_blank">Authorization
+          form</a></p>
+      </div>
+      <form [formGroup]="form">
+        <div class="row" style="margin-top: 2em;">
+          <!-- Name -->
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>* What is your name?</mat-label>
+              <input matInput formControlName="verifierName" maxlength="50" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierName")}}</mat-error>
+            </mat-form-field>
+          </div>
+          <!-- Position -->
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>* What is your Position?</mat-label>
+              <input matInput formControlName="verifierPosition" maxlength="100" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierPosition")}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+          <!-- Company -->
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>* Company Name</mat-label>
+              <input matInput formControlName="verifierCompanyName" maxlength="50" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierCompanyName")}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row verification-part" style="margin-top: 2em;">
+          <div class="col-12 form-group">
+            <p class="text-center"><strong>PLEASE ANSWER THESE QUESTIONS</strong></p>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+          <!-- Begin work -->
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>* When {{employment.applicantName}} did begin working in {{ employment.companyName }}?</mat-label>
+              <input matInput
+                     formControlName="verifierBeginWork"
+                     id="profileBeginWork"
+                     (focus)="picker.open()"
+                     [matDatepicker]="picker"
+                     placeholder="Select a date"
+              >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+              <mat-error *ngIf="showError">{{getError('verifierBeginWork')}}</mat-error>
+              <mat-hint>mm/dd/yyyy</mat-hint>
+            </mat-form-field>
+          </div>
+          <!-- Current Position -->
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>* What is {{employment.applicantName}}'s current position?</mat-label>
+              <input matInput formControlName="verifierCurrentPosition" maxlength="100" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierCurrentPosition")}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 2em;">
+          <!-- Current Salary -->
+          <div class="col-sm px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>What is {{employment.applicantName}}'s current salary? ($)</mat-label>
+              <input matInput
+                     type="text"
+                     class="form-control"
+                     maxlength="9"
+                     formControlName="verifierCurrentSalary">
+              <mat-error *ngIf="showError">{{getError("verifierCurrentSalary")}}</mat-error>
+            </mat-form-field>
+          </div>
+          <!-- How often -->
+          <div class="col-sm-2">
+              <mat-form-field appearance="legacy">
+                <mat-select placeholder="How often?" formControlName="verifierOften">
+                  <mat-option *ngFor="let option of salaryPeriods" [value]="option.key">{{option.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <!-- Full or Part -->
+          <div class="col-sm px-5">
+              <mat-form-field>
+                <mat-select placeholder="* Is this full or part-time position?" formControlName="verifierFullPart">
+                  <mat-option *ngFor="let option of employmentTimeVerify" [value]="option.key">{{option.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="showError">{{getError('verifierFullPart')}}</mat-error>
+              </mat-form-field>
+            </div>
+        </div>
+        <div style="margin-left: 1.5em; margin-top: 2em">
+          All fields marked with * are required.
+        </div>
+      </form>
+    </div>
+    <tev-verification-footer *ngIf="status!=='Complete'" (submitEvent)="submitEvent()"></tev-verification-footer>
+  </div>
+
+  <div *ngIf="status === 'Complete'">
+    <tev-verification-finish [title]="title" [complete]="status==='Complete'" [id]="id"
+                             [type]="type"
+                             [error]="errorData"></tev-verification-finish>
+  </div>
+
+</div>
+

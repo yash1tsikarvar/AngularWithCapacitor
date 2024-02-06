@@ -1,0 +1,23 @@
+@import "../../../../../sass/new_step_one";
+@import "../../../../../sass/tenant_2.0";
+@import "../../../../../sass/styles_mat";
+
+.btn-inline {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  margin-top: -3px;
+}
+
+.btn-clear-input {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 24px;
+  background: #ccc;
+  color: #3f374a;
+  left: auto;
+}
+
+

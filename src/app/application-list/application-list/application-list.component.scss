@@ -1,0 +1,258 @@
+//@import '../../../styles.scss';
+@import "../../../sass/_media_queries";
+@import "../../../sass/styles_mat";
+
+.no-applications {
+  color: #4D445A;
+}
+
+.input-search {
+  background: url(/assets/tenant-2.0/icon_search.svg) no-repeat 98% center;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding: .5rem .5rem .5rem .5rem !important;
+  width: 100%;
+  box-shadow: 0px 5px 10px #0000002E;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #F4F4F4;
+}
+
+.with-icon {
+  &.icon {
+    &-log-out {
+      background-image: url("/assets/log-out-icon.svg");
+    }
+  }
+}
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+// ------------------------------- .tev-btn
+.tev-btn {
+  background: #0090D4 !important;
+  color:white;
+  padding: 0 20px !important;
+  @include breakpoint(sm_max) {
+    width: 100% !important;
+  }
+  &:hover {
+    color: white;
+    opacity: 0.7;
+  }
+  &--mdrounded {
+      border-radius: 60px;
+      height: 35px;
+      font-size: 14px;
+      font-weight: normal;
+      padding: 0 30px;
+  }
+  &--xlpad {
+      padding: 0 50px;
+  }
+}
+.application {
+  min-height: 100vh;
+  background: #EDEEEF;//$main-background;
+  .container-fluid {
+    background: transparent;
+  }
+  &__head {
+    margin-bottom: 25px;
+    img{
+      width: 14px;
+    }
+    h1 {
+      margin: 0;
+      color: #4D445A;
+      font-size: 40px;
+      margin-left: 0.2em !important;
+      @include breakpoint(sm_max) {
+        margin-left: 1em !important;
+        font-size: 28px !important;
+      }
+    }
+    h2 {
+      margin-left: 0.4em;
+      color: #4D445A;
+      font-size: 20px;
+      @include breakpoint(sm_max) {
+        margin-left: 2em;
+        font-size: 14px !important;
+      }
+    }
+
+    .box{
+      border-radius: 9px;
+      border: 1.5px solid #0090D4;
+      padding: 1em 1.5em !important;
+      color:#0090D4;
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 2em;
+      @include breakpoint(sm_max) {
+        font-size: 10px !important;
+      }
+    }
+    .btn
+    {
+      display: flex;
+      justify-content: right;
+    }
+    .div-st{
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+  &__list {
+    border-top: none;
+    margin-bottom: 0px;
+  }
+}
+.btn-form {
+  min-width: 40px !important;
+  background-color: #FFFFFF;
+}
+.col_di{
+  display: none !important;
+  @include breakpoint(sm_max) {
+    display: inline !important;;
+  }
+}
+.col_dn{
+  @include breakpoint(sm_max) {
+    display: none !important;
+  }
+}
+.mb-1{
+  margin-bottom: 2.5em !important;
+}
+.mr-1{
+  margin-right: 0.5em !important;
+}
+.box-control
+{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  border: 1px solid #DEDEDE;
+  padding: 0.8em 0.5em 0.15em 0.5em!important;
+  color:#0090D4;
+  font-size: 16px;
+  font-weight: normal;
+  @include breakpoint(sm_max) {
+    font-size: 14px !important;
+    width: 50%;
+  }
+}
+.mbox
+{
+  display: flex;
+  justify-content: center;
+}
+.noti-button {
+  margin-top: 0.5em;
+  margin-bottom: 4em;
+  padding: 1rem;
+  background: #0090D4;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  width: 100%;
+  border-style: none;
+  border: 1px solid transparent;
+  text-align: center;
+  @include breakpoint(sm_max) {
+    margin-top: 5px !important;
+    padding: 1.25rem 0.8rem !important;
+    font-size: 17px;
+    margin-bottom: 1em !important;
+    text-align: center !important;
+  }
+}
+
+.ng-touched::-webkit-input-placeholder
+.ng-untouched::-webkit-input-placeholder
+{
+  color: #919191 !important;
+  font-size: 14px !important;
+  font-family: 'Roboto Regular';
+  @include breakpoint(sm_max) {
+    font-size: 10px !important;
+  }
+}
+::ng-deep .ng-touched::-webkit-input-placeholder
+::ng-deep .ng-untouched::-webkit-input-placeholder
+{
+  @include breakpoint(sm_max) {
+    font-size: 10px !important;
+  }
+}
+::ng-deep .mat-checkbox-label{
+  color:#4D445A;
+  font-size: 14px;
+  font-weight: normal;
+}
+::ng-deep .mat-checkbox.mat-checkbox-checked {
+  .mat-checkbox-background {
+    background: #0090D4 !important;
+  }
+}
+::ng-deep .mat-checkbox-background {
+  border-color: #0090D4 !important;
+  border-radius: 50px !important;
+}
+
+::ng-deep .mat-checkbox-frame  {
+  border-width: 1.5px !important;
+  border-color: #0090D4 !important;
+  border-radius: 50px !important;
+  background: #E2E2E2 !important;
+}
+
+::ng-deep .mat-checkbox-inner-container{
+  width: 21px !important;
+  height: 21px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: #FFFFFF !important;
+  border-color: #DEDEDE !important;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group .form-control {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.form-group .form-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  background: transparent;
+  border: hidden;
+  width: 5%;
+}
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+
+ [type="search"]::-webkit-search-cancel-button,
+ [type="search"]::-webkit-search-decoration {
+   -webkit-appearance: none;
+ }

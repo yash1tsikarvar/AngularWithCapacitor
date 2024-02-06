@@ -1,0 +1,10 @@
+<svg id="Group_1781" data-name="Group 1781" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16">
+  <g id="Menu" transform="translate(0 16) rotate(-90)">
+    <rect id="Rectangle_175" data-name="Rectangle 175" width="16" height="16" fill="none"/>
+    <path id="Union_4" data-name="Union 4" d="M0,14V12H8v2ZM0,8V6H16V8ZM0,2V0H16V2Z" transform="translate(0 1)" fill="#c1c1c1"/>
+  </g>
+  <g id="Ellipse_398" data-name="Ellipse 398" transform="translate(11 3)" fill="#fff" stroke="#c1c1c1" stroke-width="1.75">
+    <circle cx="3" cy="3" r="3" stroke="none"/>
+    <circle cx="3" cy="3" r="2.125" fill="none"/>
+  </g>
+</svg>

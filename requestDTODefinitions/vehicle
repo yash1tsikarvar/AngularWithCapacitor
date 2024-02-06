@@ -1,0 +1,22 @@
+    @Size(max = 20)
+    private String make;
+
+    @Size(max = 20)
+    private String model;
+
+	private Integer year;
+
+    @Size(max = 50)
+    private String vin;
+
+    @Size(max = 50)
+    private String tag;
+
+    @Size(max = 2)
+    private String state;
+
+    @Size(max = 50)
+    private String insuranceCompany;
+    
+    @Size(max = 20)
+    private String color;

@@ -1,0 +1,114 @@
+<form class="row" [formGroup]="childForm">
+  <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="form-label-group">
+      <span class="txt-bold txt-form-title txt-xxxs">* Full Name</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="text"
+          id="employmentPersonalReferenceName-{{ counter }}"
+          class="general-input form-control"
+          formControlName="name"
+          maxlength="80"
+          tevAsciiOnly
+        />
+        <mat-error>{{ getError('name') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- ./col -->
+
+  <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="select-group">
+      <span class="txt-bold txt-form-title txt-xxxs">* Relationship</span>
+      <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+        <mat-select
+          [formControlName]="'relationship'"
+          class="general-select"
+          data-cy="relationshipWithReference"
+        >
+          <mat-option
+            *ngFor="let option of relationshipsValues"
+            [value]="option.key"
+            >{{ option.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error>{{ getError('relationship') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- ./col -->
+
+  <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="select-group">
+      <span class="txt-bold txt-form-title txt-xxxs">* Country</span>
+      <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+        <mat-select
+          [formControlName]="'country'" class="general-select">
+          <mat-option *ngFor="let option of countries" [value]="option.code">{{
+            option.name
+          }}</mat-option>
+        </mat-select>
+        <mat-error>{{ getError('country') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- ./col -->
+
+  <div class="col-sm-12 col-md-6 col-lg-3">
+    <div class="select-group">
+      <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+      <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+        <mat-select
+          [formControlName]="'dialCode'"
+          [required]="true"
+          class="general-select"
+        >
+          <mat-option
+            [value]="code | dialCodeValue"
+            *ngFor="let code of dialCodes"
+            >{{ code | dialCodeName }}</mat-option
+          >
+        </mat-select>
+        <mat-error>{{ getError('dialCode') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6 col-lg-3">
+    <div class="form-label-group">
+      <span class="txt-bold txt-form-title txt-xxxs">* Cell Phone</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="employmentPersonalReferenceCellPhone-{{ counter }}"
+          class="general-input form-control"
+          formControlName="phone"
+          maxlength="20"
+          [textMask]="{ mask: phonemask }"
+        />
+        <mat-error>{{ getError('phone') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- ./col -->
+
+  <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="form-label-group">
+      <span class="txt-bold txt-form-title txt-xxxs">* Email</span>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="email"
+          id="employmentPersonalReferenceEmail-{{ counter }}"
+          class="general-input form-control"
+          formControlName="email"
+          maxlength="50"
+          tevAsciiOnly
+        />
+        <mat-error>{{ getError('email') }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- ./col -->
+</form>

@@ -1,0 +1,149 @@
+<div class="row" *ngIf="mainApplication">
+  <tev-application-info
+    class="col-12"
+    [mainApplication]="mainApplication"
+  ></tev-application-info>
+
+  <div class="col-12" #target>
+    <div
+      class="tev-alert tev-alert--warn mb-4"
+      *ngIf="
+        (mainApplication.status === 'W' || mainApplication.status === 'S') &&
+        (mainApplication.pendingPayments?.length ||
+          mainApplication.frozenCreditDTOs?.length ||
+          showSigning() ||
+          showPendingDocumentsUpload() ||
+          mainApplication.ownerSigningStatus === 'OWNER_INFO_MISSING') &&
+        !mainApplication.abandoned
+      "
+    >
+      <i class="tev-icon tev-icon--warning"></i>
+      <strong>You have some tasks pending to be completed</strong>
+    </div>
+
+    <div
+      class="tev-alert tev-alert--warn mb-4"
+      *ngIf="mainApplication.status === 'C' && !mainApplication.abandoned"
+    >
+      <i class="tev-icon tev-icon--warning"></i>
+      <span
+        >Your application has been released to the community for review. Please
+        note TenantEvaluation does not have any information regarding the
+        approval/denial process, nor do we make any final approval/denial
+        decisions. <br />Please allow the association time to review your report
+        as they have their own review process and the time frame varies per
+        association. <br />Be aware that the Quick Pass service may not expedite
+        the association's review process. Please contact your association
+        directly for more information.</span
+      >
+    </div>
+
+    <div
+      class="tev-alert tev-alert--warn mb-4"
+      *ngIf="mainApplication.abandoned"
+    >
+      <i class="tev-icon tev-icon--warning"></i>
+      <strong
+        >Application was abandoned due to not receiving all the required
+        documentation in a timely manner. Contact the property directly if the
+        application needs to be reopened.</strong
+      >
+    </div>
+
+    <div
+      class="toolbar-apps toolbar-sm-apps"
+      *ngIf="!mainApplication.abandoned"
+    >
+      <button
+        (click)="changeTab(0, target)"
+        class="tev-btn tev-btn--common tev-btn--primary tev-btn-newapp"
+        [ngClass]="{ 'tev-btn--active': selectedTab === 0 }"
+      >
+        Pending
+      </button>
+      <button
+        (click)="changeTab(1, target)"
+        class="tev-btn tev-btn--common tev-btn--primary tev-btn-newapp"
+        [ngClass]="{ 'tev-btn--active': selectedTab === 1 }"
+      >
+        Reviewing
+      </button>
+      <button
+        (click)="changeTab(2, target)"
+        class="tev-btn tev-btn--common tev-btn--primary tev-btn-newapp"
+        [ngClass]="{ 'tev-btn--active': selectedTab === 2 }"
+      >
+        Completed
+      </button>
+    </div>
+
+    <div
+      [@.disabled]="true"
+      style="width: 100%"
+      *ngIf="!mainApplication.abandoned"
+    >
+      <mat-tab-group
+        [selectedIndex]="selectedTab"
+        mat-stretch-tabs
+        class="mat-tab-group--tev"
+      >
+        <mat-tab label="Pending">
+          <tev-continue-application
+            class="col-12"
+            *ngIf="
+              (mainApplication.status === 'W' || mainApplication.status === 'S') "
+            [mainApplication]="mainApplication"
+          ></tev-continue-application>
+        </mat-tab>
+
+        <mat-tab label="Reviewing">
+          <tev-pending-items
+            class="col-12"
+            *ngIf="
+              mainApplication.status === 'W' || mainApplication.status === 'S'
+            "
+            [mainApplication]="mainApplication"
+          ></tev-pending-items>
+        </mat-tab>
+
+        <mat-tab label="Completed">
+          <tev-completed-items
+            class="col-12"
+            [mainApplication]="mainApplication"
+          ></tev-completed-items>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <div class="toolbar-apps" *ngIf="!mainApplication.abandoned">
+    <button
+      (click)="changeTab(0, target)"
+      class="tev-btn tev-btn--common tev-btn--primary tev-btn-newapp"
+      [ngClass]="{ 'tev-btn--active': selectedTab === 0 }"
+    >
+      Pending
+    </button>
+    <button
+      (click)="changeTab(1, target)"
+      class="tev-btn tev-btn--common tev-btn--primary tev-btn-newapp"
+      [ngClass]="{ 'tev-btn--active': selectedTab === 1 }"
+    >
+      Reviewing
+    </button>
+    <button
+      (click)="changeTab(2, target)"
+      class="tev-btn tev-btn--common tev-btn--primary tev-btn-newapp"
+      [ngClass]="{ 'tev-btn--active': selectedTab === 2 }"
+    >
+      Completed
+    </button>
+  </div>
+
+  <tev-application-info-contact
+    class="col-12"
+    style="margin-top: 2em"
+    [mainApplication]="mainApplication"
+  ></tev-application-info-contact>
+</div>
+<!-- /row -->

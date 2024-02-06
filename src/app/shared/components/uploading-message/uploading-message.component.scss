@@ -1,0 +1,35 @@
+@import "~sass/variables";
+.uploading {
+  border-radius: 10px;
+  background-color: $new-purple;
+  text-align: center;
+  font-family: Roboto;
+  color: white;
+  padding: 15px 60px;
+
+  .counter {
+    color: #F33D3D;
+    text-align: center;
+  }
+
+  .rocket-img {
+    display: block;
+    border-radius: 50%;
+    margin: 5% auto 3%;
+    width: 60%;
+  }
+
+  .small-text {
+    font-size: 12px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+}
+
+@media screen and (max-width: 540.9px) {
+  .uploading {
+    width: 100%;
+  }
+}

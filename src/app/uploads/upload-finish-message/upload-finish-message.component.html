@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="awesome-item">
+    <img src="assets/upload-generic/success.gif" alt="image success to upload document"
+         class="awesome-img"/>
+    <tev-countdown [init]="timeAutoClose" (onComplete)="closeUploadFinish()" style="display: none;"></tev-countdown>
+    <p *ngIf="title" class="title">{{title}}</p>
+    <p *ngIf="error" class="small-text"  [innerHTML]="error"></p>
+    <p *ngIf="subtitle" class="small-text"  [innerHTML]="subtitle"></p>
+    <button *ngIf="button_text!==''" class="btn btn-blue" data-test="btContinue" (click)="close()">{{button_text}}</button>
+  </div>
+</div>

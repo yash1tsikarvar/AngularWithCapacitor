@@ -1,0 +1,54 @@
+<div id="collapseSix" class="collapse show" aria-labelledby="headingSix" data-parent="#accordion">
+
+  <tev-loader *ngIf="processing" [loading_text]="loading_text" ></tev-loader>
+
+  <div class="card-body txt-purple">
+
+    <div *ngIf="!activeMilitary&&!expediteSelected; else paymentInfo">
+      <!-- <h2 class="d-none d-lg-flex step-headline">
+        <span class="flex-grow-1">Additional Options</span>
+        <span class="theme-logo smaller" [ngStyle]="{'background-image': smallLogo}"></span>
+      </h2> -->
+      <div class="paymentDetails-header">
+        <div class="paymentDetails-header-container">
+          <div class="paymentDetails-header-title">Eager to move? <label class="paymentDetails-header-quickPass">Quick pass</label> makes things faster!</div>
+          <div class="paymentDetails-header-subtitle">Choose our <label class="paymentDetails-header-quickPass">Quick pass Now</label> and ensure your application starts today!</div>
+        </div>
+      </div>
+
+      <tev-payment-add-expedite (formChanged)="paymentAddExpediteChanged($event)"></tev-payment-add-expedite>
+    </div>
+
+    <ng-template #paymentInfo>
+      <h2 class="d-none d-lg-flex step-headline">Payment Info</h2>
+
+      <tev-credit-card-info [paymentProcessorInput]="paymentProcessor"
+                            [expediteApplication]="expediteApplication"
+                            (formChanged)="paymentInfoChanged($event)"
+                            (nameChanged)="billingNameChanged($event)"
+                            (squareCard)="inputSquareCard($event)"></tev-credit-card-info>
+
+      <tev-agreement-signature [billingName]="billingName"
+                               (formChanged)="paymentAgreeChanged($event)"></tev-agreement-signature>
+
+      <tev-payment-summary [activeMilitary]="activeMilitary" [addExpediteApplication]="addExpediteApplication"
+       (formChanged)="paymentExpediteChanged($event)"></tev-payment-summary>
+
+
+
+      <div class="py-4">
+        <div class="foot-action">
+          <button (click)="goBack()"
+                  class="tev-btn tev-btn--block tev-btn--inverse tev-btn--large">Back
+          </button>
+          <button class="tev-btn tev-btn--block tev-btn--large"
+                  type="button"
+                  [disabled]="processing"
+                  data-cy="buttonPay"
+                  (click)="submit()">Pay</button>
+        </div>
+      </div>
+    </ng-template>
+
+  </div><!-- ./card-body -->
+</div><!-- ./collapse -->

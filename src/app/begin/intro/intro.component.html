@@ -1,0 +1,83 @@
+<div class="begin-intro-container">
+  <div class="begin-intro">
+    <div class="begin-intro--header">
+      <div class="begin-intro--header__logo">
+        <img src="/assets/logo-tenant-evaluation-light.svg" alt="Tenant Evaluation">
+      </div>
+      <!-- ./begin-intro--header__logo -->
+      <div class="begin-intro--header__title">
+        <h2>
+          Applying to your new home
+        </h2>
+      </div>
+      <!-- ./begin-intro--header__title -->
+      <div class="begin-intro--header__text">
+        <img src="/assets/intro/title.png" alt="has never been this easy">
+      </div>
+      <!-- ./begin-intro--header__text -->
+    </div>
+
+    <div class="begin-intro--body">
+      <div class="intro-box-create">
+          <h3 class="intro-box-create-title">Create a Tenant Evaluation account</h3>
+          <p class="intro-box-create-info">To begin with your first application, start by creating a new Tenant
+            Evaluation account
+          </p>
+          <div class="intro-box-create-more">
+            <button mat-fab color="dark" style="background: url('/assets/intro/icon_begin.png') no-repeat left center;" (click)="openExternalUrl()">
+            </button>
+            <div (click)="openExternalUrl()">
+                <div class="txt-xs txt-bold txt-blue">
+                    Learn more about how to apply
+                </div>
+                <div class="txt-xxxs txt-purple">
+                    Click here for more information
+                </div>
+            </div>
+          </div>
+        <button class="intro-box-create-button intro-button" (click)="openDialog(true)">CREATE A NEW ACCOUNT<span class="icon"></span></button>
+        <!-- <div class="div_tmp_1">
+          <div>
+            CREATE A NEW ACCOUNT
+          </div>
+          <div>
+            <img src="/assets/intro/icon_more.svg" />
+          </div>
+        </div> -->
+      </div>
+        <form class="intro-box-signin"  [formGroup]="loginForm" (submit)="submit()">
+          <h3 class="intro-box-signin-title"> Sign in to your existing account</h3>
+          <div class="intro-box-signin-input-user">
+            <label class="txt-bold txt-purple txt-xxxs">Email</label>
+            <mat-form-field appearance="outline" >
+              <input class="intro-input" matInput type="email" formControlName="login" tevAsciiOnly required>
+              <mat-error>{{getError('login')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="intro-box-signin-input-password">
+            <label class="txt-bold txt-purple txt-xxxs">Password</label>
+            <mat-form-field appearance="outline" >
+              <input class="intro-input" matInput [type]="hide ? 'password' : 'text'" formControlName="password" minlength="4"
+                autocomplete="current-password" required>
+              <button matSuffix class="btn btn-form floating eye-icon" type="button" (click)="modifyVisibility()">
+                <i translate="no" class="material-icons mat-icon-form">{{hide ? 'visibility' : 'visibility_off'}}</i>
+              </button>
+              <mat-error>{{getError('password')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <tev-alert-badge *ngIf="info" [type]="infoType" [message]="info"></tev-alert-badge>
+          <button class="intro-box-signin-button intro-button" type="submit" [disabled]="isLoading">SIGN IN<span class="icon"></span></button>
+          <a [routerLink]="['/reset-password']" class="intro-link"><span class="txt-xxs txt-blue intro_link_text_1">Forgot my
+            password</span></a>
+        </form>
+
+    </div>
+
+
+    <div class="begin-intro--footer">
+      <p>All rights reserved | Tenant Evaluation {{currentYear}}</p>
+    </div>
+  <!-- ./intro -->
+  </div>
+</div>
+

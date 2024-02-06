@@ -1,0 +1,256 @@
+@import "../../../sass/variables";
+
+.upload-id {
+
+  .title {
+    font-size: 20px;
+    font-family: Roboto;
+    color: $blue;
+    text-align: center;
+    padding-bottom: 20%;
+  }
+
+  .title-withoutpad {
+    padding-bottom: 10px;
+  }
+
+  .highlighted-blue {
+    color: $blue;
+    font-weight: bold;
+  }
+
+  .front-back-instruction {
+    color: black;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #FFFFFF 70%, #645972 30%);
+    text-align: left;
+    font-family: Roboto;
+    font-size: 19px;
+    min-height: 50%;
+    padding: 5% 10% 10%;
+    margin-bottom: 2%;
+
+    h2{
+      font-size: 25px;
+    }
+
+    .instruction-advice{
+      padding-top: 10px;
+      font-size: 14px;
+    }
+
+    .img-icon {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 60%;
+      margin-top: 5%;
+    }
+  }
+
+  .preview-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .responsive {
+    max-height: 400px;
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 14px;
+    padding: 0px 80px;
+    font-family: Roboto;
+    text-align: center;
+  }
+
+  .uploading {
+    border-radius: 10px;
+    background-color: $purple;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 24px;
+    color: white;
+    padding: 15px 60px;
+
+    .counter {
+      color: #F33D3D;
+      text-align: center;
+    }
+
+  }
+
+  .small-text {
+    font-size: 12px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  .image-drop__zone {
+    text-align: center !important;
+    width: 100%;
+    background-color: white;
+    min-height: 440px !important;
+
+    p {
+      width: 100%;
+      text-align: center;
+      vertical-align: center;
+      display: table-cell;
+    }
+
+    .tev-icon {
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+      horiz-align: center;
+    }
+  }
+
+  ngx-dropzone-image-preview {
+    max-height: 440px !important;
+    height: 100% !important;
+  }
+
+  ngx-dropzone-image-preview > img {
+    border: 1px solid black !important;
+    width: 100%;
+    height: 100%;
+    max-height: 440px !important;
+  }
+
+  .ngx-dropzone-preview {
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: red !important;
+  }
+
+  .upload-generic-icon {
+    text-align: center;
+    vertical-align: center;
+    horiz-align: center;
+    width: 100%;
+    height: 40px;
+    background-image: url("/../../../assets/icon-document.svg");
+  }
+
+  .button-style {
+    margin-top: 20px;
+    border-radius: 9px;
+    background: #0f9ae3;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    height: 60px;
+    width: 100%;
+  }
+
+  ngx-dropzone-preview {
+    min-height: 440px !important;
+    height: 440px !important;
+    min-width: 100px !important;
+    max-width: 100px !important;
+  }
+
+  .image-drop__zone {
+    text-align: center !important;
+    width: 85%;
+    margin: auto;
+    background-color: white;
+    height: 100px !important;
+
+    p {
+      width: 100%;
+      text-align: center;
+      vertical-align: center;
+      display: table-cell;
+    }
+
+  }
+
+  .button-style {
+    height: 50px;
+  }
+
+}
+
+
+@media screen and (max-width: 1199px) {
+  .upload-id {
+
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .upload-id {
+
+    .image-drop__zone {
+      width: 100%;
+    }
+
+
+  }
+
+
+}
+
+@media screen and (max-width: 767.9px) {
+  .upload-id {
+    .description {
+      padding: 0px;
+    }
+
+    .gifimg {
+      margin-top: 3%;
+      margin-bottom: 5px;
+      width: 30%;
+    }
+
+    .image-drop__zone {
+      max-height: 40%;
+    }
+
+  }
+
+  @media screen and (max-width: 540.9px) {
+
+    .upload-id {
+      .title {
+        padding-bottom: 5%;
+
+      }
+
+      .uploading {
+        width: 100%;
+      }
+
+      .gifimg {
+        margin-top: 3%;
+        margin-bottom: 5px;
+        width: 20%;
+      }
+
+      .image-drop__zone {
+        min-height: 250px !important;
+      }
+
+    }
+
+  }
+
+
+}

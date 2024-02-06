@@ -1,0 +1,95 @@
+<div class="container-fluid main-content">
+  <div class="row justify-content-sm-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-6">
+      <section class="agreement-content-box">
+        <article>
+          <div class="row">
+            <div class="col-6">
+              <h1 class="minimum-line-height">
+                <div class="icon-holder"></div>
+              </h1>
+            </div>
+            <div class="col-6 text-right">
+              <div class="main-icon-holder">
+                <a href="#" (click)="logOut($event)">Log Out</a>
+              </div>
+            </div>
+          </div>
+
+          <ul class="txt-sm pt-3">
+            <li>Date: {{mainApplication.paymentDate | date:'short'}}</li>
+            <li>Transaction ID: {{mainApplication.transactionId}}</li>
+            <li>Account #: {{mainApplication.account}}</li>
+            <li>Amount: {{mainApplication.amountPaid | currency:'USD':true}}</li>
+          </ul>
+
+            <p class="txt-xs pt-3">I, <strong class="txt-applicant-name">{{mainApplication.payerName}}</strong> Confirm that I have paid the above amount according to the card issuer agreement. I also understand that the application fee is required and nonrefundable regardless of the outcome of the application.</p>
+
+          <div class="agreement-text">
+            <p>PLEASE READ ALL THE PROPERTY SPECIAL NOTES LISTED BELOW CAREFULLY:</p>
+                <p><b>* Any additional occupants 18 years old or older will have to make a separate application*</b></p>
+                <p>Tenant Evaluation understands the importance of keeping your information secure from
+                    unauthorized access. All of your sensitive data is encrypted before being transmitted to/from our
+                    servers. Tenant Evaluation is a Level 1 Compliant Organization. For details on Level 1 security
+                    standards please click here.</p>
+            <p>You are hereby authorized to release any and all information requested with regards to verification of my bank account(s), 
+              credit history, residential history, criminal record history, employment verification and character references to 
+              Tenant Evaluation LLC. This information is to be used for my/our credit report for my/our Application for Occupancy.</p>
+
+            <p>I/We hereby waive any privileges I/We may have with respect to the said information in reference to its release to the aforesaid party. Information obtained for this report is to be released to Tenant Evaluation LLC, Property Manager, Board of Directors and The Landlord for their exclusive use only.</p>
+
+            <p>PLEASE INCLUDE COPY OF DRIVER’S LICENSE OR PASSPORT TO CONFIRM IDENTITY.</p>
+
+            <p>Please notify your Landlord(s), Employer(s), and Character References that we will be contacting them to obtain a reference pursuant to your application.</p>
+
+            <p>I/We further state the Authorization Form were signed by me/us and was not originated with fraudulent intent by me/ us or any other person, and that the signature(s) below are my/our own proper signature.</p>
+
+            <p>I/We certify under penalty of perjury that the foregoing is true and correct.</p>
+
+            <p>I/WE UNDERSTAND THAT THE APPLICATION FEE IS REQUIRED AND NONREFUNDABLE REGARDLESS OF THE OUTCOME OF THE APPLICATION.</p>
+
+            <p>I/We further understand that any refundable monies paid through Tenant Evaluation in the form of deposits, extra fees, etc. will be refunded by the Association directly.</p>
+
+            <p>Please allow 14 days from the date below to complete the application. Please be aware that the associations have their own approval process which will start once the report has been released and the time frame may vary per association.</p>
+
+            <p>If after 30 days from the date you created the application Tenant Evaluation has not received all the required documentation, your application will be considered abandoned and the incomplete application will be closed and sent to the community. The application can only be re-opened within 30 days of being abandoned with written request from the the applicant.</p>
+
+            <p>If you or the co-applicant have falsified, deliberately mislead or omitted to mention any information on your application, you may not be approved for a purchase, lease and/or occupancy.</p>
+          </div>
+
+          <h1 class="txt-lg pt-3">Review Your signature</h1>
+          <form class="signature" [formGroup]="signatureForm" (submit)="submit()">
+
+            <div class="signature-input">
+              <input type="text"
+                     class="form-control"
+                     placeholder="Type your name here or draw below"
+                     formControlName="signatureText">
+            </div>
+
+            <div class="signature-canvas">
+
+              <div class="signature-wrapper">
+                <canvas id="signature-pad" #signaturePad></canvas>
+              </div>
+
+              <div class="signature-text">
+                <canvas id="signature-text" #signatureText></canvas>
+              </div>
+
+            </div>
+
+
+            <button class="btn btn-lg btn-primary px-5 mb-4"
+                    [disabled]="processing"
+                    type="submit">Submit</button>
+
+            <button class="btn btn-lg btn-primary px-5 mb-4"
+                    [disabled]="processing"
+                    type="button" (click)="clearSignature()">Clear</button>
+          </form>
+        </article>
+      </section><!-- ./agreement-content-box -->
+    </div><!-- ./col -->
+  </div><!-- ./row -->
+</div><!-- ./container-fluid -->

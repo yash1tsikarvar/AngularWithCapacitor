@@ -1,0 +1,165 @@
+<div  [ngClass]="{'py-4': formIndex > 0, 'border-top': formIndex > 0, 'my-4': formIndex > 0}">
+
+  <form [formGroup]="childForm">
+
+    <div class="form-group switch-container">
+      <div class="switch switch-sm">
+
+        <mat-checkbox [formControlName]="'rented'">Vehicle will be rented or purchased at a later time</mat-checkbox>
+        <mat-error class="col-sm-12" [hidden]="!childForm?.value.rented">
+            (Selecting this option will display N/A on the vehicle section of the Final PDF Report as no vehicle will need to be registered at the moment.
+            Please notify management office once vehicle is available).
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="row" [hidden]="childForm?.value.rented">
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Make</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              type="text"
+              id="vehicleMake-{{counter}}"
+              class="form-control"
+              formControlName="make"
+              tevAsciiOnly
+              class="general-input form-control"
+            >
+            <mat-error>{{getError('make')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Model</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              type="text"
+              id="vehicleModel-{{counter}}"
+              class="form-control"
+              formControlName="model"
+              tevAsciiOnly
+              class="general-input form-control"
+            >
+            <mat-error>{{getError('model')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Color</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+                   type="text"
+                   id="vehicleColor-{{counter}}"
+                   class="form-control"
+                   formControlName="color"
+                   tevAsciiOnly
+                   class="general-input form-control"
+            >
+            <mat-error>{{getError('color')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Year</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+                 type="number"
+                 id="vehicleYear-{{counter}}"
+                 class="form-control"
+                 formControlName="year"
+                 tevNumbersOnly
+                 class="general-input form-control"
+                 >
+          <mat-error>{{getError('year')}}</mat-error>
+        </mat-form-field>
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Tag</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+                   type="text"
+                   id="vehicleTag-{{counter}}"
+                   class="form-control"
+                   formControlName="tag"
+                   maxlength="20"
+                   tevAsciiOnly
+                   class="general-input form-control"
+            >
+            <mat-error>{{getError('tag')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* State Registered</span>
+          <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+            <mat-select
+                [formControlName]="'state'"
+                class="general-select"
+              >
+              <option value="">State Registered</option>
+              <mat-option *ngFor="let state of states"
+                          [value]="state.abbreviation">
+                {{state.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error>{{getError('state')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Insured By</span>
+          <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+            <input matInput
+                   type="text"
+                   id="vehicleInsuredBy-{{counter}}"
+                   class="form-control"
+                   formControlName="insureBy"
+                   maxlength="50"
+                   tevAsciiOnly
+                   class="general-input form-control"
+            >
+            <mat-error >{{getError('insureBy')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-6 vehicle-iselectric">
+        <div class="closed-question__body">
+          <label><span class="txt tev-text">Electric?</span></label>
+          <tev-yes-no-input [formControlName]="'isElectric'"></tev-yes-no-input>
+          <div class="invalid-feedback">{{getError('isElectric')}}</div>
+        </div>
+      </div><!-- ./col -->
+
+    </div>
+
+  </form><!-- /.row -->
+
+</div>

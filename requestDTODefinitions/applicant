@@ -1,0 +1,178 @@
+private String initials;
+
+    @Size(max = 50)
+    private String firstName;
+
+    @Size(max = 10)
+    private String middleInitial;
+
+    @Size(max = 256)
+    private String lastName;
+
+    @Size(max = 11)
+    private String ssn;
+
+	private Date dob;
+
+    @Size(max = 50)
+    private String passportNumber;
+
+    @Size(max = 50)
+    private String licenseNumber;
+
+	private Boolean citizen;
+
+    @Size(max = 50)
+    private String citizenship;
+
+    @Size(max = 3)
+    private String passportCountry;
+
+    @Size(max = 10)
+    private String cellPhoneCC;
+
+    @Size(max = 50)
+    private String cellPhone;
+
+    @Size(max = 50)
+    private String otherPhone;
+
+    @Size(max = 50)
+    private String email;
+
+    @Size(max = 50)
+    private String licenseName;
+
+    @Size(max = 2)
+    private String licenseState;
+
+	private Boolean beenSued;
+
+	private Boolean filedBankruptcy;
+
+	private Boolean beenArrested;
+
+	private Boolean beenConvicted;
+
+	private Boolean brokenLease;
+
+	private Boolean beenEvicted;
+
+	private Boolean litigationPending;
+
+	private Boolean allowTextMessages;
+
+    @Size(max = 500)
+    private String remarks;
+
+	private Boolean actDutyMilitary;
+
+
+	private CurrentResidenceType currentResidentType;
+
+    @Size(max = 20)
+    private String houseNumber;
+
+    @Size(max = 80)
+    private String street;
+
+    @Size(max = 10)
+    private String apartmentNo;
+
+    @Size(max = 10)
+    private String zipcode;
+
+    @Size(max = 50)
+    private String city;
+
+    @Size(max = 2)
+    private String state;
+
+    @Size(max = 2)
+    private String country;
+
+	private Integer years;
+
+	private Integer months;
+
+    @Size(max = 60)
+    private String landlordName;
+
+    @Size(max = 30)
+    private String landlordPhone;
+
+    @Size(max = 50)
+    private String landlordEmail;
+
+	private Boolean beenVacated;
+
+	private Boolean gaveAdequateNotice;
+
+    @Size(max = 255)
+    private String familyName;
+
+    @Size(max = 255)
+    private String familyPhone;
+
+    @Size(max = 60)
+    private String familyRelationship;
+
+	private Boolean employerContactAllowed;
+
+	private EmploymentType employmentType;
+
+    @Size(max = 80)
+    private String empFirm;
+
+    @Size(max = 2)
+    private String empCountry;
+
+    @Size(max = 80)
+    private String empAddress;
+
+    @Size(max = 10)
+    private String empZipcode;
+
+    @Size(max = 2)
+    private String empState;
+
+    @Size(max = 50)
+    private String empCity;
+
+    @Size(max = 100)
+    private String empTitle;
+
+	private Date empStart;
+
+	private BigDecimal empAmount;
+
+	private SalaryPeriod salaryPeriod;
+
+    @Size(max = 50)
+    private String supName;
+
+    @Size(max = 50)
+    private String supTitle;
+
+    @Size(max = 50)
+    private String supPhone;
+
+    @Size(max = 50)
+    private String supEmail;
+
+    @Size(max = 50)
+    private String busType;
+
+    @Size(max = 4)
+    private String busYears;
+
+    @Size(max = 20)
+    private String busPhone;
+
+    @Size(max = 80)
+    private String busName;
+
+	@Valid
+    private ApplicantReferenceDTO reference1;
+
+	@Valid private ApplicantReferenceDTO reference2;

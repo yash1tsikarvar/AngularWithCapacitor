@@ -1,0 +1,38 @@
+<div class="expediteReviews">
+  <div class="expediteReviews-header">
+    <div class="expediteReviews-header-title">Check what people have to say</div>
+  </div>
+
+  <div class="expediteReviews-main">
+    <button class="expediteReviews-main-actionBtn" (click)="prevReview()">
+      <img src="/assets/reviews-arrow.svg" alt="arrow prev">
+    </button>
+    <div class="expediteReviews-content">
+      <div class="expediteReviews-content-img">
+        <img *ngIf="currentReview.img" [src]="currentReview.img" alt="author">
+      </div>
+      <div class="expediteReviews-content-info">
+        <div *ngIf="currentReview.title" class="expediteReviews-content-info-title">{{currentReview.title}}</div>
+        <div class="expediteReviews-content-info-text">{{currentReview.text}}</div>
+        <div class="expediteReviews-content-author">
+          <div *ngIf="currentReview.img" class="expediteReviews-content-author-img">
+            <img [src]="currentReview.img" alt="author">
+          </div>
+          <div>
+            <div class="expediteReviews-content-author-name">{{currentReview.author}}</div>
+            <div class="expediteReviews-content-author-position">{{currentReview.position}}</div>
+            <div class="expediteReviews-content-author-rating">
+              <i class="material-icons" *ngFor="let star of getStars()">star_rate</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="expediteReviews-content-quote">
+        <img src="/assets/reviews-dquote.svg" alt="quote">
+      </div>
+    </div>
+    <button class="expediteReviews-main-actionBtn expediteReviews-main-actionBtn--next" (click)="nextReview()">
+      <img src="/assets/reviews-arrow.svg" alt="arrow next">
+    </button>
+  </div>
+</div>

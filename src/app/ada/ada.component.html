@@ -1,0 +1,5 @@
+<div class="tev-ada">
+  <tev-ada-icon *ngIf="!isLoad" (click)="load()"></tev-ada-icon>
+  <div *ngIf="isLoading" class="tev-ada-loading" role="status" aria-live="polite">Loading...</div>
+  <div *ngIf="isError" class="tev-ada-error" role="alert">Error loading widget</div>
+</div>

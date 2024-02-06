@@ -1,0 +1,40 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - npm install -g @angular/cli
+      - npm install
+  pre_build:
+    commands:
+      - echo "pre_build phase"
+  build:
+    commands:
+      - echo "build phase"
+      - npm run $BUILD_SCRIPT
+  post_build:
+    commands:
+      - grep version ./package.json | cut -d '"' -f 4 | xargs -I file_name touch dist/file_name
+      - aws s3 sync dist/ s3://$BUCKET_NAME --delete
+      - aws s3 cp s3://$BUCKET_NAME/index.html s3://$BUCKET_NAME/index.html --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --content-type text/html
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST --paths "/*"
+
+# DEV8
+# grep version ./package.json | cut -d '"' -f 4 | xargs -I file_name touch dist/file_name
+# aws s3 sync dist/ s3://tenant-app-sources/tenant/dev8 --delete
+# aws s3 cp s3://tenant-app-sources/tenant/dev8/index.html s3://tenant-app-sources/tenant/dev8/index.html --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --content-type text/html
+# aws cloudfront create-invalidation --distribution-id E1E3OATQKW790N --paths "/*"      
+
+# S31
+# grep version ./package.json | cut -d '"' -f 4 | xargs -I file_name touch dist/file_name
+# aws s3 sync dist/ s3://tenant-app-sources/tenant/s31 --delete
+# aws s3 cp s3://tenant-app-sources/tenant/s31/index.html s3://tenant-app-sources/tenant/s31/index.html --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --content-type text/html
+# aws cloudfront create-invalidation --distribution-id E2T2KP0BYU3K8E --paths "/*"      
+
+# PROD
+# grep version ./package.json | cut -d '"' -f 4 | xargs -I file_name touch dist/file_name
+# aws s3 sync dist/ s3://te-tenant-fe-prod --delete
+# aws s3 cp s3://te-tenant-fe-prod/index.html s3://te-tenant-fe-prod/index.html --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --content-type text/html
+# aws cloudfront create-invalidation --distribution-id EQQ3IW155MBXQ --paths "/*"      

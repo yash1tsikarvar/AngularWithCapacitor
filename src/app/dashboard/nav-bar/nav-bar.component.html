@@ -1,0 +1,99 @@
+<nav class="navbar fixed-top" id="main-nav">
+
+  <div class="navbar__logo">
+    <img src="/assets/icon-te.svg" alt=""/>
+  </div>
+
+  <button class="navbar-toggler collapsed"
+          type="button" data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          data-parent="#main-nav" id="menu-toggler"
+          (click)="toggleCollapse()"
+  >
+    <span> </span>
+    <span> </span>
+    <span> </span>
+  </button>
+
+  <div class="navbar-collapse collapse"
+       [ngbCollapse]="menuCollapsed"
+       id="navbarCollapse">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item d-lg-none">
+        <a class="nav-link txt-lg" (click)="menuCollapsed = true" [class.disabled]="authService.isCallCenterL1() ? true: null"
+           [routerLink]="['change-password']">Profile</a>
+      </li>
+
+
+      <li class="nav-item d-lg-none add-co-applicant" *ngIf="mainApplication.shortApplication == 'SHORT'?  false : mainApplication.allowNewApplicant">
+        <a class="nav-link txt-lg " (click)="menuCollapsed = true" [routerLink]="['add-co-applicant']">Add Co-applicant</a>
+      </li>
+      <li class="nav-item d-lg-none" *ngIf="mainApplication.supplementalPendingApplicationId || mainApplication.supplementalApplicationId">
+        <a class="nav-link txt-lg" (click)="menuCollapsed = true" [routerLink]="['add-co-applicant']">View Co-applicant</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link txt-lg" (click)="menuCollapsed = true" [routerLink]="['/application-list']">Application List</a>
+      </li>
+
+      <li class="nav-item" *ngIf="(mainApplication?.status === 'W' || mainApplication?.status === 'S') && !mainApplication?.refundEligible">
+        <a href="#" [class.disabled]="authService.isCallCenterL1() ? true: null"
+           (click)="confirmCancelApplication($event)" class="nav-link txt-lg">Cancel Application</a>
+      </li>
+
+      <li class="nav-item" *ngIf="mainApplication?.refundEligible">
+        <a href="#" [class.disabled]="authService.isCallCenterL1() ? true: null"
+           (click)="confirmCancelAndRefundApplication($event)" class="nav-link txt-lg">Cancel and Refund Application</a>
+      </li>
+
+      <li class="nav-item" *ngIf="mainApplication.finalReportUrl">
+        <a class="nav-link txt-lg" [href]="mainApplication.finalReportUrl">View Report</a>
+      </li>
+
+      <li class="nav-item" *ngIf="mainApplication.finalReportUrl">
+        <a class="nav-link txt-lg" [href]="disputeUrl">Dispute Information on the Report</a>
+      </li>
+
+      <li class="btn-container">
+        <button class="btn btn-primary" (click)="logOut($event)">Log Out</button>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="maintenance d-none d-lg-block desktop-only">
+    <a [routerLink]="authService.isCallCenterL1() ? null : ['change-password']">
+      <span class="with-icon icon-profile-card"></span>
+      <span>Profile</span>
+    </a>
+  </div>
+
+  <div class="maintenance d-none d-lg-block desktop-only" >
+    <a [routerLink]="['add-co-applicant']"
+       *ngIf="mainApplication.shortApplication == 'SHORT'? false : mainApplication.allowNewApplicant">
+      <span class="with-icon icon-add-user"></span>
+      <span>Add Co-applicant</span>
+    </a>
+  </div>
+  <div class="maintenance d-none d-lg-block desktop-only">
+    <a [routerLink]="['add-co-applicant']"
+       *ngIf="mainApplication.supplementalPendingApplicationId || mainApplication.supplementalApplicationId">
+      <span class="with-icon icon-add-user"></span>
+      <span>View Co-applicant</span>
+    </a>
+  </div>
+
+
+
+  <div class="maintenance d-none d-lg-block desktop-only">
+    <a href="#"  (click)="logOut($event)">
+      <span class="with-icon icon-log-out"></span>
+      <span>Log Out</span>
+    </a>
+  </div>
+
+</nav>

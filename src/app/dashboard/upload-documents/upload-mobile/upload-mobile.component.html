@@ -1,0 +1,27 @@
+<div class="upload-mobile">
+  <a [routerLink]="['../../upload-selector/',documentTaskId]" class="back-link">
+    <span class="tev-icon tev-icon--back"></span>
+    BACK</a>
+  <div class="row justify-content-md-center">
+    <div class="col-10">
+      <div class="task-name">{{taskName}}</div>
+    </div>
+    <div class="col-sm-10 col-xs-12">
+      <div class="title">Scan the QR code with your mobile device</div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-sm-7 col-xs-12">
+      <mat-card>
+        <div class="qrCode" *ngIf="qrCode!=''; else elseBlock">
+          <qrcode [qrdata]="baseURl" [width]="200" [errorCorrectionLevel]="'M'" elementType="url" ></qrcode>
+        </div>
+        <div class="text-instructions">To continue please scan the QR code with your mobile device.</div>
+      </mat-card>
+      <ng-template #elseBlock>Generating your qr code</ng-template>
+      <button type="submit" class="btn btn-blue" (click)="continue()">Continue
+      </button>
+    </div>
+  </div>
+  <p id="url-text" style="display: none">{{baseURl}}</p>
+</div>

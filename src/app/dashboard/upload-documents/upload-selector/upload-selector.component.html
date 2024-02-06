@@ -1,0 +1,30 @@
+<a [routerLink]="['../../upload-documents']" class="back-link">
+  <span class="tev-icon tev-icon--back"></span>
+  BACK</a>
+<div class="upload-mobile">
+
+  <div class="row justify-content-md-center">
+    <div class="col-10">
+      <div class="task-name">{{taskName}}</div>
+    </div>
+    <div class="col-10">
+      <div class="title">How do you want to submit your ID?</div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-sm-5 col-xs-12">
+      <mat-card>
+        <img mat-card-image class="img-icon" src="assets/upload_from_computer.svg" alt="upload image from computer">
+        <div class="text-instructions">Upload ID file from your computer</div>
+        <button type="submit" class="btn btn-blue" [routerLink]="['../../upload-id', documentTaskId]">Select</button>
+      </mat-card>
+    </div>
+    <div class="col-sm-5 col-xs-12">
+      <mat-card>
+        <img mat-card-image class="img-icon" src="assets/upload_from_mobile.svg" alt="upload image from mobile">
+        <div class="text-instructions">Take a photo from your mobile device</div>
+        <button type="submit" (click)="generateQrCode()" class="btn btn-blue">Select</button>
+      </mat-card>
+    </div>
+  </div>
+</div>

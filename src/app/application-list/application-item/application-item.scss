@@ -1,0 +1,133 @@
+@import '../../../sass/tenant_2.0';
+
+.icon{
+  display: flex;
+  justify-items: right;
+  align-items: center;
+  color: white !important;
+  font-weight: 100;
+  font-size: 24px;
+  font-style: normal;
+}
+
+h1{
+  //font-family:'Roboto, Medium';
+  font-size: 16px !important;
+  color: #009CDC !important;
+  margin: 0%;
+}
+h2{
+  //font-family:'Roboto, Medium';
+  font-size: 16px !important;
+  color: #4D445A !important;
+  margin: 0%;
+}
+h3{
+  //font-family:'Roboto Bold';
+  font-size: 20px !important;
+  color: #FFFFFF !important;
+  margin: 0%;
+}
+h4{
+  //font-family:'Roboto, Regular';
+  font-size: 12px !important;
+  color: #FFFFFF !important;
+  margin: -0.1em 0em 0em 0em;
+  font-weight: 100;
+}
+h5{
+  font-size: 16px !important;
+  margin: 0%;
+}
+h6{
+  //font-family:'Roboto, Regular';
+  font-size: 12px !important;
+  color:#707070 !important;
+  margin: -0.1em 0em 0em 0em;
+  font-weight: 100;
+}
+
+.pxy{
+  padding: 1.2em;
+}
+
+.box-right{
+  background-color: #4D445A;
+   border-radius: 0px 20px 20px 0px;
+}
+
+.tev-btn--xlarge1 {
+  font-size: 18px;
+  height: 60px;
+  line-height: 2;
+  min-width: 100%;
+}
+
+.row-mh{
+  min-height: 100%;
+}
+
+
+// ------------------------------- .tev-btn
+.tev-btn {
+  padding: 0 20px 0 5px!important;
+  &:hover {
+    color: $white;
+    opacity: 0.7;
+  }
+  &--mdrounded {
+      border-radius: 60px;
+      height: 35px;
+      font-size: 14px;
+      font-weight: normal;
+      padding: 0 30px;
+  }
+  &--xlpad {
+      padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  h1, h2, h3{
+    font-size: 14px !important;
+  }
+  h4, h6{
+    font-size: 10px !important;
+  }
+  .icon{
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+  }
+  .ml-1{
+    margin-left: 0.1em !important;
+  }
+}
+
+
+  //---------------- .box-group
+  .box-group {
+    background: $white;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px #0000002E;
+    margin-bottom: 1em;
+
+    &__table {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    &__cell {
+      padding: 0.5em 0em;
+    }
+  }
+  .center
+  {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .pl-1{
+    padding-left: 2.5em !important;
+  }

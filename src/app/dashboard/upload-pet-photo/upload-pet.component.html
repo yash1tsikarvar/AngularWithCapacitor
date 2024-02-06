@@ -1,0 +1,129 @@
+<div class="container upload-id">
+  <div class="row documents">
+    <div class="col-12">
+
+      <div>
+        <a [routerLink]="['../../upload-documents']" *ngIf="showBack()" class="back-link">
+          <span class="tev-icon tev-icon--back"></span>
+          BACK</a>
+      </div>
+
+      <div class="row" *ngIf="!uploading">
+
+        <div class="col-md-5 col-xs-12 instructions" *ngIf="showErrorMessage()">
+          <div class="gif-with-icon">
+            <img src="assets/upload-generic/error.gif" alt="image instrucctions to upload document"
+                 class="img-responsive img-circle gifimg"/>
+            <i class="tev-icon tev-icon--warning-red"></i>
+            <div class="error-text">Warning</div>
+          </div>
+
+          <div>{{error}}</div>
+          <div class="small-text">Please try uploading a new version of the document and make sure the text is
+            readable.
+          </div>
+        </div>
+
+
+        <div class="col-xs-12" [class.col-md]="showFullWidth()" *ngIf="!showInstructions">
+          <div *ngIf="!uploadedFinish && !uploading">
+            <div class="image-drop__zone" *ngIf="files.length<=0;else other_content" ngx-dropzone
+                 [accept]="mimetypesAccept()"
+                 [maxFileSize]="tenMB" [multiple]="false" (change)="onSelect($event)">
+              <ngx-dropzone-label>
+                <div class="text-align-center">
+                  <div class="title" [attr.data-test]=document.description>{{document.description}}</div>
+                  <i class="tev-icon tev-icon--upload-cloud-id"></i><span> Drag one file here or <u>browse</u></span>
+                </div>
+              </ngx-dropzone-label>
+            </div>
+            <ng-template #other_content>
+
+              <div *ngIf="isImage() else fileContent" class="preview-container">
+                    <img [src]="imageToShow" alt="Image Source" class="responsive">
+                    <mat-spinner *ngIf="uploading"></mat-spinner>
+              </div>
+
+
+              <ng-template #fileContent>
+                <div class="title">Pet Photo</div>
+                <ngx-dropzone-preview class="ngx-dropzone-preview" ngProjectAs="ngx-dropzone-preview"
+                                      *ngFor="let f of files" [file]="f" >
+                </ngx-dropzone-preview>
+              </ng-template>
+
+
+            </ng-template>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" *ngIf="showInstructions">
+        <div class="col-md-6 offset-md-3">
+          <div class="pb-counter">
+            <mat-progress-bar mode="determinate" [value]="animationProcess"></mat-progress-bar>
+          </div>
+          <div class="slide-container">
+
+            <div class="slide1 slide-item">
+              <div class="item-image" id="cover1">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Make sure all four<br/>corners are visible</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide2 slide-item">
+              <div class="item-image" id="cover2">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Must not be<br/>covered in any way</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide3 slide-item">
+              <div class="item-image" id="cover3">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Make sure the<br/>image is not blurry</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide4 slide-item">
+              <div class="item-image" id="cover4">
+                <div class="image-validate delete-image"></div>
+              </div>
+              <p>Supported formats<br/>JPG PNG or PDF only</p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+            <div class="slide5 slide-item">
+              <div class="item-image" id="cover5">
+                <div class="image-validate right-image"></div>
+              </div>
+              <p>
+                This is Right!<br/>
+                <span></span>
+              </p>
+              <p class="slider-generic-text">{{genericText}}</p>
+            </div>
+
+          </div>
+
+          <tev-countdown [init]="21" (onComplete)="hideShowInstructions()" (onChange)="updateProcess($event)" style="display: none;"></tev-countdown>
+        </div>
+
+
+      </div>
+
+      <div class="row" *ngIf="uploading">
+        <tev-uploading-message init="60"></tev-uploading-message>
+      </div>
+
+
+      <div class="row" *ngIf="uploadedFinish">
+        <tev-awesome-message (closePopup)="closeUploadFinish()" [autoCloseTime]="105"
+                             [auto_closeable]="false"></tev-awesome-message>
+      </div>
+
+
+    </div>
+  </div>
+</div><!-- /row -->

@@ -1,0 +1,708 @@
+// .btn-inline {
+//     display: inline-block;
+//   }
+
+//   .btn-primary.btn-round {
+//     border-radius: 50%;
+//     padding: 0;
+//     min-width: 25px;
+//     font-size: 1rem;
+//     margin-top: 0;
+//   }
+//   .property_notice{
+//     white-space: pre-wrap;
+//       }
+
+.fees-footer {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  display: grid;
+  &--text {
+    font-family: Open Sans, Regular;
+    font-size: 12px;
+    color: #a3aab1;
+  }
+}
+
+ul {
+  list-style-type: disc !important;
+  margin-left: 1rem;
+}
+
+.tabs {
+  border-radius: 20px;
+  overflow: hidden;
+  // box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5);
+  //margin-top: 1rem;
+}
+.tab {
+  width: 100%;
+  color: #373041;
+  overflow: hidden;
+  padding: 0 1rem 0 1rem;
+  & input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 0;
+    /* Icon */
+    // &:hover {
+    //   background-color: white;
+    // }
+    &::after {
+      // content: "\276E"; >
+      content: "\276F";
+      transform: rotate(90deg);
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transition: all .25s;
+    }
+  }
+  &-content {
+    max-height: 100%;
+    padding: 0 1em;
+    background: white;
+    transition: all .05s;
+  }
+  &-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: white;
+    cursor: pointer;
+    // &:hover {
+    //   background: darken($midnight, 10%);
+    // }
+  }
+}
+
+// :checked
+input:checked {
+  + .tab-label {
+    background: white;
+    &::after {
+      transform: rotate(-90deg);
+    }
+  }
+  ~ .tab-content {
+    max-height: 0;
+    //padding: 1em;
+  }
+}
+
+
+@import '../../../styles.scss';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons&style=outline');
+
+.button-back {
+  margin-top: 4rem;
+  border-color: white;
+  position: relative;
+  cursor: pointer;
+  span {
+    border: 0.2rem solid white;
+    border-radius: 8rem;
+    padding: 0.8rem 2rem 0.8rem 3rem;
+  }
+  .arrow {
+    border: solid white;
+    border-width: 0 0.2rem 0.2rem 0;
+    padding: 0.3rem;
+    position: absolute;
+    top: 50%;
+    left: 1.3rem;
+    transform: rotate(135deg) translate(-50%);
+    -webkit-transform: rotate(135deg) translate(-50%);
+  }
+}
+
+.fees-button {
+  margin-top: 0.3em;
+  padding: 1.25rem;
+  background: $lg-blue;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  width: 100%;
+  border-style: none;
+  border: 1px solid transparent;
+  text-align: center;
+  &--disabled{
+    background-color: #FFFFFF;
+    color: #A3AAB1;
+  }
+  @include breakpoint(sm_max) {
+    margin-top: 5px !important;
+    padding: 1.25rem 0.8rem !important;
+    font-size: 17px;
+    margin-bottom: 1em !important;
+    text-align: center !important;
+    width: 100%;
+  }
+}
+
+// .fees-button:disabled {
+//   background-color: red;
+// }
+
+.fees {
+  margin-left: 20%;
+  max-width: 60%;
+  display:grid;
+  &-box{
+    padding: 3rem;
+    margin-top: 4rem;
+    display:grid;
+    grid-template-columns: 0.05fr 0.95fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      ". title"
+      "fees fees"
+    ;
+    background-color: white;
+    border-radius: 15px;
+    align-content: space-around;
+    &-title{
+      display:grid;
+      grid-area: title;
+      margin-bottom: 1rem;
+    }
+    &-info{
+      grid-area: fees;
+      display:grid;
+      grid-template-columns: 0.05fr 0.35fr 0.3fr 0.3fr;
+      grid-template-rows: auto ;
+      grid-template-areas:
+        "logo description code type"
+      ;
+      //grid-template-columns: repeat(3, 1fr);
+      &__property{
+        display:grid;
+        &-logo {
+          grid-area: logo;
+          margin-left: 1rem;
+        }
+        &-name {
+          grid-area: description;
+        }
+        &-code{
+          grid-area: code;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        &-application-type{
+          grid-area: type;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+    &-accordion{
+      background-color: white;
+      border-radius: 10px;
+      padding: .4rem 0 .4rem 0;
+      margin-top: 1rem;
+    }
+  }
+  &-readme{
+    &__title{
+      margin-top: 2rem;
+      font-size: 40px;
+      font-family: Open Sans, Bold;
+      font-weight: 600;
+    }
+    &__subtitle{
+      font-size: 25px;
+      font-family: Open Sans, Regular;
+    }
+    &__content{
+      margin-top: 2rem;
+      font-size: 18px;
+      font-family: Open Sans, Regular;
+    }
+  }
+  &-important{
+    color: #373041;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 2rem;
+    &-box{
+      padding: 1rem;
+      background-color: #E8F5FA;
+      border-radius: 10px;
+    }
+    &__title{
+      font-size: 20px;
+      color: #009CDC;
+      font-family: Roboto, Bold;
+      font-weight: 500;
+    }
+  }
+  &-agreement{
+    //display: flex;
+    margin-top: 2rem;
+    &-label {
+      margin-bottom: 2rem;
+      font-family: Roboto, Bold;
+      font-size: 22px;
+      font-weight: 500;
+      color: white;
+      display: inline;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      display: block;
+      position: relative;
+    }
+    // & input[type="checkbox"] {
+    //   position: absolute !important;
+    //   opacity: 0;
+    //   cursor: pointer;
+    //   height: 0;
+    //   width: 0;    }
+  }
+  &-questions{
+    margin-top: 2rem;
+    width: 33%;
+    display:flex;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+      & div {
+        display:flex;
+        flex-direction: column;
+      }
+      &-info{
+        color: #009CDC;
+      }
+      &-click{
+        color: white;
+      }
+  }
+}
+
+.intro-box {
+  &-create {
+    color: #383342;
+    display:grid;
+    grid-area: create;
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.30fr 0.30fr 0.52fr 0.10fr;
+    grid-template-areas:
+    "create-text"
+    "info-text"
+    "learn-more"
+    "button-create";
+    padding: 2rem;
+    &-title {
+      font-family: "Roboto", Regular;
+      grid-area: create-text;
+      font-size: 25px;
+      width: 50%;
+      margin-bottom: 1.5rem;
+    }
+    &-info {
+      grid-area: info-text;
+      font-family: "Roboto-Regular", Medium;
+      font-size: 16px;
+      color: #6D6F72;
+    }
+    &-more {
+      grid-area: learn-more;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      & button {
+        margin-right: 1rem;
+      }
+      & div {
+        display:flex;
+        flex-direction: column;
+      }
+    }
+    &-button {
+      grid-area: button-create;
+      width: 100%;
+      margin-top: 0rem;
+      height: 100%;
+    }
+  }
+  &-signin {
+    display: grid;
+    grid-area: signin;
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    color: #383342;
+    padding: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.30fr 0.15fr 0.15fr 0.10fr;
+    grid-template-areas:
+    "signin-text"
+    "input1"
+    "input2"
+    "button-signin";
+    &-title {
+      font-family: "Roboto", Regular;
+      grid-area: signin-text;
+      font-size: 25px;
+      width: 50%;
+      margin-bottom: 1.5rem;
+    }
+    &-input-user {
+      display:flex;
+      flex-direction: column;
+      grid-area: input1;
+      color: #6D6F72;
+      max-width: 100%;
+    }
+    &-input-password {
+      display:flex;
+      flex-direction: column;
+      grid-area: input2;
+      display: flex;
+      max-width: 100%;
+}
+    &-button {
+      grid-area: button-signin;
+      width: 100%;
+      height: 100%;
+      margin-top: 0rem;
+    }
+  }
+}
+
+/* The container */
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  //top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.highlight {
+	background: red;
+  // background: white;
+	box-shadow: 0 0 0 0 rgba(255, 82, 82, 1);
+	animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 red;
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+	}
+}
+
+
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  //background-color: #8BBC5E;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  //position: relative;
+  margin-left: 1.1rem;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	// top: 10px;
+	// left: 10px;
+	// width: 9px;
+	// height: 9px;
+	border-radius: 50%;
+	//background: white;
+  //content: "\2714";
+  content: url('/assets/fees-check.svg');
+  //content: "✓";
+  transform: translate(-1.2rem, -.4rem) scale(0.75);
+
+}
+
+h1{
+  font-size: 40px;
+  font-weight: bold;
+  color:#373041;
+}
+h3{
+  font-size: 20px;
+  font-weight: bold;
+  color: #009CDC;
+}
+h4{
+  font-size: 20px;
+  font-weight: bold;
+  color: #4D445A;
+}
+h6{
+  font-size: 12px;
+  font-weight: normal;
+  color:#707070;
+}
+
+a{
+  font-size: 16px;
+  color:#009CDC;
+  text-decoration: underline;
+}
+
+// ------------------------------- .tev-btn
+.tev-btn {
+  padding: 0 20px 0 5px!important;
+  &:hover {
+    color: $white;
+    opacity: 0.7;
+  }
+  &--mdrounded {
+      border-radius: 60px;
+      height: 35px;
+      font-size: 14px;
+      font-weight: normal;
+      padding: 0 30px;
+  }
+  &--xlpad {
+      padding: 0 50px;
+  }
+}
+
+// @media screen and (min-width: 2000px) {
+//   .fees {
+//     margin-top: 5rem;
+//     &-box{
+//       aspect-ratio: 10 / 2;
+//     }
+//   }
+//   h1{
+//     font-size: 5rem;
+//   }
+//   h3 {
+//     font-size: 3.5rem;
+//   }
+//   h4 {
+//     font-size: 3.2rem;
+//   }
+//   h6 {
+//     font-size: 3rem;
+//   }
+//   .fees-footer__buttons{
+//     & button {
+//       font-size: 3rem;
+//     }
+//   }
+//   a{
+//     font-size: 2.8rem;
+//   }
+// }
+
+@media screen and (max-width: 1080px) {
+  .fees-box-info__property-logo{
+    margin-left: 0;
+  }
+  h1{
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h6 {
+    font-size: 0.8rem;
+  }
+  .fees-footer__buttons{
+    & button {
+      font-size: 1.2rem;
+    }
+  }
+  a{
+    font-size: 1rem;
+  }
+  .fees-questions{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .button-back {
+    margin-top: 2rem;
+  }
+
+  .fees-questions{
+    & button {
+      display:none;
+    }
+  }
+
+  .fees-readme{
+    &__title{
+      margin-top: 1rem;
+      font-size: 28px;
+    }
+    &__subtitle{
+      font-size: 25px;
+    }
+    &__content{
+      margin-top: 1rem;
+      font-size: 18px;
+    }
+  }
+
+  .fees {
+    margin-left: 10%;
+    max-width: 80%;
+    &-box{
+      margin-top: 2rem;
+      padding: 1.5rem;
+      display:flex;
+      flex-direction: column;
+      &-info{
+      display:flex;
+      flex-direction: column;
+        &__property{
+          &-logo {
+            display:flex;
+            width: 5%;
+            margin: 0 0 0.5rem 0;
+          }
+          &-name {
+            display:flex;
+            flex-direction: column;
+            margin: 0 0 1rem 0;
+          }
+          &-code{
+            display:flex;
+            margin: 0 0 1rem 0;
+            flex-direction: column;
+            align-items: initial;
+          }
+          &-application-type{
+            display:flex;
+            flex-direction: column;
+            align-items: initial;
+          }
+        }
+    }
+    }
+    &-footer{
+      margin-top: 2rem;
+      display:block;
+      &__buttons{
+        margin-top: 2rem;
+        width: 100%;
+        & button {
+          border-radius: 10px !important;
+        }
+        & button:last-child {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+    &-agreement
+      {
+        &-label {
+          font-size: 16px;
+        }
+      }
+  }
+
+}
+
+
+@media screen and (max-width: 375px) {
+  .tev-btn {
+    &--mdrounded {
+        font-size: 11px;
+    }
+  }
+  .icon{
+    font-size: 20px;
+    margin-top: 0.2em;
+  }
+  h1 {
+    font-size: 28px !important;
+    margin-left: 0%;
+  }
+  h4 {
+    display:inline;
+  }
+  .tev-btn--xlarge1 {
+    font-size: 16px;
+    padding: 0;
+  }
+  a {
+    margin-bottom: 3em;
+    font-size: 14px !important;
+  }
+
+}
+

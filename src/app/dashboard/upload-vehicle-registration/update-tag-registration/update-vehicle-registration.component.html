@@ -1,0 +1,40 @@
+<div class="box-group">
+  <div *ngIf='!retry; else retryErrorBlock'>
+    <h4 class="form-title">
+      Please complete your information
+    </h4>
+  </div>
+
+  <ng-template #retryErrorBlock>
+    <h5 class="form-retry">The plate do not match with the original information provided.
+      please try again.</h5>
+  </ng-template>
+
+  <div [formGroup]="childForm" (submit)="submit()">
+
+    <div class="form-label-group">
+      <mat-form-field>
+        <div class="input-update-id" [class.with-error]="iconPlateDisabled && !iconPlateDisabled">
+          <input matInput
+                 formControlName="plate"
+                 id="plate"
+                 (input)="onChange($event,'plate')"
+                 placeholder="License Plate"
+                 type="text"
+                 minlength="1" maxlength="50"
+          >
+          <mat-icon class="green-icon" *ngIf="plateDisabled">check</mat-icon>
+          <mat-icon color="warn" *ngIf="iconPlateDisabled && !plateDisabled">error</mat-icon>
+        </div>
+        <mat-error>{{getError('plate')}}</mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <button type="submit" class="btn btn-blue" (click)="submit()" [disabled]="!enableSend">Submit</button>
+    <br/>or<br/>
+    <button class="btn btn-blue" (click)="retryUpload()" >Upload new file</button>
+
+  </div>
+
+</div>

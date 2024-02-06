@@ -1,0 +1,6 @@
+main.container-fluid[role="main"] {
+  min-height: calc(100vh - 82px);
+  @media only screen and (max-width: 550px) {
+    padding-top: 50px;
+  }
+}

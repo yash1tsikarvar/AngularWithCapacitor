@@ -1,0 +1,32 @@
+.paymentDetails-header {
+  margin-bottom: 40px;
+  @media (max-width: 991px) {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+  }
+
+  &-container  {
+    color: #4d445a;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  &-title {
+    font-size: clamp(18px, 5vw, 45px);
+    line-height: clamp(18px, 5vw, 45px);
+    font-weight: 400;
+  }
+
+  &-subtitle {
+    margin-top: 10px;
+    font-size: clamp(12px, 3vw, 20px);
+    line-height: clamp(12px, 3vw, 20px);
+    font-weight: 400;
+  }
+
+  &-quickPass {
+    font-weight: bold;
+    font-style: italic;
+  }
+}

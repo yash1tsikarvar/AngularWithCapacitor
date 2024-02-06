@@ -1,0 +1,229 @@
+@import "../../../../sass/tenant_2.0";
+@import "../../../../sass/styles_mat";
+
+.re-send-code{
+  background: transparent url("/assets/intro/shutterstock_268450493.png") no-repeat right top;
+  background-color: transparent;
+  background-size: auto;
+  opacity: 1;
+  background-size: auto 100%;
+  background-color: #4D445A;
+  height: 100vh;
+  //background-color: #4D445A;
+  //background-color: #383342;
+  display: grid;
+  // grid-template-columns: .2fr .6fr .2fr;
+  grid-template-columns: .2fr .8fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    ". header ."
+    ". form ."
+    " . footer .";
+  &__header {
+    grid-area: header;
+    margin-top: 5rem;
+    &--logo{
+      height: 40px;
+    }
+    &--title{
+      font-family: Open Sans, Bold;
+      font-size: 40px;
+      font-weight: 600;
+      margin-top: 3rem;
+    }
+    &--text{
+      font-family: Roboto, Regular;
+      font-size: 16px;
+      margin-top: 1.5rem;
+      &__important{
+        margin-top: 1rem;
+        // border: solid 2px white;
+        // padding: 1rem;
+      }
+    }
+  }
+  &__form {
+    grid-area: form;
+    margin-top: 1rem;
+    width: 100%;
+    &--box{
+      //max-width: 30rem;
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem 2rem .5rem 2rem;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      & span {
+        color: #8E8798;
+      }
+    }
+    &--button{
+      margin-top: 2rem;
+    }
+  }
+  &__footer {
+    margin-top: 1rem;
+    grid-area: footer;
+    //text-align: center;
+    color: #A3AAB1;
+    font-family: Open Sans, Regular;
+    font-size: 12px;
+  }
+}
+
+// .style-custom{
+//     margin: 8px;
+//     //height: 50%;
+//     width: 95%;
+// }
+
+// .style-area-custom{
+//     width: 100%;
+// }
+
+// .txt-custom{
+//     height: 2px;
+// }
+
+.dial-code-select{
+  padding: 0.4em 0 0.4em 0 !important;
+}
+
+.sms-verification {
+  padding-left: 6rem;
+  padding-top: 2rem;
+  & .sms-code-content {
+    padding-top: 0;
+    margin-top: 2rem;
+  }
+}
+a {
+  cursor: pointer;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.register-input{
+  padding: 1.5em 0 1.5em 0 !important;
+  transform: translate(0, +0.1rem);
+  background-color: #F4F4F4;
+}
+
+.content-box {
+  max-width: 30rem;
+  background-color: white;
+  border-radius: 25px;
+  padding: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.txt-gray {
+  color: #8E8798;
+  margin-bottom: 0.2rem;
+}
+
+// .sms-button {
+//   margin-top: 5rem !important;
+// }
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@media screen and (max-width: 1080px) {
+  .re-send-code {
+    height: 100%;
+    grid-template-columns: .1fr .9fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      ". header ."
+      ". form ."
+      ". footer .";
+      &__footer {
+        text-align: initial;
+        margin-top: 4rem;
+      }
+  }
+}
+
+@media screen and (max-width: 1060px) {
+  .re-send-code {
+    background: none;
+    background-color: #4D445A;
+    padding: 0;
+    padding: 3rem;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .havent-received {
+      display: none;
+  }
+  // .sms-verification {
+  //   background: none;
+  //   background-color: #4D445A;
+  //   padding: 0;
+  //   padding: 3rem;
+  // }
+  .content-box {
+    max-width: 100%;
+  }
+  h1 img {
+    margin:0 0 2rem 0;
+  }
+  .sms-verification h3 {
+    margin-top: 1rem;
+  }
+  div button{
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .re-send-code{
+    &__header {
+      grid-area: header;
+      margin-top: 3rem;
+      &--logo{
+        height: 28px;
+      }
+      &--title{
+        font-size: 28px;
+        margin-top: 2rem;
+      }
+      &--text{
+        font-size: 12px;
+        margin-top: 1rem;
+      }
+    }
+    &__form {
+      margin-top: 1rem;
+      &--box{
+        padding: 1rem 2rem .5rem 1.5rem;
+      }
+      &--button{
+        margin-top: 2rem;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .icon {
+    display: none;
+  }
+
+  input {
+    width: auto !important;
+    height: auto !important;
+  }
+
+}
+

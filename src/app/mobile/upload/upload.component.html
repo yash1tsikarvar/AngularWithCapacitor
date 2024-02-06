@@ -1,0 +1,62 @@
+<div class="finish-upload" *ngIf="uploadedFinish">
+  <tev-awesome-message (closePopup)="closeUploadFinish()" [message]="textFinal" [additionalText]="additionalText"
+                       [buttonText]="''" [autoCloseTime]="105"
+                       [auto_closeable]="false"></tev-awesome-message>
+</div>
+<div *ngIf="!uploadedFinish" class="mobile" [class.upload-white]="showUploadFile()">
+
+  <div class="row">
+    <h1>
+      <img src="/assets/icon-te.svg" alt="Tenant Evaluation">
+    </h1>
+  </div><!-- ./row -->
+
+  <div *ngIf="showUploadFile()">
+
+    <div class="row">
+      <h2>Take a picture of the <span class="highlighted-blue">{{ type }}</span> of your ID</h2>
+    </div>
+    <div class="row">
+      <p> Make sure your document is readable and well lit. No photocopies.</p>
+    </div>
+    <div class="row">
+      <img class="img-icon" [src]="getImage()" alt="upload image from mobile">
+    </div>
+  </div>
+
+  <div *ngIf="error && !uploading && !showForm">
+    <tev-errors-id [error]="error" [subError]="subError" [smallText]="textFinal"></tev-errors-id>
+  </div>
+
+  <div *ngIf="showButtonUploadOrRetry()" class="row">
+    <label class="btn btn-blue">
+      <input type="file" capture
+             accept="image/*" #inputFile (change)="onFileChanged($event)"/>
+      {{ error ? 'Retry' : 'Open Camera'}}
+    </label>
+  </div>
+
+  <div class="row" *ngIf="uploading">
+    <div class="col-xs-12 col-sm-6 offset-sm-3">
+      <tev-uploading-message init="60"></tev-uploading-message>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="notTask">
+    <tev-message-with-icon [img]="'assets/icon-green-check.svg'" [altText]="'green check'"
+                           [text]="'You don’t need to upload your document again!'"
+                           [smallText]="'Your document has already been submitted. Now you can close and continue on your computer.'"
+    ></tev-message-with-icon>
+  </div>
+
+  <div class="col-xs-12" *ngIf="showForm">
+    <tev-update-id-applicant [info]="photoIdVerification"
+                             (dataSent)="verificationSended($event)"
+                             [token]="token"
+                             [checkFirstStep]=false
+                             [applicantFullName]="''"></tev-update-id-applicant>
+  </div>
+
+</div><!-- ./intro -->
+<tev-expired-dialog *ngIf="requestExpired" [errorBackRetries]="errorRetriesBack"
+                    (responseExpired)="forceUploadExpiredId($event)"></tev-expired-dialog>

@@ -1,0 +1,47 @@
+
+<div class="box-group box-group--connect form-box" [ngClass]="viewType">
+
+
+  <div class="row" style="margin-bottom: 1rem;">
+    <div class="col-12 col-md-6">
+      <div class="select-applicant__form--info">
+        <p>Other Occupants under the age of 18</p>
+      </div>
+    </div>
+  </div>
+
+  <form class="form-group closed-question" [formGroup]="childForm">
+
+
+    <div class="closed-question__body">
+      <label><span class="txt tev-text">Are there any occupants under the age of 18?</span></label>
+      <tev-yes-no-input (change)="yesNoChanged($event)" [formControlName]="'anyUnderAge'"></tev-yes-no-input>
+      <div class="invalid-feedback">{{getError('anyUnderAge')}}</div>
+    </div>
+
+  </form>
+
+  <div class="underage-info" *ngIf="anyUnderAge">
+
+    <div class="form-array" *ngFor="let opt of getNumberOfForms(); let i = index;">
+
+      <tev-underage-form [formIndex]="i"
+                         [info]="occupantsFormsValues$[i]"
+                         (formChanged)="occupantInfoChanged($event, i)"></tev-underage-form>
+
+      <div class="text-right" *ngIf="i > 0">
+        <button class="tev-btn tev-btn--small"
+                type="button"
+                (click)="deleteOccupantByIndex(i)">Delete</button>
+      </div>
+
+    </div>
+
+
+    <div class="mt-4 mb-3" [hidden]="!showAddForm()">
+      <button class="btn btn-link with-icon txt-xs txt-purple" (click)="addOccupant()">Add another Occupant</button>
+    </div><!-- ./add-car-->
+
+  </div>
+
+</div>

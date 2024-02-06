@@ -1,0 +1,45 @@
+<div class="col-12">
+    <div class="form-label-group">
+        <mat-form-field appearance="outline">
+            <input name="filter" matInput type="search" id="filter" placeholder="Filter">
+            <img (click)="filter()" matSuffix class="btn btn-form floating" src="/assets/tenant-2.0/icon_filter.svg">
+        </mat-form-field>
+    </div>
+    <div class="row container-filter" *ngIf="toggleFilter">
+        <div class="col-12">
+            <label>Status</label>
+            <div class="box-control" *ngFor="let status of statusList">
+                <mat-checkbox>
+                    {{status}}
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="col-12">
+            <label>Date Range</label>
+            <p><span class="txt">From</span></p>
+            <mat-form-field appearance="outline">
+                <input matInput name="startDate" id="startDate" [matDatepicker]="startPicker" [max]="endDate"
+                    [min]="minDate" [formControl]="startDate" class="input_text" />
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+                <mat-error></mat-error>
+                <!-- <mat-hint>mm/dd/yyyy</mat-hint>  startView="multi-year"-->
+            </mat-form-field>
+    
+            <span class="txt">To</span>
+            <mat-form-field appearance="outline">
+                <input matInput name="endDate" id="endDate" [matDatepicker]="endPicker" [min]="startDate.value"
+                    [formControl]="endDate" class="input_text" />
+                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                <mat-datepicker #endPicker></mat-datepicker>
+                <mat-error></mat-error>
+                <!-- <mat-hint>mm/dd/yyyy</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <div class="col-12">
+            <button (click)="home($event)" class="tev-btn tev-btn--primary tev-btn--xlpad tev-btn--xlarge1"><span
+                    class="mat-button-wrapper">Apply</span>
+            </button>
+        </div>
+    </div>
+</div>

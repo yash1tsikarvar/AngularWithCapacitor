@@ -1,0 +1,110 @@
+<div class="verifications container">
+
+  <mat-spinner class="centered" *ngIf="status===''"></mat-spinner>
+
+  <div *ngIf="status === 'Pending'">
+
+    <tev-verification-title [status]="status" [hasDecline]="true" [description]="getDescription()"
+                            [name]="character.applicantName"
+                            [type]="type"
+                            [verificationName]="title" (decline)="declineEvent()"></tev-verification-title>
+
+
+
+    <div class="verification-form-container py-2">
+      <form [formGroup]="form">
+        <div class="row">
+          <!-- knows --->
+          <div class="col-12 px-5 py-4">
+            <p>Do you know <span class="txt-bold">{{character.applicantName}}</span>?</p>
+            <mat-radio-group formControlName="knows" required aria-label="Select an option">
+              <mat-radio-button value="Y">Yes</mat-radio-button>
+              <mat-radio-button value="N">No</mat-radio-button>
+              <mat-error *ngIf="showError">{{getError("knows")}}</mat-error>
+            </mat-radio-group>
+          </div>
+          <!-- ./knows -->
+
+          <!--          Know ago-->
+          <div *ngIf="know" class="col-sm-12 col-lg-6 px-5">
+                <mat-label>* For how long have you known {{character.applicantName}}?:</mat-label>
+                <div class="row">
+                  <div class="col-sm-12 col-lg-6">
+                  <mat-form-field appearance="legacy">
+                    <input matInput formControlName="knowAgoYears" maxlength="2" type="integer"  placeholder="Years">
+                    <mat-error *ngIf="showError">
+                      <div ng-message='required'>At least years o months field is required</div></mat-error>
+                  </mat-form-field>
+                  </div>
+                  <div class="col-sm-12 col-lg-6">
+                  <mat-form-field appearance="legacy">
+                    <input matInput formControlName="knowAgoMonths" maxlength="2" type="integer" placeholder="Months">
+                    <mat-error *ngIf="showError">
+                      <div ng-message='required'>At least years o months field is required</div></mat-error>
+                  </mat-form-field>
+                  </div>
+                </div>
+          </div>
+
+<!--          Relationship-->
+          <div *ngIf="know" class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field>
+              <mat-label>* What is your relationship with {{character.applicantName}}?</mat-label>
+              <mat-select placeholder="Select one" formControlName="relationship">
+                <mat-option *ngFor="let option of relationship" [value]="option.key">{{option.name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="showError">{{getError('relationship')}}</mat-error>
+            </mat-form-field>
+          </div>
+<!--        goodTenant  -->
+          <div *ngIf="know" class="col-sm-12 col-lg-6 px-5" style="margin-top: 2em">
+            <p>* In your opinion, would you recommend <span class="txt-bold">{{character.applicantName}}</span>? (If not, please further explain below in the remarks section).</p>
+          <mat-radio-group formControlName="goodTenant" required aria-label="Select an option">
+            <mat-radio-button value="Y">Yes</mat-radio-button>
+            <mat-radio-button value="N">No</mat-radio-button>
+            <mat-error *ngIf="showError">{{getError("goodTenant")}}</mat-error>
+          </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="col-12 px-4 py-4">
+          <label class="txt-bold">{{ remarks }}</label>
+          <textarea formControlName="remarks" name="remarks" class="form-control txt-xs" rows="3"></textarea>
+          <mat-error *ngIf="showError">{{getError("remarks")}}</mat-error>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>What is your name?</mat-label>
+              <input matInput formControlName="verifierName" maxlength="50" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierName")}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngIf="know" class="row" style="margin-top: 2em">
+          <div class="col-12 px-5">
+            <div class="agreement-checkbox custom-checkbox">
+              <mat-checkbox class="mat-checkbox--rounded mat-checkbox--large"
+                            formControlName="agreeAndAuthorize"
+                            id="agree">I hereby certify the above statements are true and correct to the best of my
+                knowledge
+              </mat-checkbox>
+            </div>
+            <mat-error *ngIf="showError">{{getErrorAgreeAndAuthorize()}}</mat-error>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <tev-verification-footer *ngIf="status!=='Complete'" (submitEvent)="submitEvent()"></tev-verification-footer>
+  </div>
+
+  <div *ngIf="status === 'Complete'">
+    <tev-verification-finish [title]="title" [complete]="status==='Complete'" [id]="id"
+                             [error]="errorData"></tev-verification-finish>
+  </div>
+
+</div>
+

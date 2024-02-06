@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 awesome-item">
+    <img src="assets/upload-generic/success.gif" alt="image success to upload document"
+         class="awesome-img"/>
+    <tev-countdown [init]="timeAutoClose" (onComplete)="closeUploadFinish()" style="display: none;"></tev-countdown>
+    <p [class.small-text]="hasChange">{{text}}</p>
+    <p  *ngIf="!hasChange" class="small-text">Your files have been submitted successfully.
+      If we need additional information we will contact you later.
+    </p>
+    <p *ngIf="additional_text" class="bold-small-text">{{additional_text}}</p>
+    <button *ngIf="button_text!==''" class="btn btn-blue" data-test="btContinue" (click)="closeUploadFinish()">{{button_text}}</button>
+  </div>
+</div>

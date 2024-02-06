@@ -1,0 +1,10 @@
+@Size(max = 80)
+    private String name;
+
+    @Size(max = 20)
+    private String relationship;
+
+    @Size(max = 30)
+    private String occupation;
+    
+	private Integer age;

@@ -1,0 +1,151 @@
+@import "../../../sass/tenant_2.0";
+@import "../../../sass/styles_mat";
+
+.sms-verification {
+  padding-left: 6rem;
+  padding-top: 2rem;
+}
+a {
+  cursor: pointer;
+}
+
+.icon {
+  margin-left: 0 !important;
+}
+
+@media screen and (max-width: 1060px) {
+  .sms-verification {
+    background: none;
+    background-color: #4D445A;
+    padding: 0;
+    padding: 3rem;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .havent-received {
+      display: none;
+  }
+  // .sms-verification {
+  //   background: none;
+  //   background-color: #4D445A;
+  //   padding: 0;
+  //   padding: 3rem;
+  // }
+  h1 img {
+    margin:0 0 2rem 0;
+  }
+  .sms-verification h3 {
+    margin-top: 1rem;
+  }
+  div button{
+    width: 100% !important;
+  }
+}
+
+.home-options {
+  grid-area: body;
+  display: grid;
+  grid-template: 0.9fr / 1fr 1fr 1fr;
+  justify-items: center;
+  padding-bottom: 50px;
+}
+
+.home-option {
+  width: 75%;
+  min-width: 12rem;
+  display: grid;
+  padding: 8%;
+  box-sizing: none;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 8px;
+  display: grid;
+  grid-template: 1fr 1fr 0.8fr / 1fr;
+  grid-template-areas:
+    'img'
+    'txt'
+    'btn';
+  &__img {
+    height: 50px;
+    grid-area: img;
+  }
+  &__text {
+    grid-area: txt;
+    box-sizing: border-box;
+    color: #4D445A;
+  }
+  &__button {
+    display: grid;
+    grid-area: btn;
+    grid-template: 1fr / 4fr 1fr;
+    align-items: center;
+    background: #009cdc;
+    padding: 1.25rem 1.25rem;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    width: 100%;
+    border-style: none;
+    border: 1px solid transparent;
+    text-align: left;
+
+    span.icon{
+      margin-left: 50%;
+      width: 22px;
+      height: 22px;
+      background-image: url("/assets/intro/icon_more.svg");
+    }
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .home-options {
+    grid-area: body;
+    display: grid;
+    grid-template: 0.8fr 0.8fr 0.8fr / 1fr;
+    padding-bottom: 50px;
+  }
+  .home-option {
+    padding: 5%;
+    margin-right: 0px;
+    width: 100%;
+    margin-bottom: 1rem ;
+    display: grid;
+    grid-template: 0.4fr 0.4fr/ 25% 75%;
+    grid-template-areas:
+      'option-img option-text'
+      'option-button option-button';
+    &__img {
+      grid-area: option-img;
+      height: 30px;
+    }
+    &__text {
+      font-size: 20px;
+      grid-area: option-text;
+    }
+    &__button {
+      grid-area: option-button;
+      grid-template: 1fr / 1fr;
+      text-align: center;
+      span.icon{
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 399px) {
+  .icon {
+      display: none;
+  }
+  input {
+    width: auto !important;
+    height: auto !important;
+  }
+}

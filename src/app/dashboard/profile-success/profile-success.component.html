@@ -1,0 +1,148 @@
+<tev-header></tev-header>
+<div class="profile-success-background">
+  <div class="profile-success">
+
+    <div class="profile-success-description">
+
+
+      <div class="profile-success-description__title">
+        <div class="profile-success-description__title-header">
+          <p
+          >
+            Thank you!
+        </p>
+
+          <div
+          class="profile-success-description__title-link desktop"
+          >
+            <img src="/assets/download-circular-button.svg" style="margin-right: .5rem;">
+              <a href="{{mainApplication.paymentReceiptUrl}}" target="_blank">
+                <span style="color: #009CDC">
+                  Download a copy of your receipt
+                </span>
+              </a>
+          </div>
+        </div>
+        <p
+         class="profile-success-description__title-body"
+        >
+          Your transaction has been processed and your application has been created successfully.
+        </p>
+        <p
+          class="profile-success-description__title-footer"
+        >
+          Transaction ID: {{transactionId}}
+        </p>
+        <div
+        class="profile-success-description__title-link responsive"
+        >
+          <img src="/assets/download-circular-button.svg" style="margin-right: .5rem;">
+          <a href="{{mainApplication.paymentReceiptUrl}}" target="_blank">
+            <span style="color: #009CDC">
+              Download a copy of your receipt
+            </span>
+          </a>
+          </div>
+      </div>
+
+
+      <div class="profile-success-description__text">
+        <p>Your application ID is: <span style="color: #009CDC">{{mainApplication.applicationId}}</span></p>
+        <p>Make sure to follow the next steps in order to fully submit your application for review.
+      </div>
+
+
+    </div>
+
+    <div class="profile-success-options">
+
+      <div class="profile-success-option profile-success-option-active"
+      >
+
+      <div class="dot dot-active">
+        <span>
+          1
+        </span>
+      </div>
+
+        <div>
+          <img
+            src="/assets/form-icon.svg"
+            alt="Application form and payment"
+            class="profile-success-option__img"
+          />
+        </div>
+        <p class="profile-success-option__title">Application form and payment
+        </p>
+        <p class="profile-success-option__title--text">
+          Fill out all required information from the community and make the application payment.
+        </p>
+        <button class="profile-success-option__button profile-success-option__button-active">Completed</button>
+      </div>
+
+      <div class="profile-success-option"
+      >
+
+        <div class="dot">
+          <span>
+            2
+          </span>
+        </div>
+
+        <div>
+          <img
+            src="/assets/sign-icon.svg"
+            alt="Sign rules and regulations"
+            class="profile-success-option__img"
+          />
+        </div>
+        <p class="profile-success-option__title">Sign rules and regulations
+        </p>
+        <p class="profile-success-option__title--text">
+          Start by electronically signing the documents provided by the community including the authorization form.
+        </p>
+        <button class="profile-success-option__button">Pending</button>
+      </div>
+
+      <div class="profile-success-option"
+      >
+
+        <div class="dot">
+          <span>
+            3
+          </span>
+        </div>
+
+        <div>
+          <img
+            src="/assets/upload-icon.svg"
+            alt="Upload required documents"
+            class="profile-success-option__img"
+          />
+        </div>
+        <p class="profile-success-option__title">
+          Upload required documents
+        </p>
+        <p class="profile-success-option__title--text">
+          Continue by uploading all documents required by the community such as driver’s license, marriage certificate and so forth.
+        </p>
+        <button class="profile-success-option__button">Pending</button>
+
+      </div>
+  </div>
+
+  <div class="profile-success__additional-info">
+    If the application process includes verifications, please ensure that your references are informed to promptly respond to our verification calls and/or emails.
+  </div>
+
+<!-- <div class="profile-success__button"> -->
+  <a class="profile-success__button" (click)="showVideoSigning()">
+    SIGN RULES AND REGULATIONS NOW
+  </a>
+<!-- </div> -->
+
+
+
+</div>
+
+<tev-footer></tev-footer>

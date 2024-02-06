@@ -1,0 +1,86 @@
+.ng-valid[required], .ng-valid.required  {
+  border-right: 0px solid #42A948; /* green */
+}
+
+input.ng-dirty.ng-invalid:not(form)  {
+  border-right: 0px solid #a94442; /* red */
+}
+
+.form-control:disabled{
+  background-color: white;
+}
+
+
+.input-update-id {
+  display: flex;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+  padding: 5px;
+  align-items: center;
+
+  .mat-icon{
+    font-size: 30px;
+    margin-right: 10px;
+  }
+
+}
+
+.btn-blue{
+  width: 100%;
+  height: 46px;
+  width: 90%;
+}
+
+.green-icon {
+  color: green;
+}
+.green-icon svg{
+  fill: green;
+}
+
+.mat-form-field-flex {
+  text-indent: 5px;
+  align-items: center;
+}
+
+.mat-form-field {
+  width: 90%;
+}
+
+.with-error{
+  border: 3px solid #a94442;
+}
+
+.form-control:focus{
+  border-color: white;
+  box-shadow: unset;
+}
+
+form{
+  padding: 20px;
+
+  .alert{
+    font-size: 14px;
+    padding: 0px 5px;
+  }
+}
+
+.form-title{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.form-retry{
+  margin-left: 20px;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+label{
+  font-size: 10px;
+  font-family: Roboto;
+  float: left;
+}
+

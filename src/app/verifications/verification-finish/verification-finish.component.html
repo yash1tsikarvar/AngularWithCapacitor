@@ -1,0 +1,17 @@
+<tev-verification-title [verificationName]="title"></tev-verification-title>
+<div class="col-12">
+  <div class="verification-lower-text">
+    <br/>
+    <div *ngIf="error">
+      <img src="assets/icon-alert.svg" alt="error icon" class="icon-result"/>
+      <p>We're very sorry for the inconvenience but we are unable to process your request.</p>
+      <p *ngIf="error"><strong>{{type}} Verification {{id}} was not found. </strong></p>
+    </div>
+    <div *ngIf="complete && !error">
+      <img src="assets/icon-success.svg" alt="error icon" class="icon-result"/>
+      <p><strong>{{type}} has been completed. Thank you for your time.</strong></p>
+      <br/>
+    </div>
+    <p>If you have questions, please call Tenant Evaluation Customer Support at <a href="tel:(305) 692-7900">(305) 692-7900</a></p>
+  </div>
+</div>

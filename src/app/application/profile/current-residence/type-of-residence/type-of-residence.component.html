@@ -1,0 +1,23 @@
+<form [formGroup]="residenceTypeForm">
+  <p class="tev-text">
+    Do you rent or own this property ?
+  </p>
+  <div class="box-group__row box-group__row--baseline pb-0">
+    <!-- <span class="tev-text">Do you rent or own this property ?</span> -->
+    <div class="select-group">
+      <span class="txt-bold txt-form-title txt-xxxs">Select one</span>
+      <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+        <mat-select
+        formControlName="type" class="general-select" data-cy="typeOfResidence">
+          <mat-option *ngFor="let option of currentResidenceTypeValues"
+                      id="{{option.value}}-{{id}}"
+                      [value]="option.value">
+            {{option.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+</form>
+<div class="invalid-feedback">{{getError('type')}}</div>

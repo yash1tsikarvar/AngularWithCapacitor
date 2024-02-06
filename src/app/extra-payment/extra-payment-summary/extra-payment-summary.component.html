@@ -1,0 +1,51 @@
+<h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">Payment Details</h3>
+
+<div class="py-4 px-5">
+
+  <article>
+
+    <div class="payment-table">
+
+      <div class="payment-table__row payment-table__row--head">
+        <div class="payment-table__col payment-table__col--item">
+          <h3 class="txt-all-caps txt-md column-title">Reason</h3>
+        </div>
+        <div class="payment-table__col payment-table__col--price">
+          <h3 class="txt-all-caps txt-md column-title">Amount</h3>
+        </div>
+      </div>
+
+      <div class="payment-table__row">
+        <ul class="payment-table__col payment-table__col--item">
+          <li class="txt-xs">{{extraPayment.reason}}</li>
+        </ul>
+        <ul class="payment-table__col payment-table__col--price">
+          <li class="txt-xs">{{extraPayment.amount | currency}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="payment-table__row payment-table__row--total">
+      <div class="payment-table__col payment-table__col--item">
+        <h3>Total Additional fee</h3>
+        <span class="payment-table__warn">This charge will be collected immediately *</span>
+      </div>
+      <div class="payment-table__col payment-table__col--price">
+        <h3>{{extraPayment.amount | currency}}
+
+        </h3>
+      </div>
+    </div>
+
+  </article>
+</div><!-- ./py-4 px-5 -->
+
+<div class="box-group box-group--total">
+  <h4>
+    Total Payment Now
+  </h4>
+  <h4>
+    {{extraPayment.amount | currency}}
+  </h4>
+</div><!-- ./box-group -->
+

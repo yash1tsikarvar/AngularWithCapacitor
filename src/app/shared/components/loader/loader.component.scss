@@ -1,0 +1,32 @@
+.my-overlay {
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 10000 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  background-color: rgba(197, 195, 198, 0.9) !important;
+  cursor: pointer !important;
+  visibility: visible !important;
+  transition: visibility 0s, opacity 0.4s linear !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: wait !important;
+
+  mat-card-header{
+    margin-bottom: 20px;
+  }
+  p{
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .center-overlay{
+    padding: 10%;
+  }
+
+}
+.my-overlay i.fa.fa-spinner.fa-spin, .spinner-big {
+  font-size: 100px !important;
+}

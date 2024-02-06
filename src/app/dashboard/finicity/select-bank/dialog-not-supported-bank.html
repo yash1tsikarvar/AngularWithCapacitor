@@ -1,0 +1,15 @@
+<i class="tev-icon tev-icon--tenant-logo"></i>
+<h2 mat-dialog-title>Proof of income<br/>
+  documents</h2>
+<div mat-dialog-content>
+  <p>The selected bank account is not available at this time. As a replacement, the association requires the following documents:</p>
+
+  <ul>
+    <li *ngFor="let document of proofOfIncomeTask.task">
+      {{document.description}}
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button style="padding:1.5em;" mat-button mat-dialog-close (click)="goToUploads()" class="mat-dialog-actions mat-button">UPLOAD DOCUMENTS NOW</button>
+</div>

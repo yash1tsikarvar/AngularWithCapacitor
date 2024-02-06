@@ -1,0 +1,48 @@
+<div class="box-group form-box" [ngClass]="viewType" data-cy="incomeVerification">
+
+  <!-- <h4 class="box-group__title" data-cy="incomeVerificationTitle">Income Verification</h4> -->
+  <div>
+    <div class="select-applicant__form--info" style="margin-bottom: 1rem" data-cy="incomeVerificationTitle">
+      <p>Income Verification</p>
+    </div>
+  </div>
+
+  <form class="row" [formGroup]="childForm">
+
+    <div class="col-12">
+      <div class="yes-no-question">
+        <label><span class="txt tev-text" data-cy="incomeVerificationText">Do you have a United States bank account under your name?</span></label>
+        <tev-yes-no-input formControlName="hasUsBank"></tev-yes-no-input>
+        <div class="invalid-feedback">{{getError('hasUsBank')}}</div>
+      </div>
+    </div>
+    <div *ngIf="showHasBank" class="col-12">
+      <div class="form-group closed-question">
+      <div class="form-label-group">
+        <div class="closed-question__body">
+          <label><span class="txt tev-text" data-cy="notAllowedBank">Do you have an account with NFCU?</span></label>
+          <tev-yes-no-input formControlName="notAllowedBank"></tev-yes-no-input>
+          <div class="invalid-feedback">{{getError('notAllowedBank')}}</div>
+        </div>
+        <div *ngIf="notAllowedBank == false" class="col-12">
+          <span class="txt-bold txt-form-title txt-xxxs">* Bank Name</span>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+                 type="text"
+                 id="bankName"
+                 class="general-input form-control"
+                 formControlName="bankName"
+                 maxlength="80"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('bankName')}}</mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+      </div>
+    </div><!-- ./col -->
+
+  </form><!-- ./row -->
+</div><!-- ./py-4 px-5 -->
+

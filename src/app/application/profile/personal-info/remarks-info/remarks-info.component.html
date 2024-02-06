@@ -1,0 +1,209 @@
+<!-- <div class="row no-margin">
+  <div class="col-12 review-tit">
+    <h3 class="txt-xs font-weight-bold px-3 py-2 mb-0 flex-column-direction">
+      Background/Civil History
+      <mat-hint style="font-weight: 100; margin:.5rem 0 .5rem 0;">*If you or the co-applicant have falsified, deliberately mislead or omitted to mention any information on your application,
+        you may not be approved for a purchase, lease and/or occupancy.</mat-hint>
+    </h3>
+  </div>
+</div> -->
+
+
+
+<div class="box-group form-box" [ngClass]="viewType">
+
+  <form [formGroup]="childForm" (submit)="submit()" data-cy="formRemarks">
+
+
+    <div class="row" style="margin-bottom: 1rem;">
+      <div>
+        <div class="remarks-info">
+          <p>Background/Civil History</p>
+          <p class="txt-form-title txt-xxxs">*If you or the co-applicant have falsified, deliberately mislead or omitted to mention any information on your application,
+            you may not be approved for a purchase, lease and/or occupancy.</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let question of formQuestions; let i = index;">
+      <div *ngIf="hasCoApplicant(); else applicantOnly;">
+          <div class="form-group closed-question">
+            <div class="closed-question__body" data-cy="remarksQuestions">
+              <label
+                ><span class="txt  tev-text">{{
+                  question.question
+                }}</span></label
+              >
+              <tev-yes-no-input
+                [formControlName]="question.mainField"
+                (change)="updateValidators(question.mainField)"
+                #mainField
+              ></tev-yes-no-input>
+              <div class="invalid-feedback">
+                {{getError(question.mainField)}}
+              </div>
+            </div>
+          </div>
+
+
+        <div *ngIf="mainField.value === 'yes'" class="box-group__row">
+          <h4 class="text-uppercase txt-xs font-weight-bold mb-0">
+            Which one of both?
+          </h4>
+          <div class="px-4">
+
+            <div class="form-group"
+                 formGroupName="{{question.mainField}}Answers">
+
+              <div class="switch switch-sm" *ngFor="let answer of question.fields">
+                <mat-checkbox [formControlName]="answer.key"
+                              id="{{question.mainField+'-'+answer.key}}">{{answer.name}}
+                </mat-checkbox>
+              </div>
+            </div>
+            <div class="invalid-feedback">{{getError(question.mainField+'Answers')}}</div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <ng-template #applicantOnly>
+          <div class="form-group closed-question">
+
+            <div class="form-group closed-question__body">
+              <label><span class="remark-question">{{question.question}}</span></label>
+              <tev-yes-no-input
+                #mainOnlyValue
+                [formControlName]="question.mainField"
+                (change)="setGroupValues(question.mainField, mainOnlyValue.value === 'yes')"
+              ></tev-yes-no-input>
+              <div class="invalid-feedback">{{getError(question.mainField)}}</div>
+            </div>
+
+
+          </div>
+      </ng-template>
+
+    </div>
+
+    <div class="box-group__textarea row"
+         [hidden]="hideApplicantExplanation"
+         *ngIf="!hasCoApplicant(); else doubleExplanation;">
+
+         <div class="form-group col-sm-12 row">
+            <label for="single_explanation"
+                class="tev-text">Please provide a brief explanation including the year and county.
+            </label>
+            <textarea class="form-control txt-xs"
+                    formControlName="applicant_explanation"
+                    id="applicant_explanation"
+                    rows="3"
+                    tevAsciiOnly
+                    [readonly]="viewType === 'review' "
+                    maxlength="500"></textarea>
+            <div class="invalid-feedback">{{getError('applicant_explanation')}}</div>
+        </div>
+
+         <div class="form-array" *ngFor="let opt of getNumberOfForms(); let i = index;">
+
+            <tev-arrested-form [formIndex]="i"
+                              [info]="arrestsFormsValues$[i]"
+                              (formChanged)="arrestInfoChanged($event, i)">
+            </tev-arrested-form>
+
+            <div class="text-right" *ngIf="i > 0">
+              <button class="tev-btn tev-btn--small"
+                      type="button"
+                      [hidden]="viewType === 'review'"
+                      (click)="deleteArrestByIndex(i)">Delete</button>
+            </div>
+
+        </div>
+
+        <div class="mt-4 mb-3 col-sm-12 row" [hidden]="!showAddForm()">
+            <button class="btn btn-link with-icon txt-xs txt-purple" (click)="addArrest()">Add another arrest</button>
+        </div>
+
+    </div><!-- ./py-4 px-5 -->
+
+    <ng-template #doubleExplanation>
+
+      <div class="box-group__textarea"
+           [hidden]="hideApplicantExplanation">
+        <div class="form-group">
+          <label for="applicant_explanation"
+                 class="tev-text">Please provide a brief explanation for the Applicant including the Year and
+            County.
+          </label>
+          <textarea class="form-control txt-xs"
+                    formControlName="applicant_explanation"
+                    id="applicant_explanation"
+                    rows="3"
+                    tevAsciiOnly
+                    [readonly]="viewType === 'review' "
+                    maxlength="500"></textarea>
+          <div class="invalid-feedback">{{getError('applicant_explanation')}}</div>
+        </div>
+      </div><!-- ./py-4 px-5 -->
+
+      <div class="form-array" [hidden]="hideApplicantExplanation" *ngFor="let opt of getNumberOfForms(); let i = index;">
+
+        <tev-arrested-form [formIndex]="i"
+                          [info]="arrestsFormsValues$[i]"
+                          (formChanged)="arrestInfoChanged($event, i)">
+        </tev-arrested-form>
+
+        <div class="text-right" *ngIf="i > 0">
+          <button class="tev-btn tev-btn--small"
+                  type="button"
+                  [hidden]="viewType === 'review'"
+                  (click)="deleteArrestByIndex(i)">Delete</button>
+        </div>
+
+      </div>
+
+      <div class="mt-4 mb-3 col-sm-12 row" [hidden]="!showAddForm()">
+        <button class="btn btn-link with-icon txt-xs txt-purple" (click)="addArrest()">Add another arrest</button>
+      </div>
+
+      <div class="box-group__textarea" [hidden]="hideCoApplicantExplanation">
+        <div class="form-group">
+          <label for="co_applicant_explanation"
+                 class="tev-text">Please provide a brief explanation for the Co-applicant including the
+            year and county.
+          </label>
+          <textarea class="form-control txt-xs"
+                    formControlName="co_applicant_explanation"
+                    id="co_applicant_explanation"
+                    rows="3"
+                    tevAsciiOnly
+                    maxlength="500"></textarea>
+          <div class="invalid-feedback">{{getError('co_applicant_explanation')}}</div>
+        </div>
+      </div><!-- ./py-4 px-5 -->
+
+      <div class="form-array" [hidden]="hideCoApplicantExplanation" *ngFor="let opt of getNumberOfForms('co_applicant'); let i = index;">
+
+        <tev-arrested-form [formIndex]="i"
+                          [info]="CoAppArrestsFormsValues$[i]"
+                          (formChanged)="arrestInfoChanged($event, i, 'co_applicant')">
+        </tev-arrested-form>
+
+        <div class="text-right" *ngIf="i > 0">
+          <button class="tev-btn tev-btn--small"
+                  type="button"
+                  (click)="deleteArrestByIndex(i, 'co_applicant')">Delete</button>
+        </div>
+
+      </div>
+
+      <div class="mt-4 mb-3 col-sm-12 row" [hidden]="!showAddForm('co_applicant')">
+        <button class="btn btn-link with-icon txt-xs txt-purple" (click)="addArrest('co_applicant')">Add another arrest</button>
+      </div>
+
+    </ng-template>
+
+  </form>
+</div>
+

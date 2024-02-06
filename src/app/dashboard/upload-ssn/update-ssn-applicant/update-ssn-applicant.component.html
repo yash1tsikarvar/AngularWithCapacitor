@@ -1,0 +1,76 @@
+<div class="box-group">
+  <div *ngIf='!retry; else retryErrorBlock'>
+    <h4 class="form-title">
+      Please complete your information
+    </h4>
+  </div>
+
+  <ng-template #retryErrorBlock>
+    <h5 class="form-retry">The Name or SSN do not match with the original information provided.
+      please try again.</h5>
+  </ng-template>
+
+  <div [formGroup]="childForm" (submit)="submit()">
+    <div class="form-label-group">
+      <mat-form-field>
+        <div class="input-update-id" [class.with-error]="iconFirstNameDisabled && !firstNameDisabled">
+          <input matInput
+                 id="firstName"
+                 class="form-control"
+                 placeholder="First name"
+                 formControlName="firstName"
+                 (input)="onChange($event,'firstName')"
+                 maxlength="30"
+          >
+          <mat-icon class="green-icon" *ngIf="firstNameDisabled">check</mat-icon>
+          <mat-icon color="warn" *ngIf="iconFirstNameDisabled && !firstNameDisabled">error</mat-icon>
+        </div>
+        <mat-error>{{getError('firstName')}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!---
+    <div class="form-label-group">
+      <mat-form-field>
+        <div class="input-update-id" [class.with-error]="iconLastNameDisabled && !lastNameDisabled">
+          <input matInput
+                 id="lastName"
+                 class="form-control"
+                 placeholder="Last name"
+                 (input)="onChange($event,'lastName')"
+                 formControlName="lastName"
+          >
+          <mat-icon class="green-icon" *ngIf="lastNameDisabled">check</mat-icon>
+          <mat-icon color="warn" *ngIf="iconLastNameDisabled && !lastNameDisabled">error</mat-icon>
+
+        </div>
+        <mat-error>{{getError('lastName')}}</mat-error>
+      </mat-form-field>
+    </div>
+    -->
+
+    <div class="form-label-group">
+      <mat-form-field>
+        <div class="input-update-id" [class.with-error]="iconSsnDisabled && !ssnDisabled">
+          <input matInput
+                 formControlName="ssn"
+                 id="ssn"
+                 (input)="onChange($event,'ssn')"
+                 placeholder="Last 4 digits of your Social Security"
+                 type="text"
+                 minlength="4" maxlength="4" pattern="[0-9]{4,4}"
+          >
+          <mat-icon class="green-icon" *ngIf="ssnDisabled">check</mat-icon>
+          <mat-icon color="warn" *ngIf="iconSsnDisabled && !ssnDisabled">error</mat-icon>
+        </div>
+        <mat-error>{{getError('ssn')}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <button type="submit" class="btn btn-blue" (click)="submit()" [disabled]="!enableSend">Submit</button>
+    <br/>or<br/>
+    <button class="btn btn-blue" (click)="retryUpload()" >Upload new file</button>
+
+  </div>
+
+</div>

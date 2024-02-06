@@ -1,0 +1,27 @@
+<div [ngClass]="viewType">
+  <div>
+    <div class="tev-text" style="margin-bottom: 1rem" data-cy="incomeVerificationTitle">
+      <p>First Reference</p>
+    </div>
+  </div>
+  <tev-single-reference
+    [info]="firstReferenceInfo$"
+    [applicantType]="applicantType"
+    [referenceNumber]="'1'"
+    (formChanged)="referenceChange($event, 'firstReference')"
+    data-cy="firstReferenceInfo"
+  ></tev-single-reference>
+
+  <div>
+    <div class="tev-text" style="margin-bottom: 1rem" data-cy="incomeVerificationTitle">
+      <p>Second Reference</p>
+    </div>
+  </div>
+  <tev-single-reference
+    [info]="secondReferenceInfo$"
+    [applicantType]="applicantType"
+    [referenceNumber]="'2'"
+    (formChanged)="referenceChange($event, 'secondReference')"
+    data-cy="secondReferenceInfo"
+  ></tev-single-reference>
+</div>

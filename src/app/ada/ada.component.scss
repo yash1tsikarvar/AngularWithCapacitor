@@ -1,0 +1,21 @@
+.tev-ada {
+  position: fixed;
+  bottom: 150px;
+  right: 24px;
+  z-index: 10000;
+  &-error {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  &-loading {
+    background-color: #f0f0f0;
+    color: #000000;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+  }
+}

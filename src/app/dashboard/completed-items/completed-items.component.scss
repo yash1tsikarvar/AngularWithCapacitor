@@ -1,0 +1,11 @@
+.user-action {
+
+  &__text {
+    h2 {
+      &::before {
+        background: #73C422;
+      }
+    }
+  }
+
+}

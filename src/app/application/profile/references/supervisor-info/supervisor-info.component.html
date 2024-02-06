@@ -1,0 +1,126 @@
+<form [formGroup]="childForm">
+
+  <div>
+    <div class="select-applicant__form--info" style="margin-bottom: 1rem">
+      <p>Supervisor Information</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Contact Name</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="supervisorName-{{counter}}"
+                 class="general-input form-control"
+                 formControlName="name"
+                 maxlength="50"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('name')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Contact Title</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="supervisorTitle-{{counter}}"
+                 class="general-input form-control"
+                 formControlName="title"
+                 maxlength="50"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('title')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </div><!-- ./col -->
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <mat-select
+          [formControlName]="'dialCode'" class="general-select">
+            <mat-option *ngFor="let code of dialCodes" [value]="code | dialCodeValue">{{code | dialCodeName}}
+            </mat-option>
+          </mat-select>
+          <mat-error>{{getError('dialCode')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Contact Phone Number</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 id="supervisorPhoneNumber-{{counter}}"
+                 class="general-input form-control"
+                 formControlName="phone"
+                 maxlength="30"
+                 [textMask]="{mask: phonemask}"
+          >
+          <mat-error>{{getError('phone')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Contact Email</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="email"
+                 id="supervisorEmail-{{counter}}"
+                 class="general-input form-control"
+                 formControlName="email"
+                 maxlength="50"
+                 required
+          >
+          <mat-error>{{getError('email')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </div><!-- ./col -->
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+      <div class="switch switch-sm" style="margin-bottom: 1rem">
+        <mat-checkbox formControlName="contact"
+                      class="mat-checkbox--rounded">
+            Do NOT contact my employer
+        </mat-checkbox>
+      </div>
+
+    </div><!-- ./col -->
+  </div>
+
+
+</form>

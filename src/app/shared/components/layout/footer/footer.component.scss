@@ -1,0 +1,14 @@
+@import "../../../../../styles";
+
+.footer{
+    font-family: 'Open Sans Regular';
+    height: 100%;
+    color: #A3AAB1;
+    font-size: 12px;
+    min-width: 100%;
+    background-color: #4D445A;
+    &-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }

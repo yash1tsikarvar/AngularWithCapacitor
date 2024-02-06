@@ -1,0 +1,408 @@
+
+<div *ngIf="viewType!=='normal'" class="row">
+  <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10"><h2 class="step-headline">New address detail</h2></div>
+  <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 button-edit" ><button *ngIf="viewType==='review'" (click)="reviewEdit()" class="tev-btn btn-blue tev-btn--medium" style="margin-right: 1rem">Edit</button></div>
+</div>
+
+<!-- <div class="row no-margin">
+  <div class="col-12 review-tit">
+    <h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">
+        Where are you Applying to? (Address at {{propertyInfo | propertyName}})
+        <a tabindex="0"
+          class="btn btn-round btn-primary btn-inline"
+          placement="top"
+          role="button"
+          data-toggle="popover"
+          triggers="click"
+          autoClose="outside"
+          ngbPopover='Provide the address to which the applicant(s) is/are applying.'>?</a>
+    </h3>
+  </div>
+</div> -->
+
+<div class="box-group box-group--connect form-box" [ngClass]="viewType">
+
+  <form [formGroup]="childForm" (submit)="submit()">
+
+    <!-- <div class="row">
+      <div class="col-12">
+        <p class="title-form">
+            Where are you applying to?
+        </p>
+      </div>
+    </div> -->
+
+    <div class="row">
+        <div *ngIf="showModeButton" class="col-sm-12 col-md-6 col-lg-8">
+            <button type="button" mat-button (click)="changeAddressMode()" style="background-color: lightgray; margin-bottom: 1rem">Enter address {{modeText}}</button>
+        </div>
+    </div>
+    <div class="row">
+
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">Property Address </span>
+
+          <mat-form-field appearance="outline" style="padding: 5rem" class="mt-3" [ngClass]="{'hidden': isEnterManually==true, 'mat-input-invalid': !isGPlaceSelected}">
+            <input matInput
+                   #locationSearch
+                   type="text"
+                   id="propertyLocationSearch"
+                   class="general-input form-control"
+                   formControlName="locationSearch"
+                   maxlength="80"
+                   [readonly]="isCoApplicantRequest"
+                  (keyup)="onSearchKey($event)"
+            >
+
+            <span class="input-tag" *ngIf="childForm.get('locationSearch').value&&isGPlaceSelected">{{childForm.get('locationSearch').value}}</span>
+
+            <a *ngIf="childForm.get('locationSearch').value && !isCoApplicantRequest"
+               aria-label="Clear" (click)="clearLocationSearch()"
+               class="btn btn-round btn-primary btn-inline btn-clear-input" style="transform: translateY(1rem);">x</a>
+            <mat-hint class="mat-error" *ngIf="isHouseNumberError">Please enter a valid house number</mat-hint>
+          </mat-form-field>
+
+          <div *ngIf="childForm.get('locationSearch').value&&!isGPlaceSelected&&!isEnterManually">
+            <mat-error>Please select an address from the dropdown, or enter the address manually</mat-error>
+          </div>
+        </div>
+      </div><!-- ./col -->
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-12 col-md-6 col-lg-8" [ngClass]="{'hidden': isEnterManually==false}">
+        <div class="form-label-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Address</span>
+          <mat-form-field appearance="outline">
+              <input matInput
+               type="text"
+               id="propertyAddress"
+               autocomplete="current-password"
+               formControlName="address"
+               maxlength="80"
+               [readonly]="isCoApplicantRequest"
+               (keyup)="onAddressKey($event)"
+               class="address-info-input"
+              >
+            <mat-error>{{getError('streetName')}}</mat-error>
+            <mat-hint class="mat-error" *ngIf="isHouseNumberError">Please enter a valid house number</mat-hint>
+          </mat-form-field>
+
+          <input
+             type="hidden"
+             id="propertyHouseNumber"
+             formControlName="houseNumber"
+             maxlength="8"
+             [readonly]="isCoApplicantRequest"
+             tevAsciiOnly
+            >
+
+          <input
+             type="hidden"
+             id="propertyStreetName"
+             formControlName="streetName"
+             maxlength="80"
+             [readonly]="isCoApplicantRequest"
+            >
+
+          <input
+             type="hidden"
+             id="propertyStreetType"
+             formControlName="streetType"
+             maxlength="80"
+             [readonly]="isCoApplicantRequest"
+            >
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-4"
+           *ngIf="!isCoApplicantRequest; else readOnlyAptUnit;">
+        <div class="form-label-group"
+             *ngIf="unitList.length === 0; else unitListSelect">
+
+             <span class="txt-bold txt-form-title txt-xxxs">* Enter The Unit Number</span>
+             <mat-form-field appearance="outline">
+            <input matInput
+                   type="text"
+                   id="profileAptUnit"
+                   class="form-control"
+                   formControlName="aptUnit"
+                   autocomplete="address-line2"
+                   maxlength="10"
+                   tevAsciiOnly
+                   class="address-info-input"
+
+            >
+            <mat-error>{{getError('aptUnit')}} <div ng-message='required'>Type N/A if not applicable</div>
+            </mat-error>
+
+          </mat-form-field>
+
+        </div>
+
+        <ng-template #unitListSelect>
+          <div class="select-group">
+            <mat-form-field>
+              <mat-select [formControlName]="'aptUnit'" placeholder="Apt / Unit">
+                <mat-option *ngFor="let unit of unitList"
+                        [value]="unit.value">{{unit.label}}</mat-option>
+              </mat-select>
+              <mat-error>{{getError('aptUnit')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </ng-template>
+
+      </div><!-- ./col -->
+
+      <ng-template #readOnlyAptUnit>
+
+          <div class="col-sm-12 col-md-6 col-lg-4">
+
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">Apt / Unit</span>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     type="text"
+                     id="readOnlyProfileAptUnit"
+                     class="form-control"
+                     placeholder="Apt / Unit"
+                     autocomplete="address-line2"
+                     maxlength="10"
+                     [value]="unitList.length === 0 ? childForm.value.aptUnit : unitListObj[childForm.value.aptUnit]"
+                     readonly
+                     class="general-input form-control"
+
+              >
+              <mat-error>{{getError('aptUnit')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="row" [ngClass]="{'hidden': isEnterManually==false}">
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* City</span>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="text"
+                   id="profileCity"
+                   class="form-control"
+                   placeholder="City"
+                   formControlName="city"
+                   autocomplete="address-level-2"
+                   maxlength="50"
+                   [readonly]="isCoApplicantRequest"
+                   tevAsciiOnly
+                   class="address-info-input"
+
+            >
+            <mat-error>{{getError('city')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="select-group" *ngIf="!isCoApplicantRequest; else readOnlyState;">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* State</span>
+          <mat-form-field appearance="outline">
+            <mat-select [formControlName]="'state'"
+                        autocomplete="country" placeholder="State"
+                        class="address-info-select"
+                        >
+              <mat-option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</mat-option>
+            </mat-select>
+            <mat-error>{{getError('state')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <ng-template #readOnlyState>
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">State</span>
+            <mat-form-field appearance="outline">
+                    <input matInput
+                     type="text"
+                     id="propertyState"
+                     class="form-control"
+                     placeholder="State"
+                     [value]="statesObj[childForm.value.state]"
+                     readonly
+                     tevAsciiOnly
+                     class="general-input form-control"
+
+              >
+              <mat-error>{{getError('state')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </ng-template>
+
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="form-label-group">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* Zip Code</span>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="text"
+                   id="profileZipCode"
+                   class="form-control"
+                   placeholder="Zip Code"
+                   formControlName="zipCode"
+                   autocomplete="postal-code"
+                   [readonly]="isCoApplicantRequest"
+                   tevAsciiOnly
+                   class="address-info-input"
+            >
+            <mat-error>{{getError('zipCode')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+    </div>
+
+    <div class="row ">
+
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="form-label-group" *ngIf="!isCoApplicantRequest; else readOnlyMoveDate;">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* Move In Date</span>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   formControlName="moveDate"
+                   id="profileMoveInDate"
+                   (focus)="picker.open()"
+                   [matDatepicker]="picker"
+                   [max]="maxMovingDate"
+                   [min]="minMovingDate"
+                   class="address-info-input"
+                   readonly
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+            <mat-error>{{getError('moveDate')}}</mat-error>
+            <!-- <mat-hint>mm/dd/yyyy</mat-hint> -->
+          </mat-form-field>
+        </div>
+
+        <ng-template #readOnlyMoveDate>
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">Move In Date</span>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                     type="text"
+                     id="readOnlyMoveInDate"
+                     class="general-input form-control"
+                     [value]="childForm.value.moveDate | date:'shortDate'"
+                     readonly
+              >
+              <mat-error>{{getError('moveDate')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </ng-template>
+
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-3" *ngIf="type === 'O'">
+        <div class="form-label-group">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* Purchase Price</span>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="text"
+                   id="purchasePrice"
+                   class="general-input form-control"
+                   formControlName="purchasePrice"
+                   [readonly]="isCoApplicantRequest"
+                   class="address-info-input"
+            >
+            <mat-error>{{getError('purchasePrice')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-3" *ngIf="type === 'T'">
+        <div class="form-label-group">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* Monthly Rent</span>
+          <mat-form-field appearance="outline">
+            <input matInput
+                   type="text"
+                   id="profileMonthlyRent"
+                   class="general-input form-control"
+                   maxlength="6"
+                   formControlName="monthlyRent"
+                   [readonly]="isCoApplicantRequest"
+                   class="address-info-input"
+
+            >
+            <mat-error>{{getError('monthlyRent')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-sm-12 col-md-6 col-lg-3" *ngIf="type === 'T' || type === 'G'">
+        <div class="form-label-group"  *ngIf="!isCoApplicantRequest; else readOnlyMoveOutDate;">
+          <span class="txt-bold txt-form-title txt-xxxs">* Move Out Date</span>
+          <mat-form-field appearance="outline">
+                  <input matInput
+                    formControlName="moveOutDate"
+                    id="profileMoveOutDate"
+                    (focus)="moveoutpicker.open()"
+                    [matDatepicker]="moveoutpicker"
+                    [max]="maxMovingOutDate"
+                    [min]="minMovingOutDate"
+                    class="general-input form-control"
+                    readonly
+                >
+                <mat-datepicker-toggle matSuffix [for]="moveoutpicker"></mat-datepicker-toggle>
+                <mat-datepicker #moveoutpicker startView="multi-year"></mat-datepicker>
+                <mat-error>{{getError('moveOutDate')}}</mat-error>
+                <!-- <mat-hint>mm/dd/yyyy</mat-hint> -->
+            </mat-form-field>
+        </div>
+        <ng-template #readOnlyMoveOutDate>
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">Move Out Date</span>
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                     type="text"
+                     id="readOnlyMoveOutInDate"
+                     class="general-input form-control"
+                     [value]="childForm.value.moveOutDate | date:'shortDate'"
+                     readonly
+                     class="general-input form-control"
+              >
+              <mat-error>{{getError('moveDate')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </ng-template>
+
+      </div>
+      <!-- ./col -->
+    </div>
+  </form><!-- /.row -->
+</div><!-- ./py-4 px-5 -->

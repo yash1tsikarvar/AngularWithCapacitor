@@ -1,0 +1,13 @@
+.with-icon {
+  &.icon {
+    &-log-out {
+      background-image: url("/assets/log-out-icon.svg");
+    }
+    &-add-user {
+      background-image: url("/assets/add-user-icon.svg");
+    }
+    &-profile-card {
+      background-image: url("/assets/profile-icon.svg");
+    }
+  }
+}

@@ -1,0 +1,156 @@
+<div
+  id="collapseTwo"
+  class="collapse show"
+  aria-labelledby="headingTwo"
+  data-parent="#accordion"
+>
+
+
+
+<div class="summary">
+
+  <div class="summary-box box-group">
+    <div class="summary-box-title" *ngIf="!showForms && viewType==='normal'">
+      <h1>Please confirm the application property details below before continuing:</h1>
+    </div>
+    <div class="summary-box-title" *ngIf="showForms || viewType!=='normal'">
+      <h1>Please confirm the application property details below before continuing:</h1>
+    </div>
+    <div class="summary-box-info">
+      <div class="summary-box-info__property-logo">
+        <img src="/assets/tenant-2.0/icon_placeholder.svg">
+      </div>
+      <div class="summary-box-info__property-name">
+        <h3>{{ propertyInfo | propertyName }}</h3>
+        <h6>Property Name</h6>
+      </div>
+      <div class="summary-box-info__property-code">
+        <h4>{{ propertyInfo | propertyCode }}</h4>
+        <h6>Property Code</h6>
+      </div>
+      <div class="summary-box-info__property-application-type">
+        <h4>{{ applicationType }}</h4>
+        <h6>Application Type</h6>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="summary-footer" *ngIf="!showForms && viewType==='normal'">
+    <div class="summary-footer__buttons">
+      <button [routerLink]="['/community/enter-code']" class="
+      cancel-button
+      "
+      data-test="noButton"
+      >
+      no
+      </button>
+      <button
+      (click)="showForms = true"
+      class="
+      confirm-button
+      "
+      data-test="yesButton"
+      >
+      yes
+      </button>
+      <!-- [routerLink]="['/application/new', code, type]"  -->
+    </div>
+  </div>
+
+  <div class="forms" *ngIf="showForms || viewType!=='normal'">
+    <tev-address-info
+      [info]="addressInfo$"
+      (formChanged)="addressInfoChanged($event)"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+
+    ></tev-address-info>
+
+    <tev-owner-info
+      [info]="ownerInfo$"
+      *ngIf="propertyInfo.ownerInfoRequired"
+      (formChanged)="ownerInfoChanged($event)"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+      data-cy="ownerInfo"
+
+    ></tev-owner-info>
+
+    <tev-real-state-info
+    [info]="realEstateInfo$"
+    *ngIf="propertyInfo.shortApplication == 'LONG'"
+    (formChanged)="realEstateInfoChanged($event)"
+    [viewType]="viewType"
+    (viewTypeChanged)="viewTypeChanged($event)"
+    data-cy="realStateInfo"
+
+  ></tev-real-state-info>
+
+  <div>
+    <div class="foot-action">
+      <button *ngIf="viewType==='normal'" (click)="submit()"
+              data-test="continueButton"
+              class="confirm-button ">Save and Continue</button>
+      <button *ngIf="viewType==='review-edit'" (click)="cancel()"
+              data-test="cancelButton"
+              class="cancel-button">Cancel</button>
+      <button *ngIf="viewType==='review-edit'" (click)="submit()"
+              data-test="saveButton"
+              class="confirm-button">Save and continue</button>
+    </div>
+
+  </div>
+
+
+  </div>
+
+  <!-- <div class="forms" *ngIf="showForms">
+    <div class="summary-forms-details">
+      <tev-address-info #addressInfoComponent (onsave)="saveInParentFromAddressInfo($event)">
+      ></tev-address-info>
+    </div>
+    <div
+      class="summary-forms-details"
+      *ngIf="propertyInfo.ownerInfoRequired"
+      >
+      <tev-owner-info
+        #ownerInfoComponent
+        (onsave)="saveInParentFromOwnerInfo($event)"
+      ></tev-owner-info>
+    </div>
+
+    <div
+      class="summary-forms-details"
+    >
+      <tev-real-estate-info
+        #realEstateInfoComponent
+        (onsave)="saveInParentFromRealStateInfo($event)"
+      ></tev-real-estate-info>
+    </div>
+
+
+
+
+    <div class="summary-forms__buttons">
+      <button
+      class="summary-forms__buttons--continue"
+      data-test="continueButton"
+      [disabled]="sending"
+      (click)="submit()"
+      >
+      Continue
+    </button>
+    </div>
+  </div> -->
+
+    <section class="summary-legal" *ngIf="!showForms && viewType === 'normal'">
+      <small class="summary-legal--text"
+        >All rights reserved | Tenant Evaluation {{ currentYear }}</small
+      >
+    </section>
+  </div>
+
+  <!-- ./card-body -->
+</div>
+<!-- ./collapse -->

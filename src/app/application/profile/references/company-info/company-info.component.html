@@ -1,0 +1,71 @@
+<form [formGroup]="childForm">
+
+  <div>
+    <div class="select-applicant__form--info" style="margin-bottom: 1rem" data-cy="incomeVerificationTitle">
+      <p>Company Information</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Type of Business</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="companyBusinessType-{{counter}}"
+                 class="form-control"
+                 formControlName="businessType"
+                 maxlength="50"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('businessType')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <mat-select class="general-select"
+                      [formControlName]="'dialCode'"
+                      [required]="true">
+            <mat-option [value]="code | dialCodeValue" *ngFor="let code of dialCodes">{{ code | dialCodeName }}</mat-option>
+          </mat-select>
+          <mat-error>{{getError('dialCode')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Business Phone Number</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 id="companyPhone-{{counter}}"
+                 class="form-control"
+                 formControlName="phone"
+                 maxlength="20"
+                 [textMask]="{mask: phonemask}"
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('phone')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </div><!-- ./col -->
+  </div>
+
+
+
+</form>

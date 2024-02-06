@@ -1,0 +1,102 @@
+    <div class="title-form">
+      Applicant’s Emergency Contact Details
+    </div>
+
+
+<div class="box-group form-box" [ngClass]="viewType">
+
+  <form class="row" [formGroup]="childForm">
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Full Name</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="employmentEmergencyContactName"
+                 class="general-input form-control"
+                 formControlName="name"
+                 maxlength="80"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('name')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Relationship</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="text"
+                 id="employmentEmergencyRelationship"
+                 class="general-input form-control"
+                 formControlName="relationship"
+                 maxlength="20"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('relationship')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="select-group">
+          <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+          <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+            <mat-select class="general-select"
+                        [formControlName]="'dialCode'"
+                        [required]="true">
+              <mat-option [value]="code | dialCodeValue" *ngFor="let code of dialCodes">{{ code | dialCodeName }}</mat-option>
+            </mat-select>
+            <mat-error>{{getError('dialCode')}}</mat-error>
+          </mat-form-field>
+
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Cell Phone</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 id="employmentEmergencyContactCellPhone"
+                 class="form-control"
+                 formControlName="phone"
+                 maxlength="20"
+                 [textMask]="{mask: phonemask}"
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('phone')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Email</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                 type="email"
+                 id="employmentEmergencyContactEmail"
+                 formControlName="email"
+                 maxlength="50"
+                 tevAsciiOnly
+                 class="general-input form-control"
+          >
+          <mat-error>{{getError('email')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+  </form><!-- ./row -->
+</div><!-- ./py-4 px-5 -->

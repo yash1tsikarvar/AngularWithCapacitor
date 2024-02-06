@@ -1,0 +1,68 @@
+<div class="container-fluid main-content profile bg-dark-">
+  <div class="row">
+    <div class="col-12">
+      <section class="content-box">
+        <article>
+
+
+          <div class="back-wrapper d-flex">
+            <div class="main-icon-holder ml-auto">
+            </div>
+          </div>
+        </article>
+      </section><!-- ./content-box -->
+    </div><!-- ./col -->
+  </div><!-- ./row -->
+</div><!-- ./container-fluid -->
+
+<div class="container-fluid main-content profile accordion-wrapper">
+
+  <tev-loader *ngIf="processing" [loading_text]="loading_text" ></tev-loader>
+
+  <div class="row mx-0 justify-content-center">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-8 px-0">
+      <div class="accordion txt-xs">
+        <div class="form-personal-info floating-labels form-bg-light">
+
+
+          <div class="tab-content" role="tablist">
+
+            <div class="card tab-pane fade show active" #formContent>
+
+              <div id="collapseSix" class="collapse show" aria-labelledby="headingSix" data-parent="#accordion">
+
+                <div class="card-body txt-purple">
+
+                  <tev-extra-payment-summary [extraPayment]="extraPayment"></tev-extra-payment-summary>
+
+                  <tev-ep-credit-card-info [validate]="validate$"
+                                           [extraPayment]="extraPayment"
+                                           (formChanged)="paymentInfoChanged($event)"
+                                           (nameChanged)="billingNameChanged($event)"
+                                           (squareCard)="inputSquareCard($event)"></tev-ep-credit-card-info>
+
+                  <tev-ep-agreement-signature [validate]="validate$"
+                                              (formChanged)="paymentAgreeChanged($event)"
+                                              [billingName]="billingName"></tev-ep-agreement-signature>
+
+                  <div class="col-sm-12 col-md-12 col-lg-12 d-flex">
+                    <button class="btn btn-lg btn-primary btn-block mb-4 btn-submit mb-3 mt-5"
+                            type="button"
+                            [disabled]="processing"
+                            (click)="submit()">Pay {{extraPayment.amount | currency}}</button>
+                  </div><!-- ./col -->
+
+                </div><!-- ./card-body -->
+
+              </div><!-- ./collapse -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

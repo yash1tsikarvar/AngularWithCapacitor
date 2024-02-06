@@ -1,0 +1,329 @@
+<div class="row">
+
+  <div class="col-12">
+    <small class="mb-4 d-block">Below is a list of pending items that we need from you prior to
+      completing the application.
+    </small>
+
+    <ng-template [ngIf]="mainApplication?.pendingPayments">
+
+      <article class="user-action" *ngFor="let payment of mainApplication.pendingPayments">
+        <div class="user-action__description">
+          <i class="tev-icon tev-icon--tenant-line"></i>
+          <div class="user-action__text">
+            <h2>Pending Payment</h2>
+            <small>{{payment.reason}}</small>
+          </div>
+        </div>
+        <a [routerLink]="null"
+           *ngIf="authService.isCallCenterL1(); else showSigningLink"
+           class="user-action__box">
+          Pay {{payment.amount | currency}}
+        </a>
+        <ng-template #showSigningLink>
+          <a [routerLink]="[payment.url]"
+             class="tev-btn tev-btn--common tev-btn--primary">
+            Pay {{payment.amount | currency}}
+          </a>
+        </ng-template>
+      </article>
+
+    </ng-template>
+
+    <ng-template [ngIf]="mainApplication?.frozenCreditDTOs">
+
+      <article class="user-action" *ngFor="let frozenCredit of mainApplication.frozenCreditDTOs">
+        <div class="user-action__description">
+          <i class="tev-icon tev-icon--tenant-line"></i>
+          <div class="user-action__text">
+            <h2>{{ frozenCredit.bureau }} Credit Frozen for {{ frozenCredit.name }}</h2>
+            <small>Please Un-Freeze your {{ frozenCredit.bureau }} credit report.
+              <br>Afterwards, click on Re-Run Credit Button to proceed.
+            </small>
+          </div>
+        </div>
+        <a href="#" (click)="unFreezeCredit($event, frozenCredit.creditReportId)"
+           class="tev-btn tev-btn--common tev-btn--primary">
+          Re-Run Credit
+        </a>
+      </article>
+
+    </ng-template>
+
+    <article class="user-action" *ngIf="showSigning()">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--signed"></i>
+        <div class="user-action__text" *ngIf="mainApplication.shortApplication == 'LONG'">
+          <h2>Sign property agreement</h2>
+          <small>Missing electronic signatures for {{mainApplication.signingStatus.name}}</small>
+        </div>
+
+        <div class="user-action__text" *ngIf="mainApplication.shortApplication == 'SHORT'">
+          <h2>Sign property agreement</h2>
+          <small>Missing electronic signatures</small>
+        </div>
+      </div>
+      <a [routerLink]="null"
+         *ngIf="authService.isCallCenterL1(); else showSigningLink"
+         class="user-action__box">
+        Sign Now
+      </a>
+      <ng-template #showSigningLink>
+        <a (click)="showVideoSigning()"
+           class="tev-btn tev-btn--common tev-btn--primary">
+          Sign Now
+        </a>
+      </ng-template>
+    </article>
+
+    <article class="user-action" *ngIf="showPendingDocumentsUpload()">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--upload-file"></i>
+        <div class="user-action__text">
+          <h2>Documents to Upload</h2>
+          <small>You are missing some documents.</small>
+        </div>
+      </div>
+      <div class="user-action__complete-status">{{percentageComplete}}</div>
+      <a [routerLink]="['upload-documents']"
+         class="tev-btn tev-btn--common tev-btn--primary"
+         *ngIf="!showSigning()"
+      >
+        Upload Now</a>
+      <a *ngIf="showSigning()" class="user-action__box" (click)="needSign()">Upload Now</a>
+    </article>
+
+    <article class="user-action" *ngFor="let pendingItem of mainApplication?.proofOfIncome;">
+
+      <div class="user-action__description">
+        <a (click)="showJournalFinicity(mainApplication.applicationId, pendingItem.applicantId)">
+          <mat-icon class="journal-icon tev-icon">library_books</mat-icon>
+        </a>
+        <i class="tev-icon tev-icon--proof-income"></i>
+        <div class="user-action__text">
+          <h2>Proof of Income for {{pendingItem.applicantName}}</h2>
+          <small>The association is requesting proof of income</small>
+        </div>
+      </div>
+      <a *ngIf="showSigning()" class="tev-btn tev-btn--disabled user-action__box" (click)="needSign()">Edit</a>
+      <div *ngIf="isRealtor()">
+        <tev-tooltip text="Proof of income verification can only be completed by the applicants listed in this application.
+         Should you have any questions or concerns, please do not hesitate to reach out to our support team at support@tenantevaluation.com."></tev-tooltip>
+      </div>
+      <a *ngIf="pendingItem.enable && !showSigning()"
+         [ngClass]="{'user-action__box' : authService.isCallCenterL1(),
+         'tev-btn tev-btn--common tev-btn--primary' : !authService.isCallCenterL1()}"
+         (click)="openDialog(pendingItem.applicantId)" [attr.disabled]="isRealtor()" class="user-action__disabled">Start Now</a>
+      <a *ngIf="!pendingItem.enable && !showSigning()" class="user-action__box user-action__disabled" (click)="needSign()" [attr.disabled]="isRealtor()">Start Now</a>
+    </article>
+
+
+    <article class="user-action row" *ngIf="hasVerification()">
+
+      <div class="user-action__description with-subtitles">
+        <i class="tev-icon tev-icon--user"></i>
+        <div class="user-action__text">
+          <h2>Verification</h2>
+          <small>We are contacting the verifications. You can edit information or resend an email to your references to
+            be verified.</small>
+        </div>
+      </div>
+
+      <!-- character references -->
+      <article class="user-action__verification-subitems row col-sm-12"
+               *ngFor="let pendingItem of mainApplication?.personalReferenceVerification;">
+        <div class="col-12 alert alert-danger small" *ngIf="pendingItem.rejectReason">
+          <span class="txt-bold">We haven’t been able to verify some of your references.</span><br/>
+          <div>{{pendingItem.rejectReason}}</div>
+        </div>
+        <div class="col-sm-12 row">
+          <div class="col-sm-8 col-xs-12">
+            <h2 class="user-action__subtitle">{{pendingItem.title}}</h2>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+            <button *ngIf="!showSigning()" class="float-right small" (click)="showJournals(pendingItem)" mat-icon-button
+                    aria-label="View lastes events" title="View lastes events">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <a *ngIf="showSigning()" class="tev-btn tev-btn--disabled user-action__box" (click)="needSign()">Edit</a>
+            <a [routerLink]="['personal-reference-verification',pendingItem.idReference]"
+               *ngIf="!pendingItem.rejectReason && !pendingItem.hideEmailLink && !showSigning()"
+               class="tev-btn btn-blue subitem-button">Edit</a>
+            <a [routerLink]="['personal-reference-verification',pendingItem.idReference]"
+               *ngIf="pendingItem.rejectReason && !pendingItem.hideEmailLink && !showSigning()"
+               class="tev-btn btn-blue subitem-button">Update Info</a>
+          </div>
+        </div>
+        <div class="user-action__details col-sm-12">
+          <div class="row">
+            <div class="col-sm-12"><p>Reference name: <span>{{pendingItem.name}}</span></p></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-9 col-sm-7 col-xs-12"><p>An email to verify your reference has been sent to:
+              <span>{{pendingItem.email}}</span></p></div>
+            <div class="col-lg-3 col-sm-5 col-xs-12" *ngIf="!pendingItem.rejectReason && !pendingItem.hideEmailLink">
+              <a class="resend-email-link" *ngIf="!pendingItem.hideEmailLink && !showSigning()"
+                 (click)="sendEmailReference(pendingItem,'personal'); pendingItem.hideEmailLink=true">Resend
+                verification email</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- end character references -->
+
+      <!-- Employment references -->
+      <article class="user-action__verification-subitems row col-sm-12"
+               *ngFor="let pendingItem of mainApplication?.employmentReferenceVerification;">
+        <div class="col-12 alert alert-danger small" *ngIf="pendingItem.rejectReason">
+          <span class="txt-bold">We haven’t been able to verify some of your references.</span><br/>
+          <div>{{pendingItem.rejectReason}}</div>
+        </div>
+        <div class="col-sm-12 row">
+          <div class="col-sm-8 col-xs-12">
+            <h2 class="user-action__subtitle">{{pendingItem.title}}</h2>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+            <button *ngIf="!showSigning()" class="float-right small" (click)="showJournals(pendingItem)" mat-icon-button
+                    aria-label="View lastes events" title="View lastes events">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <a *ngIf="showSigning()" class="tev-btn tev-btn--disabled user-action__box" (click)="needSign()">Edit</a>
+            <a [routerLink]="['employment-reference-verification',pendingItem.idReference]"
+               *ngIf="!pendingItem.rejectReason && !pendingItem.hideEmailLink && !showSigning()"
+               class="tev-btn btn-blue subitem-button">Edit</a>
+            <a [routerLink]="['employment-reference-verification',pendingItem.idReference]"
+               *ngIf="pendingItem.rejectReason && !showSigning()" class="tev-btn btn-blue subitem-button">Update
+              Info</a>
+          </div>
+        </div>
+        <div class="user-action__details col-sm-12" *ngIf="pendingItem.applicantEmployment.employmentType=='E'">
+          <div class="row">
+            <div class="col-sm-12"><p>Company name: <span>{{pendingItem.applicantEmployment.jobInfo.companyName}}</span>
+            </p></div>
+          </div>
+          <div class="row"
+               *ngIf="pendingItem.applicantEmployment.supervisorInfo.email && !pendingItem.applicantEmployment.supervisorInfo.contact">
+            <div class="col-lg-9 col-sm-7 col-xs-12"><p>An email to verify your reference has been sent to:
+              <span>{{pendingItem.applicantEmployment.supervisorInfo.email}}</span></p></div>
+            <div class="col-lg-3 col-sm-5 col-xs-12" *ngIf="!pendingItem.rejectReason && !pendingItem.hideEmailLink">
+              <a *ngIf="!showSigning()" class="resend-email-link"
+                 [hidden]="pendingItem.hideEmailLink || pendingItem.applicantEmployment.supervisorInfo.contact"
+                 (click)="sendEmailReference(pendingItem,'employment'); pendingItem.hideEmailLink=true">Resend
+                verification email</a>
+            </div>
+          </div>
+          <div class="row" *ngIf="pendingItem.applicantEmployment.supervisorInfo.contact">
+            <div class="col-lg-9 col-sm-7 col-xs-12">Applicant denied permission to contact employer.</div>
+            <div class="col-lg-3 col-sm-5 col-xs-12">
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+      <!-- end employment references -->
+
+      <!-- LandLord references -->
+      <article class="user-action__verification-subitems row col-sm-12"
+               *ngFor="let pendingItem of mainApplication?.landlordReferenceVerification;">
+        <div class="col-12 alert alert-danger small" *ngIf="pendingItem.rejectReason">
+          <span class="txt-bold">We haven’t been able to verify some of your references.</span><br/>
+          <div>{{pendingItem.rejectReason}}</div>
+        </div>
+        <div class="col-sm-12 row">
+          <div class="col-sm-8 col-xs-12">
+            <h2 class="user-action__subtitle">{{pendingItem.title}}</h2>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+            <button *ngIf="!showSigning()" class="float-right small" (click)="showJournals(pendingItem)" mat-icon-button
+                    aria-label="View lastes events" title="View lastes events">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <a *ngIf="showSigning()" class="tev-btn tev-btn--disabled user-action__box" (click)="needSign()">Edit</a>
+            <a [routerLink]="['landlord-reference-verification',pendingItem.id]"
+               *ngIf="!pendingItem.rejectReason && !pendingItem.hideEmailLink && !showSigning()"
+               class="tev-btn btn-blue subitem-button">Edit</a>
+            <a [routerLink]="['landlord-reference-verification',pendingItem.id]" *ngIf="pendingItem.rejectReason"
+               class="tev-btn btn-blue subitem-button && !showSigning()">Update Info</a>
+          </div>
+        </div>
+        <div class="user-action__details col-sm-12">
+          <div class="row">
+            <div class="col-sm-12"><p>Landlord name: <span>{{pendingItem.landlordInfo.name}}</span></p></div>
+          </div>
+          <div class="row" *ngIf="pendingItem.landlordInfo.email">
+            <div class="col-lg-9 col-sm-7 col-xs-12"><p>An email to verify your reference has been sent to:
+              <span>{{pendingItem.landlordInfo.email}}</span></p></div>
+            <div class="col-lg-3 col-sm-5 col-xs-12" *ngIf="!pendingItem.rejectReason && !pendingItem.hideEmailLink">
+              <a *ngIf="!showSigning()" class="resend-email-link" [hidden]="pendingItem.hideEmailLink"
+                 (click)="sendEmailReference(pendingItem,'landlord'); pendingItem.hideEmailLink=true">Resend
+                verification email</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- end landlord references -->
+
+      <!-- owner verification -->
+      <article class="user-action__verification-subitems row col-sm-12" *ngIf="showOwnerInfo()">
+
+        <div class="col-sm-12 row">
+          <div class="col-sm-8 col-xs-12" style="margin-bottom: 1em;">
+            <h2 class="user-action__subtitle">Property Owner Information</h2>
+            <div *ngIf="mainApplication?.ownerInfo?.email; else smallTextAlternative">
+              <small>We are trying to obtain signatures from the current owner of the property. You can edit the
+                information or resend an email to the current owner for the signatures to be completed below</small>
+            </div>
+            <ng-template #smallTextAlternative>
+              <small>We need the contact information for the current owner of the property you are applying to
+                in order to obtain e-signatures required by {{mainApplication | applicationBuildingName}}</small>
+            </ng-template>
+          </div>
+          <div class="col-sm-4 col-xs-12">
+            <button *ngIf="!showSigning()" class="float-right small" (click)="showJournals(mainApplication?.ownerInfo)"
+                    mat-icon-button aria-label="View lastes events" title="View lastes events">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <a *ngIf="showSigning()" class="tev-btn tev-btn--disabled user-action__box" (click)="needSign()">Edit</a>
+            <a [routerLink]="['owner-verification']" *ngIf="isEditable() && !showSigning()"
+               class="tev-btn btn-blue subitem-button">Edit</a>
+          </div>
+        </div>
+        <div class="user-action__details col-sm-12">
+          <div class="row">
+            <div class="col-sm-12"><p *ngIf="mainApplication?.ownerInfo?.fullName">Owner name:
+              <span>{{mainApplication?.ownerInfo?.fullName}}</span></p></div>
+          </div>
+          <div class="row" *ngIf="mainApplication?.ownerInfo?.email">
+            <div class="col-lg-9 col-sm-7 col-xs-12"><p *ngIf="mainApplication?.ownerInfo?.email">Missing Owner's
+              Signatures, email sent to: <span>{{mainApplication?.ownerInfo?.email}}</span></p></div>
+            <div class="col-lg-3 col-sm-5 col-xs-12">
+              <a class="resend-email-link" *ngIf="!showSigning()" [hidden]="mainApplication?.ownerInfo?.hideEmailLink"
+                 (click)="sendEmailReference(mainApplication,'owner');">Resend verification email</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12"><p *ngIf="mainApplication?.ownerInfo?.phone && !showSigning()">Phone number:
+              <span>{{mainApplication?.ownerInfo?.phone}}</span></p></div>
+          </div>
+        </div>
+
+      </article>
+    </article>
+
+    <article class="user-action" *ngIf="noActionsNeeded()">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--tenant-line"></i>
+        <div class="user-action__text">
+          <h2>Thank you for providing the required items. Please allow some time for our agents to review the
+            information,
+            no further actions are needed at the moment. </h2>
+          <small>We will review all the information provided and will contact you if further
+            information is needed. For now you can Log out or close your browser if desired.
+          </small>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div class="verifications container">
+
+  <mat-spinner class="centered" *ngIf="status===''"></mat-spinner>
+
+  <div *ngIf="status === 'Pending'">
+
+    <tev-verification-title [status]="status" [hasDecline]="true" [description]="getDescription()"
+                            [name]="landlord.applicantName"
+                            [type]="type"
+                            [verificationName]="title" (decline)="declineEvent()"></tev-verification-title>
+
+
+
+    <div class="verification-form-container py-2">
+      <div *ngIf="landlord.authForm" class="box px-4">
+        <p >If you require an authorization form signed by the tenant, please click to download document. <a class="btn btn-secondary tev-btn--common" href="{{landlord.authForm}}" target="_blank">Authorization form</a></p>
+      </div>
+      <form [formGroup]="form">
+        <div class="row">
+          <!-- knows --->
+          <div class="col-12 px-5 py-4">
+            <p><span class="txt-bold">{{landlord.applicantName}}</span> states he/she rents the property located at
+              {{landlord.address}}.
+            </p>
+            <p>Do you know <span class="txt-bold">{{landlord.applicantName}}</span>?</p>
+            <mat-radio-group formControlName="knows" required aria-label="Select an option">
+              <mat-radio-button value="Y">Yes</mat-radio-button>
+              <mat-radio-button value="N">No</mat-radio-button>
+              <mat-error *ngIf="showError">{{getError("knows")}}</mat-error>
+            </mat-radio-group>
+          </div>
+          <!-- ./knows -->
+
+          <div *ngFor="let item of data; let i = index" [class]="getClassRow(i)">
+            <tev-answer *ngIf="know" [showErrors]="showError" [answer]="item" [formGroup]="form"></tev-answer>
+          </div>
+
+        </div>
+
+        <div class="col-12 px-4 py-4">
+          <label class="txt-bold">Remarks?</label>
+          <textarea formControlName="remarks" name="remarks" class="form-control txt-xs" rows="3"></textarea>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>What is your name?</mat-label>
+              <input matInput formControlName="verifierName" maxlength="50" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierName")}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>What is your Relationship with the property?</mat-label>
+              <input matInput formControlName="verifierPosition" maxlength="100" type="text">
+              <mat-error *ngIf="showError">{{getError("verifierPosition")}}</mat-error>
+            </mat-form-field>
+          </div>
+          <!--
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-form-field appearance="legacy">
+              <mat-label>What is your email?</mat-label>
+              <input matInput type="email" maxlength="100" formControlName="verifierEmail">
+              <mat-error>{{getError("verifierEmail")}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-12 col-lg-6 px-5">
+            <mat-checkbox formControlName="sendResult">Send me a copy of my responses</mat-checkbox>
+          </div>
+          -->
+        </div>
+
+        <div *ngIf="know" class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="signature">
+
+              <div class="signature__group">
+                <label class="signature__label">Signature</label>
+                <div class="signature-canvas">
+
+                  <span class="signature__float" *ngIf="!form.value['signature']">SIGN HERE</span>
+
+                  <div class="signature-wrapper">
+                    <canvas id="signature-pad" #signaturePad2></canvas>
+                  </div>
+
+                  <div class="signature-text">
+                    <canvas id="signature-text" #signatureText2></canvas>
+                  </div>
+
+                </div>
+                <input class="custom-control-input"
+                       type="hidden"
+                       formControlName="signature"
+                >
+                <div class="invalid-feedback" *ngIf="showError"><p>{{getError('signature')}}</p></div>
+              </div>
+
+              <button class="tev-btn tev-btn--large mb-5"
+                      type="button" (click)="clearSignature()">Clear
+              </button>
+            </div>
+          </div>
+
+
+          <div class="col-12 px-5">
+            <div class="agreement-checkbox custom-checkbox">
+              <mat-checkbox class="mat-checkbox--rounded mat-checkbox--large"
+                            formControlName="agreeAndAuthorize"
+                            id="agree">I hereby certify the above statements are true and correct to the best of my
+                knowledge
+              </mat-checkbox>
+            </div>
+            <mat-error *ngIf="showError">{{getErrorAgreeAndAuthorize()}}</mat-error>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <tev-verification-footer *ngIf="status!=='Complete'" (submitEvent)="submitEvent()"></tev-verification-footer>
+  </div>
+
+  <div *ngIf="status === 'Complete'">
+    <tev-verification-finish [title]="title" [complete]="status==='Complete'" [id]="id"
+                             [error]="errorData"></tev-verification-finish>
+  </div>
+
+</div>
+

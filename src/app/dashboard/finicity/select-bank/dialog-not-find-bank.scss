@@ -1,0 +1,26 @@
+@import "~sass/variables";
+i{
+  margin-bottom: 10px;
+}
+.mat-dialog-actions {
+
+  flex-wrap: nowrap;
+
+  .mat-button {
+    min-width: 40%;
+    background-color: $blue;
+    border-radius: 10px;
+    border-color: $blue;
+  }
+  .mat-warning {
+    min-width: 40%;
+    border-radius: 10px;
+    background-color: $red;
+    border-color: $red;
+  }
+
+  .mat-button-wrapper {
+    margin: auto;
+  }
+
+}

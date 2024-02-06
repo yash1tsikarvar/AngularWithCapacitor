@@ -1,0 +1,10 @@
+@import "../../../../../sass/new_step_one";
+@import "../../../../../sass/tenant_2.0";
+@import "../../../../../sass/styles_mat";
+
+.radio-buttons {
+  margin: 1em 0;
+  &.ng-touched.ng-invalid + .invalid-feedback {
+    display: block;
+  }
+}

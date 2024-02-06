@@ -1,0 +1,16 @@
+<nav class="navbar fixed-top" id="nav-var-proof">
+  <div class="left-brand">
+    <div class="row">
+      <div class="col-2">
+        <img class="logo" src="/assets/icon-te.svg" alt=""/>
+      </div>
+      <div class="col-6">
+        <p *ngIf="mainApplication?.address">    <i class="tev-icon tev-icon--location"></i> {{mainApplication.address}}</p>
+      </div>
+      <div class="col-sm-4 col-xs-12 right-brand">
+        <button [routerLink]="['/dashboard', mainApplication.applicationId]" class="btn btn-success">My Dashboard</button>
+        <button (click)="logOut($event)" class="btn btn-success logoutButton">Log Out</button>
+      </div>
+    </div>
+  </div>
+</nav>

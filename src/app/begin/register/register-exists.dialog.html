@@ -1,0 +1,9 @@
+<div class="dialog-icon-title"><i class="material-icons">highlight_off</i></div>
+<h2 mat-dialog-title class="mat-dialog-title">User management</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>You have already an account registered with this email or name provided. Please try to reset your password or try with new/different email.</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [routerLink]="['/reset-password']">Reset Password</button>
+  <button class="primary-button" mat-button [mat-dialog-close]="true" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

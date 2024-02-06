@@ -1,0 +1,121 @@
+<!-- http://localhost:4200/dashboard/11537/upload-documents -->
+<div>
+  <a [routerLink]="['../']" class="back-link">
+    <span class="tev-icon tev-icon--back"></span>
+    BACK</a>
+</div>
+<div class="row documents">
+  <div class="col-12">
+
+    <p>The following documents are required by
+      <b>{{mainApplication | applicationBuildingName}}</b> in order to review the application.</p>
+
+    <p *ngIf="mainApplication.signingStatus.signedApplicationUrl">If the Owner/Seller is unable to e-sign, please download the Association paperwork
+      <a [routerLink]="null"
+         *ngIf="authService.isCallCenterL1(); else showSigningLink"
+         class="user-action__box" style="border-radius: 20px; font-size: 16px; padding: 0 20px; line-height: 2; text-align: center;">
+        here
+      </a>
+      <ng-template #showSigningLink>
+        <a target="_blank" href="{{mainApplication.signingStatus.signedApplicationUrl}}"
+           class="tev-btn tev-btn--primary" style="border-radius: 20px; font-size: 16px; padding: 0 20px; line-height: 2; text-align: center;">
+          here
+        </a>
+      </ng-template></p>
+
+    <div class="box-container">
+      <div class="row" *ngIf="documentTasks.length > 0">
+        <div class="col-12 title-uploads">
+          <h3>Documents to upload </h3>
+        </div>
+      </div>
+      <div class="documents__list">
+        <article class="document article-uploads" *ngFor="let document of documentTasks">
+          <a (click)="showJournalTask(document.documentTaskId)">
+            <mat-icon class="journal-icon tev-icon">library_books</mat-icon>
+          </a>
+          <div *ngIf="document.rejectionReason" class="my-3" style="margin-left: 1em;">
+            <div class="alert alert-danger upload-reject">
+              <span>This document was Rejected:</span><br>
+              Rejection Reason: <u>{{document.rejectionReason}} </u>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-7 col-xs-12">
+              <p class="document-title">
+                {{document.description}}
+                <span *ngIf="document.code!=='vehicle-registration'"
+                      class="document-text">  {{getTextComplement(document)}}</span>
+                <br>
+                <span *ngIf="!document.optional" class="mandatory_text"> Mandatory*</span>
+                <span *ngIf="document.optional" class="optional-text"> Optional*</span>
+                <!-- <span *ngIf="document.optional" class="optional-text">
+                  <a (click)="createOptionalPdfNoMandatory($event,document.documentTaskId)">I can’t provide this document</a>
+                </span> -->
+              </p>
+
+            </div>
+            <div class="col-sm-2 col-xs-12">
+              <div>
+                <!-- <div *ngIf="isSanitizable(document)"> -->
+                <button *ngIf="document.optional"
+                        mat-button
+                        class="right-rounded-button mandatory_button" [attr.data-test]=document.description
+                        (click)="createOptionalPdfNoMandatory($event,document.documentTaskId)">Not Applicable &nbsp;&nbsp;
+                  <mat-icon>highlight_off</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+              <div *ngIf="isSanitizable(document) ;else no_sanitizable">
+                <button mat-button color="primary"
+                        class="right-rounded-button" [attr.data-test]=document.description
+                        [routerLink]="authService.isCallCenterL1() ? null : getRoute(document.code, document.documentTaskId)">Upload Now &nbsp;&nbsp;
+                  <mat-icon>cloud_upload</mat-icon>
+                </button>
+              </div>
+              <ng-template #no_sanitizable>
+                <button mat-button color="primary"
+                        class="right-rounded-button"
+                        [routerLink]="authService.isCallCenterL1() ? null : ['../upload', document.documentTaskId]">Upload Now &nbsp;&nbsp;
+                  <mat-icon>cloud_upload</mat-icon>
+                </button>
+              </ng-template>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+      <div class="row" *ngIf="proofOfIncomeManual.length>0">
+        <div class="col-12 title-uploads">
+          <h3>Proof of incomes task</h3>
+        </div>
+      </div>
+      <div class="documents__list">
+        <article class="document article-uploads" *ngFor="let document of proofOfIncomeManual">
+          <div class="row">
+            <div class="col-sm-7 col-xs-12">
+              <p class="document-title">
+                Proof of income task for
+                <span class="document-text"> {{document.applicantName}}</span>
+                <br>
+              </p>
+
+            </div>
+            <div class="col-sm-5 col-xs-12">
+              <button mat-button color="primary"
+                      class="right-rounded-button"
+                      style="margin-top: 15px"
+                      [routerLink]="['../upload-proof-of-income', document.applicantId]">Upload Now
+                <mat-icon>cloud_upload</mat-icon>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /row -->

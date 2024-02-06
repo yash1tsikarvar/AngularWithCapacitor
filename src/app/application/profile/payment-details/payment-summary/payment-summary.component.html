@@ -1,0 +1,90 @@
+<h3 class="txt-xs font-weight-bold px-3 py-2 mb-0">Payment Details</h3>
+<article>
+  <div class="box-group box-group--connect">
+
+
+    <div class="payment-table">
+
+      <div class="payment-table__row payment-table__row--head">
+        <div class="payment-table__col payment-table__col--item">
+          <h3 class="txt-all-caps txt-md column-title">Application Fees</h3>
+        </div>
+        <div class="payment-table__col payment-table__col--price">
+          <h3 class="txt-all-caps txt-md column-title">Amount</h3>
+        </div>
+      </div>
+
+      <div class="payment-table__row">
+        <ul class="payment-table__col payment-table__col--item">
+          <li class="txt-xs" *ngFor="let pricedItem of feesAndDocs.feesDueNow">{{pricedItem | pricedItemDescription}}</li>
+        </ul>
+        <ul class="payment-table__col payment-table__col--price">
+          <li class="txt-xs" *ngFor="let pricedItem of feesAndDocs.feesDueNow">{{pricedItem | pricedItemFee}}</li>
+        </ul>
+      </div>
+
+      <form [formGroup]="childForm" *ngIf="!activeMilitary">
+        <div class="payment-table__row" *ngIf="propertyInfo?.rushProcessingPrice > 0">
+          <ul class="payment-table__col payment-table__col--item">
+            <li class="txt-xs">Quick Pass Fee <button class="btn btn-sm btn-default" style="color:blue" (click)="addExpedite()" *ngIf="!expediteApplication">+ Add</button></li>
+          </ul>
+          <ul class="payment-table__col payment-table__col--price">
+            <li class="txt-xs">
+              <span *ngIf="expediteApplication">
+                {{propertyInfo?.rushProcessingPrice | moneyFormat}} <button class="btn btn-sm btn-default" style="color:gray" (click)="removeExpedite()">Remove</button>
+              </span>
+              <input type="hidden" name="formControlName" id="expedite-application"/>
+            </li>
+          </ul>
+        </div>
+      </form>
+
+      <div class="payment-table__row payment-table__row--total">
+        <div class="payment-table__col payment-table__col--item">
+          <h3>Total Fees</h3>
+          <span class="payment-table__warn">This charge will be collected immediately *</span>
+        </div>
+        <div class="payment-table__col payment-table__col--price">
+          <h3>{{applicationTotal | moneyFormat}}
+            <a tabindex="0"
+               class="btn btn-round btn-primary btn-inline"
+               placement="top"
+               role="button"
+               data-toggle="popover"
+               triggers="click"
+               autoClose="outside"
+               ngbPopover='This application fee was established by "{{propertyInfo?.buildingName}}" to which you are applying to. Should you have any questions, please contact the association directly.'>?</a>
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="feesAndDocs.feesDueLater.length > 0" class="payment-table mb-0">
+
+      <p class="txt-xs">The following items will be collected after the application has been approved.</p>
+      <div class="payment-table__row payment-table__row--head">
+        <div class="payment-table__col payment-table__col--item">
+          <h3 class="txt-all-caps txt-md column-title">Description</h3>
+        </div>
+        <div class="payment-table__col payment-table__col--price">
+          <h3 class="txt-all-caps txt-md column-title">Amount</h3>
+        </div>
+      </div>
+
+      <div class="payment-table__row">
+        <ul class="payment-table__col payment-table__col--item">
+          <li class="txt-xs" *ngFor="let pricedItem of feesAndDocs.feesDueLater">{{pricedItem |
+            pricedItemDescription}}
+          </li>
+        </ul>
+
+        <ul class="payment-table__col payment-table__col--price">
+          <li class="txt-xs" *ngFor="let pricedItem of feesAndDocs.feesDueLater">{{pricedItem | pricedItemFee}}</li>
+        </ul>
+      </div>
+
+    </div>
+  </div><!-- ./box-group -->
+
+</article>
+

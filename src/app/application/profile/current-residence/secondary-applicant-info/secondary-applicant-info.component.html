@@ -1,0 +1,39 @@
+<div>
+  <form class="custom-checkbox" [formGroup]="childForm" style="margin-bottom: 1rem">
+    <div class="switch switch-sm">
+      <mat-checkbox
+        [formControlName]="'sameAsPrimaryApplicant'"
+        class="mat-checkbox--rounded"
+      >
+        Same as Primary Applicant</mat-checkbox
+      >
+    </div>
+  </form>
+
+  <tev-residence-info
+    [hidden]="sameAsPrimaryApplicant"
+    [info]="residenceInfo$"
+    (residenceTypeChanged)="residenceTypeChanged($event)"
+    (formChanged)="residenceInfoChanged($event)"
+    data-cy="secondaryApplicantResidence"
+  ></tev-residence-info>
+</div>
+<!-- ./py-4 px-5 -->
+
+<tev-landlord-info
+  [hidden]="!showLandlordForm()"
+  [info]="landLordInfo$"
+  [applicantType]="'secondary'"
+  (formChanged)="landLordInfoChanged($event)"
+  [viewType]="viewType"
+  data-cy="secondaryApplicantLandLordInfo"
+></tev-landlord-info>
+
+<tev-family-friend-info
+  [hidden]="!showFamilyFriendForm()"
+  [info]="familyInfo$"
+  (formChanged)="familyInfoChanged($event)"
+  [applicantType]="'secondary'"
+  [viewType]="viewType"
+  data-cy="secondaryApplicantFamilyOrFriendInfo"
+></tev-family-friend-info>

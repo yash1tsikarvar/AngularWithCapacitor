@@ -1,0 +1,55 @@
+@import "../../../../../sass/tenant_2.0";
+@import "../../../../../sass/styles_mat";
+@import "../../../../../sass/new_step_one";
+
+.btn-inline {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    margin-top: -3px;
+  }
+
+.btn-clear-input {
+	position: absolute;
+	right: 0;
+	display: inline-block;
+	width: 24px;
+	background: #ccc;
+	color: #3f374a;
+	left: auto;
+}
+
+.form-box{
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+
+.address-info-input{
+  padding: 1.5em 0 1.5em 0 !important;
+  transform: translate(0, +0.1rem) !important;
+  color: #373041;
+  font-family: Roboto, Regular;
+  font-weight: 500 !important;
+}
+
+.address-info-select{
+  padding: 0.5em 0 0.5em 0 !important;
+}
+
+.input-info {
+  color: #009CDC;
+  font-size: 0.8rem;
+  width: 100%;
+  transform: translateY(-1rem);
+  margin-bottom: 0px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.title-form{
+  font-size: 22px;
+  font-family: Roboto, Medium;
+  color: #009CDC;
+  font-weight: 500;
+}

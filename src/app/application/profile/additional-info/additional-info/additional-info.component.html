@@ -1,0 +1,99 @@
+<div
+  id="collapseFive"
+  class="collapse show"
+  aria-labelledby="headingFive"
+  data-parent="#accordion"
+>
+  <div class="card-body txt-purple">
+    <!-- <h2 *ngIf="viewType === 'normal'" class="d-none d-lg-flex step-headline">
+      <span class="flex-grow-1">Additional Info</span>
+      <span
+        class="theme-logo"
+        [ngStyle]="{ 'background-image': smallLogo }"
+      ></span>
+    </h2> -->
+
+    <div *ngIf="viewType !== 'normal'" class="row">
+      <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
+        <h2 class="step-headline">Additional Info</h2>
+      </div>
+      <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 button-edit">
+        <button
+          *ngIf="viewType === 'review'"
+          (click)="reviewEdit()"
+          class="tev-btn btn-blue tev-btn--medium"
+          style="margin-right: 1rem"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+
+    <div class="title-form">Additional Information</div>
+
+    <tev-underage-info
+      *ngIf="setup.numberOfOthersAllowed !== 0"
+      [info]="underAgeInfo$"
+      (formChanged)="underAgeInfoChanged($event)"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+      data-cy="underAgeInfo"
+    ></tev-underage-info>
+
+    <tev-vehicle-info
+      *ngIf="setup.numberOfCarsAllowed !== 0"
+      [info]="vehicleInfo$"
+      (formChanged)="vehicleInfoChanged($event)"
+      [viewType]="viewType"
+      (viewTypeChanged)="viewTypeChanged($event)"
+      data-cy="vehicleInfo"
+    ></tev-vehicle-info>
+
+    <tev-pet-info
+      [info]="petInfo$"
+      (formChanged)="petInfoChanged($event)"
+      [viewType]="viewType"
+      [esaForm]="setup.numberOfPetsAllowed !== 0 ? false : true"
+      (viewTypeChanged)="viewTypeChanged($event)"
+      data-cy="petInfo"
+    ></tev-pet-info>
+    <!-- *ngIf="setup.numberOfPetsAllowed !== 0" -->
+
+    <div class="py-4">
+      <div class="foot-action">
+        <button
+          *ngIf="viewType === 'normal'"
+          (click)="goBack()"
+          class="cancel-button"
+        >
+          Back
+        </button>
+        <button
+          *ngIf="viewType === 'normal'"
+          type="button"
+          (click)="submit()"
+          class="confirm-button"
+        >
+          Save and continue
+        </button>
+        <button
+          *ngIf="viewType === 'review-edit'"
+          (click)="cancel()"
+          class="cancel-button"
+        >
+          Cancel
+        </button>
+        <button
+          *ngIf="viewType === 'review-edit'"
+          (click)="submit()"
+          class="confirm-button"
+        >
+          Save and continue
+        </button>
+      </div>
+      <!-- ./col -->
+    </div>
+  </div>
+  <!-- ./card-body -->
+</div>
+<!-- ./collapse -->

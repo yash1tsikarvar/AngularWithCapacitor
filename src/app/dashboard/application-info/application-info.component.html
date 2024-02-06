@@ -1,0 +1,143 @@
+<div class="application-info">
+  <div class="application-info__header">
+    <div class="application-info__property">
+      <small>Property:</small>
+      {{ mainApplication | applicationBuildingName }}
+    </div>
+    <div class="application-info__status">
+      <small>Application Status:</small>
+      <strong
+        [ngClass]="'status status--' + mainApplication.status"
+        *ngIf="!mainApplication.abandoned"
+        >{{ mainApplication | applicationStatus }}</strong
+      >
+      <strong class="status status--abandoned" *ngIf="mainApplication.abandoned"
+        >Abandoned</strong
+      >
+    </div>
+  </div>
+
+  <div class="application-info__header">
+  <div class="application-info__property">
+    <small>Property Phone:</small>
+    {{
+      mainApplication.propertyPhone !== null ? (mainApplication.propertyPhone) : ''
+    }}
+  </div>
+  <div class="application-info__status">
+    <small>Creation Date:</small>
+    {{ mainApplication.paymentDate | americanDate }}
+  </div>
+</div>
+
+<div class="application-info__header">
+  <div class="application-info__property">
+    <small>Move-in Address:</small>
+    {{ mainApplication | applicationAddress }}
+  </div>
+  <div
+    class="application-info__status"
+    *ngIf="mainApplication.signingDate !== null"
+  >
+    <small>Signing Date:</small>
+    {{
+      mainApplication.signingDate | americanDate
+    }}
+  </div>
+</div>
+
+<div class="application-info__header">
+  <div class="application-info__property">
+  </div>
+  <div
+    class="application-info__status"
+    *ngIf="mainApplication.releasedToCommunity !== null"
+  >
+    <small>Released to the community for review on:</small>
+    {{
+      mainApplication.releasedToCommunity | americanDate
+   }}
+  </div>
+</div>
+
+  <div class="application-info__number">
+    <div>
+      <small>Application Number: </small>
+      <strong>{{ mainApplication.applicationId }}</strong>
+    </div>
+    <div>
+      <small>Application Type: </small>
+      <strong>{{ mainApplication.applicationSubType | applicationType }}</strong>
+    </div>
+    <div *ngIf="mainApplication.applicants.length > 1">
+      <small>Applicant´s Relationship: </small>
+      <strong>{{ mainApplication.applicants[0].coApplicantType | coApplicantType }}</strong>
+    </div>
+  </div>
+
+  <div class="application-info__applicants" >
+    <div class="applicant applicant--primary">
+      <h5>Applicant Details</h5>
+      <ul class="applicant__list">
+        <li>
+          <small>Applicant Name:</small>
+          {{ mainApplication.applicants[0].name }}
+        </li>
+        <li *ngIf="mainApplication.shortApplication == 'LONG'">
+          <small>Applicant Email:</small>
+          {{ mainApplication.applicants[0].email }}
+        </li>
+        <li *ngIf="mainApplication.applicants[0].employmentType">
+          <small>Employment Status:</small>
+          {{ mainApplication.applicants[0].employmentType | employmentType }}
+        </li>
+      </ul>
+    </div>
+    <div
+      class="applicant applicant--secondary"
+      *ngIf="mainApplication.applicants.length > 1"
+    >
+      <h5>Secondary Applicant Details</h5>
+      <ul class="applicant__list">
+        <li>
+          <small>Applicant Name:</small>
+          {{ mainApplication.applicants[1].name }}
+        </li>
+        <li  *ngIf="mainApplication.shortApplication == 'LONG'">
+          <small>Applicant Email:</small>
+          {{ mainApplication.applicants[1].email }}
+        </li>
+        <li *ngIf="mainApplication.applicants[1].employmentType">
+          <small>Employment Status:</small>
+          {{ mainApplication.applicants[1].employmentType | employmentType }}
+        </li>
+      </ul>
+    </div>
+    <div
+      class="applicant applicant--secondary"
+      *ngIf="checkIfHaveRealtor()"
+      >
+      <h5>Realtor Details</h5>
+      <ul class="applicant__list">
+        <li>
+          <small>Realtor Name:</small>
+          {{
+          (mainApplication.realtorName && mainApplication.realtorName !== null )? (mainApplication.realtorName) : ''
+          }}
+        </li>
+        <li>
+          <small>Realtor Email:</small>
+          {{
+          (mainApplication.realtorEmail && mainApplication.realtorEmail !== null) ? (mainApplication.realtorEmail) : ''
+          }}
+        </li>
+        <li>
+          <small>Realtor Phone Number:</small>
+          {{
+          (mainApplication.realtorPhone && mainApplication.realtorPhone !== null) ? (mainApplication.realtorPhone?.e164PhoneNumber) : ''
+          }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

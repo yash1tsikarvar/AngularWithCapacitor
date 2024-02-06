@@ -1,0 +1,16 @@
+<div class="errors-instructions">
+  <div class="gif-with-icon">
+    <img src="assets/upload-generic/error.gif" alt="image instrucctions to upload document"
+         class="img-responsive img-circle gifimg"/>
+    <i class="tev-icon tev-icon--warning-red"></i>
+    <div class="error-text">Warning</div>
+    <p [hidden]="errorCode<=0">ERROR {{errorCode}}</p>
+  </div>
+
+  <div [innerHTML]="error"></div>
+  <div [innerHTML]="subError"></div>
+  <div
+    class="small-text">{{ smallText ? smallText : 'Please try uploading a new version of the document and make sure the text is\n' +
+    '    readable.' }}
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-6">
+      <div class="dashboard-signature main-content">
+        <section class="agreement-content-box">
+          <article>
+            <div class="row">
+              <div class="col-6 back-wrapper px-4">
+                <a [routerLink]="['../']" class="btn-link txt-white link-back">Back</a>
+              </div>
+              <div class="col-6 text-right">
+                <div class="main-icon-holder">
+                  <a href="">Log Out</a>
+                </div>
+              </div>
+              <div class="col-12">
+                <h1 class="minimum-line-height">
+                  <div class="icon-holder"></div>
+                  <span class="txt-title">Signature Verification</span>
+                </h1>
+              </div>
+            </div>
+            <a href="" class="txt-xs txt-underlined mt-4">Association Documents</a>
+            <p class="txt-dark-gray txt-xs pt-3">
+              I further state that this form was signed by me and was not originated with fraudulent intent by me or any other person, and that the signature bellow is my own legally binding digital signature.
+            </p>
+
+            <form class="signature">
+              <div class="form-label-group pb-3">
+                <h1 class="txt-lg pt-3">Print your name</h1>
+                <input type="text" id="owner-name" class="form-control" placeholder="Jayce Carney" tevAsciiOnly required>
+              </div>
+              <h1 class="txt-lg pt-3">Review Your signature</h1>
+              <div class="signature-wrapper"></div>
+              <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Submit</button>
+            </form>
+          </article>
+        </section><!-- ./agreement-content-box -->
+      </div><!-- ./main-content -->
+    </div><!-- ./col -->
+  </div><!-- ./row -->
+</div><!-- ./container-fluid -->

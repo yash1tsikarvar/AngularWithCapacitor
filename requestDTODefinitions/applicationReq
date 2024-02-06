@@ -1,0 +1,130 @@
+private Long pendingApplicationId;
+
+	private Integer propertyId;
+
+	private Long propertyCode;
+
+	private Integer mainApplicationId;
+
+	private ApplicationSubType applicationSubType;
+
+	@Valid
+    private List<ApplicantDTO> adults;
+
+	private CoApplicantType coApplicantType;
+
+    @Size(max = 200)
+    private String acknowledgerName;
+
+	private String noticeSignature;
+
+	private Boolean agree;
+
+	private Date dateSigned;
+
+	private Boolean acceptAssnDocuments;
+
+    @Size(max = 120)
+    private String realtorName;
+
+    @Size(max = 120)
+    private String realtorEmail;
+
+    @Size(max = 20)
+    private String realtorCountryCode;
+
+    @Size(max = 24)
+    private String realtorPhone;
+
+	private Boolean allowRealtorNotice;
+
+	private Boolean ownerInfoRequired;
+
+    @Size(max = 50)
+    private String ownerName;
+
+    @Size(max = 50)
+    private String ownerEmail;
+
+    @Size(max = 50)
+    private String ownerPhone;
+
+    @Size(max = 50)
+    private String buildingName;
+
+    @Size(max = 10)
+    private String unit;
+
+    @Size(max = 10)
+    private String zipcode;
+
+    @Size(max = 50)
+    private String city;
+
+    @Size(max = 2)
+    private String state;
+
+	private BigDecimal monthlyRent;
+
+	private String moveInDate;
+
+	private Integer leaseMonths;
+
+    @Size(max = 80)
+    private String ecName;
+
+    @Size(max = 20)
+    private String ecRelationship;
+
+    @Size(max = 120)
+    private String ecAddress;
+
+    @Size(max = 2)
+	private String ecCountry;
+
+    @Size(max = 50)
+    private String ecCity;
+
+    @Size(max = 2)
+    private String ecState;
+
+    @Size(max = 20)
+    private String ecCell;
+
+    @Size(max = 20)
+    private String ecHome;
+
+    @Size(max = 50)
+    private String ecEmail;
+
+	@Valid private List<OtherOccupantDto> others;
+
+    @Valid private List<VehicleDto> vehicles;
+
+    @Valid private List<PetDTO> pets;
+
+    private BigDecimal paymentAmount;
+
+    private String billingName;
+
+    private String billingStreet1;
+
+    private String billingStreet2;
+
+    private String billingCity;
+
+    private String billingState;
+
+    private String billingZipcode;
+
+    private Boolean internationalBillingAddress;
+
+    private String cardExp;
+
+    private String cardCvv2;
+
+    private String cardNumber;
+
+    private Boolean rush;
+
+    private ApplicationDashboardStatus status;

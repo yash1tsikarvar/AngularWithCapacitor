@@ -1,0 +1,72 @@
+<div>
+  <a [routerLink]="['../../upload-documents']" class="back-link">
+    <span class="tev-icon tev-icon--back"></span>
+    BACK</a>
+</div>
+<div class="row documents">
+  <div class="col-12">
+
+    <h3>Please upload the following documents</h3>
+    <p>The following documents are required by
+      <b>{{mainApplication | applicationBuildingName}}</b> in order to review the application.</p>
+
+    <div class="box-container">
+      <div class="row" *ngIf="documentTasks.length > 0">
+        <div class="col-12 title-uploads">
+          <h3>Documents to upload </h3>
+        </div>
+      </div>
+      <div class="documents__list">
+        <article class="document article-uploads" *ngFor="let document of documentTasks">
+          <a (click)="showJournalTask(document.documentTaskId)">
+            <mat-icon class="journal-icon tev-icon">library_books</mat-icon>
+          </a>
+          <div *ngIf="document.rejectionReason" class="my-3" style="margin-left: 1em;">
+            <div class="alert alert-danger upload-reject">
+              <span>This document was Rejected:</span><br>
+              Rejection Reason: <u>{{document.rejectionReason}} </u>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-7 col-xs-12">
+              <p class="document-title">
+                {{document.description}}
+                <span *ngIf="document.code!=='vehicle-registration'"
+                      class="document-text">  {{getTextComplement(document)}}</span>
+                <br>
+                <span *ngIf="!document.optional" class="mandatory_text"> Mandatory*</span>
+                <span *ngIf="document.optional" class="optional-text">
+                  <a (click)="createOptionalPdfNoMandatory($event,document.documentTaskId)">I can’t provide this
+                    document</a>
+                </span>
+              </p>
+
+            </div>
+            <div class="col-sm-5 col-xs-12">
+
+              <button mat-button color="primary"
+                      class="right-rounded-button"
+                      [routerLink]="['../../upload', document.documentTaskId]">Upload Now &nbsp;&nbsp;
+                <mat-icon>cloud_upload</mat-icon>
+              </button>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </div>
+    <div *ngIf="proofOfIncomeSelected.decline" class="finicity-continue float-right">
+      <a class="link" href="#"
+         (click)="continueInstantVerification($event,proofOfIncomeSelected,true)"><span class="" > Continue with Instant Verification</span></a>
+      <i class="tev-image-icon tev-image-icon--finicity "></i>
+    </div>
+    <div *ngIf="proofOfIncomeSelected.reportStatus == 'REPORT_ERROR' || proofOfIncomeSelected.reportStatus == 'REQUEST_ERROR'" class="finicity-continue float-right">
+      <a class="link" href="#"
+         (click)="continueInstantVerification($event,proofOfIncomeSelected,true)"><span class="" > Try again with Instant Verification</span></a>
+      <i class="tev-image-icon tev-image-icon--finicity "></i>
+    </div>
+
+
+  </div>
+</div><!-- /row -->

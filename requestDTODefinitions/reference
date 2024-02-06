@@ -1,0 +1,16 @@
+    @Size(max = 80)
+    private String name;
+
+	private RelationshipType relationship;
+
+    @Size(max = 2)
+    private String country;
+
+    @Size(max = 20)
+    private String cellPhone;
+
+    @Size(max = 20)
+    private String homePhone;
+    
+    @Size(max = 50)
+    private String email;

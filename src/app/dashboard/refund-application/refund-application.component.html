@@ -1,0 +1,149 @@
+<div class="container-fluid profile dashboard accordion-wrapper txt-purple"
+     #formContent>
+  <form class="row mx-0 justify-content-center floating-labels form-bg-light"
+        [formGroup]="signatureForm">
+    <div class="col-12 px-0">
+
+      <a href="#" (click)="goBack($event)" class="back-link">
+        <mat-icon>arrow_back</mat-icon>
+        BACK
+      </a>
+
+      <div class="box-group">
+        <h3 class="box-group__title">
+          Cancel and refund your application
+        </h3>
+        <h4 class="mb-4">Disclosure</h4>
+        <p class="box-group__text">I authorize Tenant Evaluation LLC to credit my account. I also understand that the
+          refund will be the total amount paid minus the 10% convenience fee (credit card surcharge). ONLY the
+          Payee/Card Holder can request a refund and sign below.</p>
+
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+
+            <div class="form-label-group">
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="card-holder-name"
+                       class="form-control"
+                       placeholder="Card Holder's Name"
+                       formControlName="signatureText"
+                       maxlength="80"
+                       readonly
+                >
+              </mat-form-field>
+
+            </div>
+
+          </div><!-- ./col -->
+
+          <div class="col-sm-12 col-md-6 col-lg-6">
+
+            <div class="form-label-group">
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       id="current-date"
+                       class="form-control"
+                       maxlength="80"
+                       [value]="currentDate"
+                       readonly
+                >
+              </mat-form-field>
+
+            </div>
+          </div><!-- ./col -->
+
+        </div><!-- ./row -->
+        <div class="signature">
+
+          <div class="signature__group">
+            <label class="signature__label">Card Holder's Signature</label>
+            <div class="signature-canvas">
+
+              <span class="signature__float" *ngIf="!signatureForm.value['signature']">SIGN HERE</span>
+
+              <div class="signature-wrapper">
+                <canvas id="signature-pad" #signaturePad></canvas>
+              </div>
+
+              <div class="signature-text">
+                <canvas id="signature-text" #signatureText></canvas>
+              </div>
+
+            </div>
+            <input class="custom-control-input"
+                   type="hidden"
+                   formControlName="signature"
+            >
+            <div class="invalid-feedback">{{getError('signature')}}</div>
+          </div>
+
+          <button class="tev-btn tev-btn--large mb-5"
+                  type="button" (click)="clearSignature()">Clear
+          </button>
+
+          <div class="custom-checkbox">
+            <mat-checkbox class="mat-checkbox--rounded"
+                          type="checkbox"
+                          formControlName="agreeAndAuthorize"
+                          id="agree"
+            >I agree and authorize this terms and conditions
+            </mat-checkbox>
+            <div class="invalid-feedback">{{getError('agreeAndAuthorize')}}</div>
+          </div>
+        </div>
+      </div><!-- ./box-group -->
+
+      <div class="box-group">
+        <h3 class="box-group__title">
+          Refund Details
+        </h3>
+        <div class="payment-table">
+
+          <div class="payment-table__row payment-table__row--head">
+            <div class="payment-table__col payment-table__col--item">
+              <h3 class="txt-all-caps txt-md column-title">Application Fees</h3>
+            </div>
+            <div class="payment-table__col payment-table__col--price">
+              <h3 class="txt-all-caps txt-md column-title text-right">Amount</h3>
+            </div>
+          </div>
+
+          <div class="payment-table__row">
+            <ul class="payment-table__col payment-table__col--item">
+              <li class="txt-xs">Application Fee</li>
+              <li class="txt-xs">Convenience Fee</li>
+            </ul>
+            <ul class="payment-table__col payment-table__col--price">
+              <li
+                class="txt-xs text-right">{{(mainApplication?.refundAvailable || 0) + (mainApplication?.refundFee || 0) | currency}}</li>
+              <li class="txt-xs text-right">{{-(mainApplication?.refundFee || 0) | currency}}</li>
+            </ul>
+          </div>
+
+          <div class="payment-table__row payment-table__row--total">
+            <div class="payment-table__col payment-table__col--item">
+              <h3 class="txt-md">Total TO BE REFUNDED</h3>
+            </div>
+            <div class="payment-table__col payment-table__col--price">
+              <h3 class="txt-md text-right">{{mainApplication?.refundAvailable | currency}}</h3>
+            </div>
+          </div>
+        </div><!-- ./payment-table -->
+
+        <div class="py-4">
+          <div class="foot-action">
+            <button class="tev-btn tev-btn--primary tev-btn--large"
+                    [disabled]="sending"
+                    (click)="submit()">
+              Refund {{mainApplication?.refundAvailable | currency}}</button>
+          </div>
+        </div>
+      </div><!-- ./box-group -->
+
+    </div><!-- ./col -->
+  </form>
+
+</div>

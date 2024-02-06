@@ -1,0 +1,63 @@
+$light-gray: #f7f7f7;
+$normal-gray: #dbdbdb;
+$dark-gray: #77747e;
+$signature-height: 260px;
+
+.box {
+  text-align: center;
+  button{
+    margin-bottom: 35px;
+  }
+}
+.mark-colum {
+  border-right: solid;
+}
+.signature-canvas {
+  width: 100%;
+  height: $signature-height;
+  position: relative;
+  background-color: #e3e4e6;
+}
+#signature-pad, #signature-text {
+  width: 100%;
+  height: $signature-height;
+}
+.signature {
+  &__float {
+    position: absolute;
+    font-size: 2rem;
+    color: $normal-gray;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+  }
+  .signature-wrapper, .signature-text {
+    background-color: $light-gray;
+    color: $dark-gray;
+    border: 1px solid $normal-gray;
+    min-height: $signature-height;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .signature-text {
+    z-index: 0;
+  }
+  .invalid-feedback {
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
+
+}
+
+@media (max-width: 767.98px) {
+  .mark-colum {
+    border-right: none;
+  }
+}

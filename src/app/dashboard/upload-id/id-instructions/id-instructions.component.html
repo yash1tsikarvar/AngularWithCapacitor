@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="pb-counter">
+      <mat-progress-bar mode="determinate" [value]="animationProcess"></mat-progress-bar>
+    </div>
+    <div class="slide-container">
+
+      <div class="slide1 slide-item">
+        <div class="item-image" id="cover1">
+          <div class="image-validate delete-image"></div>
+        </div>
+        <p>Make sure all four<br/>corners are visible</p>
+        <p class="slider-generic-text">{{genericText}}</p>
+      </div>
+      <div class="slide2 slide-item">
+        <div class="item-image" id="cover2">
+          <div class="image-validate delete-image"></div>
+        </div>
+        <p>Must not be<br/>covered in any way</p>
+        <p class="slider-generic-text">{{genericText}}</p>
+      </div>
+      <div class="slide3 slide-item">
+        <div class="item-image" id="cover3">
+          <div class="image-validate delete-image"></div>
+        </div>
+        <p>Make sure the<br/>image is not blurry</p>
+        <p class="slider-generic-text">{{genericText}}</p>
+      </div>
+      <div class="slide4 slide-item">
+        <div class="item-image" id="cover4">
+          <div class="image-validate delete-image"></div>
+        </div>
+        <p>Supported formats<br/>JPG PNG or PDF only</p>
+        <p class="slider-generic-text">{{genericText}}</p>
+      </div>
+      <div class="slide5 slide-item">
+        <div class="item-image" id="cover5">
+          <div class="image-validate delete-image"></div>
+        </div>
+        <p>Do not upload more <br/>than one ID per image</p>
+        <p class="slider-generic-text">{{genericText}}</p>
+      </div>
+      <div class="slide6 slide-item">
+        <div class="item-image" id="cover6">
+          <div class="image-validate right-image"></div>
+        </div>
+        <p>
+          This is Right!<br/>
+          <span></span>
+        </p>
+        <p class="slider-generic-text">{{genericText}}</p>
+      </div>
+
+    </div>
+
+    <tev-countdown [init]="26" (onComplete)="hideShowInstructions()" (onChange)="updateProcess($event)" style="display: none;"></tev-countdown>
+  </div>
+
+
+</div>

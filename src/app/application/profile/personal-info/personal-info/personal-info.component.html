@@ -1,0 +1,75 @@
+<div
+  id="collapseOne"
+  class="collapse show"
+  aria-labelledby="headingOne"
+  data-parent="#accordion"
+>
+  <div class="card-body txt-purple">
+
+    <tev-applicant-details [info]="applicantInfo$"
+                           (formChanged)="applicantInfoChanged($event)"
+                           [viewType]="viewType" (viewTypeChanged)="viewTypeChanged($event)"></tev-applicant-details>
+
+
+    <tev-co-applicant-details *ngIf="showCoApplicantDetails()"
+                              [info]="coApplicantInfo$"
+                              [coApplicantTypeApplication]="coApplicantType"
+                              (formChanged)="coApplicantInfoChanged($event)"
+                              [viewType]="viewType" (viewTypeChanged)="viewTypeChanged($event)"></tev-co-applicant-details>
+
+
+    <tev-military-info [info]="militaryInfo$"
+                       *ngIf="propertyInfo.shortApplication == 'LONG'"
+                       (formChanged)="militaryInfoChanged($event)"
+                       [viewType]="viewType" (viewTypeChanged)="viewTypeChanged($event)"></tev-military-info>
+
+
+    <tev-remarks-info
+                      #remarksInfoComponent
+                      *ngIf="propertyInfo.shortApplication == 'LONG'"
+                      [info]="remarksInfo$"
+                      (formChanged)="remarksInfoChanged($event)"
+                      (onChange)="checkIfOnChange($event)"
+                      (isValid)="checkIfRemarksIsValid($event)"
+                      [onCancel]="cancelFromReviewInfo"
+                      [viewType]="viewType" (viewTypeChanged)="viewTypeChanged($event)"></tev-remarks-info>
+
+
+    <div class="foot-action">
+      <button
+        *ngIf="viewType === 'normal'"
+        data-test="backButton"
+        (click)="goBack()"
+        class="cancel-button"
+      >
+        Back
+      </button>
+      <button
+        *ngIf="viewType === 'normal'"
+        data-test="continueButton"
+        (click)="submit()"
+        class="confirm-button"
+      >
+        Save and continue
+      </button>
+      <button
+        *ngIf="viewType === 'review-edit'"
+        (click)="cancel()"
+        data-test="cancelButton"
+        class="cancel-button"
+      >
+        Cancel
+      </button>
+      <button
+        *ngIf="viewType === 'review-edit'"
+        (click)="submit()"
+        data-test="saveButton"
+        class="confirm-button"
+      >
+        Save and continue
+      </button>
+    </div>
+  </div>
+  <!-- ./card-body -->
+</div>
+<!-- ./collaspe -->

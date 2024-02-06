@@ -1,0 +1,15 @@
+@import "~sass/variables";
+@import "~sass/media_queries";
+
+html, body {
+  background-color: $light-gray !important;
+}
+
+main {
+  background-color: $light-gray;
+  color: black;
+  @include breakpoint(md) {
+    padding-left: 15px !important;
+    max-width: 960px;
+  }
+}

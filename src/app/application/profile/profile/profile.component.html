@@ -1,0 +1,64 @@
+<div class="container-fluid main-content profile bg-dark-">
+  <div class="profile__header">
+    <div class="profile__col">
+      <ul id="tabs" class="profile__tabs" role="tablist">
+        <li class="step" *ngFor="let button of profileSteps; let i = index">
+          <a id="tab-personal-info{{i}}"
+             [routerLink]="button.url"
+             routerLinkActive="active"
+             [ngClass]="currentStep === i + 1 ? 'active' : 'disabled'"
+             class="step__link">
+             <!-- [ngClass]="{'active': currentStep === i + 1, 'disabled': !canGoToStep(i+1)}" -->
+
+            <span class="step__number">{{i+1}}</span>
+            <span class="step__name">{{button.title}}</span>
+          </a>
+        </li>
+      </ul><!-- ./nav-tabs -->
+    </div>
+    <div class="profile__col profile__col--small">
+      <div class="profile__info">
+        <button class="btn-link txt-dark-gray link-back d-block d-md-none"
+                (click)="goBack()">
+          Back
+        </button>
+        <div class="subtitle">
+          <p class="txt-dark-gray mb-0">You are applying for</p>
+          <p class="txt-white">{{buildingName | profileApplyTitle:type}}</p>
+        </div>
+        <button (click)="logOut($event)"
+                mat-raised-button
+                class="tev-btn tev-btn--small">
+          Log Out
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- ./container-fluid -->
+
+<div class="container-fluid main-content profile accordion-wrapper">
+  <div class="row mx-0 justify-content-center">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-8 px-0">
+      <div class="accordion txt-xs">
+        <div class="form-personal-info floating-labels form-bg-light">
+
+
+          <div class="tab-content" role="tablist">
+            <div class="card tab-pane fade show active" #profileContent>
+
+              <tev-profile-accordion-buttons [buttons]="headerButtons"></tev-profile-accordion-buttons>
+
+              <router-outlet></router-outlet>
+
+              <tev-profile-accordion-buttons [buttons]="footerButtons"></tev-profile-accordion-buttons>
+            </div>
+          </div><!-- ./tab-content -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<tev-white-label-footer></tev-white-label-footer>

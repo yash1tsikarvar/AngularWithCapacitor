@@ -1,0 +1,14 @@
+@NotNull
+private Long applicationId;
+
+@NotNull
+@Size(max = 50)
+private String fullName;
+
+@Email
+@Size(max = 50)
+private String email;
+
+@NotNull
+@Size(max = 50)
+private String phone;

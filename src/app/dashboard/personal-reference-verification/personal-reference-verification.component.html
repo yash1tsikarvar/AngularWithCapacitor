@@ -1,0 +1,152 @@
+<div class="row">
+
+  <div>
+    <a [routerLink]="['../../']" class="back-link">
+      <span class="tev-icon tev-icon--back"></span>
+      BACK</a>
+  </div>
+
+  <div class="col-12">
+    <div class="box-container">
+
+      <h1 class="tev-heading tev-heading--h1 tev-heading--border-x3">{{reference.title}}</h1>
+
+      <form class="floating-labels form-bg-light sign-docs-form"
+            [formGroup]="infoFrom" (submit)="submit()">
+
+
+        <div class="row">
+
+          <div class="col-12 alert alert-danger small" *ngIf="reference.rejectReason && !resended">
+            <span class="txt-bold">We haven’t been able to verify some of your references.</span><br/>
+            <div>{{reference.rejectReason}}</div>
+          </div>
+
+          <div class="col-12 alert alert-primary small" *ngIf="resended">
+            <span class="txt-bold"> A verification email has been sent to your reference.</span><br/>
+            The reference will have 48 hours to respond to our email. Failure to do so will result in the delay of the application.
+          </div>
+
+          <div class="col-12 col-sm-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="text"
+                       class="form-control"
+                       placeholder="Full Name"
+                       formControlName="name"
+                       maxlength="80"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('name')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6">
+            <div class="form-label-group">
+              <mat-form-field>
+                <mat-select [formControlName]="'relationship'" placeholder="Relationship">
+                  <mat-option *ngFor="let option of relationshipsValues" [value]="option.key">{{option.name}}</mat-option>
+                </mat-select>
+                <mat-error>{{getError('relationship')}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div><!-- ./col -->
+
+          <div class="col-12 col-sm-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+
+                <mat-select [formControlName]="'dialCode'" placeholder="Dial Code">
+                  <mat-option *ngFor="let code of dialCodes" [value]="code | dialCodeValue">{{code | dialCodeName}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>{{getError('dialCode')}}</mat-error>
+
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       id="owner-phone"
+                       class="form-control"
+                       placeholder="Phone"
+                       formControlName="phone"
+                       maxlength="20"
+                       [textMask]="{mask: phonemask}"
+                >
+                <mat-error>{{getError('phone')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+<!--          <div class="col-12 col-sm-6">-->
+<!--            <div class="form-label-group">-->
+
+<!--              <mat-form-field>-->
+
+<!--                <mat-select [formControlName]="'country'" placeholder="Country">-->
+<!--                  <mat-option *ngFor="let option of countries" [value]="option.code">{{option.name}}</mat-option>-->
+<!--                </mat-select>-->
+<!--                <mat-error>{{getError('country')}}</mat-error>-->
+<!--              </mat-form-field>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="col-12 col-sm-6">-->
+<!--            <div class="form-label-group">-->
+
+<!--              <mat-form-field>-->
+<!--                <input matInput-->
+<!--                       type="text"-->
+<!--                       class="form-control"-->
+<!--                       placeholder="Cell Phone"-->
+<!--                       formControlName="cellPhone"-->
+<!--                       maxlength="20"-->
+<!--                       tevNumbersOnly-->
+<!--                >-->
+<!--                <mat-error>{{getError('cellPhone')}}</mat-error>-->
+<!--              </mat-form-field>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+          <div class="col-12 col-sm-6">
+            <div class="form-label-group">
+
+              <mat-form-field>
+                <input matInput
+                       type="email"
+                       class="form-control"
+                       placeholder="Email"
+                       formControlName="email"
+                       maxlength="50"
+                       tevAsciiOnly
+                >
+                <mat-error>{{getError('email')}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="col-12 text-right">
+            <button class="tev-btn tev-btn--common tev-btn--success" type="submit" *ngIf="showSubmitButton()" >Update and Resend</button>
+            <button class="tev-btn tev-btn--common tev-btn--disabled" disabled *ngIf="showSubmited()">Submited</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div><!-- /col -->
+
+</div><!-- /row -->
+

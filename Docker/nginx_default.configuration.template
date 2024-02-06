@@ -1,0 +1,37 @@
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  _;
+    root   /usr/share/nginx/html;
+    index  index.html;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    location = /index.html {
+        add_header Cache-Control "no-cache, no-store";
+        add_header 'X-Content-Type-Options'  'nosniff';
+        add_header 'X-Frame-Options' 'sameorigin';
+        add_header 'X-XSS-Protection' '1; mode=block';
+        add_header 'Strict-Transport-Security' 'max-age=31536000; includeSubDomains; preload';
+        add_header 'Cache-control' 'no-cache';
+#        add_header 'Referrer-Policy' 'no-referrer';
+        # add_header 'Content-Security-Policy' "default-src 'self'; img-src https://files.tenantevaluation.com https://px.ads.linkedin.com 'self' data:; connect-src 'self' https://*.${ENV_DOMAIN} data: https://assets.calendly.com https://widget.freshworks.com; script-src https://*.${ENV_DOMAIN} https://ajax.googleapis.com https://www.google-analytics.com https://code.jquery.com https://translate.google.com https://widget.freshworks.com 'self' 'unsafe-inline' https://assets.calendly.com https://snap.licdn.com blob:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; object-src blob:; frame-src 'self'; base-uri 'self'; worker-src 'self' blob:; manifest-src 'self'; form-action 'self'; frame-ancestors 'self';";
+
+    }
+
+    client_max_body_size 100M;
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+    location ~ /\.ht { deny all; }
+
+    add_header 'X-Content-Type-Options'  'nosniff';
+    add_header 'X-Frame-Options' 'sameorigin';
+    add_header 'X-XSS-Protection' '1; mode=block';
+    add_header 'Strict-Transport-Security' 'max-age=31536000; includeSubDomains; preload';
+    add_header 'Cache-control' 'no-cache';
+#    add_header 'Referrer-Policy' 'no-referrer';
+
+
+    # add_header 'Content-Security-Policy' "default-src 'self'; img-src https://files.tenantevaluation.com https://px.ads.linkedin.com 'self' data:; connect-src 'self' https://*.${ENV_DOMAIN} data: https://assets.calendly.com https://widget.freshworks.com; script-src https://*.${ENV_DOMAIN} https://ajax.googleapis.com https://www.google-analytics.com https://code.jquery.com https://translate.google.com https://widget.freshworks.com 'self' 'unsafe-inline' https://assets.calendly.com https://snap.licdn.com blob:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; object-src blob:; frame-src 'self'; base-uri 'self'; worker-src 'self' blob:; manifest-src 'self'; form-action 'self'; frame-ancestors 'self';";
+
+}

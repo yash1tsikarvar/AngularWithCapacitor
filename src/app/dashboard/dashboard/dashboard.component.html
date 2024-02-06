@@ -1,0 +1,23 @@
+<tev-nav-bar></tev-nav-bar>
+<main role="main" class="container-fluid">
+
+  <!--Hide until Expedite your app is working-->
+  <div class="dashboard-main__head">
+    <a [routerLink]="['expedite-app']"
+       *ngIf="false"
+       class="tev-btn tev-btn--common tev-btn--primary">Expedite Your App</a>
+    <div *ngIf="smallLogo=='/assets/tenant-ev-logo-service.svg'||smallLogo=='/assets/icon-te.svg'">
+      <img src="/assets/tenant-ev-logo-service.svg" alt="Tenant Evaluation">
+    </div>
+    <div *ngIf="smallLogo!='/assets/tenant-ev-logo-service.svg'&&smallLogo!='/assets/icon-te.svg'" class="p-3 bg-white">
+      <img [src]="smallLogo" alt="">
+    </div>
+
+  </div>
+
+  <div class="negative-x-margin px-3 py-4">
+    <router-outlet></router-outlet>
+  </div>
+
+</main>
+<tev-white-label-footer></tev-white-label-footer>

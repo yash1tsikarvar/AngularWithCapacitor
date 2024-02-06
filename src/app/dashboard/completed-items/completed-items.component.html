@@ -1,0 +1,126 @@
+<div class="row">
+
+  <div class="col-12">
+    <small class="mb-4 d-block">
+      <ng-template [ngIf]="nothingCompleted()">There is nothing completed at the moment.</ng-template>
+      <ng-template [ngIf]="!nothingCompleted()">The items below have been verified.</ng-template>
+    </small>
+
+    <article class="user-action" *ngIf="showSigningStatus()"
+             [ngClass]="signStatusClass()">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--signed"></i>
+        <div class="user-action__text" *ngIf="mainApplication.shortApplication == 'LONG'" >
+          <h2 *ngIf="mainApplication.applicants.length === 1; else coApplicantSignatureText;">
+            {{mainApplication.signingStatus.name}} Signature</h2>
+          <small *ngIf="!mainApplication.signingStatus.signedApplicationUrl">{{mainApplication.signingStatus.signingStatus | signingStatus}}</small>
+          <small *ngIf="mainApplication.signingStatus.signedApplicationUrl">Download a copy of your signed documents</small>
+        </div>
+        
+        <div class="user-action__text" *ngIf="mainApplication.shortApplication == 'SHORT'">
+          <h2 *ngIf="mainApplication.applicants.length === 1; else coApplicantSignatureText;">Electronic signatures</h2>
+          <small *ngIf="!mainApplication.signingStatus.signedApplicationUrl">{{mainApplication.signingStatus.signingStatus | signingStatus}}</small>
+          <small *ngIf="mainApplication.signingStatus.signedApplicationUrl">Download a copy of your signed documents</small>
+        </div>
+
+
+      </div>
+      <div *ngIf="mainApplication.signingStatus.signingStatus === 'SIGNED'"
+           class="user-action__box user-action__box--success">
+        <a [routerLink]="null"
+           *ngIf="authService.isCallCenterL1(); else showSigningLink"
+           class="tev-btn tev-btn--common tev-btn--primary">
+          Download
+        </a>
+        <ng-template #showSigningLink>
+          <a target="_blank" *ngIf="mainApplication.signingStatus.signedApplicationUrl" href="{{mainApplication.signingStatus.signedApplicationUrl}}"
+             class="tev-btn tev-btn--common tev-btn--primary">
+            Download
+          </a>
+        </ng-template>
+
+        <span *ngIf="!mainApplication.signingStatus.signedApplicationUrl">Verified</span>
+      </div>
+
+      <ng-template #coApplicantSignatureText>
+        <h2  *ngIf="mainApplication.shortApplication == 'SHORT'">Electronic signatures</h2>
+
+        <h2  *ngIf="mainApplication.shortApplication == 'LONG'">Electronic signatures for {{mainApplication.applicants[0].name}} &
+          {{mainApplication.applicants[1].name}}</h2>
+      </ng-template>
+
+    </article>
+
+    <article class="user-action" *ngFor="let document of mainApplication.completedDocumentTasks">
+      <a (click)="showJournalTask(document.documentTaskId)">
+        <mat-icon class="journal-icon tev-icon">library_books</mat-icon>
+      </a>
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--profile"></i>
+        <div class="user-action__text">
+          <h2>{{document.description}}</h2>
+        </div>
+      </div>
+      <div class="user-action__box user-action__box--success">
+        Verified
+      </div>
+    </article>
+
+    <article class="user-action d-flex px-4 py-5 success" *ngFor="let item of mainApplication.completedVerifications">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--document"></i>
+        <div class="user-action__text">
+          <h2>{{item.description}}</h2>
+        </div>
+      </div>
+      <div class="user-action__box user-action__box--success">
+        Verified
+      </div>
+    </article>
+
+    <article class="user-action" *ngFor="let task of mainApplication.completedReferenceTasks">
+      <!-- <a (click)="show(mainApplication.completedReferenceTasks)">
+        <mat-icon class="journal-icon tev-icon">library_books</mat-icon>
+      </a> -->
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--user"></i>
+        <div class="user-action__text">
+          <h2>{{task}}</h2>
+        </div>
+      </div>
+      <div class="user-action__box user-action__box--success">
+        Verified
+      </div>
+    </article>
+
+
+    <article class="user-action" *ngIf="mainApplication.ownerSigningStatus === 'COMPLETE'">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--signed"></i>
+        <div class="user-action__text">
+          <h2>Owner E-Signature</h2>
+          <small>Owner E-Signature Completed</small>
+        </div>
+      </div>
+      <div class="user-action__box user-action__box--success">
+        Verified
+      </div>
+    </article>
+
+    <article class="user-action" *ngIf="mainApplication.signedDocumentUrl">
+      <div class="user-action__description">
+        <i class="tev-icon tev-icon--signed"></i>
+        <div class="user-action__text">
+          <h2>Signed Document</h2>
+          <small>PDF Document</small>
+        </div>
+      </div>
+      <a href="#" class="tev-btn tev-btn--common tev-btn--primary">
+        Download
+      </a>
+    </article>
+
+  </div><!-- /col -->
+
+</div>
+

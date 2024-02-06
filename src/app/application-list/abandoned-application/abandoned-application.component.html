@@ -1,0 +1,47 @@
+<div class="container-fluid" [routerLink]="['/dashboard', application.applicationId]" style="cursor: pointer;">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xs-12">
+      <div class=" row box-group">
+        <div class="col-md-1 col-2" *ngIf="notificationsShow">
+          <div class="row row-mh center ml-1">
+            <div class="box-group__cell col-md-1 col-xs-1">
+              <mat-checkbox [(ngModel)]="application.notificationChecked" *ngIf="notificationsShow">
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-10 col-8" [ngClass]="{'col-md-9 col-6': notificationsShow, 'col-md-10 col-8 pl-1': !notificationsShow}">
+          <div class="row pxy px-0">
+            <div class="box-group__cell col-md-3 col-xs-11">
+              <h1>{{application.buildingName}}</h1>
+              <h6>Property Name</h6>
+            </div>
+            <div class="box-group__cell col-md-3 col-xs-12">
+              <h2>{{application.lastActivity | date:'medium'}}</h2>
+              <h6>Last activity date</h6>
+            </div>
+            <div class="box-group__cell col-md-3 col-xs-1 col_dn">
+            </div>
+            <div class="box-group__cell col-md-2 col-xs-12">
+              <h2 class="status--abandoned">Abandoned</h2>
+              <h6>Application status</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 col-4 box-right">
+          <div class="row pxy row-mh">
+            <div class="box-group__cell col-md-10 col-xs-12">
+              <h3>{{application.applicationId}}</h3>
+              <h4>Application ID</h4>
+            </div>
+            <div class="box-group__cell col-md-2 col-
+            xs-12 icon">
+              <mat-icon class="material-icons">navigate_next
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

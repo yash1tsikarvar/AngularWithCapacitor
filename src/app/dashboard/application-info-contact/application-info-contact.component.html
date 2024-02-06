@@ -1,0 +1,29 @@
+<div class="col-12" #target
+      *ngIf="mainApplication.rush === true; else notRush">
+      <h5>Additional Services Selected:</h5>
+      <ul class="applicant__list">
+      <li>
+      Quick Pass Service: 24 Business Hours for Processing*
+
+      <br><br>*Depends on how fast information required by the association is received. If information required is not received in a timely manner, application will be delayed.<br>
+      <br> If you would like further assistance, please contact us by sending an email to: expedite@tenantevaluation.com or Call us at the following numbers: For English: 305.705.6347 | For Spanish: 305.705.6358
+      </li>
+      </ul>
+
+</div>
+
+<ng-template #notRush>
+  <h5>No Additional Services Selected:</h5>
+
+  <ul class="applicant__list">
+    <li>
+      Standard Service: Up to 14 business Days for Processing
+    </li>
+  </ul>
+</ng-template>
+
+<ul class="txt-xs application-info">
+  <li class="py-1" *ngIf="mainApplication.refundReceiptUrl">
+    <a class="btn btn-primary ml-auto align-self-end" [href]="mainApplication.refundReceiptUrl" target="_blank">Print Refund Receipt</a>
+  </li>
+</ul>

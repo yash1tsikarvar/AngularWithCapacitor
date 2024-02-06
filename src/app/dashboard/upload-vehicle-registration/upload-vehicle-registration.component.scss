@@ -1,0 +1,488 @@
+@import "../../../sass/variables";
+
+.upload-ssn {
+
+  .title {
+    font-size: 20px;
+    font-family: Roboto;
+    color: $blue;
+    text-align: center;
+    padding-bottom: 20%;
+  }
+
+  .title-withoutpad {
+    padding-bottom: 10px;
+  }
+
+  .preview-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .responsive {
+    max-height: 400px;
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 14px;
+    padding: 0px 80px;
+    font-family: Roboto;
+    text-align: center;
+  }
+
+  .instructions {
+    border-radius: 10px;
+    background-color: #383342;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 19px;
+    min-height: 50%;
+    color: white;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+
+    i {
+      width: 50px;
+      height: 50px;
+      margin-top: -100px;
+    }
+
+    .error-text {
+      color: #F33D3D;
+    }
+
+    ngx-dropzone-label {
+      text-align: center;
+    }
+
+
+  }
+
+  .uploading {
+    border-radius: 10px;
+    background-color: #383342;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 24px;
+    color: white;
+    padding: 15px 60px;
+
+    .counter {
+      color: #F33D3D;
+      text-align: center;
+    }
+
+  }
+
+  .small-text {
+    font-size: 12px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .gifimg {
+    display: block;
+    border-radius: 50%;
+    margin: 10% auto 3%;
+    width: 60%;
+  }
+
+  .rocket-img {
+    display: block;
+    border-radius: 50%;
+    margin: 5% auto 3%;
+    width: 60%;
+  }
+
+  .image-drop__zone {
+    text-align: center !important;
+    width: 100%;
+    background-color: white;
+    min-height: 440px !important;
+
+    p {
+      width: 100%;
+      text-align: center;
+      vertical-align: center;
+      display: table-cell;
+    }
+
+    .tev-icon {
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+      horiz-align: center;
+    }
+  }
+
+
+  ngx-dropzone-image-preview {
+    max-height: 440px !important;
+    height: 100% !important;
+  }
+
+  ngx-dropzone-image-preview > img {
+    border: 1px solid black !important;
+    width: 100%;
+    height: 100%;
+    max-height: 440px !important;
+  }
+
+  .ngx-dropzone-preview {
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: red !important;
+  }
+
+  .upload-generic-icon {
+    text-align: center;
+    vertical-align: center;
+    horiz-align: center;
+    width: 100%;
+    height: 40px;
+    background-image: url("/../../../assets/icon-document.svg");
+  }
+
+
+  .button-style {
+    margin-top: 20px;
+    border-radius: 9px;
+    background: #0f9ae3;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    height: 60px;
+    width: 100%;
+  }
+
+  ngx-dropzone-preview {
+    min-height: 440px !important;
+    height: 440px !important;
+    min-width: 100px !important;
+    max-width: 100px !important;
+  }
+
+  .image-drop__zone {
+    text-align: center !important;
+    width: 85%;
+    margin: auto;
+    background-color: white;
+    height: 100px !important;
+
+    p {
+      width: 100%;
+      text-align: center;
+      vertical-align: center;
+      display: table-cell;
+    }
+
+  }
+
+  .button-style {
+    height: 50px;
+  }
+
+}
+
+.slide-container {
+
+  padding-top: 50px;
+  font-family: Roboto;
+  font-size: 24px;
+  color: white;
+
+  .slide-item {
+    padding-top: 20px;
+    border-radius: 10px;
+    background-color: #383342;
+    text-align: center;
+    font-family: Roboto, serif;
+    min-height: 400px;
+    height: 50%;
+    width: 80%;
+    margin-top: 40%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    opacity: 0;
+
+    h4 {
+      color: red !important;
+    }
+
+    .item-image {
+      background-size: 130px 130px;
+      height: 200px;
+      width: 200px;
+      margin: auto;
+      padding: 50px;
+      border: 15px solid white;
+      border-radius: 50%;
+      background-color: #e6e6e6;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    p {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      padding-bottom: 0px;
+    }
+
+    .image-validate {
+      height: 80%;
+      width: 50%;
+      position: absolute;
+      right: 25%;
+      top: 13%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .delete-image {
+      background-image: url("~assets/upload-generic/wrong.svg");
+    }
+
+    .right-image {
+      background-image: url("~assets/upload-generic/right-icon.svg");
+    }
+
+    .slider-generic-text {
+      margin-top: 0px;
+      padding-top: 0px;
+      white-space: pre;
+      font-size: 12px;
+    }
+
+  }
+}
+
+#cover1 {
+  background-image: url("~assets/upload-vehicle/vehicle-visible.svg");
+}
+
+#cover2 {
+  background-image: url("~assets/upload-vehicle/vehicle-cover.svg");
+}
+
+#cover3 {
+  background-image: url("~assets/upload-vehicle/vehicle-blurry.svg");
+}
+
+#cover4 {
+  background-image: url("~assets/upload-generic/size.svg");
+}
+
+#cover5 {
+  background-image: url("~assets/upload-vehicle/vehicle-right.svg");
+}
+
+.slide1 {
+  -webkit-animation: fade 30s 0s;
+}
+
+.slide2 {
+  -webkit-animation: fade 30s 4s;
+}
+
+.slide3 {
+  -webkit-animation: fade 30s 8s;
+}
+
+.slide4 {
+  -webkit-animation: fade 30s 12s;
+}
+
+.slide5 {
+  -webkit-animation: fade 100s 16s;
+  opacity: 1;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0.0
+  }
+  2% {
+    opacity: 1.0
+  }
+  33.33% {
+    opacity: 1.0
+  }
+  37.33% {
+    opacity: 0.0
+  }
+  100% {
+    opacity: 0.0
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .upload-ssn {
+
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    .instructions {
+      i {
+        top: 48%;
+      }
+    }
+
+    .slide-container {
+      padding-top: 150px;
+    }
+
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .upload-ssn {
+    .instructions {
+      max-height: 30%;
+
+      i {
+        top: 45%;
+      }
+    }
+
+    .image-drop__zone {
+      width: 100%;
+    }
+
+    .slide-item {
+
+      .item-image {
+        background-size: 130px 100px;
+        height: 180px;
+        width: 180px;
+      }
+
+      p {
+        margin-top: 20px;
+      }
+
+      .image-validate {
+        top: 8%;
+      }
+
+      .delete-image {
+        background-image: url("~assets//upload-generic/wrong.svg");
+      }
+
+      .right-image {
+        background-image: url("~assets/upload-generic/right-icon.svg");
+      }
+
+      .slider-generic-text {
+        font-size: 12px;
+      }
+
+    }
+
+  }
+
+
+}
+
+@media screen and (max-width: 767.9px) {
+  .upload-ssn {
+    .description {
+      padding: 0px;
+    }
+
+    .instructions {
+      height: auto;
+
+      i {
+        height: 30px;
+        top: 60%;
+      }
+    }
+
+    .gifimg {
+      margin-top: 3%;
+      margin-bottom: 5px;
+      width: 30%;
+    }
+
+    .image-drop__zone {
+      max-height: 40%;
+    }
+
+    .slide-container {
+      padding-top: 50px;
+    }
+
+  }
+
+  @media screen and (max-width: 540.9px) {
+
+    container-fluid {
+      margin-top: 20px;
+    }
+
+    .upload-ssn {
+      .title {
+        padding-bottom: 5%;
+      }
+
+      .uploading {
+        width: 100%;
+      }
+
+      .slide-container {
+        padding-top: 150px;
+      }
+
+      .instructions {
+        max-height: 30%;
+        margin: 10% 20px 10px;
+        font-size: 15px;
+
+        i {
+          height: 20px;
+          top: 40%;
+        }
+
+        .error-text {
+          padding-top: 2px;
+          font-size: 16px;
+        }
+
+        .small-text {
+          font-size: 10px;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+      }
+
+      .gifimg {
+        margin-top: 3%;
+        margin-bottom: 5px;
+        width: 20%;
+      }
+
+      .image-drop__zone {
+        min-height: 250px !important;
+      }
+
+    }
+
+  }
+
+
+}

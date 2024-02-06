@@ -1,0 +1,84 @@
+<tev-header></tev-header>
+<div class="icon-house">
+  <div class="select-enter-type">
+<!--     <section class="enter-type-header">
+      <img
+        class="enter-type-header--img"
+        src="/assets/logo-tenant-evaluation.svg"
+        alt="logo"
+      />
+    </section> -->
+
+    <div class="enter-type-description">
+      <h1>Select one application type</h1>
+      <p>To begin, please select the application type you would like to use. The application(s) listed below are allowed by the community</p>
+    </div>
+
+    <div class="enter-type-options">
+      <div class="enter-type-option"  *ngIf="allowLease">
+        <!-- <div class="card box-group__cell" style="width: 18rem"> -->
+        <div>
+          <img
+            src="/assets/icon-rent-application.svg"
+            alt="Tenant Evaluation Logo"
+            class="enter-type-option__img"
+          />
+        </div>
+        <h6 class="enter-type-option__text">Apply to lease <br />a property</h6>
+        <button
+          class="enter-type-option__button"
+          type="button"
+          (click)="submit('T')"
+        >
+          Select <span class="icon"></span>
+        </button>
+      </div>
+
+      <div class="enter-type-option" *ngIf="allowPurchase">
+        <div>
+          <img
+            src="/assets/icon-buy-application.svg"
+            alt="Tenant Evaluation Logo"
+            class="enter-type-option__img"
+          />
+        </div>
+        <h6 class="enter-type-option__text">Apply to buy <br />a property</h6>
+        <button
+          class="enter-type-option__button"
+          type="button"
+          (click)="submit('O')"
+        >
+          Select <span class="icon"></span>
+        </button>
+      </div>
+
+      <div class="enter-type-option" *ngIf="allowGuest">
+        <div>
+          <img
+            src="/assets/icon-guest-application.svg"
+            alt="Tenant Evaluation Logo"
+            class="enter-type-option__img"
+          />
+        </div>
+        <h6 class="enter-type-option__text">
+          Apply as a guest or<br> additional resident
+        </h6>
+        <button
+          class="enter-type-option__button"
+          type="button"
+          (click)="submit('G')"
+        >
+          Select <span class="icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <section class="enter-type-footer">
+      <small class="enter-type-footer--text"
+        >All rights reserved | Tenant Evaluation {{currentYear}}</small
+      >
+    </section>
+  </div>
+
+  <!-- ./begin-enter-code -->
+</div>

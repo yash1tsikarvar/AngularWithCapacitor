@@ -1,0 +1,19 @@
+   @Size(max = 80)
+    private String name;
+
+    @Size(max = 50)
+    private String breed;
+
+	private Integer age;
+
+	private Integer weight;
+
+	private AnimalType petType;
+
+	private Sex petSex;
+
+    @Size(max = 50)
+    private String license;
+    
+    @Size(max = 255)
+    private String description;

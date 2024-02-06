@@ -1,0 +1,67 @@
+<tev-header></tev-header>
+<div class="application">
+  <main role="main" class="container-fluid">
+    <div class="row application__head">
+      <div class="col-12 mb-2">
+        <h1>My Applications</h1>
+      </div>
+      <div class="col-12 col-md-8 div-st mb-1">
+        <h2>Select the application you want to access</h2>
+      </div>
+
+      <div class="col-12 col-md-12 box-group" [ngClass]="{'col-md-6': notificationsShow, 'col-md-8': !notificationsShow}">
+        <div class="form-group">
+          <input class="input-search" type="text" [(ngModel)]="queryString"
+                 (keydown.enter)="onEnterDown($event)"
+                 (input)="onChangeSearch($event)"
+                 [placeholder]="placeHolder" id="search"/>
+          <input class="form-button" type="button" (click)="onEnterDown(null)" />
+          <div class="mat-error" *ngIf="authService.isCallCenterL1() && 0===applications.length">{{notFoundText}}</div>
+        </div>
+      </div>
+
+      <!-- <div class="form-group input-filter" [ngClass]="{'col': notificationsShow, 'col-3': !notificationsShow}">
+          <tev-filter-application [statusList]="statusList"
+          ></tev-filter-application>
+      </div> -->
+    </div>
+
+
+    <div class="row">
+      <div class="col-12">
+        <ngb-pagination *ngIf="authService.isCallCenterL1() && 0!==applications.length"
+                        (pageChange)="loadPage($event)"
+                        class="d-flex justify-content-center"
+                        [collectionSize]="nrOfElements"
+                        [(page)]="currentPage" [maxSize]="5"
+                        aria-label="Default pagination"></ngb-pagination>
+        <div class="application__list">
+
+          <article [ngSwitch]="true" *ngFor="let application of applications | FilterPipe: filterString">
+            <tev-application-item [application]="application"
+              [notificationsShow]="notificationsShow">
+            </tev-application-item>
+          </article>
+
+        </div>
+
+      </div><!-- ./col -->
+    </div><!-- ./application-selection -->
+    <ngb-pagination *ngIf="authService.isCallCenterL1() && 0!==applications.length"
+                    (pageChange)="loadPage($event)"
+                    class="d-flex justify-content-center"
+                    [collectionSize]="nrOfElements"
+                    [(page)]="currentPage" [maxSize]="5"
+                    aria-label="Default pagination"></ngb-pagination>
+
+    <div class="row" *ngIf="notificationsShow">
+      <div class="col-6 col_dn"></div>
+      <div class="col-12 col-md-6">
+        <button (click)="updateNotification()" class="noti-button">UPDATE NOTIFICATION SETTINGS
+        </button>
+      </div>
+    </div>
+
+  </main>
+</div>
+<tev-footer></tev-footer>

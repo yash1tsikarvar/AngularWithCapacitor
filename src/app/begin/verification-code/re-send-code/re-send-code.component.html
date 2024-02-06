@@ -1,0 +1,114 @@
+<div class="re-send-code">
+  <div class="re-send-code__header">
+    <img src="/assets/icon-te.svg" alt="Tenant Evaluation" class="re-send-code__header--logo">
+    <div class="re-send-code__header--title">
+      Authenticate Your Account
+    </div>
+    <div class="re-send-code__header--text">
+      Please enter the <span *ngIf="bySMS">phone number</span>
+      <span *ngIf="!bySMS">email address</span> where you want to receive the new
+      authentication code.
+      <div class="re-send-code__header--text__important">
+        <span style="font-weight: 900" *ngIf="bySMS">Important, please note that any future communications relating to your application will be sent to the new phone number that you provide below.</span>
+        <span style="font-weight: 900" *ngIf="!bySMS">Important, the previous email address will be replaced with the new email address below for you to sign into your account.</span>
+      </div>
+    </div>
+  </div>
+  <div class="re-send-code__form">
+    <form [formGroup]="resendForm" (submit)="submit()">
+          <section class="content-box">
+              <article>
+                  <div class="form-label-group" *ngIf="!bySMS">
+                      <div class="row">
+                          <div class="col-12">
+                              <span class="txt-bold txt-gray txt-xxxs">New Email Address</span>
+                              <mat-form-field appearance="outline"
+                                  class="text-size-custom intro_input_text_1">
+                                  <input matInput
+                                      type="email"
+                                      formControlName="email"
+                                      minlength="5"
+                                      maxlength="100"
+                                      tevAsciiOnly
+                                      required
+                                      class="register-input"
+                                      >
+                                  <mat-error>{{getError('email')}}</mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="col-12">
+                              <span class="txt-bold txt-gray txt-xxxs">Confirm New Email Address</span>
+                              <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+                                  <input matInput
+                                         type="email"
+                                         id="confirmEmail"
+                                         formControlName="confirmEmail"
+                                         minlength="5"
+                                         maxlength="100"
+                                         tevAsciiOnly
+                                         required
+                                         tevBlockCopyPaste
+                                         class="register-input"
+                                  >
+                                  <mat-error>{{getError('confirmEmail')}}</mat-error>
+                              </mat-form-field>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row style-custom" *ngIf="bySMS">
+                      <div class="col-12 col-md-6 col-xl-6">
+                          <div class="form-label-group">
+                              <span class="txt-bold txt-gray txt-xxxs">Country</span>
+                              <mat-form-field appearance="outline"
+                                  class="text-size-custom intro_input_text_1">
+
+
+
+                                  <mat-select [formControlName]="'dialCode'" class="dial-code-select">
+                                    <mat-option *ngFor="let code of dialCodes" [value]="code | dialCodeValue">{{code | dialCodeName}}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-error>{{getError('dialCode')}}</mat-error>
+
+                                  <!-- <input matInput type="text" formControlName="dialCode"
+                                      maxlength="4" tevAsciiOnly required readonly
+                                      class="register-input"
+                                      > -->
+                              </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="col-12 col-md-6 col-xl-6">
+                          <div class="form-label-group">
+                              <div class="form-label-group">
+                                  <span class="txt-bold txt-gray txt-xxxs">Mobile
+                                      Number</span>
+                                  <mat-form-field appearance="outline"
+                                      class="text-size-custom intro_input_text_1">
+                                      <input
+                                          matInput
+                                          formControlName="mobile"
+                                          [textMask]="{mask: phonemask}"
+                                          tevAsciiOnly required
+                                          class="register-input"
+                                          >
+                                      <mat-error>{{getError('mobile')}}</mat-error>
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </article>
+          </section><!-- ./content-box -->
+      <div class="col-12 col-md-8 col-xl-10">
+          <span *ngIf="bySMS">Mobile US phone number only.<br><br></span>
+      </div>
+      <div class="col-12"></div>
+      <button mat-button class="re-send-code__form--button sms-button" type="submit">RE-SEND CODE</button>
+   </form>
+  </div>
+
+  <div class="re-send-code__footer">
+      <span>All rights reserved | Tenant Evaluation {{currentYear}}</span>
+  </div>
+
+</div>

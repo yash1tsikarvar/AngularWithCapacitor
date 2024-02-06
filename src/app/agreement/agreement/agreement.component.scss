@@ -1,0 +1,16 @@
+.agreement-text {
+  max-height: 10em;
+  overflow-y: auto;
+  padding: 1em;
+  margin: 1em 0;
+  background-color: #E0E0E0;
+}
+.signature-canvas {
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+#signature-pad, #signature-text {
+  width: 100%;
+  height: 200px;
+}

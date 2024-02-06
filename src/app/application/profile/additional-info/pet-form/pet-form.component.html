@@ -1,0 +1,212 @@
+<div
+  [ngClass]="{
+    'py-4': formIndex > 0,
+    'border-top': formIndex > 0,
+    'my-4': formIndex > 0
+  }"
+>
+  <form class="row" [formGroup]="childForm">
+    <div class="col-12" *ngIf="!esaForm">
+      <div class="closed-question__body">
+        <label
+          ><span class="txt tev-text"
+            >Is this pet an Emotional Support/Service Animal (ESA)?
+            </span
+          ></label
+        >
+        <!-- <div class="closed-question__input">
+          <mat-radio-group [formControlName]="'esaPet'">
+            <mat-radio-button
+              (click)="yesNoChanged('true')"
+              [checked]="value === 'true'"
+              value="true"
+              data-cy="yes"
+            >
+              Yes
+            </mat-radio-button>
+            <mat-radio-button
+            (click)="yesNoChanged('false')"
+            [checked]="value === 'false'"
+              value="false"
+              data-cy="no"
+            >
+              No
+            </mat-radio-button>
+          </mat-radio-group>
+        </div> -->
+        <tev-yes-no-input
+          (change)="yesNoChanged($event)"
+          [formControlName]="'esa'"
+        ></tev-yes-no-input>
+        <div class="invalid-feedback">{{ getError('esa') }}</div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Name</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="text"
+            id="petName-{{ counter }}"
+            class="form-control"
+            formControlName="name"
+            maxlength="80"
+            tevAsciiOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('name') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Pet Type</span>
+        <mat-form-field
+          appearance="outline"
+          class="text-size-custom intro_input_text_1"
+        >
+          <mat-select [formControlName]="'animalType'" class="general-select">
+            <mat-option
+              *ngFor="let option of animalTypes"
+              [value]="option.key"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+          <mat-error>{{ getError('animalType') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Breed</span>
+        <mat-form-field
+          appearance="outline"
+          class="text-size-custom intro_input_text_1"
+        >
+          <input
+            matInput
+            type="text"
+            id="petBreed-{{ counter }}"
+            class="form-control"
+            formControlName="breed"
+            maxlength="50"
+            tevAsciiOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('breed') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Age</span>
+        <mat-form-field
+          appearance="outline"
+          class="text-size-custom intro_input_text_1"
+        >
+          <input
+            matInput
+            type="text"
+            id="petAge-{{ counter }}"
+            class="form-control"
+            formControlName="age"
+            pattern="^([0-9]|[1-9][0-9])$"
+            maxlength="2"
+            tevNumbersOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('age') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Weight in pounds/lbs (Please round to the nearest whole number)</span>
+        <mat-form-field
+          appearance="outline"
+          class="text-size-custom intro_input_text_1"
+        >
+          <input
+            matInput
+            type="text"
+            id="petWeight-{{ counter }}"
+            class="form-control"
+            formControlName="weight"
+            maxlength="3"
+            tevNumbersOnly
+            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+            class="general-input form-control"
+            
+          />
+          <mat-error>{{ getError('weight') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Sex</span>
+        <mat-form-field
+          appearance="outline"
+          class="text-size-custom intro_input_text_1"
+        >
+          <mat-select [formControlName]="'sex'" class="general-select">
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="F">Female</mat-option>
+          </mat-select>
+          <mat-error>{{ getError('sex') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6" *ngIf="showPetForm">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">License/Tag Number</span>
+        <mat-form-field
+          appearance="outline"
+          class="text-size-custom intro_input_text_1"
+        >
+          <input
+            matInput
+            type="text"
+            id="petLicense-{{ counter }}"
+            class="form-control"
+            formControlName="licenseTag"
+            maxlength="50"
+            tevAsciiOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('licenseTag') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12" *ngIf="showPetForm">
+      <div class="form-group mt-5">
+        <label for="petDescription-{{ counter }}" class="tev-text">
+          * Description: Please include hair color, length, and any other
+          distinguishing features.
+        </label>
+        <textarea
+          class="form-control txt-xs"
+          id="petDescription-{{ counter }}"
+          rows="3"
+          formControlName="description"
+          maxlength="255"
+          tevAsciiOnly
+        ></textarea>
+        <div class="invalid-feedback">{{ getError('description') }}</div>
+      </div>
+    </div>
+    <!-- ./col -->
+  </form>
+</div>

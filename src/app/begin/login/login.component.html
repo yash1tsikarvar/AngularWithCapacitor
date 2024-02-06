@@ -1,0 +1,56 @@
+<div class="begin-intro-container">
+  <div class="begin-intro">
+    <div class="begin-intro--header">
+      <div class="begin-intro--header__logo">
+        <img src="/assets/logo-tenant-evaluation-light.svg" alt="Tenant Evaluation">
+      </div>
+      <!-- ./begin-intro--header__logo -->
+      <div class="begin-intro--header__title">
+        <h2>
+          Applying to your new home
+        </h2>
+      </div>
+      <!-- ./begin-intro--header__title -->
+      <div class="begin-intro--header__text">
+        <img src="/assets/intro/title.png" alt="has never been this easy">
+      </div>
+      <!-- ./begin-intro--header__text -->
+    </div>
+
+    <div class="begin-intro--body">
+        <form class="intro-box-signin"  [formGroup]="loginForm" (submit)="submit()">
+          <h3 class="intro-box-signin-title"> Sign in to your existing account</h3>
+          <div class="intro-box-signin-input-user">
+            <label class="txt-bold txt-purple txt-xxxs">Email</label>
+            <mat-form-field appearance="outline" >
+              <input class="intro-input" matInput type="email" formControlName="login" tevAsciiOnly required>
+              <mat-error>{{getError('login')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="intro-box-signin-input-password">
+            <label class="txt-bold txt-purple txt-xxxs">Password</label>
+            <mat-form-field appearance="outline" >
+              <input class="intro-input" matInput [type]="hide ? 'password' : 'text'" formControlName="password" minlength="4"
+                autocomplete="current-password" required>
+              <button matSuffix class="btn btn-form floating eye-icon" type="button" (click)="modifyVisibility()">
+                <i translate="no" class="material-icons mat-icon-form">{{hide ? 'visibility' : 'visibility_off'}}</i>
+              </button>
+              <mat-error>{{getError('password')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <tev-alert-badge *ngIf="info" [type]="infoType" [message]="info"></tev-alert-badge>
+          <button class="intro-box-signin-button intro-button" type="submit">SIGN IN<span class="icon"></span></button>
+          <a [routerLink]="['/reset-password']" class="intro-link"><span class="txt-xxs txt-blue intro_link_text_1">Forgot my
+            password</span></a>
+        </form>
+
+    </div>
+
+
+    <div class="begin-intro--footer">
+      <p>All rights reserved | Tenant Evaluation {{currentYear}}</p>
+    </div>
+  <!-- ./intro -->
+  </div>
+</div>
+

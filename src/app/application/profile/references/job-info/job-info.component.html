@@ -1,0 +1,242 @@
+<form [formGroup]="childForm">
+  <div>
+    <div class="select-applicant__form--info" style="margin-bottom: 1rem">
+      <p>Job Information</p>
+    </div>
+  </div>
+  <!-- ./col -->
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Company Name</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="text"
+            id="employmentCompany-{{ counter }}"
+            formControlName="companyName"
+            maxlength="80"
+            tevAsciiOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('companyName') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Job Title</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="text"
+            id="employmentJobTitle-{{ counter }}"
+            formControlName="jobTitle"
+            maxlength="100"
+            tevAsciiOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('jobTitle') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Country</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <mat-select
+            class="general-select"
+            [formControlName]="'country'"
+            data-cy="jobInformationCountry"
+          >
+            <mat-option
+              *ngFor="let country of countries"
+              [value]="country.code"
+              >{{ country.name }}</mat-option
+            >
+          </mat-select>
+          <mat-error>{{ getError('country') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* City</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="text"
+            id="employmentCity-{{ counter }}"
+            class="form-control"
+            formControlName="city"
+            maxlength="50"
+            tevAsciiOnly
+            class="general-input form-control"
+          />
+          <mat-error>{{ getError('city') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+  </div>
+
+  <div class="row">
+    <div
+      class="col-sm-12 col-md-6 col-lg-6"
+      [hidden]="
+        childForm?.value.country !== 'US' && childForm?.value.country !== 'CA'
+      "
+    >
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Zip Code</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <input matInput
+            matInput
+            type="text"
+            id="employmentZip-{{ counter }}"
+            class="general-input form-control"
+            formControlName="zip"
+            maxlength="10"
+            tevAsciiOnly
+          />
+          <mat-error>{{ getError('zip') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div
+      class="col-sm-12 col-md-6 col-lg-6"
+      [hidden]="childForm?.value.country !== 'US'"
+    >
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* State</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <mat-select
+            [formControlName]="'state'"
+            placeholder="State"
+            data-cy="jobInformationState"
+            class="general-select"
+          >
+            <mat-option
+              *ngFor="let state of states"
+              [value]="state.abbreviation"
+              >{{ state.name }}</mat-option
+            >
+          </mat-select>
+          <mat-error>{{ getError('state') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Address</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            type="text"
+            id="employmentAddress-{{ counter }}"
+            class="general-input form-control"
+            formControlName="address"
+            maxlength="80"
+            tevAsciiOnly
+          />
+          <mat-error>{{ getError('address') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Date when you started</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            formControlName="startDate"
+            id="employmentDateStarted-{{ counter }}"
+            (focus)="picker.open()"
+            [matDatepicker]="picker"
+            [max]="maxEmployDate"
+            [min]="minEmployDate"
+            data-cy="jobInformationDate"
+            class="general-input form-control"
+
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+          <mat-error>{{ getError('startDate') }}</mat-error>
+          <mat-hint>mm/dd/yyyy</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+  </div>
+
+  <div>
+    <div class="select-applicant__form--info" style="margin-bottom: 1rem">
+      <p>Salary</p>
+    </div>
+  </div>
+  <!-- <div class="col-sm-12 col-md-12 col-lg-12">
+    <h3 class="text-uppercase txt-xs no-bg mt-5">Salary</h3>
+  </div> -->
+  <!-- ./col -->
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Amount</span>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+                  type="text"
+                  id="employmentSalary-{{counter}}"
+                  class="general-input form-control"
+                  formControlName="amount"
+                  maxlength="9"
+          >
+
+          <mat-error>{{getError('amount')}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="select-group">
+        <span class="txt-bold txt-form-title txt-xxxs">* Period</span>
+        <mat-form-field appearance="outline" class="text-size-custom intro_input_text_1">
+          <mat-select
+            class="general-select"
+            [formControlName]="'period'"
+            data-cy="jobInformationSalaryPeriod"
+          >
+            <mat-option
+              *ngFor="let option of salaryPeriods"
+              [value]="option.key"
+              >{{ option.name }}</mat-option
+            >
+          </mat-select>
+          <mat-error>{{ getError('period') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+</form>

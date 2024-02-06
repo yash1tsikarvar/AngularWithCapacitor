@@ -1,0 +1,17 @@
+<i class="tev-icon tev-icon--tenant-logo"></i>
+<h2 mat-dialog-title>Proof of income<br/>
+  documents</h2>
+<div mat-dialog-content>
+  <p>If you don't have the Online Banking Credentials, the association will require the following documents to be provided:</p>
+
+  <ul>
+    <li *ngFor="let document of proofOfIncomeTask.task">
+      {{document.description}}
+    </li>
+  </ul>
+  <h2 mat-dialog-title>Would you like to do?</h2>
+</div>
+<div mat-dialog-actions>
+  <button style="padding:1.5em;" mat-button mat-dialog-close (click)="continueWithFinicity()" class="mat-dialog-actions mat-button mat-warning">CONTINUE WITH ONLINE BANKING</button>
+  <button style="padding:1.5em;" mat-button mat-dialog-close (click)="goToUploads()" class="mat-dialog-actions mat-button">UPLOAD DOCUMENTS NOW</button>
+</div>

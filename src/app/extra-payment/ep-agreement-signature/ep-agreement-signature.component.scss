@@ -1,0 +1,40 @@
+$light-gray: #d0d1d3;
+$dark-gray: #77747e;
+
+.agreement-text {
+  max-height: 15em;
+  overflow-y: auto;
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid #f1f1f2;
+  background-color: #F5F5F5;
+}
+.signature-canvas {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-color: #e3e4e6;
+}
+#signature-pad, #signature-text {
+  width: 100%;
+  height: 200px;
+}
+.signature {
+  .signature-input {
+    background-color: #f1f1f2;
+    color: #69616d;
+  }
+  .signature-wrapper, .signature-text {
+    background-color: $light-gray;
+    color: $dark-gray;
+    min-height: 200px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .signature-text {
+    z-index: 0;
+  }
+}

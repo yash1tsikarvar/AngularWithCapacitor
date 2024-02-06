@@ -1,0 +1,228 @@
+<div class="box-group box-group--connect">
+
+  <form class="row" [formGroup]="creditCardForm">
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h3 class="text-uppercase txt-xs no-bg mt-4">
+        Billing Address
+      </h3>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentBillingAddress"
+                 class="form-control"
+                 placeholder="Name (as it appears on your card)"
+                 formControlName="billingName"
+          >
+          <mat-error>{{getError('billingName')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-12 col-lg-6">
+      <div class="custom-checkbox">
+        <mat-checkbox class="mat-checkbox--rounded"
+                      type="checkbox"
+                      id="paymentNotUs"
+                      formControlName="internationalBillingAddress"
+        >Billing address is not in the United States
+        </mat-checkbox>
+        <div class="invalid-feedback">{{getError('internationalBillingAddress')}}</div>
+      </div>
+    </div><!-- ./col -->
+
+
+    <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentStreet"
+                 class="form-control"
+                 placeholder="Street"
+                 formControlName="billingStreet1"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('billingStreet1')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+
+    <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentStreet2"
+                 class="form-control"
+                 placeholder="Street 2"
+                 formControlName="billingStreet2"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('billingStreet2')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentCity"
+                 class="form-control"
+                 placeholder="City"
+                 formControlName="billingCity"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('billingCity')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+      <div class="select-group">
+
+        <mat-form-field>
+
+          <mat-select [formControlName]="'billingState'" placeholder="State">
+            <mat-option *ngFor="let state of states;" [value]="state.abbreviation">{{state.name}}</mat-option>
+          </mat-select>
+          <mat-error>{{getError('billingState')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div class="col-sm-12 col-md-6 col-lg-6" [hidden]="addressNotInUsa">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentZipCode"
+                 class="form-control"
+                 placeholder="Zip Code"
+                 formControlName="billingZipcode"
+                 tevAsciiOnly
+          >
+          <mat-error>{{getError('billingZipcode')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <!-- @todo DONT ASK FOR / -->
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h4 class="box-group__title">
+        Card Information
+      </h4>
+    </div><!-- ./col -->
+
+    <div *ngIf="!showSquare" class="col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentCreditCard"
+                 class="form-control"
+                 placeholder="Credit Card Number"
+                 formControlName="cardNumber"
+                 [maxlength]="16"
+                 tevNumbersOnly
+          >
+          <mat-error>{{getError('cardNumber')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div *ngIf="!showSquare" class="col-7 col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentExpiration"
+                 class="form-control"
+                 placeholder="Expiration (MM/YY)"
+                 formControlName="cardExp"
+                 maxlength="5"
+                 tevMonthYear (onMonthYearChanged)=onMonthYearChanged($event)
+
+          >
+          <mat-error>{{getError('cardExp')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div  *ngIf="!showSquare"class="col-5 col-sm-12 col-md-6 col-lg-6">
+      <div class="form-label-group">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 id="paymentCVV"
+                 class="form-control"
+                 placeholder="CVV"
+                 maxlength="4"
+                 formControlName="cardCvv2"
+                 tevNumbersOnly
+          >
+          <mat-error>{{getError('cardCvv2')}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </div><!-- ./col -->
+
+    <div *ngIf="!showSquare" class="col-12">
+      <div class="payment-options mt-4">
+        <ul>
+          <li>
+            <img src="./assets/icon-visa.svg" alt="visa">
+          </li>
+          <li>
+            <img src="./assets/icon-mastercard.svg" alt="mastercard">
+          </li>
+          <li>
+            <img src="./assets/icon-discover.svg" alt="discover">
+          </li>
+        </ul>
+      </div><!-- ./payment-options -->
+    </div><!-- ./col -->
+
+
+
+  </form><!-- ./row -->
+  <div *ngIf="showSquare">
+    <mat-progress-spinner *ngIf="showLoading" mode="indeterminate"></mat-progress-spinner>
+    <div id="card-container"></div>
+  </div>
+
+
+</div><!-- ./py-4 px-5 -->
+
+<div class="box-group box-group--total">
+  <h4>
+    Total Payment Now
+  </h4>
+  <h4>
+    {{extraPayment.amount | currency}}
+  </h4>
+</div><!-- ./box-group -->

@@ -1,0 +1,89 @@
+<div class="container upload-id">
+  <div class="row documents">
+    <div class="col-12">
+
+      <a [routerLink]="getRoute()" *ngIf="showBack()" class="back-link">
+        <span class="tev-icon tev-icon--back"></span>
+        BACK</a>
+
+      <div class="row" *ngIf="!uploading">
+
+
+        <div class="col-md-5 col-xs-12 instructions" *ngIf="showForm">
+          <tev-update-id-applicant [info]="photoIdVerification"
+                                   (dataSent)="verificationSended($event)"
+                                   [applicantFullName]="document?.name"></tev-update-id-applicant>
+        </div>
+
+        <div class="col-md-5 col-xs-12" *ngIf="showErrorMessage()">
+          <tev-errors-id [error]="error" [subError]="subError"></tev-errors-id>
+        </div>
+
+        <div class="col-md-5 col-xs-12 front-back-instruction"
+             *ngIf="!uploadedFinish && !uploading && !error && !showForm">
+          <div class="row">
+            <h2>Take a picture of the <span class="highlighted-blue">{{ type }}</span> of your ID</h2>
+          </div>
+          <div class="row instruction-advice">
+            <p> Make sure your document is readable and well lit. No photocopies.</p>
+          </div>
+          <div class="row">
+            <img class="img-icon" [src]="getImage()" alt="upload image from mobile">
+          </div>
+        </div>
+
+        <div class="col-md-7 col-xs-12">
+          <div *ngIf="!uploadedFinish && !uploading">
+            <div *ngIf="showForm" class="title title-withoutpad">Identification card for {{document?.name}}</div>
+            <div class="image-drop__zone" *ngIf="showInputFile;else other_content" ngx-dropzone
+                 [accept]="mimetypesAccept()"
+                 [maxFileSize]="tenMB" [multiple]="false" (change)="onSelect($event)">
+              <ngx-dropzone-label>
+                <div class="text-align-center">
+                  <div class="title"><span class="highlighted-blue">{{type}} SIDE</span> Identification card
+                    for {{document?.name}}</div>
+                  <i class="tev-icon tev-icon--upload-cloud-id"></i><span> Drag one file here or <u>browse</u></span>
+                </div>
+              </ngx-dropzone-label>
+            </div>
+            <ng-template #other_content>
+
+              <div *ngIf="isImage() else fileContent" class="preview-container">
+                <img [src]="imageToShow" alt="Image Source" class="responsive">
+                <mat-spinner *ngIf="uploading"></mat-spinner>
+              </div>
+
+
+              <ng-template #fileContent>
+                <div class="title">Identification card for {{document?.name}}</div>
+                <ngx-dropzone-preview class="ngx-dropzone-preview" ngProjectAs="ngx-dropzone-preview"
+                                      *ngFor="let f of files" [file]="f" [removable]="(!showForm)"
+                                      (removed)="onRemove(f)">
+                </ngx-dropzone-preview>
+              </ng-template>
+
+
+            </ng-template>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" *ngIf="uploading">
+        <div class="col-sm-6 offset-3 col-xs-12">
+          <tev-uploading-message init="60"></tev-uploading-message>
+        </div>
+      </div>
+
+
+      <div class="row" *ngIf="uploadedFinish">
+        <tev-awesome-message (closePopup)="closeUploadFinish()" [message]="textFinal" [autoCloseTime]="105"
+                             [auto_closeable]="false"></tev-awesome-message>
+      </div>
+
+
+    </div>
+  </div>
+</div><!-- /row -->
+<tev-expired-dialog *ngIf="requestExpired" [errorBackRetries]="errorRetriesBack"
+                    (responseExpired)="forceUploadExpiredId($event)"></tev-expired-dialog>

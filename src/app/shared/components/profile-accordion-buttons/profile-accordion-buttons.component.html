@@ -1,0 +1,9 @@
+<div class="card-header" *ngFor="let button of buttons; let i = index" id="header{{i}}">
+  <h2 class="mb-0">
+    <button class="btn btn-link txt-white px-5 py-3 txt-xs"
+            [ngClass]="{collapsed: button.collapsed}"
+            [routerLink]="button.url">
+      {{button.title}}
+    </button>
+  </h2>
+</div><!-- ./card-header -->

@@ -1,0 +1,30 @@
+<div>
+  <a [routerLink]="['../../']" class="back-link">
+    <span class="tev-icon tev-icon--back"></span>
+    BACK</a>
+</div>
+
+<div class="col-12">
+  <div class="box-container">
+
+    <h1 class="tev-heading tev-heading--h1 tev-heading--border-x3">{{landlordReferenceVerification.title}}</h1>
+
+    <div class="col-12 alert alert-danger small" *ngIf="landlordReferenceVerification.rejectReason && !resended">
+      <span class="txt-bold">We haven’t been able to verify some of your references.</span><br/>
+      <div>{{landlordReferenceVerification.rejectReason}}</div>
+    </div>
+    <div class="col-12 alert alert-primary small" *ngIf="resended">
+      <span class="txt-bold"> A verification email has been sent to your reference.</span><br/>
+      The reference will have 48 hours to respond to our email. Failure to do so will result in the delay of the application.
+    </div>
+
+    <tev-landlord-info [info]="landlordInfo$"   (formChanged)="landLordChange($event)" ></tev-landlord-info>
+
+    <div class="col-12 text-right">
+      <button class="tev-btn tev-btn--common tev-btn--success" (click)="save()" type="submit" *ngIf="showSubmitButton()">Update
+        and Resend
+      </button>
+      <button class="tev-btn tev-btn--common tev-btn--disabled" disabled *ngIf="showSubmited()">Submited</button>
+    </div>
+  </div>
+</div>

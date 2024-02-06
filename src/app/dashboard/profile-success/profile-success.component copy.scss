@@ -1,0 +1,129 @@
+.profile__sign_box,
+.profile__dolater_box {
+  margin-bottom: 20px;
+}
+
+.profile__sign_box .card-body,
+.profile__dolater_box .card-body {
+  background-color: #fff;
+  padding: 20px 50px 6px;
+  color: #383342;
+  font-weight: 300;
+  font-size: 18px;
+  height: 300px!important;
+  min-height: 300px!important;
+}
+
+.profile__sign_box .card-footer,
+.profile__dolater_box .card-footer {
+  background-color: #EF463F;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 100;
+  border-radius: 0;
+  border: 0;
+  padding: 10px 50px;
+}
+
+.profile__sign_box .card-body {
+  border: 3px solid #EF463F;
+
+}
+
+.profile__dolater_box .card-body {
+  border: 3px solid #fff;
+    
+}
+
+.profile__dolater_box .card-footer {
+  background-color: #40384B;
+
+}
+
+.profile__success_icon {
+  max-width: 110px;
+  border-bottom: 5px solid #ed4737;
+  margin-bottom: 20px;
+}
+
+.profile__success_icon svg {
+  height: 80px;
+}
+
+.profile__success_icon path {
+  fill: #373041;
+}
+
+@media (min-width: 768px) {
+  .box-group {
+    margin-right: 50px!important;
+    margin-left: 50px!important;    
+  }
+
+  .profile__sign_boxes {
+    position: relative;
+    margin-right: 50px!important;
+    margin-left: 50px!important;    
+  }
+ 
+  .profile__sign_box {
+    padding-right: 35px!important;
+  }
+
+  .profile__dolater_box {
+    padding-left: 35px!important;
+  }
+
+  .profile__sign_boxes::after {
+    content: "Or";
+    position: absolute;
+    left: 50%;
+    width: 100px;
+    text-align: center;
+    z-index: 1;
+    margin-left: -50px;
+    color: #96999C;
+    top: 50%;
+    margin-top: -20px;
+    font-size: 22px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .profile__sign_boxes .col {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+}
+
+@media (max-width: 575px) {
+  .box-group  {
+    padding: 3rem 1rem;
+  }
+}
+
+
+
+@media (max-width: 991px) {
+  .profile__sign_boxes {
+    padding-top: 20px;
+  }
+
+}
+
+@media (min-width: 576px) {
+  .profile__sign_box .card-body,
+  .profile__dolater_box .card-body {
+    height: 300px!important;
+    min-height: 300px!important;
+  }
+}
+
+.big_line {
+  border-bottom: 3px solid #383342;
+  margin: 24px 0;
+}
+

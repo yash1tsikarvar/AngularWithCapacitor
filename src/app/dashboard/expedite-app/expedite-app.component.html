@@ -1,0 +1,34 @@
+<div class="row">
+
+  <div class="col-12">
+    <div>
+      <a [routerLink]="['../']" class="back-link">
+        <span class="tev-icon tev-icon--back"></span>
+        BACK</a>
+    </div>
+
+    <div class="box-container">
+      <div class="block-title d-flex justify-content-between">
+        <h1 class="tev-heading tev-heading--h1 tev-heading--red">My Profile</h1>
+        <span>+{{expedite_fee | moneyFormat}}</span>
+      </div>
+      <p class="my-3">Save time and money by getting approved in less time. With our expedite service you will
+        <strong>save up to 12 days in the processing of your application.</strong></p>
+
+      <ul class="tev-list tev-list--2-column tev-list--check py-4">
+        <li><strong>One Day Processing</strong></li>
+        <li>Dedicated Support</li>
+        <li>Priority Document Processing</li>
+        <li>Express Verifications</li>
+        <li>Quick Approved</li>
+        <li>Copy of Your Report</li>
+      </ul>
+
+      <small>* Expedite processing time depends on documentation and information provided by the applicant.</small>
+
+      <div class="text-right mt-5">
+        <a [routerLink]="['/expedite-pay']" class="tev-btn tev-btn--primary tev-btn--common">Add Expedite</a>
+      </div>
+    </div>
+  </div>
+</div>

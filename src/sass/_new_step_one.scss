@@ -1,0 +1,348 @@
+//==================================================================================================================================================================================================================================================================================================================================================================================================================================
+//
+//   ####    #####  ##     ##  #####  #####      ###    ##
+//  ##       ##     ####   ##  ##     ##  ##    ## ##   ##
+//  ##  ###  #####  ##  ## ##  #####  #####    ##   ##  ##
+//  ##   ##  ##     ##    ###  ##     ##  ##   #######  ##
+//   ####    #####  ##     ##  #####  ##   ##  ##   ##  ######
+//
+//==================================================================================================================================================================================================================================================================================================================================================================================================================================
+// Media Queries from mobile to desktop
+// -------------------------------------
+
+// Mobiles
+@mixin S {
+  @media (min-width: 576px) { @content; }
+}
+
+// Medium devices and Tablets
+@mixin M {
+  @media (min-width: 768px) { @content; }
+}
+
+// Normal Desktop
+@mixin L {
+  @media (min-width: 1021px) { @content; }
+}
+
+  // Large Desktop
+@mixin XL {
+  @media (min-width: 1200px) { @content; }
+}
+
+// Media queries from desktop to mobile
+// -------------------------------------
+
+// Mobiles
+@mixin media-s {
+    @media (max-width: 576px) { @content; }
+}
+
+// Medium devices and Tablets
+@mixin media-m {
+    @media (max-width: 768px) { @content; }
+}
+
+// Normal Desktop
+@mixin media-l {
+    @media (max-width: 1021px) { @content; }
+}
+
+// Custom scroll
+@mixin custom-scroll {
+  scrollbar-color: #E6E6E6 transparent;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar-track {
+    border-radius: 0.1rem;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.6rem;
+    box-shadow: inset 0 0 2rem #E6E6E6;
+    -webkit-box-shadow: inset 0 0 2rem #E6E6E6;
+    background-color: transparent;
+  }
+}
+
+
+// Primary Colors
+$deep-purple: #373041;
+$purple-te: #4D445A;
+$warm-purple: #574E64;
+$light-purple: #756982;
+$red-te: #ED453F;
+$sky-blue: #009CDC;
+
+// Secondary Colors
+$picton-blue: #3EB6ED;
+$baby-blue: #EAF9FF;
+$green-apple: #8BBC5E;
+$orange: #FF9827;
+$gold: #EBD4A9;
+$silver: #E6E6E6;
+$light-gray: #F7F7F7;
+$dark-gray: #959595;
+$deep-gray: #696969;
+
+.form-box{
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+
+.input-tag {
+	background-color: #F4F4F4;
+	padding: 6px 4px;
+	margin-left: -4px;
+	position: absolute;
+	bottom: 0;
+	border-radius: 6px;
+	box-shadow: none;
+	white-space: nowrap;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translate(0, -0.2rem) !important;
+}
+
+.general-input{
+  padding: 1.5em 0 1.5em 0 !important;
+  transform: translate(0, +0.1rem) !important;
+  //background-color: #F4F4F4 !important;
+  color: #373041;
+  font-family: Roboto, Regular;
+  font-weight: 500 !important;
+}
+
+.general-select{
+  padding: 0.5em 0 0.5em 0 !important;
+}
+
+.sms-question {
+  margin-top: 1rem;
+  font-family: Open Sans, Regular;
+  font-size: 14px;
+  color: #373041;
+  margin-bottom: 1rem;
+}
+
+.eye-icon {
+  transform: translateX(+0.65rem)
+}
+
+.show-hidden-button {
+  transform: translateY(-0.35rem)
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.title-form {
+  font-size: 35px;
+  font-family: Roboto, Bold;
+  color: #373041;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.title-box {
+  font-size: 20px;
+  font-family: Roboto, Bold;
+  color: #009CDC;
+}
+
+.yes-no-question{
+  display:flex;
+  flex-direction: row;
+  justify-content:  space-between;
+  font-size: 18px;
+  font-family: Roboto, Medium;
+}
+
+.cancel-button {
+  background-color: white;
+  color: #009CDC;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 10px;
+  border-style: none;
+  border: 1px solid #009CDC;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-family: Roboto, Bold;
+  font-weight: bold;
+  width: 25%;
+  margin-right: .5rem;
+  margin-bottom: 1rem;
+}
+
+.confirm-button {
+  background-color: #009CDC;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 10px;
+  border-style: none;
+  border: 1px solid transparent;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-family: Roboto, Bold;
+  font-weight: bold;
+  width: 25%;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1021px) {
+  .confirm-button, .cancel-button {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .confirm-button, .cancel-button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .yes-no-question{
+    flex-direction: column;
+  }
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #009CDC!important;   /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+ border-color:#009CDC!important; /*outer ring color change*/
+}
+
+::ng-deep .mat-checkbox-frame{
+  background: white!important;   /*inner circle color change*/
+}
+
+//===============================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+//
+//  #####   #####  #####     ####   #####   ##     ##    ###    ##            ##  ##     ##  #####   #####
+//  ##  ##  ##     ##  ##   ##     ##   ##  ####   ##   ## ##   ##            ##  ####   ##  ##     ##   ##
+//  #####   #####  #####     ###   ##   ##  ##  ## ##  ##   ##  ##            ##  ##  ## ##  #####  ##   ##
+//  ##      ##     ##  ##      ##  ##   ##  ##    ###  #######  ##            ##  ##    ###  ##     ##   ##
+//  ##      #####  ##   ##  ####    #####   ##     ##  ##   ##  ######        ##  ##     ##  ##      #####
+//
+//===============================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
+//=====================================================================================================================================================================================================================================================================================================================================================================================================================================================
+//
+//    ###    #####   #####   ##      ##   ####    ###    ##     ##  ######   ####
+//   ## ##   ##  ##  ##  ##  ##      ##  ##      ## ##   ####   ##    ##    ##
+//  ##   ##  #####   #####   ##      ##  ##     ##   ##  ##  ## ##    ##     ###
+//  #######  ##      ##      ##      ##  ##     #######  ##    ###    ##       ##
+//  ##   ##  ##      ##      ######  ##   ####  ##   ##  ##     ##    ##    ####
+//
+//=====================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
+.select-applicant__form {
+  margin-bottom: 3rem;
+  grid-area: form;
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid #009CDC;
+  padding: 2rem 3rem !important;
+  width: 100% !important;
+    &--info{
+    font-size: 26px;
+    font-family: Roboto, Medium;
+    color: #009CDC;
+    & p:first-child {
+      margin-bottom: 0;
+      font-weight: 800;
+    }
+  }
+  &--more-applicants{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    line-height: 1.3;
+    & button{
+      margin-right: .5rem;
+    }
+  }
+  &--footer{
+    font-size: 20px;
+    color: #009CDC;
+  }
+}
+
+.applicant-aka{
+  padding: 2rem 0 2.5rem 0 !important;
+  // transform: translate(0, +0.1rem) !important;
+  transform: translate(0, +0.5rem) !important;
+  overflow: auto;
+  //background-color: #F4F4F4 !important;
+}
+
+.mat-chip {
+  transform: translate(0, +0.5rem) !important;
+}
+
+
+.toggle-ssn-passport{
+    color: #009CDC;
+    font-size: 0.8rem;
+    width: 100%;
+    transform: translateY(-1rem);
+    margin-bottom: 0px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 520px) {
+  .animated-gif {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .animated-gif {
+    width: 350px;
+  }
+}
+
+//===================================================================================================================================================================================================================================================================================================================================================================================================================================
+//
+//  #####    #####  ###    ###    ###    #####    ##  ##   ####
+//  ##  ##   ##     ## #  # ##   ## ##   ##  ##   ## ##   ##
+//  #####    #####  ##  ##  ##  ##   ##  #####    ####     ###
+//  ##  ##   ##     ##      ##  #######  ##  ##   ## ##      ##
+//  ##   ##  #####  ##      ##  ##   ##  ##   ##  ##  ##  ####
+//
+//===================================================================================================================================================================================================================================================================================================================================================================================================================================
+
+.remarks-info{
+  font-size: 26px;
+  font-family: Roboto, Medium;
+  color: #009CDC;
+  & p {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+}
+
+.remark-question{
+  color: #6d6471;
+  font-size: 18px !important;
+}

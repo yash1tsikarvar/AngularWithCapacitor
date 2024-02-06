@@ -1,0 +1,123 @@
+<div class="box-group form-box" [ngClass]="viewType">
+  <form [formGroup]="childForm" data-cy="agentInfo">
+    <div class="yes-no-question">
+        <label><span class="txt tev-text">Is the applicant working with a Real Estate Agent?</span></label>
+        <tev-yes-no-input formControlName="workingWithARealEstateAgent"
+                          #realAgent
+                          style="color: #4D445A"
+                          ></tev-yes-no-input>
+        <div class="invalid-feedback">{{getError('workingWithARealEstateAgent')}}</div>
+    </div>
+  </form>
+
+  <form [formGroup]="realEstateInfoForm">
+    <div class="fields-agent" [ngClass]="viewType"
+         *ngIf="realAgent.value === 'yes'">
+
+      <hr>
+
+      <h4 class="title-form">
+        Real Estate Agent
+      </h4>
+
+      <div class="row">
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-label-group">
+
+          <span class="txt-bold txt-form-title txt-xxxs">* Agent Name</span>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     type="text"
+                     id="profileAgentName"
+                     class="form-control"
+                     placeholder="Agent Name"
+                     formControlName="name"
+                     maxlength="35"
+                     tevAsciiOnly
+                     class="agent-info-input"
+              >
+              <mat-error>{{getErrorSubForm('name')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">* Agent Email</span>
+            <mat-form-field appearance="outline">
+                  <input matInput
+                     type="email"
+                     id="profileAgentEmail"
+                     class="form-control"
+                     placeholder="Agent Email"
+                     formControlName="email"
+                     maxlength="80"
+                     tevAsciiOnly
+                     class="agent-info-input"
+              >
+              <mat-error>{{getErrorSubForm('email')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-3 col-lg-2">
+          <div class="select-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">* Dial Code</span>
+            <mat-form-field appearance="outline">
+              <mat-select
+              [formControlName]="'dialCode'" placeholder="Dial Code"
+              class="agent-info-select"
+              >
+                <mat-option *ngFor="let code of dialCodes" [value]="code | dialCodeValue">{{code | dialCodeName}}
+                </mat-option>
+              </mat-select>
+              <mat-error>{{getErrorSubForm('dialCode')}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div><!-- ./col -->
+
+        <div class="col-sm-12 col-md-3 col-lg-4">
+          <div class="form-label-group">
+
+            <span class="txt-bold txt-form-title txt-xxxs">* Mobile Number</span>
+            <mat-form-field appearance="outline">
+              <input matInput
+                     id="profileAgentCellphone"
+                     class="form-control"
+                     placeholder="Agent Cellphone"
+                     formControlName="cellphone"
+                     maxlength="18"
+                     [textMask]="{mask: phonemask}"
+                     class="agent-info-input"
+
+              >
+              <mat-error>{{getErrorSubForm('cellphone')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div><!-- ./col -->
+
+      </div><!-- /.row -->
+
+
+      <div class="col sms-question">
+        <mat-checkbox formControlName="receiveNotification"
+                      class="mat-checkbox--rounded"
+                      style="margin-right: 1rem;"
+                      data-cy="receiveTextMessages"
+                      >
+          I agree that the agent listed above may receive notices
+          about the status of this application.
+        </mat-checkbox>
+      </div>
+    </div><!-- ./fields-agent -->
+
+  </form>
+</div>
+
+
