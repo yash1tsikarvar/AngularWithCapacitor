@@ -10,78 +10,78 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./begin/begin.module').then(m => m.BeginModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'r/:shorturl',
     component: RedirectShortComponent,
 
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'application',
     loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'agreement/:applicationId',
     loadChildren: () => import('./agreement/agreement.module').then(m => m.AgreementModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'application-list',
     loadChildren: () => import('./application-list/application-list.module').then(m => m.ApplicationListModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'dashboard/:applicationId',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'dashboard/:applicationId/proof-income/:applicantId',
     loadChildren: () => import('./dashboard/finicity/finicity.module').then(m => m.FinicityModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'community',
     loadChildren: () => import('./community/community.module').then(m => m.CommunityModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'page',
     loadChildren: () => import('./common-page/common-page.module').then(m => m.CommonPageModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'activate/:activationCode',
     loadChildren: () => import('./activate/activate.module').then(m => m.ActivateModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'complete-signature/:applicationId',
     loadChildren: () => import('./complete-signature/complete-signature.module').then(m => m.CompleteSignatureModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'owner-complete-signature/:applicationId',
     loadChildren: () => import('./owner-complete-signature/owner-complete-signature.module').then(m => m.OwnerCompleteSignatureModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'payment',
     loadChildren: () => import('./extra-payment/extra-payment.module').then(m => m.ExtraPaymentModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'mobile',
     loadChildren: () => import('./mobile/mobile.module').then(m => m.MobileModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'upload-mobile',
     loadChildren: () => import('./upload-mobile/mobile.module').then(m => m.MobileModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {
     path: 'verifications',
@@ -90,7 +90,7 @@ const routes: Routes = [
   {
     path: 'uploads',
     loadChildren: () => import('./uploads/upload.module').then(m => m.UploadModule),
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
   {path: 'showAppStatus.htm', canActivate: [IncompatibleBrowserGuard, LegacyUrlGuardGuard], component: NotFoundComponent},
   {path: 'myAppStatus.htm', canActivate: [IncompatibleBrowserGuard, LegacyUrlGuardGuard], component: NotFoundComponent},
@@ -105,7 +105,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
-    canActivate: [IncompatibleBrowserGuard]
+    //canActivate: [IncompatibleBrowserGuard]
   },
 ];
 
