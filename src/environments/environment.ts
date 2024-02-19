@@ -5,7 +5,7 @@ const Window = window as any;
 
 export const environment = {
   production: Window.TE_PRODUCTION,
-  api_url: Window.TE_API_URL,
+  api_url: 'https://r2-qa.tev2.co',
   api_prefix: 'api/v1/tenant',
   api_finicity_prefix: 'api/v1/finicity',
   idleTime: 60 * 15, // Number of seconds to show the toaster notification informing the user will be logged out
