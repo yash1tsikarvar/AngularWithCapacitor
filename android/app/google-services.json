@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "851920297667",
+    "project_id": "tenant-evaluation-8d1bc",
+    "storage_bucket": "tenant-evaluation-8d1bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851920297667:android:1ef1fd460554a56fc3cc76",
+        "android_client_info": {
+          "package_name": "com.tenant.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzTeBqqXkkK1woVOBjfAw6S7qh9kZx938"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

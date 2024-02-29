@@ -75,6 +75,9 @@ export class VerificationCodeComponent implements OnInit {
       this.email = this.authService.getDecodedToken().em;
     }
   }
+  back(){
+    window.history.back();
+  }
 
   onOtpChange(otp) {
     this.otp = otp;

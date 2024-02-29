@@ -93,7 +93,6 @@ export class EnterTypeComponent implements OnInit, OnDestroy {
     instance['dialogText'] = this.errorMessage
     dialogRef.afterClosed().subscribe(() => this.clearInfo())
   }
-
   /**
    * Init the form
    */

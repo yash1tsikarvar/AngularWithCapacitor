@@ -66,7 +66,9 @@ export class ChangePasswordComponent implements OnInit {
         }
       )
   }
-
+  back(){
+    window.history.back();
+  }
   initForm() {
     this.changePasswordForm = this.formBuilder
       .group({

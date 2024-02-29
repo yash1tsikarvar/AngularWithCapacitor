@@ -60,7 +60,9 @@ export class InfoAfterPayComponent implements OnInit {
         }
     }
   }
-
+  back(){
+    window.history.back();
+  }
   retryIphone() {
     this.iphonePlayButton = false;
     this.retry();

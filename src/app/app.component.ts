@@ -22,7 +22,7 @@ export class AppComponent implements OnDestroy, AfterViewInit, OnInit {
   interruptionSubscription: Subscription;
 
   unsubscribeSubject: Subject<boolean> = new Subject<boolean>();
-
+  
   constructor(
     private authService: AuthService,
     private router: Router,

@@ -48,7 +48,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
       )
       .subscribe(value => this.smallLogo = `url(${value})`);
   }
-
+  back(){
+    window.history.back();
+  }
   confirmCancelApplication(event: MouseEvent) {
     event.preventDefault();
     const confirmData: ConfirmDataInterface = {

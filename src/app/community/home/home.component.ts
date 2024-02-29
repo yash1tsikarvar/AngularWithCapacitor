@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     if ((dataUser.auth.includes('ROLE_REALTOR'))) {
       this.roleRealtor = true;
     }
+    
     // this.httpService
     // .getApplicationList(true)
     // .subscribe(applicationsResponse => {
@@ -48,6 +49,9 @@ export class HomeComponent implements OnInit {
 
   openExternalUrl() {
     window.open('https://support.tenantevaluation.com/support/solutions/articles/65000166337-getting-started-with-your-application', '_blank');
+  }
+  back(){
+    window.history.back();
   }
 
   openCommunity() {

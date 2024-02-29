@@ -79,7 +79,6 @@ export class EnterCodeComponent implements OnInit, OnDestroy {
     this.listenToThemeValues()
     this.currentYear=new Date().getFullYear();
   }
-
   listenToThemeValues() {
     this.uiService.bigLogo$
       .pipe(takeUntil(this.destroyed$))

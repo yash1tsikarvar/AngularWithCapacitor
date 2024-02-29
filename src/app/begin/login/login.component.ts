@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorResponse } from '../../shared/definitions/responses/error.response';
 import { AlertType } from '../../shared/definitions/types/alert.type';
 import { CustomValidators } from '../../shared/custom-validators';
-import { ReCaptchaV3Service, OnExecuteData } from 'ng-recaptcha';
+// import { ReCaptchaV3Service, OnExecuteData } from 'ng-recaptcha';
 import { MatDialog } from '@angular/material/dialog'
 import { Subscription } from 'rxjs';
 import { DataVerificationCode, SentType } from '../../shared/definitions/models/new-tenant-applicant.model';
@@ -41,17 +41,17 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
-    private recaptchaV3Service: ReCaptchaV3Service
+    // private recaptchaV3Service: ReCaptchaV3Service
   ) { this.token = undefined; }
 
 
   ngOnInit() {
     this.initForm();
-    this.subscription = this.recaptchaV3Service.onExecute.subscribe(
-      (data: OnExecuteData) => {
-        this.token = data.token;
-      }
-    );
+    // this.subscription = this.recaptchaV3Service.onExecute.subscribe(
+    //   (data: OnExecuteData) => {
+    //     this.token = data.token;
+    //   }
+    // );
     this.hide = true;
     this.buttonText = 'Show';
     this.currentYear=new Date().getFullYear();
@@ -61,6 +61,9 @@ export class LoginComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+  back(){
+    window.history.back();
   }
 
   getApplications(dataUser) {

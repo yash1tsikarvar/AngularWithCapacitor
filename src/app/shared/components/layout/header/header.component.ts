@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
@@ -9,13 +9,22 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-
+  isHomePage: boolean = false;
   constructor(
     public authService: AuthService,
-    private router: Router,) { }
+    private router: Router,) {
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          this.isHomePage = event.url === '/community/home';
+        }
+      });
+  }
 
   ngOnInit() {
+
   }
+
+
 
   logOut(event: MouseEvent) {
     event.preventDefault();
@@ -28,7 +37,10 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-home(event: MouseEvent) {
+  back() {
+    window.history.back();
+  }
+  home(event: MouseEvent) {
     event.preventDefault();
     if (this.authService.getDecodedToken().auth.includes('ROLE_CALL_CENTER_L1')) {
       this.router
@@ -41,7 +53,7 @@ home(event: MouseEvent) {
     }
   }
 
-callCenter(event: MouseEvent) {
+  callCenter(event: MouseEvent) {
     event.preventDefault();
     const url = 'https://connect.tenantevaluation.com';
     window.open(url, '_blank');

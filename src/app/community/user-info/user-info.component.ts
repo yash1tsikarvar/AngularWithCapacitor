@@ -75,7 +75,9 @@ export class UserInfoComponent implements OnInit {
   goToInfoPage() {
         window.open(this.infoUrl, "_blank");
   }
-
+  back(){
+    window.history.back();
+  }
   retry() {
     this.playVideo = true;
     this.player.play();

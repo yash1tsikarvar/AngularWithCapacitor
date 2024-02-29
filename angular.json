@@ -235,5 +235,8 @@
     "@schematics/angular:directive": {
       "prefix": "tev"
     }
+  },
+  "cli": {
+    "analytics": "4128731b-12ab-4486-a08f-64133ce5146e"
   }
 }

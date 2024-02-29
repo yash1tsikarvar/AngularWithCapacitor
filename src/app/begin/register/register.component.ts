@@ -13,7 +13,7 @@ import { AlertType } from '../../shared/definitions/types/alert.type';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PhoneNumber } from '../../shared/definitions/models/phone-number.model';
-import { ReCaptchaV3Service, RecaptchaModule, OnExecuteData } from 'ng-recaptcha';
+// import { ReCaptchaV3Service, RecaptchaModule, OnExecuteData } from 'ng-recaptcha';
 import { PhoneCode, phoneCodes } from '../../shared/definitions/constants/phone_codes';
 import { takeUntil } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
-    private recaptchaV3Service: ReCaptchaV3Service,
+    // private recaptchaV3Service: ReCaptchaV3Service,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.token = undefined;
@@ -65,11 +65,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.subscription = this.recaptchaV3Service.onExecute.subscribe(
-      (data: OnExecuteData) => {
-        this.token =  data.token;
-      }
-    );
+    // this.subscription = this.recaptchaV3Service.onExecute.subscribe(
+    //   (data: OnExecuteData) => {
+    //     this.token =  data.token;
+    //   }
+    // );
     this.currentYear=new Date().getFullYear();
   }
 
@@ -77,6 +77,9 @@ export class RegisterComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+  back(){
+    window.history.back();
   }
 
   /**
