@@ -76,7 +76,8 @@
   </div>
 </tev-root>
 
-<div id="google_translate_element" align="right"></div>
+<div id="google_translate_element" align="right" style="top: 82px;">
+</div>
 <style>
   .grecaptcha-badge{
       bottom:15rem!important;
@@ -99,6 +100,10 @@
     }, 'google_translate_element');
 
     $('#google_translate_element').find("a").removeAttr("href");
+    $(".goog-te-gadget-simple").children("img").attr("src", "/assets/language.svg")
+    $(".VIpgJd-ZVi9od-xl07Ob-lTBxed").children("span").css({"display": "none"})
+    $(".VIpgJd-ZVi9od-xl07Ob-lTBxed").children("img").css({"padding": "5px"})
+    $('#google_translate_element').css({"background-color": "#4e445b"})
   }
 </script>
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
