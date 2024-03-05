@@ -157,23 +157,30 @@ export class ProfileSuccessComponent implements OnInit, OnDestroy {
   }
 
   showVideoSigning() {
+    const nextFullPath1 = `/dashboard/${this.mainApplication.applicationId}/signature`;
     if (this.isSkipped()) {
-      window.location.href = this.mainApplication.signingStatus.url;
+      const url = this.mainApplication.signingStatus.url; // Use 'url' instead of 'urls'
+      this.router.navigate([nextFullPath1], { queryParams: { url } });
+      console.log("link=====>>", url);
       return;
     }
     if (!this.authService.getDecodedToken().auth.includes('ROLE_CALL_CENTER_L1')) {
+      const url = this.mainApplication.signingStatus.url; // Use 'url' instead of 'urls'
+      console.log("link=====>>", url);
       this.dialog.open(SignVideoComponent, {
-        data: {redirect: this.mainApplication.signingStatus.url},
+        data: { redirect: this.mainApplication.signingStatus.url },
         disableClose: true,
         height: '100%',
         width: '95%',
         panelClass: 'other-dialog-container'
       }).afterClosed().subscribe(res => {
         localStorage.setItem('video-signature-' + this.mainApplication.applicationId, 'skipped');
-        window.location.href = this.mainApplication.signingStatus.url;
+        this.router.navigate([nextFullPath1], { queryParams: { url } });
+        console.log("link=====>>", url);
       });
     }
-  }
+}
+
 
   isSkipped() {
     if (localStorage.getItem('video-signature-' + this.mainApplication.applicationId) === 'skipped') {

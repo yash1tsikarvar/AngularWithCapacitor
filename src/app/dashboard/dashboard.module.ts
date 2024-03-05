@@ -60,6 +60,7 @@ import {IdInstructionsComponent} from './upload-id/id-instructions/id-instructio
 import {UploadMobileComponent} from './upload-documents/upload-mobile/upload-mobile.component';
 import { FinicityVideoComponent } from './finicity-video/finicity-video.component';
 import {SignVideoComponent} from '../shared/components/sign-video/sign-video.component';
+import { SignatureComponent } from './signature/signature.component';
 
 @NgModule({
   imports: [
@@ -136,6 +137,7 @@ import {SignVideoComponent} from '../shared/components/sign-video/sign-video.com
     UploadProofOfIncomeComponent,
     DocumentSelectorComponent,
     FinicityVideoComponent,
+    SignatureComponent,
 
   ]
 })
