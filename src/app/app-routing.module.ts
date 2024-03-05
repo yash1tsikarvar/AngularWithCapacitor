@@ -5,7 +5,7 @@ import { RedirectShortComponent } from './redirect-short/redirect-short.componen
 import { LegacyUrlGuardGuard } from './legacy-url-guard.guard';
 import { IncompatibleBrowserComponent } from './incompatible-browser/incompatible-browser.component';
 import { IncompatibleBrowserGuard } from './shared/guards/incompatible-browser.guard';
-
+import { WebviewComponent } from './webView/webview/webview.component'
 const routes: Routes = [
   {
     path: '',
@@ -92,6 +92,7 @@ const routes: Routes = [
     loadChildren: () => import('./uploads/upload.module').then(m => m.UploadModule),
     //canActivate: [IncompatibleBrowserGuard]
   },
+  {path: 'webview', component:WebviewComponent},
   {path: 'showAppStatus.htm', canActivate: [IncompatibleBrowserGuard, LegacyUrlGuardGuard], component: NotFoundComponent},
   {path: 'myAppStatus.htm', canActivate: [IncompatibleBrowserGuard, LegacyUrlGuardGuard], component: NotFoundComponent},
   {path: 'tenAppResume.htm', canActivate: [IncompatibleBrowserGuard, LegacyUrlGuardGuard], component: NotFoundComponent},

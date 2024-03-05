@@ -13,6 +13,7 @@ import {IncompatibleBrowserComponent} from './incompatible-browser/incompatible-
 import { RedirectShortComponent } from './redirect-short/redirect-short.component';
 import { AdaModule } from './ada/ada.module';
 import { ChatBotModule } from './chatbot/chatbot.module';
+import { WebviewComponent } from './webView/webview/webview.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChatBotModule } from './chatbot/chatbot.module';
     NotFoundComponent,
     RedirectShortComponent,
     IncompatibleBrowserComponent,
+    WebviewComponent,
   ],
   imports: [
     CoreModule,

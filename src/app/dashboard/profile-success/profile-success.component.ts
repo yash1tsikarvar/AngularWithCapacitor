@@ -157,7 +157,7 @@ export class ProfileSuccessComponent implements OnInit, OnDestroy {
   }
 
   showVideoSigning() {
-    const nextFullPath1 = `/dashboard/${this.mainApplication.applicationId}/signature`;
+    const nextFullPath1 = `/webview`;
     if (this.isSkipped()) {
       const url = this.mainApplication.signingStatus.url; // Use 'url' instead of 'urls'
       this.router.navigate([nextFullPath1], { queryParams: { url } });

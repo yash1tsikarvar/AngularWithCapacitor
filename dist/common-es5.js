@@ -13,7 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1>Signature Complete</h1>\r\n";
+    __webpack_exports__["default"] = "<h1>Signature Complete</h1>\n";
     /***/
   },
 
