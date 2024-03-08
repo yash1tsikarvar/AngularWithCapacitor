@@ -5,7 +5,7 @@
     <div class="form-group switch-container">
       <div class="switch switch-sm">
 
-        <mat-checkbox [formControlName]="'rented'">Vehicle will be rented or purchased at a later time</mat-checkbox>
+        <mat-checkbox style="white-space: break-spaces;" [formControlName]="'rented'">Vehicle will be rented or purchased at a later time</mat-checkbox>
         <mat-error class="col-sm-12" [hidden]="!childForm?.value.rented">
             (Selecting this option will display N/A on the vehicle section of the Final PDF Report as no vehicle will need to be registered at the moment.
             Please notify management office once vehicle is available).

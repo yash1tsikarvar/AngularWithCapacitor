@@ -82,7 +82,7 @@
                                 {{errorMsg}}
                             </span>
             </div>
-            <div class="col-12 otpInput">
+            <div style="display: block;margin: auto;">
               <ng-otp-input #ngOtpInput
                             (onInputChange)="onOtpChange($event)"
                             (keydown.enter)="validateVerificationCode()"

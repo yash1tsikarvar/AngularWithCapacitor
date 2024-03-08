@@ -41,7 +41,9 @@ export class VerificationCodeComponent implements OnInit {
     disableAutoFocus: false,
     placeholder: '',
     inputStyles: {
-      'padding': '2.5rem 0 2.5rem 0'
+      'padding': '0',
+      'height': '55px',
+      'width' : '3.2rem',
     }
   };
 

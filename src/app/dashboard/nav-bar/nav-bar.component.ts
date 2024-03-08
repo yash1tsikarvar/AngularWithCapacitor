@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ApplicationResponse } from '../../shared/definitions/responses/application.response';
 import { HttpService } from '../../core/services/http.service';
 import { catchError, map, takeUntil } from 'rxjs/operators';
@@ -16,7 +16,10 @@ import { CurrencyPipe } from '@angular/common';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
+
+
 export class NavBarComponent implements OnInit, OnDestroy {
+  isHomePage: boolean = false;
 
   mainApplication: ApplicationResponse; 
   menuCollapsed = true;
@@ -32,7 +35,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
   ) {
     this.listenToApplicationInfo();
     this.listenToThemeValues();
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isHomePage = event.url === '/community/home';
+      }
+    });
   }
 
   disputeUrl = environment.reportDisputeUrl;
