@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="179" height="96" viewBox="0 0 179 96">
+  <defs>
+    <filter id="f1" x="0" y="0">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+    </filter>
+    <style>.a {
+      fill: #f0f0f0;
+    }
+
+    .b {
+      fill: #40384b;
+    }</style>
+  </defs>
+  <g transform="translate(13480.523 -6568.982)"  filter="url(#f1)">
+    <rect class="a" width="179" height="96" rx="7" transform="translate(-13480.523 6568.982)"/>
+    <rect class="b" width="56" height="11" transform="translate(-13375.523 6581.982)"/>
+    <rect class="b" width="56" height="11" transform="translate(-13375.523 6600.982)"/>
+    <rect class="b" width="56" height="11" transform="translate(-13375.523 6616.982)"/>
+    <rect class="b" width="56" height="11" transform="translate(-13375.523 6635.982)"/>
+    <rect class="b" width="71" height="11" transform="translate(-13462.523 6581.982)"/>
+    <rect class="b" width="71" height="10" transform="translate(-13462.523 6614.982)"/>
+  </g>
+</svg>
