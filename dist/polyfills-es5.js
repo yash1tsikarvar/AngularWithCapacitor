@@ -15697,6 +15697,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function () {
       return __classPrivateFieldSet;
     });
+<<<<<<< HEAD
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
     
@@ -15710,6 +15711,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
     OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
     PERFORMANCE OF THIS SOFTWARE.
+=======
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+    
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+    
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+>>>>>>> c0ac9275dc0b2b4a2d72274fddb999f5b1790bf5
     ***************************************************************************** */
 
     /* global Reflect, Promise */
@@ -22381,7 +22397,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   /***/
   1: function _(module, exports, __webpack_require__) {
     __webpack_require__(
+<<<<<<< HEAD
     /*! C:\office\Tenant\AngularWithCapacitor\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es5-polyfills.js */
+=======
+    /*! /Users/sanjeevsaini/Desktop/NodeJS/AngularWithCapacitor/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */
+>>>>>>> c0ac9275dc0b2b4a2d72274fddb999f5b1790bf5
     "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 
     __webpack_require__(
@@ -22389,6 +22409,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     "./node_modules/zone.js/dist/zone-legacy.js");
 
     __webpack_require__(
+<<<<<<< HEAD
     /*! C:\office\Tenant\AngularWithCapacitor\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */
     "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
@@ -22398,6 +22419,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     module.exports = __webpack_require__(
     /*! C:\office\Tenant\AngularWithCapacitor\src\polyfills.ts */
+=======
+    /*! /Users/sanjeevsaini/Desktop/NodeJS/AngularWithCapacitor/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */
+    "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+
+    __webpack_require__(
+    /*! /Users/sanjeevsaini/Desktop/NodeJS/AngularWithCapacitor/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js */
+    "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js");
+
+    module.exports = __webpack_require__(
+    /*! /Users/sanjeevsaini/Desktop/NodeJS/AngularWithCapacitor/src/polyfills.ts */
+>>>>>>> c0ac9275dc0b2b4a2d72274fddb999f5b1790bf5
     "./src/polyfills.ts");
     /***/
   }

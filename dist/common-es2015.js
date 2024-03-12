@@ -9,7 +9,11 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony default export */ __webpack_exports__["default"] = ("<h1>Signature Complete</h1>\r\n");
+=======
+/* harmony default export */ __webpack_exports__["default"] = ("<h1>Signature Complete</h1>\n");
+>>>>>>> c0ac9275dc0b2b4a2d72274fddb999f5b1790bf5
 
 /***/ }),
 
