@@ -91,19 +91,28 @@
 }
 </style>
 <script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,ar,de,es,fr,it,iw,ja,zh-CN,pt,ru',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false
-    }, 'google_translate_element');
+ function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,ar,de,es,fr,it,iw,ja,zh-CN,pt,ru',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false
+  }, 'google_translate_element');
 
+  $('#google_translate_element').find("a").removeAttr("href");
+
+  // Toggle language dropdown visibility on click of icon
+  $('#toggleLanguage').click(function() {
+    $(".goog-te-gadget-simple").toggle();
+  });
+
+  // Additional styling if viewport width is less than or equal to 600px
+  if ($(window).width() <= 600) {
     $('#google_translate_element').find("a").removeAttr("href");
-    $(".goog-te-gadget-simple").children("img").attr("src", "/assets/language.svg")
-    $(".VIpgJd-ZVi9od-xl07Ob-lTBxed").children("span").css({"display": "none"})
-    $(".VIpgJd-ZVi9od-xl07Ob-lTBxed").children("img").css({"padding": "5px"})
-    $('#google_translate_element').css({"background-color": "#4e445b"})
+    $(".goog-te-gadget-simple").children("img").attr("src", "/assets/language.svg");
+    $(".VIpgJd-ZVi9od-xl07Ob-lTBxed").children("span").css({ "display": "none" });
+    $(".VIpgJd-ZVi9od-xl07Ob-lTBxed").children("img").css({ "padding": "5px" });
   }
+}
 </script>
 <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script>

@@ -10,7 +10,7 @@
       <span class="theme-logo" [ngStyle]="{'background-image': smallLogo}"></span>
     </h2> -->
 
-    <div *ngIf="viewType !== 'normal'" class="row">
+    <div *ngIf="viewType !== 'normal'" class="row currenResidence">
       <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
         <h2 class="step-headline">Current Residence</h2>
       </div>
@@ -41,7 +41,7 @@
       </div>
     </div> -->
 
-    <div class="title-form">Where are you currently living?</div>
+    <div class="title-form currenResidence">Where are you currently living?</div>
 
     <tev-primary-applicant-info
       [info]="primaryApplicantInfo$"

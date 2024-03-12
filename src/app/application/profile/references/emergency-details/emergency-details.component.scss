@@ -2,6 +2,13 @@
 @import "../../../../../sass/tenant_2.0";
 @import "../../../../../sass/styles_mat";
 
-.form-box{
-        margin: 3rem;
+@media only screen and (max-width:600px) {
+  .form-box {
+      margin-left: 10%;
+      width: 80%;
     }
+    .emergency{
+      margin-left: 10%;
+      width: 80%;
+    }
+}

@@ -7,6 +7,13 @@
   top: 0;
   left: 0;
 }
-.form-box {
-  margin: 3rem;
+@media only screen and (max-width:600px) {
+  .form-box {
+      margin-left: 10%;
+      width: 80%;
+    }
+    .currenResidence{
+      margin-left: 10%;
+      width: 80%;
+    }
 }

@@ -1620,6 +1620,10 @@ a {
       font-size: 1rem;
     }
   }
+  .row{
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .border-top {
   }
@@ -3833,12 +3837,20 @@ tev-incompatible-browser {
 
 #google_translate_element {
   position: fixed;
-  top: 100px;
-  right: 5px;
+  bottom: 10px;
+  left: 5px;
+  background-color: transparent;
   z-index: 1040;
   height: 46px !important;
   border-radius: 10px;
 }
+@media only screen and (max-width: 600px)  {
+  #google_translate_element{
+    top: 100px;
+    right: 5px;
+  }
+}
+
 
 /*   ----------------------------------------------------
 
@@ -3910,8 +3922,15 @@ REVIEW INFO SECTION
 
 .review-first-row {
   padding-top: 2rem !important;
+  margin-left: 7% !important;
+  width: 85%;
 }
-
+@media only screen and (max-width:600px){
+  .title-form{
+    margin-left: 7%;
+    width: 85%;
+  }
+}
 .txt-review {
   font-size: 20px !important;
   padding: 1rem !important;
@@ -4004,7 +4023,7 @@ TOASTR
 }
 
 .toast-top-center {
-  top: 0;
+  top: 55px;
   right: 0;
   width: 100%;
 }

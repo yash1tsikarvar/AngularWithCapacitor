@@ -13,11 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-<<<<<<< HEAD
-    __webpack_exports__["default"] = "<div class=\"main-content-white begin-enter-code\">\r\n  <div class=\"container-fluid p-0\">\r\n    <div class=\"row justify-content-center\">\r\n      <div class=\"col-6\">\r\n        <img src=\"/assets/logo-lets-begin.svg\" alt=\"Let's Begin\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"main-content begin-community-selection lower-content\">\r\n  <div class=\"container-fluid p-0\">\r\n    <div class=\"row\">\r\n      <div class=\"col-12\">\r\n        <section class=\"content-box\">\r\n          <article>\r\n            <div class=\"main-icon-holder xs-max\"></div>\r\n            <h1 class=\"txt-hero\">Thank you we have received your Signature</h1>\r\n          </article>\r\n\r\n        </section>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
-=======
     __webpack_exports__["default"] = "<div class=\"main-content-white begin-enter-code\">\n  <div class=\"container-fluid p-0\">\n    <div class=\"row justify-content-center\">\n      <div class=\"col-6\">\n        <img src=\"/assets/logo-lets-begin.svg\" alt=\"Let's Begin\">\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<div class=\"main-content begin-community-selection lower-content\">\n  <div class=\"container-fluid p-0\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <section class=\"content-box\">\n          <article>\n            <div class=\"main-icon-holder xs-max\"></div>\n            <h1 class=\"txt-hero\">Thank you we have received your Signature</h1>\n          </article>\n\n        </section>\n\n      </div>\n    </div>\n  </div>\n</div>\n";
->>>>>>> c0ac9275dc0b2b4a2d72274fddb999f5b1790bf5
     /***/
   },
 

@@ -10,7 +10,7 @@
       <span class="theme-logo" [ngStyle]="{'background-image': smallLogo}"></span>
     </h2> -->
 
-    <div *ngIf="viewType !== 'normal'" class="row">
+    <div *ngIf="viewType !== 'normal'" class="row reference">
       <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
         <h2 class="step-headline">References</h2>
       </div>
@@ -32,7 +32,7 @@
       </div>
     </div> -->
 
-    <h4 class="title-form"  *ngIf="setup.employmentRequired || setup.referenceRequired || (propertyInfo.shortApplication == 'LONG' && propertyInfo.incomeRequired)" >Applicant Details</h4>
+    <h4 class="title-form reference" *ngIf="setup.employmentRequired || setup.referenceRequired || (propertyInfo.shortApplication == 'LONG' && propertyInfo.incomeRequired)" >Applicant Details</h4>
 
     <div
       class="box-group box-group--connect form-box"
