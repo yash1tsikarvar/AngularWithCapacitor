@@ -100,11 +100,6 @@
 
   $('#google_translate_element').find("a").removeAttr("href");
 
-  // Toggle language dropdown visibility on click of icon
-  $('#toggleLanguage').click(function() {
-    $(".goog-te-gadget-simple").toggle();
-  });
-
   // Additional styling if viewport width is less than or equal to 600px
   if ($(window).width() <= 600) {
     $('#google_translate_element').find("a").removeAttr("href");

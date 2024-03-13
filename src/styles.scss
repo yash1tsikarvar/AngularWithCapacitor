@@ -1761,7 +1761,7 @@ main {
     height: 100vh;
     display: block;
   }
-
+ 
   .navbar-nav {
     height: calc(100vh - 60px);
     background-color: $white;
@@ -2153,6 +2153,12 @@ main {
       margin-top: 5px;
       font-size: 0.7rem;
     }
+  }
+}
+@media only screen and (max-width:600px){
+  .navbar{
+    height: 80px;
+    padding: 10px 15px 0 15px;
   }
 }
 
@@ -3838,7 +3844,7 @@ tev-incompatible-browser {
 #google_translate_element {
   position: fixed;
   bottom: 10px;
-  left: 5px;
+  // left: 5px;
   background-color: transparent;
   z-index: 1040;
   height: 46px !important;
@@ -3848,6 +3854,7 @@ tev-incompatible-browser {
   #google_translate_element{
     top: 100px;
     right: 5px;
+    width: -webkit-fit-content;
   }
 }
 
