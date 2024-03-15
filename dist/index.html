@@ -114,11 +114,19 @@
 
 
 $('document').ready(function () {
-
+  let flag=0
   $("iframe").contents().find('.goog-logo-link').css ('display', 'none');
 
 // RESTYLE THE DROPDOWN MENU
 $('#google_translate_element').click( function () {
+  // alert($("iframe").css('display'))
+  if(flag==1){
+    flag=0;
+    $("iframe").css ('display', 'none');
+  } else {
+    flag = 1;
+    $("iframe").css ('display', 'block');
+  }
 
   $("iframe").contents().find('.goog-logo-link').css ('display', 'none');
 
@@ -159,7 +167,7 @@ $('#google_translate_element').click( function () {
 
         // Change the iframe's box shadow
         $(".goog-te-menu-frame").css('box-shadow', '0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3)');
-
+        
         // Change Google's Translate to
         $("iframe").contents().find('.goog-te-banner-content').css('display', 'inline-block');
         $("iframe").contents().find('.goog-te-banner-content').css( 'width', '300px');
