@@ -2157,8 +2157,8 @@ main {
 }
 @media only screen and (max-width:600px){
   .navbar{
-    height: 80px;
-    padding: 10px 15px 0 15px;
+    height: 6rem;
+    padding: 30px 15px 0 15px;
   }
 }
 
@@ -3844,7 +3844,7 @@ tev-incompatible-browser {
 #google_translate_element {
   position: fixed;
   bottom: 10px;
-  // left: 5px;
+  left: 5px;
   background-color: transparent;
   z-index: 1040;
   height: 46px !important;
@@ -3854,6 +3854,7 @@ tev-incompatible-browser {
   #google_translate_element{
     top: 100px;
     right: 5px;
+    left: unset;
     width: -webkit-fit-content;
   }
 }

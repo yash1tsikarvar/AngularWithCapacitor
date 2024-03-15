@@ -256,4 +256,8 @@
  [type="search"]::-webkit-search-decoration {
    -webkit-appearance: none;
  }
-
+@media screen and (max-width:600px) {
+  .applications{
+    padding-top: 100px;
+  }
+}
