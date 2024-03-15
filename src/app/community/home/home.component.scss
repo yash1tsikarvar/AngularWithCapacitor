@@ -150,7 +150,7 @@
 
   .home-container{
     display: grid;
-    grid-template: 1fr 1fr 1fr / .1fr .8fr .1fr;
+    grid-template: 4fr 1fr 1fr/0.1fr 0.8fr 0.1fr;
     grid-template-areas:
       ". . ."
       ". body ."
