@@ -24,6 +24,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { MatCardModule, MatProgressBarModule } from '@angular/material';
 import { SignVideoComponent } from './sign-video/sign-video.component';
 import { HeaderStartComponent } from './layout/header-start/header-start.component';
+import { HeaderWithoutLogoComponent } from './layout/header-without-logo/header-without-logo.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { HeaderStartComponent } from './layout/header-start/header-start.compone
     LoaderComponent,
     SignVideoComponent,
     HeaderStartComponent,
+    HeaderWithoutLogoComponent,
   ],
   exports: [
     AlertBadgeComponent,
@@ -72,7 +74,8 @@ import { HeaderStartComponent } from './layout/header-start/header-start.compone
     FooterComponent,
     LoaderComponent,
     SignVideoComponent,
-    HeaderStartComponent
+    HeaderStartComponent,
+    HeaderWithoutLogoComponent
   ]
 })
 export class ComponentsModule {

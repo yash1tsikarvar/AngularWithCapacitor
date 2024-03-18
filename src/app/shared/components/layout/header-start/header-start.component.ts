@@ -9,13 +9,13 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class HeaderStartComponent implements OnInit {
 
-  isHomePage: boolean = false;
+  isLogo: boolean = false;
   constructor(
     public authService: AuthService,
     private router: Router,) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          this.isHomePage = event.url === '/community/home';
+          this.isLogo = event.url === '/community/video-info/';
         }
       });
   }

@@ -139,7 +139,11 @@ a {
   }
 }
 
-
+@media screen and (max-width:600px) {
+  .verify{
+    padding-top: 100px;
+  }
+}
 @media screen and (max-width: 399px) {
   .icon {
       display: none;

@@ -1,0 +1,70 @@
+
+@import "../../../../../sass/_variables";
+@import "../../../../../styles";
+
+.header {
+  display:flex;
+  align-items: end;
+  height: 6.5rem;
+  background: #463D53;
+  padding: 0px 16px;
+  position: fixed;
+  width: 100%;
+  z-index: 11;
+  &-logo {
+    // margin-left: 5rem;
+    & img{
+      width: 80%;
+    }
+  }
+  &-menu {
+    margin-right:1.5rem;
+
+    &-desktop{
+      display: inherit;
+      @include breakpoint(sm_max) {
+          display: none;
+      }
+    }
+    &-mobile{
+      display: none;
+      @include breakpoint(sm_max) {
+          display: inherit;
+      }
+    }
+  }
+}
+
+.icon {
+  font-size: 50px;
+}
+.header-logo{
+  margin: 10px auto;
+}
+.tev-btn {
+    margin-right: 0.5rem;
+    &:hover {
+      color: $white;
+      opacity: 0.7;
+    }
+    &--mdrounded {
+        border-radius: 60px;
+        height: 35px;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 0 30px;
+    }
+    &--xlpad {
+        padding: 0 50px;
+    }
+  }
+
+  :host {
+    display: none;
+  }
+  
+  @media (max-width: 600px) {
+    :host {
+      display: block; /* show the component when viewport width is 600px or less */
+    }
+  }
