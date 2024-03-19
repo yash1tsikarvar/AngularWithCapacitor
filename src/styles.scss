@@ -3238,6 +3238,11 @@ $switch-transition: 0.2s all !default;
     margin-left: 1rem;
   }
 }
+@media screen and (max-width:600px) {
+  .switch + .switch{
+    margin-left: 0;
+  }
+}
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
   background-color: $purple;

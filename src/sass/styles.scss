@@ -1214,7 +1214,11 @@ $tev-default-border: 1px solid #e2dfdf;
     }
   }
 }
-
+@media screen and (max-width:600px) {
+  .profile .switch{
+    margin-top: 5px;
+  }
+}
 //---------------- .payment-table
 .payment-table {
   margin-bottom: 30px;
