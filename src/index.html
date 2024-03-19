@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <!-- Instruct Internet Explorer to use its latest rendering engine -->
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- disable cache -->
   <meta http-equiv="Cache-Control" content="max-age=0, must-revalidate"/>
   <meta http-equiv="Pragma" content="no-cache"/>
@@ -116,7 +115,9 @@
 $('document').ready(function () {
   let flag=0
   $("iframe").contents().find('.goog-logo-link').css ('display', 'none');
-
+  setInterval(function(){
+    $(".VIpgJd-ZVi9od-ORHb-OEVmcd").css('display','none')
+  },3000)
 // RESTYLE THE DROPDOWN MENU
 $('#google_translate_element').click( function () {
   // alert($("iframe").css('display'))
@@ -126,6 +127,7 @@ $('#google_translate_element').click( function () {
   } else {
     flag = 1;
     $("iframe").css ('display', 'block');
+    $(".VIpgJd-ZVi9od-ORHb-OEVmcd").css('display','none')
   }
 
   $("iframe").contents().find('.goog-logo-link').css ('display', 'none');
