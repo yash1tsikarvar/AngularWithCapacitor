@@ -9,7 +9,8 @@ import { ApplicationResponse } from '../../shared/definitions/responses/applicat
 import { SigningStatus } from '../../shared/definitions/models/signature-completion-status.model';
 import {SignVideoComponent} from '../../shared/components/sign-video/sign-video.component';
 import {MatDialog} from '@angular/material/dialog';
-
+import { Browser } from '@capacitor/browser';
+import { Capacitor } from '@capacitor/core';
 @Component({
   selector: 'tev-profile-success',
   templateUrl: './profile-success.component.html',
@@ -170,7 +171,12 @@ export class ProfileSuccessComponent implements OnInit, OnDestroy {
         panelClass: 'other-dialog-container'
       }).afterClosed().subscribe(res => {
         localStorage.setItem('video-signature-' + this.mainApplication.applicationId, 'skipped');
-        window.location.href = this.mainApplication.signingStatus.url;
+        if (Capacitor.isNativePlatform()) {
+          Browser.open({ url: this.mainApplication.signingStatus.url });
+        } else {
+          window.location.href = this.mainApplication.signingStatus.url;
+        }
+
       });
     }
   }

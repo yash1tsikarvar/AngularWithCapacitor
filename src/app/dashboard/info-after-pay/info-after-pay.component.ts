@@ -1,5 +1,7 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
 import Player from '@vimeo/player';
+import { Browser } from '@capacitor/browser';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'tev-info-after-pay',
@@ -66,8 +68,12 @@ export class InfoAfterPayComponent implements OnInit {
     this.retry();
   }
 
-  goToInfoPage() {
-        window.open(this.infoUrl, "_blank");
+  async goToInfoPage() {
+    if (Capacitor.isNativePlatform()) {
+      Browser.open({ url: this.infoUrl });
+    } else {
+      window.open(this.infoUrl, "_blank");
+    }
   }
 
   retry() {

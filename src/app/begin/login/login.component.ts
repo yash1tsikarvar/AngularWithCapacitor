@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UiService } from '../../ui/ui.service';
 import { AuthService } from '../../core/services/auth.service';
 import { HttpService } from '../../core/services/http.service';
@@ -16,6 +16,8 @@ import { Subscription } from 'rxjs';
 import { DataVerificationCode, SentType } from '../../shared/definitions/models/new-tenant-applicant.model';
 import { ResendCodeRequest } from '../../shared/definitions/requests/send-sms.request';
 
+import { Browser } from '@capacitor/browser';
+import { Capacitor } from '@capacitor/core';
 @Component({
   selector: 'tev-login',
   templateUrl: './login.component.html',
@@ -24,7 +26,7 @@ import { ResendCodeRequest } from '../../shared/definitions/requests/send-sms.re
 export class LoginComponent implements OnInit {
 
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   info: string;
   infoType: AlertType;
   hide: boolean;
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private httpService: HttpService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private uiService: UiService,
     private authService: AuthService,
     private router: Router,
@@ -46,6 +48,8 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    // this.infoUrl = "https://support.tenantevaluation.com/support/solutions/folders/65000154131";
+
     this.initForm();
     this.subscription = this.recaptchaV3Service.onExecute.subscribe(
       (data: OnExecuteData) => {
@@ -55,6 +59,14 @@ export class LoginComponent implements OnInit {
     this.hide = true;
     this.buttonText = 'Show';
     this.currentYear=new Date().getFullYear();
+  }
+
+  async goToInfoPage() {
+    if (Capacitor.isNativePlatform()) {
+      Browser.open({ url: "https://support.tenantevaluation.com/support/solutions/folders/65000154131"});
+    } else {
+      window.open("https://support.tenantevaluation.com/support/solutions/folders/65000154131", "_blank");
+    }
   }
 
   public ngOnDestroy() {

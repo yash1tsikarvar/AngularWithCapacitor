@@ -13,7 +13,8 @@ import {DecodeTokenModel} from '../../shared/definitions/models/decode-token.mod
 import {FinicityVideoComponent} from '../finicity-video/finicity-video.component';
 import {Router} from '@angular/router';
 import {SignVideoComponent} from '../../shared/components/sign-video/sign-video.component';
-
+import { Browser } from '@capacitor/browser';
+import { Capacitor } from '@capacitor/core';
 @Component({
   selector: 'tev-continue-application',
   templateUrl: './continue-application.component.html',
@@ -309,7 +310,13 @@ export class ContinueApplicationComponent implements OnInit, OnDestroy {
 
   showVideoSigning() {
     if (this.isSkipped()) {
-      window.location.href = this.mainApplication.signingStatus.url;
+      if (Capacitor.isNativePlatform()) {
+        Browser.open({ url: this.mainApplication.signingStatus.url });
+      } else {
+        window.location.href = this.mainApplication.signingStatus.url;
+        return;
+      }
+      // window.location.href = this.mainApplication.signingStatus.url;
       return;
     }
     if (!this.authService.getDecodedToken().auth.includes('ROLE_CALL_CENTER_L1')) {
@@ -321,7 +328,13 @@ export class ContinueApplicationComponent implements OnInit, OnDestroy {
         panelClass: 'other-dialog-container'
       }).afterClosed().subscribe(res => {
         localStorage.setItem('video-signature-' + this.mainApplication.applicationId, 'skipped');
-        window.location.href = this.mainApplication.signingStatus.url;
+        // window.location.href = this.mainApplication.signingStatus.url;
+        if (Capacitor.isNativePlatform()) {
+          Browser.open({ url: this.mainApplication.signingStatus.url });
+        } else {
+          window.location.href = this.mainApplication.signingStatus.url;
+          return;
+        }
       });
     }
   }
